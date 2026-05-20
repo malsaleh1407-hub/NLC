@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin.html
+Disallow: /admin/
+
+Sitemap: https://nlc.com.sa/sitemap.xml
+Sitemap: https://nlc.com.sa/ar/sitemap.xml

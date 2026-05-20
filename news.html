@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>News &amp; Insights – NLC National Lighting Company</title>
+ <meta property="og:type" content="website"/>
+ <meta property="og:url" content="https://nlc.com.sa/news.html"/>
+ <meta property="og:title" content="News &amp; Insights – NLC National Lighting Company"/>
+ <meta property="og:description" content="Latest news, product launches, partnerships, and company updates from NLC – National Lighting Company, Saudi Arabia."/>
+ <meta property="og:image" content="images/logo/logo-blue.svg"/>
+ <meta property="og:site_name" content="NLC – National Lighting Company"/>
+ <meta name="twitter:card" content="summary_large_image"/>
+ <meta name="twitter:title" content="News &amp; Insights – NLC National Lighting Company"/>
+ <meta name="twitter:description" content="Latest news, product launches, partnerships, and company updates from NLC – National Lighting Company, Saudi Arabia."/>
+ <link rel="stylesheet" href="/fonts/fonts.css">
+ <link rel="icon" type="image/svg+xml" href="images/logo/logo-blue.svg">
+ <link rel="icon" type="image/png" href="images/logo/logo-blue.svg">
+ <meta name="description" content="Latest news, product launches, partnerships, and company updates from NLC – National Lighting Company, Saudi Arabia.">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://nlc.com.sa/news">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9" crossorigin="anonymous" referrerpolicy="no-referrer">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
+ <link rel="alternate" hreflang="en" href="https://nlc.com.sa/news.html">
+ <link rel="alternate" hreflang="ar" href="https://nlc.com.sa/ar/news.html">
+
+ <style>
+        :root {
+            --primary:#24285e; --primary-light:#2e3478;
+            --secondary:#F6851F; --secondary-dark:#e0720a;
+            --bg:#F0EFEF; --white:#fff; --dark:#1a1c3a;
+            --gray:#6b7280; --gray-light:#9ca3af; --border:#e2e1e1;
+            --shadow-md:0 8px 30px rgba(36,40,94,.12);
+            --shadow-lg:0 20px 60px rgba(36,40,94,.18);
+            --radius:12px; --radius-lg:20px; --radius-xl:28px;
+            --transition:.3s cubic-bezier(.4,0,.2,1);
+            --font:'Bizmo','Outfit',sans-serif;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font);background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+        a{text-decoration:none;color:inherit;transition:var(--transition);}
+        img{max-width:100%;height:auto;display:block;}
+        ul{list-style:none;}
+        .container{max-width:1280px;margin:0 auto;padding:0 24px;}
+
+        /* ---- NAVBAR ---- */
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 2px 30px rgba(36,40,94,.1);}
+        .nav-container{display:flex;align-items:center;justify-content:space-between;}
+        .nav-logo img{height:44px;width:auto;}
+        .nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;}
+        .nav-link{padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--primary);border-radius:8px;transition:var(--transition);position:relative;}
+        .nav-link:hover,.nav-link.active{color:var(--secondary);}
+        .nav-link::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--secondary);transition:width var(--transition);border-radius:2px;}
+        .nav-link:hover::after,.nav-link.active::after{width:55%;}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border-radius:50px;font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);}
+        .btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 20px rgba(246,133,31,.35);}
+        .btn-primary:hover{background:var(--secondary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(246,133,31,.45);}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+        .hamburger span{width:26px;height:2px;background:var(--primary);border-radius:2px;transition:var(--transition);}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+        .hamburger.open span:nth-child(2){opacity:0;}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+        /* ---- MOBILE MENU ---- */
+        .mob-menu{display:none;position:fixed;inset:0;background:var(--primary);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translateX(-100%);transition:transform .4s ease;}
+        .mob-menu.open{transform:translateX(0);}
+        .mob-link{font-size:1.3rem;font-weight:700;color:rgba(255,255,255,.7);padding:10px 28px;transition:var(--transition);}
+        .mob-link:hover{color:var(--secondary);}
+        .mob-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;border:none;}
+
+        /* ---- PAGE HERO ---- */
+        .page-hero{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:160px 0 80px;position:relative;overflow:hidden;min-height:420px;display:flex;align-items:center;}
+        .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0;pointer-events:none;}
+        .page-hero .container{width:100%;}
+        .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.04) 1px,transparent 1px);background-size:60px 60px;}
+        .page-hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+        .page-hero-orb-1{width:500px;height:500px;background:var(--secondary);opacity:.1;top:-200px;right:-100px;}
+        .hero-content{position:relative;z-index:2;}
+        .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:20px;}
+        .breadcrumb a{color:rgba(255,255,255,.5);transition:var(--transition);}
+        .breadcrumb a:hover{color:var(--secondary);}
+        .breadcrumb span{color:rgba(255,255,255,.3);}
+        .page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:16px;}
+        .page-hero h1 span{color:var(--secondary);}
+        .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:520px;line-height:1.75;}
+
+        /* ---- FILTER BAR ---- */
+        .filter-section{background:var(--white);border-bottom:1px solid var(--border);padding:18px 0;position:sticky;top:68px;z-index:100;}
+        .filter-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+        .filter-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray);margin-right:4px;}
+        .f-btn{padding:7px 18px;border:2px solid var(--border);border-radius:50px;background:transparent;font-family:var(--font);font-size:.82rem;font-weight:600;color:var(--gray);cursor:pointer;transition:var(--transition);}
+        .f-btn:hover{border-color:var(--secondary);color:var(--secondary);}
+        .f-btn.active{background:var(--primary);border-color:var(--primary);color:var(--white);}
+
+        /* ---- NEWS SECTION ---- */
+        .news-section{padding:60px 0 100px;}
+
+        /* ---- FEATURED ARTICLE ---- */
+        .featured-article{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--border);margin-bottom:36px;transition:var(--transition);}
+        .featured-article:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent;}
+        .featured-img{height:400px;overflow:hidden;position:relative;}
+        .featured-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+        .featured-article:hover .featured-img img{transform:scale(1.04);}
+        .featured-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),var(--primary-light));font-size:5rem;color:rgba(255,255,255,.1);}
+        .featured-tag{position:absolute;top:20px;left:20px;background:var(--secondary);color:var(--white);padding:5px 14px;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+        .featured-body{padding:44px 44px;display:flex;flex-direction:column;justify-content:center;}
+        .art-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+        .art-label::before{content:'';width:24px;height:2px;background:var(--secondary);}
+        .featured-body h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;color:var(--primary);line-height:1.25;margin-bottom:18px;}
+        .featured-body p{font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:24px;}
+        .art-meta{display:flex;align-items:center;gap:18px;font-size:.78rem;color:var(--gray-light);margin-bottom:20px;}
+        .art-meta span{display:flex;align-items:center;gap:5px;}
+        .read-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--primary);color:var(--white);border-radius:50px;font-weight:700;font-size:.88rem;transition:var(--transition);width:fit-content;}
+        .read-btn:hover{background:var(--secondary);transform:translateY(-2px);}
+        .read-btn i{transition:transform var(--transition);}
+        .read-btn:hover i{transform:translateX(4px);}
+
+        /* ---- NEWS GRID ---- */
+        .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .news-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition);display:flex;flex-direction:column;}
+        .news-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:transparent;}
+        .news-img-wrap{height:210px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--primary),var(--primary-light));}
+        .news-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+        .news-card:hover .news-img-wrap img{transform:scale(1.06);}
+        .news-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:rgba(255,255,255,.1);}
+        .news-chip{position:absolute;top:14px;left:14px;background:var(--secondary);color:var(--white);padding:4px 12px;border-radius:50px;font-size:.65rem;font-weight:700;text-transform:uppercase;}
+        .news-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+        .news-meta{display:flex;align-items:center;gap:14px;margin-bottom:12px;font-size:.74rem;color:var(--gray-light);}
+        .news-meta span{display:flex;align-items:center;gap:5px;}
+        .news-body h3{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;line-height:1.45;flex:1;}
+        .news-body p{font-size:.84rem;color:var(--gray);line-height:1.7;margin-bottom:18px;}
+        .news-rm{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;color:var(--secondary);margin-top:auto;}
+        .news-rm i{transition:transform var(--transition);}
+        .news-card:hover .news-rm i{transform:translateX(5px);}
+
+        /* ---- SECTION DIVIDER ---- */
+        .section-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+        .section-label-row h2{font-size:1.4rem;font-weight:800;color:var(--primary);}
+        .section-label-row h2 span{color:var(--secondary);}
+
+        /* ---- CTA BAND ---- */
+        .cta-band{background:linear-gradient(135deg,var(--primary),var(--primary-light));padding:70px 0;}
+        .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;}
+        .cta-text h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--white);margin-bottom:8px;}
+        .cta-text p{font-size:.95rem;color:rgba(255,255,255,.65);}
+        .cta-btns{display:flex;gap:14px;flex-shrink:0;}
+        .btn-white{background:var(--white);color:var(--secondary);font-weight:700;}
+        .btn-white:hover{background:var(--secondary);color:var(--white);}
+        .btn-outline-white{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4);}
+        .btn-outline-white:hover{background:var(--white);color:var(--primary);}
+
+        /* ---- FOOTER ---- */
+        .footer{background:var(--primary);color:var(--white);padding:60px 0 0;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:56px;margin-bottom:48px;}
+        .footer-brand p{font-size:.86rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:20px;}
+        .footer-logo-row{margin-bottom:16px;}
+        .footer-logo-row img{height:40px;filter:brightness(0) invert(1);}
+        .footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:16px;}
+        .footer-links{display:flex;flex-direction:column;gap:10px;}
+        .footer-links a{font-size:.86rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:7px;transition:var(--transition);}
+        .footer-links a::before{content:'›';color:var(--secondary);}
+        .footer-links a:hover{color:var(--white);padding-left:4px;}
+        .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+        .footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.38);}
+        .footer-bot-links{display:flex;gap:20px;}
+        .footer-bot-links a{font-size:.8rem;color:rgba(255,255,255,.38);transition:var(--transition);}
+        .footer-bot-links a:hover{color:var(--white);}
+        .s-link{width:36px;height:36px;border-radius:8px;border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);transition:var(--transition);}
+        .s-link:hover{background:var(--secondary);border-color:var(--secondary);color:var(--white);}
+
+        /* ---- BACK TO TOP ---- */
+        .btt{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:var(--secondary);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;box-shadow:0 4px 20px rgba(246,133,31,.4);opacity:0;transform:translateY(20px);transition:var(--transition);z-index:999;border:none;}
+        .btt.show{opacity:1;transform:translateY(0);}
+        .btt:hover{background:var(--secondary-dark);transform:translateY(-3px);}
+
+        /* ---- RESPONSIVE ---- */
+        @media(max-width:1000px){.featured-article{grid-template-columns:1fr;}.featured-img{height:300px;}.news-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;gap:56px;}.cta-inner{flex-direction:column;text-align:center;}}
+        @media(max-width:768px){.nav-menu{display:none;}.hamburger{display:flex;}.mob-menu{display:flex;}.news-grid{grid-template-columns:1fr;}.featured-body{padding:28px;}}
+        @media(max-width:480px){.container{padding:0 16px;}.footer-grid{grid-template-columns:1fr;}}
+        
+        .lang-switch{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:600;border:1.5px solid #e2e1e1;color:#24285e;transition:var(--transition);margin-left:8px;}
+        .lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+        .navbar.scrolled .lang-switch{border-color:var(--border);color:var(--primary);}
+        .navbar.scrolled .lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+                .whatsapp-btn{position:fixed;bottom:90px;right:28px;width:48px;height:48px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:.3s cubic-bezier(.4,0,.2,1);}
+        .whatsapp-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,.5);}
+    .nl-form{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;overflow:hidden;}.nl-form input{flex:1;background:transparent;border:none;outline:none;padding:10px 18px;font-size:.85rem;color:var(--white);}.nl-form input::placeholder{color:rgba(255,255,255,.35);}.nl-form button{background:var(--secondary);border:none;padding:10px 16px;cursor:pointer;color:var(--white);font-size:.85rem;transition:var(--transition);}@media(max-width:768px){.navbar .btn-primary{display:none!important;}.navbar .lang-switch{display:none!important;}}.mob-link.mob-cta{color:var(--secondary)!important;}.mob-link.mob-lang{margin-top:18px;font-size:1rem;opacity:.75;}</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nlc.com.sa/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "News",
+      "item": "https://nlc.com.sa/news.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div id="nav-root" data-active="news" data-ar="ar/news.html"></div>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+ <img class="hero-img" src="images/heroes/news-hero.jpg" alt="News & insights background" onerror="this.style.display='none'">
+ <div class="page-hero-orb page-hero-orb-1"></div>
+ <div class="container hero-content">
+ <h1 data-aos="fade-up">News &amp; <span>Insights</span></h1>
+ <p data-aos="fade-up" data-aos-delay="100">Stay updated with the latest product launches, partnerships, and company milestones from NLC.</p>
+ </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-section">
+ <div class="container">
+ <div class="filter-inner">
+ <span class="filter-label">Filter:</span>
+ <button class="f-btn active" data-filter="all">All News</button>
+ <button class="f-btn" data-filter="innovation">Innovation</button>
+ <button class="f-btn" data-filter="partnership">Partnership</button>
+ <button class="f-btn" data-filter="product">Product Launch</button>
+ <button class="f-btn" data-filter="company">Company</button>
+ </div>
+ </div>
+</div>
+
+<!-- NEWS CONTENT -->
+<section class="news-section">
+ <div class="container">
+
+ <!-- Featured Article -->
+ <div class="featured-article" data-cat="innovation" data-aos="fade-up" onclick="location.href='news/smart-lighting-vision-2030.html'">
+ <div class="featured-img">
+ <img src="https://nlc.com.sa/storage/news/01KHT731NS50RNEXEZ5792V1EP.png"
+ alt="NLC Smart Lighting Platform"
+ referrerpolicy="no-referrer"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="featured-img-placeholder" style="display:none;"><i class="fas fa-microchip"></i></div>
+ <span class="featured-tag">Featured</span>
+ </div>
+ <div class="featured-body">
+ <div class="art-label">Innovation</div>
+ <div class="art-meta">
+ <span><i class="fas fa-calendar-alt"></i> April 2026</span>
+ <span><i class="fas fa-clock"></i> 4 min read</span>
+ </div>
+ <h2>NLC Launches Smart Lighting Platform for Vision 2030 Projects</h2>
+ <p>Our latest IoT-enabled lighting management system has been selected for major Vision 2030 infrastructure projects across the Kingdom. The platform delivers real-time monitoring, energy analytics, and predictive maintenance, reducing operational costs by up to 40% for municipalities and developers.</p>
+ <p style="font-size:.88rem;color:var(--gray-light);line-height:1.75;">Integrating with existing infrastructure, the system supports DALI, Zigbee, and NB-IoT protocols, making NLC the premier smart lighting partner for Saudi Arabia's next chapter of development.</p>
+ </div>
+ </div>
+
+ <!-- Other Articles -->
+ <div class="section-label-row" data-aos="fade-up">
+ <h2>Latest <span>Updates</span></h2>
+ </div>
+
+ <div class="news-grid">
+
+ <!-- Article 2 -->
+ <div class="news-card" data-cat="partnership" data-aos="fade-up" data-aos-delay="0" onclick="location.href='news/abb-team-visit.html'">
+ <div class="news-img-wrap">
+ <img src="https://nlc.com.sa/storage/news/01KHR9RPT0Y3A4QMDGE6B7WK9J.jpg"
+ alt="ABB Team Visit to NLC"
+ referrerpolicy="no-referrer"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="news-img-placeholder" style="display:none;"><i class="fas fa-handshake"></i></div>
+ <span class="news-chip">Partnership</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> March 2026</span>
+ <span><i class="fas fa-clock"></i> 2 min read</span>
+ </div>
+ <h3>Welcoming ABB Team to Our Facilities</h3>
+ <p>NLC proudly welcomed the ABB team for an official visit to Factory #1 and the newly launched Factory #2 in Dammam's Second Industrial City. The visit highlighted NLC's modern manufacturing capabilities and strengthened our strategic partnership with one of the world's leading technology companies.</p>
+ </div>
+ </div>
+
+ <!-- Article 3 -->
+ <div class="news-card" data-cat="product" data-aos="fade-up" data-aos-delay="100" onclick="location.href='news/techdrive-launch.html'">
+ <div class="news-img-wrap">
+ <img src="https://nlc.com.sa/storage/news/01KHR9CTFGMQAANQBRJFF5KJ1H.jpg"
+ alt="NLC TECHDRIVE LED Driver"
+ referrerpolicy="no-referrer"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="news-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <span class="news-chip">Product Launch</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> February 2026</span>
+ <span><i class="fas fa-clock"></i> 3 min read</span>
+ </div>
+ <h3>NLC Launches TECHDRIVE LED Driver Series</h3>
+ <p>Introducing TECHDRIVE, NLC's new range of high-performance constant current LED drivers built for reliability in demanding commercial and industrial environments. Available in 40W to 200W configurations with DALI-2 dimming support, TECHDRIVE sets a new benchmark for power efficiency and product longevity in the Saudi market.</p>
+ </div>
+ </div>
+
+ <!-- Article 4 -->
+ <div class="news-card" data-cat="company" data-aos="fade-up" data-aos-delay="200" onclick="location.href='news/factory-2-opening.html'">
+ <div class="news-img-wrap">
+ <div class="news-img-placeholder"><i class="fas fa-industry"></i></div>
+ <span class="news-chip">Company</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> January 2026</span>
+ <span><i class="fas fa-clock"></i> 2 min read</span>
+ </div>
+ <h3>Factory #2 Grand Opening, Expanding Saudi Manufacturing</h3>
+ <p>NLC officially inaugurated its second production facility in Dammam's Second Industrial City, doubling our manufacturing capacity and further cementing our commitment to local production under Vision 2030's Made-in-Saudi Arabia initiative.</p>
+ </div>
+ </div>
+
+ <!-- Article 5 -->
+ <div class="news-card" data-cat="innovation" data-aos="fade-up" data-aos-delay="0" onclick="location.href='news/neom-residential-lighting.html'">
+ <div class="news-img-wrap">
+ <div class="news-img-placeholder"><i class="fas fa-city"></i></div>
+ <span class="news-chip">Innovation</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> December 2025</span>
+ <span><i class="fas fa-clock"></i> 3 min read</span>
+ </div>
+ <h3>NLC Supplies Lighting for NEOM Residential Communities</h3>
+ <p>NLC delivered a full outdoor and indoor lighting package for the landmark NEOM Residential Communities project, including smart street lighting, architectural facade lighting, and energy management integration, supporting the NEOM vision of a fully sustainable city.</p>
+ </div>
+ </div>
+
+ <!-- Article 6 -->
+ <div class="news-card" data-cat="company" data-aos="fade-up" data-aos-delay="100" onclick="location.href='news/33-years-anniversary.html'">
+ <div class="news-img-wrap">
+ <div class="news-img-placeholder"><i class="fas fa-award"></i></div>
+ <span class="news-chip">Company</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> November 2025</span>
+ <span><i class="fas fa-clock"></i> 2 min read</span>
+ </div>
+ <h3>NLC Celebrates 33 Years of Illuminating Saudi Arabia</h3>
+ <p>Founded in Dammam in 1993, NLC marks 33 years as Saudi Arabia's leading local lighting manufacturer. From pioneering LED production in the Kingdom to supporting Vision 2030 projects, the work today builds directly on the company we have grown into.</p>
+ </div>
+ </div>
+
+ <!-- Article 7 -->
+ <div class="news-card" data-cat="partnership" data-aos="fade-up" data-aos-delay="200" onclick="location.href='news/bmc-acquisition.html'">
+ <div class="news-img-wrap">
+ <div class="news-img-placeholder"><i class="fas fa-certificate"></i></div>
+ <span class="news-chip">Partnership</span>
+ </div>
+ <div class="news-body">
+ <div class="news-meta">
+ <span><i class="fas fa-calendar-alt"></i> October 2025</span>
+ <span><i class="fas fa-clock"></i> 2 min read</span>
+ </div>
+ <h3>BMC Acquisition Strengthens NLC's Power &amp; Control Division</h3>
+ <p>NLC's acquisition of BMC expanded our portfolio into Power &amp; Control Systems, so a single team can now deliver lighting, low-current systems, and electrical distribution under one brand.</p>
+ </div>
+ </div>
+
+ </div><!-- /news-grid -->
+
+ </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+ <div class="container">
+ <div class="cta-inner">
+ <div class="cta-text">
+ <h2>Have a Lighting Project in Mind?</h2>
+ <p>Our team of experts is ready to help you design, supply, and install the perfect solution.</p>
+ </div>
+ <div class="cta-btns">
+ <a href="index.html#contact" class="btn btn-white">Get a Quote <i class="fas fa-arrow-right"></i></a>
+ <a href="tel:+966920016374" class="btn btn-outline-white"><i class="fas fa-phone"></i> <bdi>+966 9200 16374</bdi></a>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <div class="footer-logo-row">
+ <img src="images/logo/logo-white.svg" alt="NLC National Lighting Company">
+ </div>
+ <p>Since 1993, NLC has helped shape Saudi Arabia's urban landscape through integrated lighting solutions - from landmark architecture to smart-city infrastructure - illuminating the path toward a more efficient and sustainable future.</p>
+ <div style="display:flex;gap:9px;">
+ <a href="https://www.linkedin.com/company/national-lighting-company/?viewAsMember=true" target="_blank" class="s-link" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.55);"><i class="fab fa-linkedin-in"></i></a>
+ <a href="https://youtu.be/_l-yk8gef7A" target="_blank" rel="noopener" class="s-link" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.55);"><i class="fab fa-youtube"></i></a>
+ </div>
+ </div>
+ <div class="footer-col">
+ <h4>Company</h4>
+ <ul class="footer-links">
+ <li><a href="index.html#about">About NLC</a></li>
+ <li><a href="index.html#solutions">Solutions</a></li>
+ <li><a href="index.html#contact">Contact Us</a></li>
+ <li><a href="projects.html">Projects</a></li>
+ <li><a href="products.html">Products</a></li>
+ <li><a href="news.html">News</a></li>
+ <li><a href="index.html#contact">Careers</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Solutions</h4>
+ <ul class="footer-links">
+ <li><a href="solutions/lighting-solutions.html">Lighting Solutions</a></li>
+ <li><a href="solutions/low-current-systems.html">Low Current Systems</a></li>
+ <li><a href="solutions/power-control-systems.html">Power &amp; Control</a></li>
+ <li><a href="solutions/fabrication-painting.html">Fabrication &amp; Painting</a></li>
+ <li><a href="products.html">Products Catalog</a></li>
+ <li><a href="index.html#contact">Maintenance</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Newsletter</h4>
+ <p style="font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:14px;">Subscribe for the latest news, product launches, and insights from NLC.</p>
+ <div class="nl-form">
+ <input type="email" placeholder="Your email address">
+ <button type="button"><i class="fas fa-arrow-right"></i></button>
+ </div>
+ <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:9px;">No spam. Unsubscribe anytime.</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p>© 2026 National Lighting Company (NLC). All rights reserved. Saudi Arabia</p>
+ <div class="footer-bot-links">
+ <a href="privacy.html">Privacy Policy</a>
+ <a href="terms.html">Terms of Use</a>
+ </div>
+ </div>
+ </div>
+</footer>
+
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha384-n1AULnKdMJlK1oQCLNDL9qZsDgXtH6jRYFCpBtWFc+a9Yve0KSoMn575rk755NJZ" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    AOS.init({duration:700,easing:'ease-out-cubic',once:true,offset:60});
+    window.addEventListener('scroll',()=>document.getElementById('btt').classList.toggle('show',window.scrollY>400));
+
+    // Mobile menu
+    const hamburger=document.getElementById('hamburger'),mobMenu=document.getElementById('mobMenu'),mobClose=document.getElementById('mobClose');
+    function closeMob(){hamburger.classList.remove('open');mobMenu.classList.remove('open');document.body.style.overflow='';}
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobMenu.classList.toggle('open');document.body.style.overflow=mobMenu.classList.contains('open')?'hidden':'';});
+    mobClose.addEventListener('click',closeMob);
+    document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',closeMob));
+
+    // Filter
+    document.querySelectorAll('.f-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            // Featured article
+            const featured = document.querySelector('.featured-article');
+            if(featured) featured.style.display = (filter==='all' || featured.dataset.cat===filter) ? '' : 'none';
+            // Grid cards
+            document.querySelectorAll('.news-card').forEach(card=>{
+                card.style.display = (filter==='all' || card.dataset.cat===filter) ? '' : 'none';
+            });
+        });
+    });
+
+    // Apply site-content.js social links if present
+    function applyNLCContentNews(){
+        const c = window.NLC_CONTENT;
+        if(!c || !c.social) return;
+        const soc = c.social;
+        document.querySelectorAll('a .fa-linkedin-in').forEach(i=>{if(soc.linkedin)i.closest('a').href=soc.linkedin;});
+        document.querySelectorAll('a .fa-twitter').forEach(i=>{if(soc.twitter)i.closest('a').href=soc.twitter;});
+        document.querySelectorAll('a .fa-instagram').forEach(i=>{if(soc.instagram)i.closest('a').href=soc.instagram;});
+        document.querySelectorAll('a .fa-youtube').forEach(i=>{if(soc.youtube)i.closest('a').href=soc.youtube;});
+    }
+    applyNLCContentNews();
+</script>
+<script src="site-content.js" onload="applyNLCContentNews()" onerror="void 0"></script>
+ <!-- WhatsApp Button -->
+ <a href="https://wa.me/966502605867" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+ <i class="fab fa-whatsapp"></i>
+ </a>
+<script src="nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – NLC National Lighting Company</title>
+<meta name="description" content="Privacy Policy for NLC – National Lighting Company. Learn how we collect, use, and protect your personal information.">
+ <link rel="stylesheet" href="/fonts/fonts.css">
+ <link rel="canonical" href="privacy.html"/>
+<link rel="icon" type="image/svg+xml" href="images/logo/logo-blue.svg">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="alternate" hreflang="en" href="https://nlc.com.sa/privacy.html">
+<link rel="alternate" hreflang="ar" href="https://nlc.com.sa/ar/privacy.html">
+<style>
+:root{--primary:#24285e;--primary-light:#2e3478;--secondary:#F6851F;--secondary-dark:#e0720a;--bg:#F0EFEF;--white:#fff;--gray:#6b7280;--border:#e2e1e1;--radius:12px;--radius-lg:20px;--transition:.3s cubic-bezier(.4,0,.2,1);--font:'Bizmo','Outfit',sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--primary);line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 2px 30px rgba(36,40,94,.1);}
+.container{max-width:1280px;margin:0 auto;padding:0 5%;}
+.nav-container{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:44px;width:auto;}
+.nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;list-style:none;}
+.nav-link{padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--primary);border-radius:8px;transition:var(--transition);position:relative;}
+.nav-link:hover,.nav-link.active{color:var(--secondary);}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border-radius:50px;font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);text-decoration:none;}
+.btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 20px rgba(246,133,31,.35);}
+.btn-primary:hover{background:var(--secondary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(246,133,31,.45);}
+.lang-switch{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:600;border:1.5px solid var(--border);color:var(--primary);transition:var(--transition);margin-left:8px;}
+.lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.hamburger span{width:26px;height:2px;background:var(--primary);border-radius:2px;}
+
+.page-hero{padding:160px 0 60px;background:linear-gradient(135deg,var(--primary) 0%,#1a1e4a 100%);color:var(--white);text-align:center;min-height:420px;display:flex;align-items:center;}
+.page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;margin-bottom:14px;}
+.page-hero p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:640px;margin:0 auto;}
+.page-hero .last-updated{margin-top:14px;display:inline-block;background:rgba(255,255,255,.08);padding:6px 18px;border-radius:50px;font-size:.82rem;color:rgba(255,255,255,.85);}
+
+.legal{max-width:860px;margin:0 auto;padding:70px 5% 90px;}
+.legal h2{font-size:1.4rem;font-weight:800;color:var(--primary);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--secondary);display:inline-block;}
+.legal h2:first-child{margin-top:0;}
+.legal p{color:#374151;margin-bottom:14px;font-size:.98rem;}
+.legal ul{margin:10px 0 18px 1.4rem;}
+.legal li{color:#374151;margin-bottom:8px;font-size:.98rem;}
+.legal a.inline{color:var(--secondary);font-weight:600;}
+.legal a.inline:hover{text-decoration:underline;}
+.legal .contact-box{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-top:40px;}
+.legal .contact-box h3{font-size:1.1rem;font-weight:800;color:var(--primary);margin-bottom:10px;}
+
+.footer{background:var(--primary);color:var(--white);padding:50px 0 24px;}
+.footer-mini{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-mini img{height:40px;filter:brightness(0) invert(1);}
+.footer-mini .links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-mini a{font-size:.85rem;color:rgba(255,255,255,.6);}
+.footer-mini a:hover{color:var(--secondary);}
+.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:28px;padding-top:18px;font-size:.78rem;color:rgba(255,255,255,.4);text-align:center;}
+
+@media(max-width:768px){.nav-menu{display:none;}.hamburger{display:flex;}.page-hero{padding:130px 0 50px;}}
+
+/* Hamburger active state */
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+/* Mobile menu */
+.mob-menu{display:none;position:fixed;inset:0;background:var(--primary);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translateX(-100%);transition:transform .4s ease;}
+.mob-menu.open{transform:translateX(0);}
+.mob-link{font-size:1.3rem;font-weight:700;color:rgba(255,255,255,.7);padding:10px 28px;transition:var(--transition);}
+.mob-link:hover{color:var(--secondary);}
+.mob-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;border:none;}
+/* Page hero enhancements */
+.page-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:160px 0 80px;text-align:left;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.page-hero-orb{position:absolute;width:500px;height:500px;background:var(--secondary);border-radius:50%;filter:blur(80px);opacity:.1;top:-200px;right:-100px;pointer-events:none;}
+.hero-content{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.breadcrumb a{color:rgba(255,255,255,.5);}
+.breadcrumb a:hover{color:var(--secondary);}
+.breadcrumb span{color:rgba(255,255,255,.3);}
+.page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:16px;}
+.page-hero h1 span{color:var(--secondary);}
+.page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:620px;line-height:1.75;margin:0;}
+.page-hero .last-updated{margin-top:20px;display:inline-block;background:rgba(255,255,255,.08);padding:6px 18px;border-radius:50px;font-size:.82rem;color:rgba(255,255,255,.85);}
+
+@media(max-width:768px){.navbar .btn-primary{display:none!important;}.navbar .lang-switch{display:none!important;}}.mob-link.mob-cta{color:var(--secondary)!important;}.mob-link.mob-lang{margin-top:18px;font-size:1rem;opacity:.75;}</style>
+</head>
+<body>
+<div id="nav-root" data-active="" data-ar="ar/privacy.html"></div>
+
+
+
+<section class="page-hero">
+ <div class="page-hero-orb"></div>
+ <div class="container hero-content">
+<h1>Privacy <span>Policy</span></h1>
+ <p>How NLC – National Lighting Company collects, uses, and safeguards your personal information.</p>
+ <div class="last-updated"><i class="fas fa-calendar"></i> Last updated: April 2026</div>
+ </div>
+</section>
+
+<section class="legal">
+ <h2>1. Introduction</h2>
+ <p>National Lighting Company ("NLC", "we", "our", or "us") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, share, and safeguard information when you visit <a href="index.html" class="inline">nlc.com.sa</a>, request a quote, or otherwise interact with us.</p>
+
+ <h2>2. Information We Collect</h2>
+ <p>We collect the following categories of information:</p>
+ <ul>
+ <li><strong>Information you provide directly</strong>, name, company, email address, phone number, and the message or inquiry content you submit through our contact and newsletter forms.</li>
+ <li><strong>Information collected automatically</strong>, IP address, browser type, device type, pages visited, and timestamps, gathered via cookies and similar technologies to operate the website and measure usage.</li>
+ <li><strong>Information from third parties</strong>, occasionally, information from business partners, referral sources, and publicly available business directories for B2B engagement purposes.</li>
+ </ul>
+
+ <h2>3. How We Use Your Information</h2>
+ <ul>
+ <li>To respond to your inquiries, prepare quotations, and fulfill orders.</li>
+ <li>To send service updates, product information, and, where you have opted in, marketing communications.</li>
+ <li>To improve our website, products, and customer experience.</li>
+ <li>To comply with applicable laws and regulations of the Kingdom of Saudi Arabia.</li>
+ </ul>
+
+ <h2>4. Legal Basis for Processing</h2>
+ <p>We process personal data under one or more of the following legal bases: your consent, performance of a contract, compliance with legal obligations, and our legitimate business interests.</p>
+
+ <h2>5. Sharing Your Information</h2>
+ <p>We do not sell personal information. We may share information with:</p>
+ <ul>
+ <li>Service providers who support our website and business operations (email delivery, analytics, cloud hosting), bound by confidentiality obligations.</li>
+ <li>Authorized business partners where required to provide a requested service.</li>
+ <li>Government authorities when required by law.</li>
+ </ul>
+
+ <h2>6. Cookies and Tracking</h2>
+ <p>Our website uses essential cookies for basic functionality and optional analytics cookies to help us improve the site. You can manage cookies in your browser settings. Disabling cookies may affect some features.</p>
+
+ <h2>7. Data Retention</h2>
+ <p>We retain personal information for as long as necessary to fulfill the purposes described in this policy or as required by applicable laws.</p>
+
+ <h2>8. Your Rights</h2>
+ <p>Subject to applicable law, you have the right to:</p>
+ <ul>
+ <li>Access the personal information we hold about you.</li>
+ <li>Request correction of inaccurate information.</li>
+ <li>Request deletion of your information.</li>
+ <li>Object to or restrict certain processing activities.</li>
+ <li>Withdraw consent to marketing communications at any time.</li>
+ </ul>
+ <p>To exercise these rights, contact us at <a href="mailto:info@nlc.com.sa" class="inline">info@nlc.com.sa</a>.</p>
+
+ <h2>9. Data Security</h2>
+ <p>We implement reasonable technical and organizational safeguards to protect personal information against unauthorized access, alteration, disclosure, or destruction. No transmission over the internet can be guaranteed 100% secure.</p>
+
+ <h2>10. International Transfers</h2>
+ <p>Your information may be processed in countries outside Saudi Arabia where our service providers operate. We ensure appropriate protections are in place.</p>
+
+ <h2>11. Changes to This Policy</h2>
+ <p>We may update this policy from time to time. Updates will be posted on this page with a revised "Last updated" date.</p>
+
+ <div class="contact-box">
+ <h3><i class="fas fa-envelope" style="color:var(--secondary);"></i> Questions about this policy?</h3>
+ <p>National Lighting Company (NLC)<br>
+ Street 77, 2nd Industrial City, P.O. Box 353, Dammam 3141, Saudi Arabia<br>
+ Email: <a href="mailto:info@nlc.com.sa" class="inline">info@nlc.com.sa</a> &nbsp;·&nbsp;
+ Tel: <a href="tel:+966920016374" class="inline">+966 9200 16374</a></p>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="container">
+ <div class="footer-mini">
+ <img src="images/logo/logo-white.svg" alt="NLC">
+ <div class="links">
+ <a href="index.html">Home</a>
+ <a href="index.html#about">About</a>
+ <a href="products.html">Products</a>
+ <a href="index.html#contact">Contact</a>
+ <a href="privacy.html">Privacy</a>
+ <a href="terms.html">Terms</a>
+ </div>
+ </div>
+ <div class="copyright">© NLC – National Lighting Company. All rights reserved. &nbsp;·&nbsp; Designed &amp; Engineered in Saudi Arabia</div>
+ </div>
+</footer>
+<script>
+const hamburger=document.getElementById('hamburger'),mobMenu=document.getElementById('mobMenu'),mobClose=document.getElementById('mobClose');
+if(hamburger){
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobMenu.classList.toggle('open');document.body.style.overflow=mobMenu.classList.contains('open')?'hidden':'';});
+    mobClose.addEventListener('click',()=>{hamburger.classList.remove('open');mobMenu.classList.remove('open');document.body.style.overflow='';});
+    document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{hamburger.classList.remove('open');mobMenu.classList.remove('open');document.body.style.overflow='';}));
+}
+</script>
+<script src="nav.js" defer></script>
+</body>
+</html>

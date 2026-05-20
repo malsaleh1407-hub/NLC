@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NLC - Visual Identity Guidelines</title>
+<style>
+/* ============ FONTS ============ */
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-Light.woff2') format('woff2');font-weight:300;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-Regular.woff2') format('woff2');font-weight:400;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-Medium.woff2') format('woff2');font-weight:500;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-SemiBold.woff2') format('woff2');font-weight:600;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-Bold.woff2') format('woff2');font-weight:700;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-ExtraBold.woff2') format('woff2');font-weight:800;}
+@font-face{font-family:'Bizmo';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/Bizmo-Black.woff2') format('woff2');font-weight:900;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-Regular.woff2') format('woff2');font-weight:400;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-Medium.woff2') format('woff2');font-weight:500;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-SemiBold.woff2') format('woff2');font-weight:600;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-Bold.woff2') format('woff2');font-weight:700;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-ExtraBold.woff2') format('woff2');font-weight:800;}
+@font-face{font-family:'Lama Sans';src:url('file:///sessions/brave-optimistic-pasteur/mnt/Website/fonts/LamaSans-Black.woff2') format('woff2');font-weight:900;}
+
+/* ============ PAGE SETUP ============ */
+@page{
+    size: 297mm 230mm;
+    margin: 0;
+}
+@page cover{ margin: 0; }
+@page section{ margin: 0; }
+
+:root{
+    --primary:#24285e;
+    --primary-light:#2e3478;
+    --primary-dark:#1a1e48;
+    --primary-deep:#0f1235;
+    --secondary:#F6851F;
+    --secondary-dark:#e0720a;
+    --bg:#F0EFEF;
+    --white:#ffffff;
+    --dark:#1a1c3a;
+    --gray:#6b7280;
+    --gray-light:#9ca3af;
+    --border:#e2e1e1;
+    --line:#ececec;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:'Bizmo','Outfit',sans-serif;color:var(--dark);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased;}
+
+.page{
+    width: 297mm;
+    height: 230mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background:var(--white);
+}
+.page:last-child{page-break-after:auto;}
+
+/* ============ SHARED ============ */
+.eyebrow{
+    display:inline-block;
+    color:var(--secondary);
+    font-size:8.5pt;
+    font-weight:700;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+.h1{font-size:32pt;font-weight:900;color:var(--primary);line-height:1.05;letter-spacing:-.01em;}
+.h1 .accent{color:var(--secondary);}
+.h2{font-size:20pt;font-weight:800;color:var(--primary);line-height:1.1;letter-spacing:-.005em;}
+.h3{font-size:12pt;font-weight:700;color:var(--primary);line-height:1.25;}
+.h4{font-size:10pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.08em;}
+.body{font-size:9pt;color:var(--gray);line-height:1.6;}
+.caption{font-size:7.5pt;color:var(--gray-light);letter-spacing:.04em;line-height:1.5;}
+.mono{font-family:'SF Mono','Menlo','Consolas',monospace;font-size:8.5pt;}
+
+.page-frame{
+    padding: 11mm 14mm 18mm;
+    height:100%;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+.page-head{
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:4mm;margin-bottom:6mm;
+}
+.page-head .marker{font-size:8pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;text-transform:uppercase;}
+.page-head .section{font-size:8pt;color:var(--gray);letter-spacing:.16em;text-transform:uppercase;font-weight:600;}
+.page-foot{
+    position:absolute;left:14mm;right:14mm;bottom:6mm;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:7.5pt;color:var(--gray-light);letter-spacing:.18em;text-transform:uppercase;
+}
+.page-foot .num{color:var(--primary);font-weight:700;}
+.page-foot .brand{display:flex;align-items:center;gap:6pt;}
+.page-foot .dot{width:5pt;height:5pt;background:var(--secondary);border-radius:50%;display:inline-block;}
+
+/* ============ COVER ============ */
+.cover{
+    background:linear-gradient(135deg,var(--primary) 0%,#1a1e4a 55%,var(--primary-deep) 100%);
+    color:var(--white);
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.cover-grid{
+    position:absolute;inset:0;
+    background-image:
+        linear-gradient(rgba(246,133,31,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(246,133,31,.05) 1px,transparent 1px);
+    background-size: 20mm 20mm;
+    pointer-events:none;
+}
+.cover-orb{
+    position:absolute;border-radius:50%;filter:blur(60px);opacity:.18;
+}
+.cover-orb.a{width:230mm;height:230mm;background:var(--secondary);top:-90mm;right:-50mm;opacity:.13;}
+.cover-orb.b{width:140mm;height:140mm;background:#3a4080;bottom:-60mm;left:-30mm;opacity:.4;}
+.cover-inner{
+    position:relative;z-index:1;
+    padding:20mm 22mm;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.cover-mark{display:flex;align-items:center;gap:10pt;}
+.cover-mark .markbox{
+    width:14mm;height:14mm;
+    background:var(--secondary);
+    border-radius:3mm;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);font-weight:900;font-size:14pt;
+    box-shadow:0 6px 20px rgba(246,133,31,.35);
+}
+.cover-mark .marktxt{font-size:11pt;font-weight:700;letter-spacing:.32em;text-transform:uppercase;}
+.cover-tag{
+    font-size:8pt;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.18);padding:4pt 10pt;border-radius:50px;
+}
+.cover-mid{
+    flex:1;display:flex;flex-direction:column;justify-content:center;
+    margin-top:6mm;
+}
+.cover-eyebrow{
+    color:var(--secondary);font-size:11pt;font-weight:800;letter-spacing:.42em;text-transform:uppercase;
+    margin-bottom:14pt;text-shadow:0 0 24px rgba(246,133,31,.4);
+}
+.cover-title{
+    font-size:72pt;font-weight:900;line-height:.96;letter-spacing:-.02em;color:var(--white);
+}
+.cover-title .ac{color:var(--secondary);}
+.cover-sub{
+    font-size:14pt;font-weight:300;color:rgba(255,255,255,.7);
+    max-width:140mm;margin-top:14pt;line-height:1.55;letter-spacing:.01em;
+}
+.cover-bot{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-top:1px solid rgba(255,255,255,.18);padding-top:10pt;
+}
+.cover-meta{display:flex;gap:16mm;}
+.cover-meta .lbl{font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:4pt;}
+.cover-meta .val{font-size:11pt;color:var(--white);font-weight:700;letter-spacing:.04em;}
+.cover-arabic{
+    font-family:'Lama Sans';font-size:11pt;color:rgba(255,255,255,.55);
+    letter-spacing:.04em;font-weight:500;direction:rtl;
+}
+
+/* ============ TOC ============ */
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14mm;}
+.toc-list{display:flex;flex-direction:column;}
+.toc-item{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:5pt 0;border-bottom:1px solid var(--line);
+}
+.toc-item .nm{font-size:10pt;color:var(--primary);font-weight:600;}
+.toc-item .pg{font-size:9pt;color:var(--gray);font-weight:600;}
+.toc-item .dots{flex:1;border-bottom:1px dotted var(--border);margin:0 8pt;height:1pt;align-self:flex-end;margin-bottom:6pt;}
+.toc-section{
+    font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;
+    text-transform:uppercase;margin:14pt 0 8pt;padding-bottom:5pt;border-bottom:2px solid var(--secondary);
+}
+.toc-section:first-child{margin-top:0;}
+
+/* ============ COLUMNS ============ */
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:14mm;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10mm;}
+.cols-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8mm;}
+.cols-12{display:grid;grid-template-columns:1.6fr 1fr;gap:14mm;}
+
+/* ============ COLOR SWATCHES ============ */
+.swatch{
+    border-radius:4mm;padding:6mm 6mm;color:var(--white);
+    display:flex;flex-direction:column;justify-content:space-between;
+    min-height:54mm;position:relative;overflow:hidden;
+    box-shadow:0 4px 20px rgba(36,40,94,.08);
+}
+.swatch.dark{}
+.swatch.light{color:var(--primary);box-shadow:inset 0 0 0 1px var(--border);}
+.swatch .name{font-size:14pt;font-weight:800;letter-spacing:-.005em;}
+.swatch .role{font-size:7pt;font-weight:700;letter-spacing:.32em;text-transform:uppercase;opacity:.7;margin-bottom:14pt;}
+.swatch .codes{font-family:'SF Mono',Menlo,monospace;font-size:8.5pt;line-height:1.7;opacity:.92;}
+.swatch .codes .k{opacity:.55;display:inline-block;width:14mm;}
+.swatch .role.dark{color:var(--secondary);}
+.mini-sw{
+    border-radius:3mm;padding:3mm 4mm;min-height:20mm;
+    display:flex;flex-direction:column;justify-content:space-between;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
+}
+.mini-sw .nm{font-size:8.5pt;font-weight:700;}
+.mini-sw .hex{font-family:'SF Mono',Menlo,monospace;font-size:7.5pt;opacity:.75;margin-top:2pt;}
+
+/* ============ TYPE SPECIMEN ============ */
+.spec-row{display:flex;align-items:baseline;border-bottom:1px solid var(--line);padding:5pt 0;}
+.spec-row .meta{width:42mm;font-size:8pt;color:var(--gray);letter-spacing:.04em;}
+.spec-row .meta b{color:var(--primary);font-weight:700;}
+.spec-row .sample{flex:1;color:var(--primary);}
+.glyphs{
+    border:1px solid var(--border);border-radius:4mm;padding:6mm;
+    font-size:18pt;line-height:1.3;color:var(--primary);letter-spacing:.04em;
+    word-break:break-all;
+}
+
+/* ============ COMPONENTS ============ */
+.btn-demo{
+    display:inline-flex;align-items:center;gap:8pt;
+    padding:9pt 22pt;border-radius:50px;
+    font-family:'Bizmo';font-size:10pt;font-weight:600;
+}
+.btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 14px rgba(246,133,31,.35);}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary);}
+.btn-outline-white{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.55);}
+
+.card-demo{
+    background:var(--white);border:1px solid var(--border);border-radius:5mm;
+    overflow:hidden;
+}
+.card-demo .img{
+    height:38mm;background:linear-gradient(145deg,var(--bg),#e0dedf);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--primary);font-size:34pt;opacity:.55;
+}
+.card-demo .body{padding:5mm 6mm 4mm;}
+.card-demo .cat{font-size:7pt;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:.18em;margin-bottom:3pt;}
+.card-demo .ttl{font-size:10pt;font-weight:700;color:var(--primary);}
+.card-demo .desc{font-size:8.5pt;color:var(--gray);margin-top:3pt;line-height:1.5;}
+.card-demo .foot{display:flex;justify-content:space-between;align-items:center;padding:3mm 6mm 4mm;border-top:1px solid var(--line);background:rgba(240,239,239,.5);}
+.card-demo .specs{display:flex;gap:8pt;font-size:7.5pt;color:var(--gray-light);}
+.card-demo .specs span b{color:var(--secondary);}
+.card-demo .pill{
+    width:8mm;height:8mm;background:var(--primary);border-radius:50%;
+    color:var(--white);display:flex;align-items:center;justify-content:center;font-size:7pt;
+}
+
+/* code blocks */
+.code{
+    background:#0f1235;color:#dcdfff;border-radius:4mm;
+    padding:6mm 7mm;font-family:'SF Mono','Menlo',monospace;font-size:7.5pt;line-height:1.7;
+    white-space:pre;overflow:hidden;
+}
+.code .c{color:#7c8bd9;}
+.code .k{color:#F6851F;}
+.code .v{color:#9ec5fe;}
+
+/* do/don't */
+.gd{border:1px solid #d6efd9;background:#f4faf5;border-left:4px solid #1aaa55;border-radius:3mm;padding:6mm 7mm;}
+.bd{border:1px solid #f3d6d6;background:#fcf6f6;border-left:4px solid #d83a3a;border-radius:3mm;padding:6mm 7mm;}
+.gd h5,.bd h5{font-size:8pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4pt;}
+.gd h5{color:#1aaa55;}
+.bd h5{color:#d83a3a;}
+.gd p,.bd p{font-size:8.5pt;color:var(--dark);line-height:1.55;}
+
+/* spacing demo */
+.spacer-row{display:flex;align-items:center;gap:6mm;padding:3mm 0;border-bottom:1px solid var(--line);}
+.spacer-row .lbl{width:18mm;font-size:8pt;color:var(--gray);font-family:'SF Mono',Menlo,monospace;}
+.spacer-row .bar{height:6mm;background:linear-gradient(90deg,var(--secondary),rgba(246,133,31,.4));border-radius:1mm;}
+.spacer-row .px{width:18mm;font-size:8pt;color:var(--gray-light);}
+
+/* gradient demos */
+.grad{height:28mm;border-radius:4mm;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:9pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+.grad-1{background:linear-gradient(135deg,#24285e 0%,#1a1e4a 55%,#0f1235 100%);}
+.grad-2{background:linear-gradient(135deg,#F6851F 0%,#e0720a 100%);}
+.grad-3{background:linear-gradient(145deg,#24285e,#2e3478);}
+
+.section-pattern{
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-deep) 100%);
+    border-radius:5mm;padding:9mm 10mm;color:var(--white);position:relative;overflow:hidden;
+}
+.section-pattern::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+        linear-gradient(rgba(246,133,31,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(246,133,31,.06) 1px,transparent 1px);
+    background-size:14mm 14mm;
+}
+.section-pattern>*{position:relative;}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:8.5pt;}
+.tbl th,.tbl td{padding:5pt 8pt;text-align:left;border-bottom:1px solid var(--line);}
+.tbl th{font-size:7.5pt;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:.16em;background:var(--bg);}
+.tbl td{color:var(--dark);}
+.tbl td.mono{font-family:'SF Mono',Menlo,monospace;font-size:8pt;color:var(--primary);}
+
+/* Logo block */
+.logo-stage{
+    background:var(--white);border:1px solid var(--border);border-radius:4mm;
+    height:74mm;display:flex;align-items:center;justify-content:center;position:relative;
+}
+.logo-stage.dark{background:var(--primary);border-color:transparent;}
+.logo-stage.bg{background:var(--bg);border-color:var(--line);}
+
+.logo-svg{height:18mm;display:block;}
+.logo-svg.lg{height:28mm;}
+.logo-svg.sm{height:9mm;}
+
+/* Misuse panel */
+.misuse{
+    border:1px solid var(--border);border-radius:4mm;padding:6mm;
+    height:50mm;display:flex;align-items:center;justify-content:center;position:relative;
+    background:var(--white);
+}
+.misuse::after{
+    content:'';position:absolute;top:6pt;right:6pt;
+    width:8mm;height:8mm;border-radius:50%;background:#d83a3a;
+    color:white;font-size:10pt;font-weight:900;
+    display:flex;align-items:center;justify-content:center;
+}
+.misuse.x::after{content:'×';color:white;line-height:8mm;}
+.misuse-cap{font-size:7.5pt;color:var(--gray);text-align:center;margin-top:6pt;letter-spacing:.04em;}
+
+/* nav demo */
+.nav-demo{
+    background:var(--white);border:1px solid var(--border);border-radius:3mm;
+    padding:4mm 6mm;display:flex;align-items:center;justify-content:space-between;
+    box-shadow:0 2px 14px rgba(36,40,94,.06);
+}
+.nav-demo .links{display:flex;gap:14pt;font-size:8.5pt;font-weight:500;color:var(--primary);}
+.nav-demo .links .active{color:var(--secondary);}
+.nav-demo .cta{background:var(--secondary);color:var(--white);padding:5pt 14pt;border-radius:50px;font-size:8pt;font-weight:600;}
+
+/* footer demo */
+.foot-demo{background:var(--primary);color:var(--white);padding:8mm 8mm 5mm;border-radius:3mm;}
+.foot-demo h4{font-size:7.5pt;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:.18em;margin-bottom:5pt;}
+.foot-demo a{display:block;font-size:8pt;color:rgba(255,255,255,.55);padding:1.5pt 0;}
+.foot-demo a::before{content:'›  ';color:var(--secondary);}
+.foot-demo .grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:8mm;}
+.foot-demo .brand p{font-size:8pt;color:rgba(255,255,255,.55);line-height:1.7;margin-top:3mm;}
+.foot-demo .bot{margin-top:6mm;padding-top:5mm;border-top:1px solid rgba(255,255,255,.12);font-size:7pt;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;}
+
+/* Voice block */
+.voice-card{
+    border:1px solid var(--border);border-radius:4mm;padding:7mm;height:100%;
+    display:flex;flex-direction:column;
+}
+.voice-card .ico{
+    width:11mm;height:11mm;background:rgba(246,133,31,.12);color:var(--secondary);
+    border-radius:3mm;display:flex;align-items:center;justify-content:center;
+    font-size:14pt;font-weight:900;margin-bottom:5pt;
+}
+
+/* arabic */
+.ar{font-family:'Lama Sans';direction:rtl;text-align:right;}
+.ar.h1{font-size:34pt;}
+.ar.h2{font-size:22pt;}
+
+/* utility */
+.mt-4{margin-top:3mm;}
+.mt-6{margin-top:4mm;}
+.mt-8{margin-top:5mm;}
+.mt-10{margin-top:6mm;}
+.mb-4{margin-bottom:3mm;}
+.mb-6{margin-bottom:4mm;}
+.mb-8{margin-bottom:5mm;}
+.center{text-align:center;}
+.divider{height:1px;background:var(--line);margin:8mm 0;}
+.tag{display:inline-block;font-size:7pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:2pt 8pt;border-radius:50px;background:rgba(246,133,31,.12);color:var(--secondary);}
+.tag.navy{background:rgba(36,40,94,.08);color:var(--primary);}
+
+/* prop bars (color usage) */
+.prop-bar{display:flex;height:14mm;border-radius:2mm;overflow:hidden;box-shadow:inset 0 0 0 1px var(--border);}
+.prop-bar > div{display:flex;align-items:center;justify-content:center;color:var(--white);font-size:8pt;font-weight:700;letter-spacing:.04em;}
+
+/* Feature list */
+.flist{list-style:none;}
+.flist li{position:relative;padding-left:8mm;font-size:9pt;color:var(--dark);line-height:1.65;margin-bottom:3pt;}
+.flist li::before{content:'';position:absolute;left:0;top:3.5pt;width:4mm;height:4mm;background:var(--secondary);border-radius:50%;}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- PAGE 1 - COVER -->
+<!-- ============================================ -->
+<section class="page cover">
+    <div class="cover-grid"></div>
+    <div class="cover-orb a"></div>
+    <div class="cover-orb b"></div>
+    <div class="cover-inner">
+        <div class="cover-top">
+            <div class="cover-mark">
+                <div class="markbox">N</div>
+                <div class="marktxt">National Lighting Co.</div>
+            </div>
+            <div class="cover-tag">2026 · v1.0</div>
+        </div>
+        <div class="cover-mid">
+            <div class="cover-eyebrow">Visual Identity Guidelines</div>
+            <div class="cover-title">Light, made<br><span class="ac">national.</span></div>
+            <div class="cover-sub">The complete brand system for nlc.com.sa - colors, typography, components, and usage rules. Built for designers extending the website and partners producing collateral.</div>
+        </div>
+        <div class="cover-bot">
+            <div class="cover-meta">
+                <div>
+                    <div class="lbl">Issued</div>
+                    <div class="val">May 2026</div>
+                </div>
+                <div>
+                    <div class="lbl">Version</div>
+                    <div class="val">1.0</div>
+                </div>
+                <div>
+                    <div class="lbl">Owner</div>
+                    <div class="val">NLC Brand Team</div>
+                </div>
+            </div>
+            <div class="cover-arabic">دليل الهوية البصرية · شركة الإنارة الوطنية</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 2 - TABLE OF CONTENTS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">00 - Contents</div>
+            <div class="section">NLC Visual Identity Guidelines</div>
+        </div>
+
+        <div class="h1 mb-4">What's <span class="accent">inside.</span></div>
+        <div class="body" style="max-width:170mm;margin-bottom:10mm;">A practical brand system for both digital and print. Every page can be opened on its own - designers do not need to read cover-to-cover before they start working.</div>
+
+        <div class="toc-grid">
+            <div class="toc-list">
+                <div class="toc-section">01 - Foundations</div>
+                <div class="toc-item"><span class="nm">Brand essence &amp; personality</span><span class="dots"></span><span class="pg">03</span></div>
+                <div class="toc-item"><span class="nm">Voice &amp; tone</span><span class="dots"></span><span class="pg">04</span></div>
+                <div class="toc-section">02 - Logo</div>
+                <div class="toc-item"><span class="nm">Primary mark &amp; lock-up</span><span class="dots"></span><span class="pg">05</span></div>
+                <div class="toc-item"><span class="nm">Variations &amp; sizing</span><span class="dots"></span><span class="pg">06</span></div>
+                <div class="toc-item"><span class="nm">Misuse</span><span class="dots"></span><span class="pg">07</span></div>
+                <div class="toc-section">03 - Color</div>
+                <div class="toc-item"><span class="nm">Primary palette</span><span class="dots"></span><span class="pg">08</span></div>
+                <div class="toc-item"><span class="nm">Extended &amp; neutrals</span><span class="dots"></span><span class="pg">09</span></div>
+                <div class="toc-item"><span class="nm">Usage &amp; accessibility</span><span class="dots"></span><span class="pg">10</span></div>
+                <div class="toc-section">04 - Typography</div>
+                <div class="toc-item"><span class="nm">Bizmo (English)</span><span class="dots"></span><span class="pg">11</span></div>
+                <div class="toc-item"><span class="nm">Lama Sans (Arabic)</span><span class="dots"></span><span class="pg">12</span></div>
+                <div class="toc-item"><span class="nm">Type scale &amp; rules</span><span class="dots"></span><span class="pg">13</span></div>
+            </div>
+            <div class="toc-list">
+                <div class="toc-section">05 - System</div>
+                <div class="toc-item"><span class="nm">Spacing &amp; grid</span><span class="dots"></span><span class="pg">14</span></div>
+                <div class="toc-item"><span class="nm">Layout &amp; page anatomy</span><span class="dots"></span><span class="pg">15</span></div>
+                <div class="toc-section">06 - Components</div>
+                <div class="toc-item"><span class="nm">Buttons</span><span class="dots"></span><span class="pg">16</span></div>
+                <div class="toc-item"><span class="nm">Cards</span><span class="dots"></span><span class="pg">17</span></div>
+                <div class="toc-item"><span class="nm">Section pattern</span><span class="dots"></span><span class="pg">18</span></div>
+                <div class="toc-item"><span class="nm">Navigation &amp; footer</span><span class="dots"></span><span class="pg">19</span></div>
+                <div class="toc-item"><span class="nm">Forms &amp; inputs</span><span class="dots"></span><span class="pg">20</span></div>
+                <div class="toc-section">07 - Imagery</div>
+                <div class="toc-item"><span class="nm">Photography</span><span class="dots"></span><span class="pg">21</span></div>
+                <div class="toc-item"><span class="nm">Treatments &amp; iconography</span><span class="dots"></span><span class="pg">22</span></div>
+                <div class="toc-section">08 - Motion &amp; bilingual</div>
+                <div class="toc-item"><span class="nm">Motion &amp; interaction</span><span class="dots"></span><span class="pg">23</span></div>
+                <div class="toc-item"><span class="nm">RTL &amp; bilingual</span><span class="dots"></span><span class="pg">24</span></div>
+                <div class="toc-section">09 - Practice</div>
+                <div class="toc-item"><span class="nm">Print collateral</span><span class="dots"></span><span class="pg">25</span></div>
+                <div class="toc-item"><span class="nm">Do's &amp; Don'ts</span><span class="dots"></span><span class="pg">26</span></div>
+                <div class="toc-item"><span class="nm">Resources</span><span class="dots"></span><span class="pg">27</span></div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">02</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 3 - BRAND ESSENCE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">01 - Foundations</div>
+            <div class="section">Brand Essence</div>
+        </div>
+
+        <div class="cols-12" style="flex:1;">
+            <div>
+                <div class="eyebrow">Who we are</div>
+                <div class="h1 mb-6">Engineered light for <span class="accent">a country in motion.</span></div>
+                <div class="body" style="max-width:155mm;">National Lighting Company is a Saudi-owned LED manufacturer and Schneider Electric authorized panel assembler. Founded in 1993 in Dammam, NLC delivers lighting and integrated power systems to commercial, industrial, healthcare, and government projects across the Kingdom.</div>
+                <div class="body mt-4" style="max-width:155mm;">Every brand decision in this guide ladders up to three ideas: <b style="color:var(--primary);">national pride</b>, <b style="color:var(--primary);">engineering precision</b>, and <b style="color:var(--primary);">human warmth</b>. Navy carries the first two. Orange carries the third.</div>
+
+                <div class="cols-3 mt-10">
+                    <div>
+                        <div class="tag">National</div>
+                        <div class="h3 mt-4">Saudi at the core</div>
+                        <div class="body mt-4">Built in the Kingdom for the Kingdom. We carry that geography in language, in pace, and in the projects we light.</div>
+                    </div>
+                    <div>
+                        <div class="tag">Precise</div>
+                        <div class="h3 mt-4">Engineered, not decorated</div>
+                        <div class="body mt-4">Every spec, every tolerance, every IK/IP rating is on purpose. The brand should feel as exact as the product.</div>
+                    </div>
+                    <div>
+                        <div class="tag">Warm</div>
+                        <div class="h3 mt-4">Human at the seam</div>
+                        <div class="body mt-4">Lighting is a service, not a transaction. Orange is the warmth that meets people on either end of the panel.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-pattern" style="height:100%;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="font-size:7pt;letter-spacing:.32em;text-transform:uppercase;color:var(--secondary);font-weight:700;margin-bottom:6pt;">Established</div>
+                        <div style="font-size:78pt;font-weight:900;color:var(--white);line-height:.95;letter-spacing:-.02em;">1993</div>
+                        <div style="font-size:9pt;color:rgba(255,255,255,.6);margin-top:6pt;letter-spacing:.04em;">Dammam · Eastern Province · Saudi Arabia</div>
+                    </div>
+                    <div style="border-top:1px solid rgba(255,255,255,.18);padding-top:6mm;">
+                        <div style="font-size:8pt;letter-spacing:.32em;text-transform:uppercase;color:var(--secondary);font-weight:700;margin-bottom:8pt;">Brand pillars</div>
+                        <div style="font-size:11pt;font-weight:700;color:var(--white);line-height:1.5;">Lighting Solutions<br>Low Current Systems<br>Power &amp; Control Systems</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">03</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 4 - VOICE & TONE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">01 - Foundations</div>
+            <div class="section">Voice &amp; Tone</div>
+        </div>
+
+        <div class="eyebrow">How we sound</div>
+        <div class="h1 mb-6">Plain-spoken, <span class="accent">technically honest.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">NLC writes the way a senior engineer talks to a project manager: confident, specific, and never showy. We do not market lighting - we describe it accurately enough that the right buyer recognizes their job.</div>
+
+        <div class="cols-4 mt-6">
+            <div class="voice-card">
+                <div class="ico">+</div>
+                <div class="h3">Specific</div>
+                <div class="body mt-4">Use real numbers - wattage, lumen output, CRI, IP rating. Don't say "premium" when you can say "IP65, 80+ CRI."</div>
+            </div>
+            <div class="voice-card">
+                <div class="ico">+</div>
+                <div class="h3">Calm</div>
+                <div class="body mt-4">Statements, not exclamations. We do not need urgency to sell engineered lighting. Lower the voice, keep the eye.</div>
+            </div>
+            <div class="voice-card">
+                <div class="ico">+</div>
+                <div class="h3">Bilingual</div>
+                <div class="body mt-4">Arabic and English are equal. Neither translates from the other - both originate. Project names stay in Arabic.</div>
+            </div>
+            <div class="voice-card">
+                <div class="ico">+</div>
+                <div class="h3">Useful</div>
+                <div class="body mt-4">Every paragraph should help a specifier do their job. If a sentence does not specify, demonstrate, or qualify, cut it.</div>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-10">
+            <div class="gd">
+                <h5>✓  Yes</h5>
+                <p style="margin-top:5pt;"><b>Hero LED Floodlight - 200W, 5700K, IP66.</b> Die-cast aluminium body, asymmetrical lens, suitable for facade and stadium applications up to 18 m mounting height.</p>
+            </div>
+            <div class="bd">
+                <h5>×  No</h5>
+                <p style="margin-top:5pt;"><b>The amazing Hero floodlight</b> - a revolutionary new lighting solution that brings unmatched performance and stunning brilliance to any space, day or night.</p>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <div class="h4 mb-4">Words we use</div>
+            <div class="body" style="max-width:220mm;">specifier, luminaire, fixture, fitting, panel, switchgear, project, certified, assembled, manufactured, delivered, mounted, installed, tested, IP rating, IK rating, CRI, lumens, CCT, K, lm/W, MV, LV, MCC.</div>
+            <div class="h4 mt-8 mb-4">Words we avoid</div>
+            <div class="body" style="max-width:220mm;color:#a04040;">revolutionary, amazing, world-class, cutting-edge, next-generation, game-changing, unleash, transform your space, stunning brilliance, unparalleled.</div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">04</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 5 - LOGO PRIMARY -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">02 - Logo</div>
+            <div class="section">Primary Mark</div>
+        </div>
+
+        <div class="cols-12" style="flex:1;">
+            <div>
+                <div class="logo-stage" style="height:110mm;">
+                    <!-- Inline NLC logo (blue/orange combination) -->
+                    <svg class="logo-svg lg" viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:34mm;">
+                        <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                        <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text>
+                        <text x="48" y="35" font-family="Bizmo" font-weight="500" font-size="5" fill="#24285e" letter-spacing="0.5">NATIONAL LIGHTING CO.</text>
+                    </svg>
+                </div>
+                <div class="caption mt-4 center">Primary lock-up · Mark + wordmark - used everywhere bilingual context is not required.</div>
+            </div>
+            <div>
+                <div class="eyebrow">The mark</div>
+                <div class="h2 mb-6">An "N" pulled <span class="accent">from a beam.</span></div>
+                <div class="body">The orange mark is built from two intersecting strokes - a national reference and a luminous source. It reads as <b>N</b> at a glance, and as light at a second look. Always orange (#F4831F in the source SVG, #F6851F when used in CSS - they are visually identical).</div>
+                <div class="divider"></div>
+                <table class="tbl">
+                    <tr><th style="width:40%;">File</th><th>Use</th></tr>
+                    <tr><td class="mono">logo-blue.svg</td><td>Primary, on light backgrounds</td></tr>
+                    <tr><td class="mono">logo-white.svg</td><td>On navy / photography</td></tr>
+                    <tr><td class="mono">logo-mark.svg</td><td>Favicons, social avatars, app icons</td></tr>
+                </table>
+                <div class="body mt-6"><b style="color:var(--primary);">Native ratio:</b> 106 × 39 (≈ 2.72 : 1). Always scale proportionally.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">05</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 6 - LOGO VARIATIONS, CLEAR SPACE, MIN SIZE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">02 - Logo</div>
+            <div class="section">Variations · Clear space · Sizing</div>
+        </div>
+
+        <div class="h2 mb-6">Variations</div>
+        <div class="cols-3">
+            <div>
+                <div class="logo-stage">
+                    <svg viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:18mm;">
+                        <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                        <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text>
+                    </svg>
+                </div>
+                <div class="caption mt-4 center">A. Primary - light backgrounds</div>
+            </div>
+            <div>
+                <div class="logo-stage dark">
+                    <svg viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:18mm;">
+                        <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                        <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#ffffff">NLC</text>
+                    </svg>
+                </div>
+                <div class="caption mt-4 center">B. Reversed - navy &amp; photography</div>
+            </div>
+            <div>
+                <div class="logo-stage">
+                    <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="height:22mm;">
+                        <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                    </svg>
+                </div>
+                <div class="caption mt-4 center">C. Mark only - favicons, avatars, badges</div>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-10">
+            <div>
+                <div class="h2 mb-4">Clear space</div>
+                <div class="body mb-6">Reserve at minimum the height of the <b style="color:var(--primary);">"N" stem</b> as breathing room on every side. Nothing - text, edges, photographs - enters that zone.</div>
+                <div class="logo-stage bg" style="position:relative;height:70mm;">
+                    <div style="position:absolute;inset:14mm;border:1.5pt dashed var(--secondary);border-radius:1mm;"></div>
+                    <svg viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:14mm;position:relative;">
+                        <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                        <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text>
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <div class="h2 mb-4">Minimum size</div>
+                <div class="body mb-6">Below these sizes the wordmark loses legibility. For smaller contexts, switch to the mark-only variant.</div>
+                <div class="logo-stage bg" style="height:70mm;flex-direction:column;gap:8mm;">
+                    <div style="display:flex;align-items:center;gap:14mm;">
+                        <svg viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:14mm;">
+                            <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                            <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text>
+                        </svg>
+                        <div class="caption">DIGITAL · 36 px / 9 mm minimum height</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:14mm;">
+                        <svg viewBox="0 0 106 39" xmlns="http://www.w3.org/2000/svg" style="height:9mm;">
+                            <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                            <text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text>
+                        </svg>
+                        <div class="caption">PRINT · 22 mm minimum width</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:14mm;">
+                        <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="height:8mm;">
+                            <path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/>
+                        </svg>
+                        <div class="caption">MARK · 24 px / 6 mm minimum (icons only)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">06</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 7 - LOGO MISUSE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">02 - Logo</div>
+            <div class="section">Misuse</div>
+        </div>
+
+        <div class="eyebrow">Don't do these</div>
+        <div class="h1 mb-4">Eight ways <span class="accent">to break the mark.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">The logo files are the source of truth. Never reconstruct, restyle, or recolor by hand - pull from the master SVG every time.</div>
+
+        <div class="cols-4 mt-4">
+            <div>
+                <div class="misuse x">
+                    <svg viewBox="0 0 106 39" style="height:9mm;transform:rotate(-12deg);"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't rotate</div>
+            </div>
+            <div>
+                <div class="misuse x">
+                    <svg viewBox="0 0 106 39" style="height:9mm;transform:scaleX(1.6);"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't stretch</div>
+            </div>
+            <div>
+                <div class="misuse x">
+                    <svg viewBox="0 0 106 39" style="height:9mm;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#48b14b"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#48b14b">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't recolor</div>
+            </div>
+            <div>
+                <div class="misuse x" style="background:#666;">
+                    <svg viewBox="0 0 106 39" style="height:9mm;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't place on low-contrast</div>
+            </div>
+        </div>
+        <div class="cols-4 mt-6">
+            <div>
+                <div class="misuse x" style="background:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2210%22 cy=%2210%22 r=%2210%22 fill=%22%23F6851F%22 opacity=%22.3%22/><circle cx=%2230%22 cy=%2230%22 r=%2210%22 fill=%22%2324285e%22 opacity=%22.3%22/></svg>') repeat;background-size:30mm 30mm;">
+                    <svg viewBox="0 0 106 39" style="height:9mm;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't use over busy patterns</div>
+            </div>
+            <div>
+                <div class="misuse x">
+                    <div style="display:flex;align-items:center;gap:5pt;">
+                        <svg viewBox="0 0 38 38" style="height:9mm;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/></svg>
+                        <span style="font-family:Times;font-size:14pt;font-weight:700;color:#24285e;">NLC</span>
+                    </div>
+                </div>
+                <div class="misuse-cap">Don't reset the wordmark in another typeface</div>
+            </div>
+            <div>
+                <div class="misuse x">
+                    <svg viewBox="0 0 106 39" style="height:9mm;filter:drop-shadow(2px 2px 0 #F6851F);"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't add shadows or effects</div>
+            </div>
+            <div>
+                <div class="misuse x">
+                    <svg viewBox="0 0 106 39" style="height:9mm;opacity:.4;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+                </div>
+                <div class="misuse-cap">Don't fade or set below 100% opacity</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">07</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 8 - PRIMARY PALETTE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">03 - Color</div>
+            <div class="section">Primary Palette</div>
+        </div>
+
+        <div class="eyebrow">Two colors carry the brand</div>
+        <div class="h1 mb-4">Navy is the <span class="accent">authority.</span> Orange is the energy.</div>
+        <div class="body mb-8" style="max-width:200mm;">If you remember nothing else from this guide, remember the ratio. Navy is the dominant hue - backgrounds, headlines, structure. Orange is the accent - used to direct the eye, never to fill space.</div>
+
+        <div class="cols-2">
+            <div class="swatch" style="background:#24285e;">
+                <div>
+                    <div class="role">Primary</div>
+                    <div class="name">NLC Navy</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#24285E</div>
+                    <div><span class="k">RGB</span>36 · 40 · 94</div>
+                    <div><span class="k">CMYK</span>96 · 90 · 25 · 35</div>
+                    <div><span class="k">PANTONE</span>2767 C (closest)</div>
+                    <div><span class="k">CSS VAR</span>--primary</div>
+                </div>
+            </div>
+            <div class="swatch" style="background:#F6851F;">
+                <div>
+                    <div class="role">Secondary</div>
+                    <div class="name">NLC Orange</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#F6851F</div>
+                    <div><span class="k">RGB</span>246 · 133 · 31</div>
+                    <div><span class="k">CMYK</span>0 · 58 · 95 · 0</div>
+                    <div><span class="k">PANTONE</span>158 C (closest)</div>
+                    <div><span class="k">CSS VAR</span>--secondary</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <div class="h4 mb-4">Tints &amp; shades</div>
+            <div class="cols-4" style="gap:5mm;">
+                <div class="mini-sw" style="background:#1a1e48;color:#fff;"><div class="nm">Navy Dark</div><div class="hex">#1A1E48</div></div>
+                <div class="mini-sw" style="background:#24285e;color:#fff;"><div class="nm">Navy</div><div class="hex">#24285E</div></div>
+                <div class="mini-sw" style="background:#2e3478;color:#fff;"><div class="nm">Navy Light</div><div class="hex">#2E3478</div></div>
+                <div class="mini-sw" style="background:#0f1235;color:#fff;"><div class="nm">Navy Deep</div><div class="hex">#0F1235</div></div>
+                <div class="mini-sw" style="background:#e0720a;color:#fff;"><div class="nm">Orange Dark</div><div class="hex">#E0720A</div></div>
+                <div class="mini-sw" style="background:#F6851F;color:#fff;"><div class="nm">Orange</div><div class="hex">#F6851F</div></div>
+                <div class="mini-sw" style="background:#fdb074;color:#5b3a14;"><div class="nm">Orange 60</div><div class="hex">#FDB074</div></div>
+                <div class="mini-sw" style="background:#fff8f0;color:#5b3a14;"><div class="nm">Orange 04</div><div class="hex">#FFF8F0</div></div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">08</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 9 - EXTENDED PALETTE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">03 - Color</div>
+            <div class="section">Extended &amp; Neutrals</div>
+        </div>
+
+        <div class="h1 mb-4">Surface colors and <span class="accent">working neutrals.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">These are the colors that hold pages together. Backgrounds, dividers, body text, secondary information. Treat them as plumbing - quiet, dependable, and always behind the brand colors above.</div>
+
+        <div class="cols-4">
+            <div class="swatch light" style="background:#F0EFEF;">
+                <div>
+                    <div class="role" style="color:var(--secondary);">Background</div>
+                    <div class="name">Warm Bg</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#F0EFEF</div>
+                    <div><span class="k">RGB</span>240 · 239 · 239</div>
+                    <div><span class="k">VAR</span>--bg</div>
+                </div>
+            </div>
+            <div class="swatch light" style="background:#ffffff;">
+                <div>
+                    <div class="role" style="color:var(--secondary);">Surface</div>
+                    <div class="name">White</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#FFFFFF</div>
+                    <div><span class="k">RGB</span>255 · 255 · 255</div>
+                    <div><span class="k">VAR</span>--white</div>
+                </div>
+            </div>
+            <div class="swatch" style="background:#1a1c3a;">
+                <div>
+                    <div class="role">Body Text</div>
+                    <div class="name">Dark</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#1A1C3A</div>
+                    <div><span class="k">RGB</span>26 · 28 · 58</div>
+                    <div><span class="k">VAR</span>--dark</div>
+                </div>
+            </div>
+            <div class="swatch" style="background:#6b7280;">
+                <div>
+                    <div class="role">Secondary Text</div>
+                    <div class="name">Gray</div>
+                </div>
+                <div class="codes">
+                    <div><span class="k">HEX</span>#6B7280</div>
+                    <div><span class="k">RGB</span>107 · 114 · 128</div>
+                    <div><span class="k">VAR</span>--gray</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cols-4 mt-6">
+            <div class="swatch light" style="background:#9ca3af;color:#fff;">
+                <div><div class="role" style="color:#fff;">Captions</div><div class="name">Gray Light</div></div>
+                <div class="codes"><div><span class="k">HEX</span>#9CA3AF</div><div><span class="k">VAR</span>--gray-light</div></div>
+            </div>
+            <div class="swatch light" style="background:#e2e1e1;color:#24285e;">
+                <div><div class="role">Borders</div><div class="name">Border</div></div>
+                <div class="codes"><div><span class="k">HEX</span>#E2E1E1</div><div><span class="k">VAR</span>--border</div></div>
+            </div>
+            <div class="swatch light" style="background:#ececec;color:#24285e;">
+                <div><div class="role">Dividers</div><div class="name">Line</div></div>
+                <div class="codes"><div><span class="k">HEX</span>#ECECEC</div><div><span class="k">VAR</span>--line</div></div>
+            </div>
+            <div class="swatch" style="background:#25D366;">
+                <div><div class="role">System</div><div class="name">WhatsApp</div></div>
+                <div class="codes"><div><span class="k">HEX</span>#25D366</div><div><span class="k">USE</span>only on the floating WhatsApp button</div></div>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <div class="h4 mb-4">Brand gradients</div>
+            <div class="cols-3">
+                <div>
+                    <div class="grad grad-1">Navy depth</div>
+                    <div class="caption mt-4">linear-gradient(135deg, #24285e 0%, #1a1e4a 55%, #0f1235 100%)<br><b>Use for:</b> hero sections, stats bands, chairman/dark CTAs.</div>
+                </div>
+                <div>
+                    <div class="grad grad-2">Energy</div>
+                    <div class="caption mt-4">linear-gradient(135deg, #F6851F 0%, #e0720a 100%)<br><b>Use for:</b> primary CTA bands. One per page maximum.</div>
+                </div>
+                <div>
+                    <div class="grad grad-3">Soft surface</div>
+                    <div class="caption mt-4">linear-gradient(145deg, #24285e, #2e3478)<br><b>Use for:</b> photo containers, featured cards, project frames.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">09</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 10 - COLOR USAGE & ACCESSIBILITY -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">03 - Color</div>
+            <div class="section">Usage &amp; Accessibility</div>
+        </div>
+
+        <div class="h1 mb-6">The <span class="accent">60 / 30 / 10</span> rule.</div>
+        <div class="body mb-6" style="max-width:200mm;">Color discipline is what keeps the site from feeling cheap. On any one screen, color should distribute roughly: <b style="color:var(--primary);">60% neutral</b> (white, warm bg), <b style="color:var(--primary);">30% navy</b> (structure, headlines, dark sections), <b style="color:var(--primary);">10% orange</b> (the eye magnet - buttons, accent words, badges).</div>
+
+        <div class="prop-bar mt-6">
+            <div style="background:#F0EFEF;color:#1a1c3a;flex:60;">60%  ·  Neutral surface</div>
+            <div style="background:#24285e;flex:30;">30%  ·  Navy</div>
+            <div style="background:#F6851F;flex:10;">10%  ·  Orange</div>
+        </div>
+
+        <div class="cols-2 mt-10">
+            <div>
+                <div class="h3 mb-4">When to use orange</div>
+                <ul class="flist">
+                    <li>One primary CTA per section ("Browse Catalog", "Request Quote")</li>
+                    <li>The accent word in a headline (one word, occasionally two)</li>
+                    <li>Active state of a navigation link</li>
+                    <li>Section eyebrow labels (small uppercase text)</li>
+                    <li>Iconography accents inside icon containers</li>
+                    <li>Stats and data-point highlights</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h3 mb-4">When NOT to use orange</div>
+                <ul class="flist" style="--c:#d83a3a;">
+                    <li>Body paragraphs - always navy/dark on light, white on dark</li>
+                    <li>Large background fills - orange is a spotlight, not a wall</li>
+                    <li>Multiple competing CTAs on the same screen</li>
+                    <li>Decorative borders on every element - orange must mean something</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <div class="h4 mb-4">Contrast pairings - WCAG AA minimums</div>
+            <table class="tbl">
+                <tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Body text (4.5:1)</th><th>Large text (3:1)</th></tr>
+                <tr><td>Navy #24285E</td><td>White</td><td class="mono">12.4 : 1</td><td style="color:#1aaa55;">✓ Pass</td><td style="color:#1aaa55;">✓ Pass</td></tr>
+                <tr><td>White</td><td>Navy #24285E</td><td class="mono">12.4 : 1</td><td style="color:#1aaa55;">✓ Pass</td><td style="color:#1aaa55;">✓ Pass</td></tr>
+                <tr><td>Navy #24285E</td><td>Bg #F0EFEF</td><td class="mono">11.2 : 1</td><td style="color:#1aaa55;">✓ Pass</td><td style="color:#1aaa55;">✓ Pass</td></tr>
+                <tr><td>Orange #F6851F</td><td>White</td><td class="mono">2.7 : 1</td><td style="color:#d83a3a;">× Fail (don't use for body)</td><td style="color:#1aaa55;">✓ Pass for headings only</td></tr>
+                <tr><td>Orange #F6851F</td><td>Navy #24285E</td><td class="mono">4.6 : 1</td><td style="color:#1aaa55;">✓ Pass</td><td style="color:#1aaa55;">✓ Pass</td></tr>
+                <tr><td>Gray #6B7280</td><td>White</td><td class="mono">4.6 : 1</td><td style="color:#1aaa55;">✓ Pass</td><td style="color:#1aaa55;">✓ Pass</td></tr>
+                <tr><td>Gray Light #9CA3AF</td><td>White</td><td class="mono">2.8 : 1</td><td style="color:#d83a3a;">× Fail</td><td style="color:#1aaa55;">✓ Captions only</td></tr>
+            </table>
+            <div class="caption mt-4">The honesty check: never set body copy in NLC Orange on white. Orange against white is a heading or button color, not a paragraph color.</div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">10</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 11 - TYPOGRAPHY: BIZMO -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">04 - Typography</div>
+            <div class="section">Bizmo · English brand face</div>
+        </div>
+
+        <div class="cols-12">
+            <div>
+                <div class="eyebrow">English</div>
+                <div class="h1 mb-4" style="font-size:46pt;">Bizmo.</div>
+                <div class="body mb-6" style="max-width:155mm;">A geometric sans with engineered proportions. Bizmo is NLC's primary face for everything English - the wordmark, headings, body, navigation. It carries the brand's calm precision without feeling cold.</div>
+                <div class="caption">Available weights: 200 ExtraLight · 300 Light · 400 Regular · 500 Medium · 600 SemiBold · 700 Bold · 800 ExtraBold · 900 Black</div>
+
+                <div class="glyphs mt-8" style="font-family:'Bizmo';">
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                    abcdefghijklmnopqrstuvwxyz<br>
+                    0123456789 &amp; ! ? @ % # - →
+                </div>
+            </div>
+
+            <div>
+                <div class="h4 mb-6">Weight ladder</div>
+                <div style="font-family:'Bizmo';color:var(--primary);font-size:22pt;line-height:1.25;">
+                    <div style="font-weight:300;">Light · Captions, subtle labels</div>
+                    <div style="font-weight:400;">Regular · Body copy</div>
+                    <div style="font-weight:500;">Medium · Navigation, links</div>
+                    <div style="font-weight:600;">SemiBold · Buttons, emphasis</div>
+                    <div style="font-weight:700;">Bold · Sub-heads, card titles</div>
+                    <div style="font-weight:800;">ExtraBold · Section titles</div>
+                    <div style="font-weight:900;">Black · Hero, stats, takeover</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">11</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 12 - TYPOGRAPHY: LAMA SANS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">04 - Typography</div>
+            <div class="section">Lama Sans · Arabic brand face</div>
+        </div>
+
+        <div class="cols-12">
+            <div>
+                <div class="eyebrow">Arabic</div>
+                <div class="h1 mb-4" style="font-size:46pt;font-family:'Lama Sans';">لاما سانس.</div>
+                <div class="body mb-6" style="max-width:155mm;">Lama Sans is the Arabic counterpart to Bizmo - a contemporary geometric face that carries equal weight, equal warmth, and the same pacing. The Arabic site uses Lama Sans across all surfaces with <span class="mono">direction:rtl</span>.</div>
+                <div class="caption">Available weights: 200 ExtraLight · 300 Light · 400 Regular · 500 Medium · 600 SemiBold · 700 Bold · 800 ExtraBold · 900 Black</div>
+
+                <div class="glyphs mt-8" style="font-family:'Lama Sans';direction:rtl;text-align:right;font-size:18pt;line-height:1.5;">
+                    أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن هـ و ي<br>
+                    ٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ &nbsp; ، ؛ ؟ : « »
+                </div>
+            </div>
+
+            <div>
+                <div class="h4 mb-6">Weight ladder</div>
+                <div style="font-family:'Lama Sans';color:var(--primary);font-size:22pt;line-height:1.5;direction:rtl;text-align:right;">
+                    <div style="font-weight:300;">خفيف · للتسميات والشرح</div>
+                    <div style="font-weight:400;">عادي · للنص الأساسي</div>
+                    <div style="font-weight:500;">متوسط · للقوائم والروابط</div>
+                    <div style="font-weight:600;">شبه عريض · للأزرار</div>
+                    <div style="font-weight:700;">عريض · لعناوين البطاقات</div>
+                    <div style="font-weight:800;">عريض جداً · للعناوين الرئيسية</div>
+                    <div style="font-weight:900;">أسود · للعناوين الكبرى</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <div class="h4 mb-4">Bilingual pairing</div>
+            <div class="body" style="max-width:240mm;">When EN and AR appear side-by-side (data sheets, signage, business cards), match the cap height of Bizmo to the equivalent x-height of Lama Sans - Lama Sans typically runs 5–10% larger at the same point size to compensate for Arabic's vertical density.</div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">12</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 13 - TYPE SCALE -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">04 - Typography</div>
+            <div class="section">Type Scale &amp; Rules</div>
+        </div>
+
+        <div class="h1 mb-4">A scale tuned to <span class="accent">screen and page.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">The site uses a fluid scale via <span class="mono">clamp()</span> so type breathes between mobile and desktop. The fixed values below are the desktop maximums - start here when designing, then let it shrink.</div>
+
+        <div class="spec-row" style="padding:8pt 0;">
+            <div class="meta"><b>Hero / Display</b><br>900 · clamp(1.8rem, 3.8vw, 2.8rem)</div>
+            <div class="sample" style="font-size:34pt;font-weight:900;line-height:1.05;">Engineered for the Kingdom.</div>
+        </div>
+        <div class="spec-row" style="padding:8pt 0;">
+            <div class="meta"><b>Section Title</b><br>800 · clamp(1.8rem, 3.5vw, 2.6rem)</div>
+            <div class="sample" style="font-size:28pt;font-weight:800;line-height:1.1;">Lighting that holds its shape.</div>
+        </div>
+        <div class="spec-row" style="padding:6pt 0;">
+            <div class="meta"><b>H3 / Card Title</b><br>700 · 14pt</div>
+            <div class="sample" style="font-size:14pt;font-weight:700;">High Bay 200W - IP65, 5700K</div>
+        </div>
+        <div class="spec-row" style="padding:6pt 0;">
+            <div class="meta"><b>H4 / Eyebrow</b><br>700 · 11pt · uppercase · letter-spacing .08em</div>
+            <div class="sample" style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">Outdoor Solutions</div>
+        </div>
+        <div class="spec-row" style="padding:6pt 0;">
+            <div class="meta"><b>Body</b><br>400 · 10pt · line-height 1.7 · gray</div>
+            <div class="sample" style="font-size:10pt;font-weight:400;line-height:1.7;color:var(--gray);">NLC manufactures LED luminaires for commercial, industrial, and government projects across Saudi Arabia, with a 1993-established factory in Dammam.</div>
+        </div>
+        <div class="spec-row" style="padding:6pt 0;">
+            <div class="meta"><b>Section Label</b><br>700 · 9pt · uppercase · letter-spacing .32em · orange</div>
+            <div class="sample" style="font-size:9pt;font-weight:700;text-transform:uppercase;letter-spacing:.32em;color:var(--secondary);">What we make</div>
+        </div>
+        <div class="spec-row" style="padding:6pt 0;">
+            <div class="meta"><b>Caption / Meta</b><br>500 · 8pt · gray-light · letter-spacing .04em</div>
+            <div class="sample" style="font-size:8pt;font-weight:500;color:var(--gray-light);letter-spacing:.04em;">Last updated · May 2026 · Doc rev 1.0</div>
+        </div>
+
+        <div class="mt-10 cols-2">
+            <div class="gd">
+                <h5>✓  Rules</h5>
+                <p style="margin-top:5pt;">Set body line-height to 1.6–1.75 for readability. Limit body measure to ~70 characters. Use one hero/display per page - multiple "biggest" titles fight each other.</p>
+            </div>
+            <div class="bd">
+                <h5>×  Avoid</h5>
+                <p style="margin-top:5pt;">Don't justify body text. Don't underline anything except links in body copy. Don't set headlines in italic. Don't use Bizmo Light below 11 pt - it gets fragile.</p>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">13</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 14 - SPACING & GRID -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">05 - System</div>
+            <div class="section">Spacing &amp; Grid</div>
+        </div>
+
+        <div class="cols-12">
+            <div>
+                <div class="h1 mb-4">A <span class="accent">2 px</span> base, doubling.</div>
+                <div class="body mb-8" style="max-width:155mm;">Spacing follows a doubling/halving scale. Every margin, padding, and gap on the site is one of these values - never a custom number.</div>
+
+                <div class="mt-4">
+                    <div class="spacer-row"><div class="lbl">space-1</div><div class="bar" style="width:2mm;"></div><div class="px">2 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-2</div><div class="bar" style="width:4mm;"></div><div class="px">4 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-3</div><div class="bar" style="width:8mm;"></div><div class="px">8 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-4</div><div class="bar" style="width:14mm;"></div><div class="px">14 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-5</div><div class="bar" style="width:18mm;"></div><div class="px">18 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-6</div><div class="bar" style="width:22mm;"></div><div class="px">22 px (default card gap)</div></div>
+                    <div class="spacer-row"><div class="lbl">space-7</div><div class="bar" style="width:30mm;"></div><div class="px">30 px</div></div>
+                    <div class="spacer-row"><div class="lbl">space-8</div><div class="bar" style="width:48mm;"></div><div class="px">48 px (section gap)</div></div>
+                    <div class="spacer-row"><div class="lbl">space-9</div><div class="bar" style="width:80mm;"></div><div class="px">80 px (section padding)</div></div>
+                </div>
+            </div>
+            <div>
+                <div class="h4 mb-4">Radius scale</div>
+                <table class="tbl">
+                    <tr><th>Token</th><th>Value</th><th>Where</th></tr>
+                    <tr><td class="mono">--radius</td><td class="mono">12 px</td><td>Inputs, small buttons, icon boxes</td></tr>
+                    <tr><td class="mono">--radius-lg</td><td class="mono">20 px</td><td>Cards, badges, content panels</td></tr>
+                    <tr><td class="mono">--radius-xl</td><td class="mono">28 px</td><td>Hero frames, photo containers</td></tr>
+                    <tr><td class="mono">50 px</td><td class="mono">pill</td><td>Buttons, tags, filter chips</td></tr>
+                </table>
+
+                <div class="h4 mt-10 mb-4">Shadows</div>
+                <table class="tbl">
+                    <tr><th>Token</th><th>Spec</th></tr>
+                    <tr><td class="mono">--shadow-md</td><td class="mono">0 8px 30px rgba(36,40,94,.12)</td></tr>
+                    <tr><td class="mono">--shadow-lg</td><td class="mono">0 20px 60px rgba(36,40,94,.18)</td></tr>
+                </table>
+                <div class="caption mt-4">Shadows always carry the navy hue, never neutral black. This is what makes elevated surfaces still feel like NLC.</div>
+
+                <div class="h4 mt-10 mb-4">Container</div>
+                <div class="body" style="font-size:9pt;">Max-width <b style="color:var(--primary);">1280 px</b>, gutter <b style="color:var(--primary);">24 px</b>, centered. Below 760 px the site collapses to single-column with adjusted gaps.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">14</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 15 - LAYOUT / PAGE ANATOMY -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">05 - System</div>
+            <div class="section">Layout &amp; Page Anatomy</div>
+        </div>
+
+        <div class="h1 mb-4">Every page is <span class="accent">a stack of bands.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">Pages are built as vertical bands. Each band has its own background and breathing room. Inside the band, content sits inside the 1280 px container. This is how the site stays consistent across 142 product pages and 16 categories.</div>
+
+        <div class="cols-12">
+            <div style="border:1px solid var(--border);border-radius:4mm;overflow:hidden;background:var(--white);">
+                <!-- Mock site layout -->
+                <div style="background:var(--white);border-bottom:1px solid var(--border);padding:5pt 12pt;display:flex;justify-content:space-between;align-items:center;">
+                    <div style="font-weight:900;font-size:9pt;color:var(--primary);">NLC</div>
+                    <div style="display:flex;gap:8pt;font-size:7pt;color:var(--primary);">Home · Products · Solutions · Projects · Contact</div>
+                    <div style="background:var(--secondary);color:#fff;font-size:6.5pt;padding:3pt 8pt;border-radius:50px;">Quote</div>
+                </div>
+                <div style="background:linear-gradient(135deg,var(--primary),var(--primary-deep));padding:14pt 12pt;color:#fff;">
+                    <div style="font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;text-transform:uppercase;">Section eyebrow</div>
+                    <div style="font-size:18pt;font-weight:900;line-height:1.1;margin-top:5pt;">Hero band - navy gradient<br>+ orb glow + grid overlay</div>
+                    <div style="font-size:7pt;color:rgba(255,255,255,.6);margin-top:6pt;max-width:90%;">Sub-deck text · max 70 ch · weight 300</div>
+                    <div style="display:flex;gap:5pt;margin-top:8pt;"><div style="background:var(--secondary);color:#fff;font-size:6.5pt;padding:3pt 9pt;border-radius:50px;">Primary CTA</div><div style="border:1px solid rgba(255,255,255,.5);color:#fff;font-size:6.5pt;padding:3pt 9pt;border-radius:50px;">Outline CTA</div></div>
+                </div>
+                <div style="background:var(--bg);padding:12pt 12pt;text-align:center;">
+                    <div style="font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;text-transform:uppercase;">Section eyebrow</div>
+                    <div style="font-size:14pt;font-weight:800;line-height:1.15;margin:5pt 0;color:var(--primary);">Content band on warm bg</div>
+                    <div style="font-size:7pt;color:var(--gray);">Cards · grid · projects · products · etc.</div>
+                </div>
+                <div style="background:var(--white);padding:12pt 12pt;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+                    <div style="font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.32em;text-transform:uppercase;">Alt band</div>
+                    <div style="font-size:14pt;font-weight:800;line-height:1.15;margin:5pt 0;color:var(--primary);">Section on white surface</div>
+                </div>
+                <div style="background:linear-gradient(135deg,var(--secondary),var(--secondary-dark));padding:12pt 12pt;color:#fff;display:flex;justify-content:space-between;align-items:center;">
+                    <div><div style="font-size:12pt;font-weight:900;">Orange CTA band</div><div style="font-size:7pt;opacity:.8;">One per page max - never two.</div></div>
+                    <div style="background:#fff;color:var(--secondary-dark);font-size:6.5pt;padding:3pt 9pt;border-radius:50px;font-weight:700;">Take Action</div>
+                </div>
+                <div style="background:var(--primary);color:#fff;padding:14pt 12pt;">
+                    <div style="font-size:7pt;color:var(--secondary);font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Footer</div>
+                    <div style="font-size:7pt;color:rgba(255,255,255,.5);margin-top:5pt;">Brand · Quick Links · Solutions · Newsletter</div>
+                </div>
+            </div>
+            <div>
+                <div class="h3 mb-4">Anatomy notes</div>
+                <ul class="flist">
+                    <li><b>Header</b> - fixed, white, 88px tall, blurred backdrop, nav-shadow on scroll.</li>
+                    <li><b>Hero</b> - navy gradient + orange grid overlay (4% opacity) + orb glows. Always the first band.</li>
+                    <li><b>Content bands</b> - alternate <span class="mono">--bg</span> and <span class="mono">--white</span> for rhythm. Section padding 80 px (top &amp; bottom).</li>
+                    <li><b>Section pattern</b> - small orange eyebrow → big navy title with one orange word → gray sub-deck.</li>
+                    <li><b>Orange CTA band</b> - at most once per page, near the bottom, never two adjacent.</li>
+                    <li><b>Footer</b> - navy with orange section heads, 80 px top padding.</li>
+                </ul>
+                <div class="h4 mt-8 mb-4">Breakpoints</div>
+                <table class="tbl">
+                    <tr><th>Range</th><th>Behavior</th></tr>
+                    <tr><td class="mono">≥ 1280 px</td><td>Full layout, 4-col product grid</td></tr>
+                    <tr><td class="mono">980–1279</td><td>Container shrinks, 3-col grids</td></tr>
+                    <tr><td class="mono">760–979</td><td>2-col grids, hero stacks</td></tr>
+                    <tr><td class="mono">≤ 759 px</td><td>Single column, mobile menu, condensed type</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">15</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 16 - BUTTONS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">06 - Components</div>
+            <div class="section">Buttons</div>
+        </div>
+
+        <div class="h1 mb-4">Three buttons. <span class="accent">No more.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">The site uses three button styles. All are pill-shaped (border-radius 50px), all use Bizmo SemiBold, all share the same dimensions. Pick by hierarchy, not by taste.</div>
+
+        <div class="cols-3 mt-6">
+            <div>
+                <div style="background:var(--bg);border-radius:5mm;padding:10mm;display:flex;align-items:center;justify-content:center;height:42mm;">
+                    <span class="btn-demo btn-primary">Get a Quote  →</span>
+                </div>
+                <div class="h3 mt-6">Primary</div>
+                <div class="body mt-4">The action that matters most on the page. One per band. Orange fill, orange shadow at .35 opacity.</div>
+                <div class="code mt-4"><span class="c">/* CSS */</span>
+.btn-primary <span class="k">{</span>
+  <span class="k">background</span>: <span class="v">var(--secondary)</span>;
+  <span class="k">color</span>: <span class="v">#fff</span>;
+  <span class="k">box-shadow</span>: 0 4px 20px
+    rgba(246,133,31,.35);
+<span class="k">}</span></div>
+            </div>
+            <div>
+                <div style="background:var(--bg);border-radius:5mm;padding:10mm;display:flex;align-items:center;justify-content:center;height:42mm;">
+                    <span class="btn-demo btn-outline">View Catalog  →</span>
+                </div>
+                <div class="h3 mt-6">Outline</div>
+                <div class="body mt-4">Secondary actions on light backgrounds - "Learn more", "Browse", "View all". 2 px navy border, transparent fill.</div>
+                <div class="code mt-4"><span class="c">/* CSS */</span>
+.btn-outline <span class="k">{</span>
+  <span class="k">background</span>: <span class="v">transparent</span>;
+  <span class="k">color</span>: <span class="v">var(--primary)</span>;
+  <span class="k">border</span>: 2px solid
+    <span class="v">var(--primary)</span>;
+<span class="k">}</span></div>
+            </div>
+            <div>
+                <div style="background:var(--primary);border-radius:5mm;padding:10mm;display:flex;align-items:center;justify-content:center;height:42mm;">
+                    <span class="btn-demo btn-outline-white">Read More  →</span>
+                </div>
+                <div class="h3 mt-6">Outline · White</div>
+                <div class="body mt-4">Same role as outline, but on dark backgrounds - hero, chairman, footer. Border at 55% white opacity.</div>
+                <div class="code mt-4"><span class="c">/* CSS */</span>
+.btn-outline-white <span class="k">{</span>
+  <span class="k">background</span>: <span class="v">transparent</span>;
+  <span class="k">color</span>: <span class="v">#fff</span>;
+  <span class="k">border</span>: 2px solid
+    rgba(255,255,255,.55);
+<span class="k">}</span></div>
+            </div>
+        </div>
+
+        <div class="mt-10 cols-2">
+            <div>
+                <div class="h4 mb-4">States</div>
+                <table class="tbl">
+                    <tr><th>State</th><th>Treatment</th></tr>
+                    <tr><td>Hover</td><td><span class="mono">translateY(-2px)</span> + shadow grows</td></tr>
+                    <tr><td>Hover (outline)</td><td>Fill switches to primary, text inverts</td></tr>
+                    <tr><td>Focus</td><td><span class="mono">box-shadow 0 0 0 4px rgba(246,133,31,.2)</span></td></tr>
+                    <tr><td>Disabled</td><td>Opacity 0.45, no hover transform</td></tr>
+                    <tr><td>Icon arrow</td><td><span class="mono">translateX(4px)</span> on hover</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="h4 mb-4">Dimensions</div>
+                <div class="body" style="font-size:9pt;">Padding <b style="color:var(--primary);">13 px × 30 px</b>. Border radius <b style="color:var(--primary);">50 px</b>. Font Bizmo SemiBold <b style="color:var(--primary);">1 rem</b>. Icon gap <b style="color:var(--primary);">10 px</b>. Transition <b style="color:var(--primary);">.3 s cubic-bezier(.4, 0, .2, 1)</b>.</div>
+                <div class="caption mt-6">Need a smaller button? Use the same shape at <span class="mono">9 pt × 20 pt</span>. Never use rectangular buttons. Never combine fill + heavy border on the same element.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">16</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 17 - CARDS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">06 - Components</div>
+            <div class="section">Cards</div>
+        </div>
+
+        <div class="h1 mb-6">Cards are <span class="accent">how the catalog speaks.</span></div>
+
+        <div class="cols-3 mt-6">
+            <!-- Product card -->
+            <div>
+                <div class="card-demo">
+                    <div class="img" style="background:linear-gradient(145deg,#F0EFEF,#e0dedf);">●</div>
+                    <div class="body">
+                        <div class="cat">High Bay</div>
+                        <div class="ttl">HERO 200W</div>
+                        <div class="desc">IK08 · IP65 · 5700K · suitable for industrial halls and stadium lighting.</div>
+                    </div>
+                    <div class="foot">
+                        <div class="specs"><span><b>IP</b>65</span><span><b>IK</b>08</span></div>
+                        <div class="pill">→</div>
+                    </div>
+                </div>
+                <div class="caption mt-4 center"><b>Product card</b> · used in catalog grids · 4 cols desktop</div>
+            </div>
+
+            <!-- Service card -->
+            <div>
+                <div style="background:var(--white);border:1px solid var(--border);border-radius:5mm;padding:8mm 7mm;height:100%;position:relative;overflow:hidden;">
+                    <div style="position:absolute;bottom:0;left:0;width:100%;height:1mm;background:var(--secondary);"></div>
+                    <div style="width:14mm;height:14mm;background:rgba(36,40,94,.07);border-radius:3mm;display:flex;align-items:center;justify-content:center;font-size:14pt;color:var(--primary);font-weight:900;">⚡</div>
+                    <div class="h3 mt-6">Power &amp; Control Systems</div>
+                    <div class="body mt-4">Schneider Electric authorized panel assembly - LV, MV, MCC, PDB, ATS, and motor starters built to project specs in our Dammam facility.</div>
+                    <div style="font-size:8pt;font-weight:600;color:var(--secondary);margin-top:6mm;">Learn more  →</div>
+                </div>
+                <div class="caption mt-4 center"><b>Service card</b> · 3 cols desktop · orange line on hover</div>
+            </div>
+
+            <!-- Project card -->
+            <div>
+                <div style="background:linear-gradient(145deg,#24285e,#2e3478);border-radius:5mm;height:62mm;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:6mm;color:#fff;">
+                    <div style="position:absolute;top:5mm;right:5mm;width:8mm;height:8mm;background:var(--secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8pt;">→</div>
+                    <div style="background:var(--secondary);color:#fff;display:inline-block;padding:2pt 8pt;border-radius:50px;font-size:7pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;width:fit-content;">Industrial</div>
+                    <div style="font-size:11pt;font-weight:800;margin-top:4pt;">Aramco Facility - Dhahran</div>
+                    <div style="font-size:7.5pt;color:rgba(255,255,255,.7);margin-top:1pt;">High-bay + outdoor + LV panel</div>
+                </div>
+                <div class="caption mt-4 center"><b>Project card</b> · 3:4 aspect · navy fallback when no image</div>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-10">
+            <div>
+                <div class="h4 mb-4">Card construction rules</div>
+                <ul class="flist">
+                    <li>White surface, 1px border <span class="mono">--border</span>, radius <span class="mono">--radius-lg</span> (20 px).</li>
+                    <li>Hover: <span class="mono">translateY(-6px)</span> + <span class="mono">--shadow-lg</span>, border fades to transparent.</li>
+                    <li>Image area: 200–250 px, contain-fit for products, cover-fit for projects/news.</li>
+                    <li>Footer divider on all transactional cards (those with secs / metadata).</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4">Across the site</div>
+                <table class="tbl">
+                    <tr><th>Card</th><th>Where</th><th>Grid</th></tr>
+                    <tr><td>Product</td><td>products.html, catalog</td><td>4 cols</td></tr>
+                    <tr><td>Service</td><td>Solutions, About</td><td>3 cols</td></tr>
+                    <tr><td>Project</td><td>projects.html, home</td><td>3 cols</td></tr>
+                    <tr><td>News</td><td>news.html, home</td><td>2 + 1 (featured)</td></tr>
+                    <tr><td>Solution (image)</td><td>Home Solutions</td><td>4 cols</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">17</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 18 - SECTION PATTERN -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">06 - Components</div>
+            <div class="section">The Section Pattern</div>
+        </div>
+
+        <div class="h1 mb-4">The <span class="accent">three-line</span> opener.</div>
+        <div class="body mb-8" style="max-width:200mm;">Every content section on the site opens the same way: a small uppercase orange label, a big navy title with one orange word, then a gray sub-deck. This pattern is the most reusable thing in the system - when in doubt, use it.</div>
+
+        <div style="background:var(--bg);border-radius:5mm;padding:14mm 18mm;text-align:center;">
+            <div class="eyebrow">What we deliver</div>
+            <div class="h2" style="font-size:32pt;margin-top:8pt;">Lighting that holds<br>its <span class="accent">shape over time.</span></div>
+            <div class="body mt-6" style="max-width:140mm;margin:6mm auto 0;">Every NLC luminaire is engineered for Saudi conditions - sand, sun, voltage swing - and tested before it leaves Dammam. We deliver products that look and perform the same on year ten as on day one.</div>
+        </div>
+
+        <div class="cols-3 mt-10">
+            <div>
+                <div class="h4 mb-4">1 · Eyebrow</div>
+                <div class="body" style="font-size:9pt;">Bizmo Bold <b style="color:var(--primary);">9 pt</b>, <span class="mono">letter-spacing .32em</span>, uppercase, color <span class="mono">--secondary</span>. Names the section in 1–4 words.</div>
+            </div>
+            <div>
+                <div class="h4 mb-4">2 · Title</div>
+                <div class="body" style="font-size:9pt;">Bizmo ExtraBold <b style="color:var(--primary);">28–34 pt</b>, line-height 1.1. Color <span class="mono">--primary</span>. Exactly one word in <span class="mono">--secondary</span> via <span class="mono">&lt;span class="accent"&gt;</span>.</div>
+            </div>
+            <div>
+                <div class="h4 mb-4">3 · Sub-deck</div>
+                <div class="body" style="font-size:9pt;">Bizmo Regular <b style="color:var(--primary);">10 pt</b>, line-height 1.7. Color <span class="mono">--gray</span>. Max-width ~70 ch. Always one paragraph.</div>
+            </div>
+        </div>
+
+        <div class="code mt-10"><span class="c">&lt;!-- Section opener pattern --&gt;</span>
+<span class="k">&lt;div</span> class=<span class="v">"section-header center"</span><span class="k">&gt;</span>
+  <span class="k">&lt;span</span> class=<span class="v">"section-label"</span><span class="k">&gt;</span>What we deliver<span class="k">&lt;/span&gt;</span>
+  <span class="k">&lt;h2</span> class=<span class="v">"section-title"</span><span class="k">&gt;</span>
+    Lighting that holds <span class="k">&lt;span&gt;</span>its shape over time.<span class="k">&lt;/span&gt;</span>
+  <span class="k">&lt;/h2&gt;</span>
+  <span class="k">&lt;p</span> class=<span class="v">"section-subtitle"</span><span class="k">&gt;</span>
+    Every NLC luminaire is engineered for Saudi conditions...
+  <span class="k">&lt;/p&gt;</span>
+<span class="k">&lt;/div&gt;</span></div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">18</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 19 - NAV & FOOTER -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">06 - Components</div>
+            <div class="section">Navigation &amp; Footer</div>
+        </div>
+
+        <div class="h2 mb-6">Navigation</div>
+        <div class="nav-demo">
+            <svg viewBox="0 0 106 39" style="height:9mm;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#F4831F"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#24285e">NLC</text></svg>
+            <div class="links">
+                <span class="active">Home</span>
+                <span>Products</span>
+                <span>Solutions</span>
+                <span>Projects</span>
+                <span>About</span>
+                <span>Contact</span>
+            </div>
+            <div style="display:flex;gap:6pt;align-items:center;">
+                <span style="font-size:7.5pt;color:var(--gray);">EN  /  AR</span>
+                <span class="cta">Get Quote</span>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-6">
+            <div>
+                <div class="h4 mb-4">Specs</div>
+                <ul class="flist" style="font-size:8.5pt;">
+                    <li>Fixed top, 88 px tall, white at 98% opacity, backdrop-filter blur 20 px.</li>
+                    <li>Logo 44 px tall, padding 12 px vertical.</li>
+                    <li>Links - Bizmo Medium 14 px, padding 8/14, gap 4 px between.</li>
+                    <li>Active link uses <span class="mono">--secondary</span>; underline grows to 55% width on hover.</li>
+                    <li>Box-shadow 0 2px 30px rgba(36,40,94,.1) on scroll.</li>
+                    <li>Mobile: full-screen takeover, navy bg, link size 1.35 rem.</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4">RTL</div>
+                <div class="body" style="font-size:9pt;">In <span class="mono">/ar/</span> the navigation flips automatically: logo on the right, language toggle on the left, dropdown carets mirror. The CTA button uses Lama Sans SemiBold and reads "اطلب عرض سعر".</div>
+            </div>
+        </div>
+
+        <div class="h2 mt-10 mb-6">Footer</div>
+        <div class="foot-demo">
+            <div class="grid">
+                <div class="brand">
+                    <svg viewBox="0 0 106 39" style="height:11mm;filter:brightness(0) invert(1);"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325C26.6924 24.4601 26.2386 23.802 25.9139 23.0764C25.5891 22.3553 25.3934 21.5981 25.3355 20.8273C25.3044 20.4983 25.2911 20.1558 25.2911 19.7862C25.2911 18.8397 25.3934 17.8797 25.5936 16.9287L25.687 16.496L25.2599 16.5952C24.0009 16.8791 22.7108 16.9648 21.4162 16.8566C20.5487 16.7935 19.7079 16.5501 18.9116 16.1354L18.8493 16.1084C18.271 15.7974 17.7416 15.3963 17.27 14.914L12.3319 9.85704V9.82549L10.5124 7.96406L2.67369 0.0135213H7.38045C7.5584 0.0135213 7.7319 0.085635 7.86092 0.216341L21.9412 14.5805L21.9278 0.0135213L25.3622 0V14.3867L37.5518 2.0282V6.81925C37.5518 7.00404 37.4806 7.17531 37.356 7.30602L27.8402 16.9512L37.5117 16.9377V20.5344H27.8268L37.4361 30.1841C37.5651 30.3148 37.6363 30.4906 37.6363 30.6709Z" fill="#fff"/><text x="48" y="26" font-family="Bizmo" font-weight="900" font-size="22" fill="#fff">NLC</text></svg>
+                    <p>Saudi LED lighting manufacturer and Schneider Electric authorized panel assembler. Lighting + LV/MV power panels for commercial and industrial projects across the Kingdom.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <a>About</a><a>Certifications</a><a>Clients</a><a>News</a>
+                </div>
+                <div>
+                    <h4>Solutions</h4>
+                    <a>Lighting</a><a>Low Current</a><a>Power &amp; Control</a><a>Projects</a>
+                </div>
+                <div>
+                    <h4>Newsletter</h4>
+                    <p style="font-size:7pt;color:rgba(255,255,255,.45);margin-bottom:3mm;">Specs, project case studies, and product launches.</p>
+                    <div style="display:flex;background:rgba(255,255,255,.08);border-radius:2mm;overflow:hidden;border:1px solid rgba(255,255,255,.15);">
+                        <span style="flex:1;padding:5pt 8pt;font-size:7pt;color:rgba(255,255,255,.4);">your@email</span>
+                        <span style="background:var(--secondary);color:#fff;padding:5pt 10pt;font-size:8pt;font-weight:700;">→</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bot">
+                <span>© 2026 National Lighting Co. All rights reserved.</span>
+                <span>Privacy  ·  Terms  ·  Sitemap</span>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">19</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 20 - FORMS & INPUTS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">06 - Components</div>
+            <div class="section">Forms &amp; Inputs</div>
+        </div>
+
+        <div class="h1 mb-4">Quiet inputs. <span class="accent">Loud labels.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">Forms in NLC use small navy labels, generous padding, and warm-bg fills that switch to white on focus. The orange focus ring is the only color that changes - feedback is clear without being noisy.</div>
+
+        <div class="cols-12">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:5mm;padding:10mm;box-shadow:0 8px 30px rgba(36,40,94,.08);">
+                <div style="font-size:7pt;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:.18em;margin-bottom:8pt;">Get a quote</div>
+                <div style="font-size:18pt;font-weight:800;color:var(--primary);margin-bottom:8pt;">Tell us about your project.</div>
+                <div style="font-size:9pt;color:var(--gray);margin-bottom:6mm;">Reply within one business day.</div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;">
+                    <div>
+                        <div style="font-size:7pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3pt;">Full name</div>
+                        <div style="background:var(--bg);border:2px solid var(--border);border-radius:3mm;padding:7pt 10pt;font-size:9pt;color:var(--dark);">Mohammed Al-Saleh</div>
+                    </div>
+                    <div>
+                        <div style="font-size:7pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3pt;">Company</div>
+                        <div style="background:var(--bg);border:2px solid var(--border);border-radius:3mm;padding:7pt 10pt;font-size:9pt;color:var(--dark);">Saudi Aramco</div>
+                    </div>
+                    <div>
+                        <div style="font-size:7pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3pt;">Email · focused</div>
+                        <div style="background:#fff;border:2px solid var(--secondary);border-radius:3mm;padding:7pt 10pt;font-size:9pt;color:var(--dark);box-shadow:0 0 0 4px rgba(246,133,31,.1);">m.alsaleh@aramco.com.sa|</div>
+                    </div>
+                    <div>
+                        <div style="font-size:7pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3pt;">Phone</div>
+                        <div style="background:var(--bg);border:2px solid var(--border);border-radius:3mm;padding:7pt 10pt;font-size:9pt;color:var(--gray-light);">+966 ...</div>
+                    </div>
+                </div>
+                <div style="margin-top:5mm;">
+                    <div style="font-size:7pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3pt;">Project details</div>
+                    <div style="background:var(--bg);border:2px solid var(--border);border-radius:3mm;padding:7pt 10pt;font-size:9pt;color:var(--gray-light);min-height:18mm;">200W high-bay fixtures for warehouse, IP65, 5700K...</div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;margin-top:6mm;">
+                    <span class="btn-demo btn-primary">Submit Request  →</span>
+                </div>
+            </div>
+            <div>
+                <div class="h4 mb-4">Specs</div>
+                <table class="tbl">
+                    <tr><th>Element</th><th>Treatment</th></tr>
+                    <tr><td>Label</td><td>9pt Bizmo Bold, navy, uppercase, ls .04em</td></tr>
+                    <tr><td>Field idle</td><td>2px <span class="mono">--border</span> on <span class="mono">--bg</span> fill</td></tr>
+                    <tr><td>Field hover</td><td>Border deepens to navy at 30%</td></tr>
+                    <tr><td>Field focus</td><td>Border switches to <span class="mono">--secondary</span>, fill goes to <span class="mono">#fff</span>, +4px orange .1 glow</td></tr>
+                    <tr><td>Error</td><td>Border <span class="mono">#d83a3a</span>, message below in 8 pt red</td></tr>
+                    <tr><td>Help text</td><td>8pt <span class="mono">--gray-light</span></td></tr>
+                    <tr><td>Submit</td><td>Always primary button, full-width on mobile</td></tr>
+                </table>
+                <div class="caption mt-6">File-drop fields use a 2 px dashed border on a #fafafa fill. Drop area lights up orange when active.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">20</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 21 - PHOTOGRAPHY -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">07 - Imagery</div>
+            <div class="section">Photography</div>
+        </div>
+
+        <div class="h1 mb-6">Three families. <span class="accent">No mixing.</span></div>
+
+        <div class="cols-3">
+            <div>
+                <div style="background:linear-gradient(145deg,#F0EFEF,#e0dedf);border-radius:4mm;height:54mm;display:flex;align-items:center;justify-content:center;font-size:48pt;color:var(--primary);opacity:.4;">●</div>
+                <div class="h3 mt-4">1 · Product</div>
+                <div class="body mt-4">Transparent PNG over warm-bg or white. Centered, 14 px padding inside a 200 px container. Lit from above-left, soft shadow only.</div>
+                <ul class="flist mt-4" style="font-size:8pt;">
+                    <li>Exported as PNG with alpha channel</li>
+                    <li>1200 × 1200 max canvas</li>
+                    <li>Never use lifestyle or staged shots</li>
+                </ul>
+            </div>
+            <div>
+                <div style="background:linear-gradient(135deg,#24285e 0%,#1a1e4a 60%,#0f1235 100%);border-radius:4mm;height:54mm;position:relative;overflow:hidden;">
+                    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.05) 1px,transparent 1px);background-size:6mm 6mm;"></div>
+                    <div style="position:absolute;width:30mm;height:30mm;border-radius:50%;background:var(--secondary);filter:blur(20px);opacity:.25;top:6mm;right:6mm;"></div>
+                </div>
+                <div class="h3 mt-4">2 · Lifestyle / Project</div>
+                <div class="body mt-4">Real Saudi sites, warm nighttime moods, navy/orange ambient color. Always real installations - no stock. Heavy contrast, deep shadows.</div>
+                <ul class="flist mt-4" style="font-size:8pt;">
+                    <li>Treat with subtle navy/orange overlay if needed</li>
+                    <li>Crop to 3:2 (hero), 4:3 (project cards), 16:9 (video)</li>
+                    <li>Subjects: facades, warehouses, roads, plant rooms</li>
+                </ul>
+            </div>
+            <div>
+                <div style="background:#1a1c3a;border-radius:4mm;height:54mm;position:relative;overflow:hidden;">
+                    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(246,133,31,.4), transparent 50%);"></div>
+                    <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 70%, rgba(36,40,94,.5), transparent 60%);"></div>
+                </div>
+                <div class="h3 mt-4">3 · Process / Lab</div>
+                <div class="body mt-4">SMT line, lab, fabrication, R&amp;D. Industrial - clean, technical, lower color saturation. Used in About / Manufacturing sections.</div>
+                <ul class="flist mt-4" style="font-size:8pt;">
+                    <li>Available in <span class="mono">/images/lab/</span> and <span class="mono">/images/smt/</span></li>
+                    <li>Crop tight on hands, machines, components</li>
+                    <li>Avoid faces unless permission obtained</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-10">
+            <div class="gd">
+                <h5>✓  Yes</h5>
+                <p style="margin-top:5pt;">Real sites in Saudi Arabia. Warm color temperatures (3000–4000K ambient). Industrial subjects framed quietly. Subtle navy or orange treatment on monochrome shots.</p>
+            </div>
+            <div class="bd">
+                <h5>×  No</h5>
+                <p style="margin-top:5pt;">Stock photos of European offices. Renders that look like renders. Saturated sunsets. Heavy filters. People on white seamless. Anything that pretends to be NLC but isn't.</p>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">21</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 22 - TREATMENTS & ICONOGRAPHY -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">07 - Imagery</div>
+            <div class="section">Treatments &amp; Iconography</div>
+        </div>
+
+        <div class="h2 mb-6">Signature treatments</div>
+        <div class="cols-3">
+            <div>
+                <div class="grad grad-1" style="position:relative;overflow:hidden;height:46mm;">
+                    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.05) 1px,transparent 1px);background-size:8mm 8mm;"></div>
+                    <span style="position:relative;">GRID OVERLAY</span>
+                </div>
+                <div class="caption mt-4"><b>Grid overlay</b> · <span class="mono">linear-gradient(rgba(246,133,31,.04) 1px, transparent 1px)</span> at 50–60 px tile size. Always over navy.</div>
+            </div>
+            <div>
+                <div style="position:relative;overflow:hidden;height:46mm;border-radius:4mm;background:#1a1e4a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;">
+                    <div style="position:absolute;width:50mm;height:50mm;border-radius:50%;background:var(--secondary);filter:blur(30px);opacity:.25;top:-15mm;right:-15mm;"></div>
+                    <div style="position:absolute;width:30mm;height:30mm;border-radius:50%;background:#3a4080;filter:blur(20px);opacity:.6;bottom:-10mm;left:-10mm;"></div>
+                    <span style="position:relative;">ORB GLOWS</span>
+                </div>
+                <div class="caption mt-4"><b>Orb glows</b> · radial blurred shapes, opacity .13–.25, slow drift animation. Used in hero and stats bands.</div>
+            </div>
+            <div>
+                <div style="position:relative;overflow:hidden;height:46mm;border-radius:4mm;background:#0f1235;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;">
+                    <svg viewBox="0 0 106 39" style="position:absolute;height:80mm;left:-20mm;opacity:.06;"><path d="M37.6363 30.6709V35.1239L27.2574 25.0325..." fill="#fff"/></svg>
+                    <span style="position:relative;">WATERMARK</span>
+                </div>
+                <div class="caption mt-4"><b>Watermark</b> · oversized logo at 6% opacity, off-canvas left. Subtle wayfinding for hero / chairman bands.</div>
+            </div>
+        </div>
+
+        <div class="h2 mt-10 mb-6">Iconography</div>
+        <div class="body mb-6" style="max-width:200mm;">The site uses Font Awesome 6.5 for icons. Always wrap icons in a colored container - never floating raw on a page.</div>
+        <div class="cols-4">
+            <div style="background:rgba(246,133,31,.1);width:14mm;height:14mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:14pt;font-weight:900;">★</div>
+            <div style="background:rgba(36,40,94,.07);width:14mm;height:14mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:14pt;font-weight:900;">⚡</div>
+            <div style="background:var(--secondary);width:14mm;height:14mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14pt;font-weight:900;box-shadow:0 4px 14px rgba(246,133,31,.4);">✦</div>
+            <div style="background:var(--primary);width:14mm;height:14mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14pt;font-weight:900;">●</div>
+        </div>
+        <div class="cols-4 mt-4">
+            <div class="caption center">Soft accent · service intros</div>
+            <div class="caption center">Soft navy · feature lists</div>
+            <div class="caption center">Solid orange · CTA emphasis</div>
+            <div class="caption center">Solid navy · contact rows</div>
+        </div>
+
+        <div class="h4 mt-10 mb-4">Badges &amp; specs</div>
+        <div style="display:flex;gap:8pt;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:4pt;background:var(--secondary);color:#fff;padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">IP65</span>
+            <span style="display:inline-flex;align-items:center;gap:4pt;background:var(--secondary);color:#fff;padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">IK08</span>
+            <span style="display:inline-flex;align-items:center;gap:4pt;background:var(--secondary);color:#fff;padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">CRI 80+</span>
+            <span style="display:inline-flex;align-items:center;gap:4pt;background:var(--primary);color:#fff;padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">5700K</span>
+            <span style="display:inline-flex;align-items:center;gap:4pt;background:rgba(36,40,94,.08);color:var(--primary);padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">200 W</span>
+            <span style="display:inline-flex;align-items:center;gap:4pt;border:1.5px solid var(--secondary);color:var(--secondary);padding:3pt 10pt;border-radius:50px;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;">New</span>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">22</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 23 - MOTION -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">08 - Motion &amp; bilingual</div>
+            <div class="section">Motion &amp; Interaction</div>
+        </div>
+
+        <div class="h1 mb-4">Motion is <span class="accent">a quiet handshake.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">Animations should reward interaction - never distract from content. Everything uses one easing curve: <span class="mono">cubic-bezier(.4, 0, .2, 1)</span>. Everything is short - <span class="mono">.3s</span> by default.</div>
+
+        <div class="cols-2">
+            <div>
+                <div class="h4 mb-4">Tokens</div>
+                <table class="tbl">
+                    <tr><th>Use</th><th>Duration</th><th>Easing</th></tr>
+                    <tr><td>Hover (button, card)</td><td class="mono">.3 s</td><td class="mono">cubic-bezier(.4, 0, .2, 1)</td></tr>
+                    <tr><td>Mobile menu</td><td class="mono">.4 s</td><td class="mono">cubic-bezier(.4, 0, .2, 1)</td></tr>
+                    <tr><td>Image scale</td><td class="mono">.4 – .6 s</td><td class="mono">ease</td></tr>
+                    <tr><td>Hero slide fade</td><td class="mono">.55 s</td><td class="mono">ease-in-out</td></tr>
+                    <tr><td>Marquee (clients)</td><td class="mono">60 s</td><td class="mono">linear, infinite</td></tr>
+                    <tr><td>Hero orb drift</td><td class="mono">12–15 s</td><td class="mono">ease-in-out alternate</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="h4 mb-4">Patterns</div>
+                <ul class="flist">
+                    <li><b>Card lift</b> - hover translates Y by –6 to –8 px; shadow grows from md → lg; border fades to transparent.</li>
+                    <li><b>Button hover</b> - Y –2 px; orange shadow opacity .35 → .45.</li>
+                    <li><b>Arrow advance</b> - icon translates X by +4 px on hover (Bizmo arrows / chevrons).</li>
+                    <li><b>Image bloom</b> - scale 1.05–1.08 on container hover.</li>
+                    <li><b>Section reveal</b> - AOS library, fade-up 30 px, stagger 80 ms between sibling cards.</li>
+                </ul>
+
+                <div class="h4 mt-10 mb-4">Reduced motion</div>
+                <div class="body" style="font-size:9pt;">Respect <span class="mono">prefers-reduced-motion: reduce</span>. Disable all infinite animations (orbs, marquees), instant transitions, and AOS reveals.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">23</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 24 - RTL & BILINGUAL -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">08 - Motion &amp; bilingual</div>
+            <div class="section">RTL &amp; Bilingual</div>
+        </div>
+
+        <div class="h1 mb-4">Arabic is <span class="accent">not a translation.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">The Arabic site at <span class="mono">/ar/</span> mirrors the English site one-to-one in structure but is set in Lama Sans with <span class="mono">direction:rtl</span>. Both sites share the same components, colors, and layout - they diverge only at the typography and the writing direction.</div>
+
+        <div class="cols-2">
+            <div>
+                <div class="h4 mb-4">English (LTR)</div>
+                <div style="background:var(--bg);border-radius:4mm;padding:8mm;">
+                    <div style="font-size:7pt;font-weight:700;color:var(--secondary);letter-spacing:.32em;text-transform:uppercase;">What we make</div>
+                    <div style="font-size:18pt;font-weight:800;color:var(--primary);line-height:1.15;margin-top:5pt;">Lighting that holds <span style="color:var(--secondary);">its shape over time.</span></div>
+                    <div style="font-size:9pt;color:var(--gray);line-height:1.7;margin-top:4mm;">Every NLC luminaire is engineered for Saudi conditions and tested before it leaves Dammam.</div>
+                    <div style="margin-top:5mm;"><span class="btn-demo btn-primary" style="font-size:8pt;">Browse Catalog →</span></div>
+                </div>
+            </div>
+            <div>
+                <div class="h4 mb-4">Arabic (RTL)</div>
+                <div class="ar" style="background:var(--bg);border-radius:4mm;padding:8mm;">
+                    <div style="font-size:7pt;font-weight:700;color:var(--secondary);letter-spacing:.18em;">ما نصنعه</div>
+                    <div style="font-size:18pt;font-weight:800;color:var(--primary);line-height:1.4;margin-top:5pt;">إنارة <span style="color:var(--secondary);">تحافظ على شكلها</span> مع مرور الزمن.</div>
+                    <div style="font-size:9pt;color:var(--gray);line-height:1.85;margin-top:4mm;">كل وحدة إنارة من NLC مصممة لظروف المملكة العربية السعودية ومُختبرة قبل أن تغادر مصنع الدمام.</div>
+                    <div style="margin-top:5mm;"><span class="btn-demo btn-primary" style="font-size:8pt;font-family:'Lama Sans';">← تصفح الكتالوج</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cols-2 mt-8">
+            <div>
+                <div class="h4 mb-4">What flips automatically</div>
+                <ul class="flist">
+                    <li>Layout direction (flex / grid order)</li>
+                    <li>Margins, paddings, borders that use logical properties</li>
+                    <li>Floating prev/next arrows on product pages</li>
+                    <li>Icon arrows in buttons (→ becomes ←)</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4">What stays</div>
+                <ul class="flist">
+                    <li>Brand colors, mark, photography</li>
+                    <li>Typographic ratios (sizes, weights, leading)</li>
+                    <li>Component shapes (radius, shadow, padding)</li>
+                    <li>Numeric data, English product codes (e.g. "200W"), KSA phone numbers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="caption mt-10">Arabic line-height runs ~10% looser than Bizmo to accommodate diacritics and stacked characters. Use <span class="mono">line-height: 1.85</span> for Arabic body and <span class="mono">1.4–1.5</span> for Arabic display.</div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">24</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 25 - PRINT COLLATERAL -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">09 - Practice</div>
+            <div class="section">Print Collateral</div>
+        </div>
+
+        <div class="h1 mb-4">From screen to <span class="accent">paper.</span></div>
+        <div class="body mb-8" style="max-width:200mm;">Same brand, different substrate. When NLC moves from web to print - datasheets, business cards, tender documents, signage - the rules below keep the identity tight across both.</div>
+
+        <div class="cols-3">
+            <div>
+                <div class="h4 mb-4">Datasheets (PDF)</div>
+                <ul class="flist" style="font-size:8.5pt;">
+                    <li>A4 portrait, 18 mm safe area</li>
+                    <li>Hero product image: transparent PNG, centered, 60% page width</li>
+                    <li>Specs table: 8.5 pt Bizmo Regular, 1 px navy rules</li>
+                    <li>Header: NLC mark + product name + part number</li>
+                    <li>Footer: contact strip, page X of Y</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4">Business cards</div>
+                <ul class="flist" style="font-size:8.5pt;">
+                    <li>85 × 55 mm, double-sided</li>
+                    <li>Front: mark only (orange) on navy</li>
+                    <li>Back: lockup top-left, name + role + phone + email + URL</li>
+                    <li>Stock: 350 gsm matt, soft-touch laminate</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4">Tender / RFP doc</div>
+                <ul class="flist" style="font-size:8.5pt;">
+                    <li>A4 portrait, 25 mm gutter on bound edge</li>
+                    <li>Cover: navy, full-bleed, mark + project name</li>
+                    <li>Section dividers: orange band, 12 mm tall</li>
+                    <li>Body 10 pt / leading 14 pt, 60–70 ch column</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <div class="h4 mb-4">CMYK conversion</div>
+            <table class="tbl">
+                <tr><th>Color</th><th>HEX</th><th>CMYK (offset)</th><th>Pantone (closest)</th></tr>
+                <tr><td>NLC Navy</td><td class="mono">#24285E</td><td class="mono">96 / 90 / 25 / 35</td><td>2767 C</td></tr>
+                <tr><td>NLC Orange</td><td class="mono">#F6851F</td><td class="mono">0 / 58 / 95 / 0</td><td>158 C</td></tr>
+                <tr><td>Warm Bg</td><td class="mono">#F0EFEF</td><td class="mono">0 / 0 / 0 / 6</td><td>-</td></tr>
+                <tr><td>Body Dark</td><td class="mono">#1A1C3A</td><td class="mono">90 / 88 / 40 / 50</td><td>-</td></tr>
+            </table>
+            <div class="caption mt-4">When printing on uncoated stock, knock the orange CMYK to <span class="mono">0 / 55 / 92 / 0</span> to compensate for ink absorption. Always proof on the actual stock before signing off a run.</div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">25</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 26 - DO'S & DON'TS -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">09 - Practice</div>
+            <div class="section">Do's &amp; Don'ts</div>
+        </div>
+
+        <div class="h1 mb-6">The short list <span class="accent">to keep on your desk.</span></div>
+
+        <div class="cols-2">
+            <div>
+                <div class="h4 mb-4" style="color:#1aaa55;">DO</div>
+                <ul class="flist">
+                    <li>Use the section pattern (eyebrow → title → sub-deck) on every new content section.</li>
+                    <li>Keep one orange word per headline. Pick the most important.</li>
+                    <li>Alternate <span class="mono">--bg</span> and <span class="mono">--white</span> bands for vertical rhythm.</li>
+                    <li>Limit to one primary CTA per band, one orange CTA band per page.</li>
+                    <li>Use the actual color tokens (CSS variables), never raw hex.</li>
+                    <li>Keep product photos as transparent PNGs, centered, with 14 px breathing room.</li>
+                    <li>Use the standard radius scale: 12 / 20 / 28 / 50 px (pill).</li>
+                    <li>Set body line-height 1.6–1.7 (EN), 1.8–1.85 (AR).</li>
+                    <li>Reach for the existing card components before designing new ones.</li>
+                    <li>Test contrast against WCAG AA before shipping.</li>
+                </ul>
+            </div>
+            <div>
+                <div class="h4 mb-4" style="color:#d83a3a;">DON'T</div>
+                <ul class="flist" style="--c:#d83a3a;">
+                    <li>Don't introduce new brand colors. Tints, yes - new hues, no.</li>
+                    <li>Don't use orange for body text on white (fails contrast).</li>
+                    <li>Don't stack two orange CTA bands. Once is impact, twice is noise.</li>
+                    <li>Don't justify body copy. It breaks the engineered feel.</li>
+                    <li>Don't reset the wordmark in another typeface. Use the SVG.</li>
+                    <li>Don't use stock photography of generic offices or skylines.</li>
+                    <li>Don't use icons without a colored container (raw FA icons feel adrift).</li>
+                    <li>Don't mix shadow colors - shadows are always navy-tinted.</li>
+                    <li>Don't introduce custom radii. Pick from the scale.</li>
+                    <li>Don't write hyperbolic copy ("revolutionary", "stunning", "world-class").</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">26</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 27 - RESOURCES & FILE INDEX -->
+<!-- ============================================ -->
+<section class="page">
+    <div class="page-frame">
+        <div class="page-head">
+            <div class="marker">09 - Practice</div>
+            <div class="section">Resources &amp; File Index</div>
+        </div>
+
+        <div class="h1 mb-6">Where things <span class="accent">live.</span></div>
+
+        <div class="cols-2">
+            <div>
+                <div class="h4 mb-4">Brand assets</div>
+                <table class="tbl">
+                    <tr><th>Asset</th><th>Path</th></tr>
+                    <tr><td>Primary logo (color)</td><td class="mono">/images/logo/logo-blue.svg</td></tr>
+                    <tr><td>White logo</td><td class="mono">/images/logo/logo-white.svg</td></tr>
+                    <tr><td>Mark only</td><td class="mono">/images/logo/logo-mark.svg</td></tr>
+                    <tr><td>Bizmo (English)</td><td class="mono">/fonts/Bizmo-*.woff2</td></tr>
+                    <tr><td>Lama Sans (Arabic)</td><td class="mono">/fonts/LamaSans-*.woff2</td></tr>
+                    <tr><td>Font definitions</td><td class="mono">/fonts/fonts.css</td></tr>
+                    <tr><td>Product photography</td><td class="mono">/images/products/{key}.png</td></tr>
+                    <tr><td>Project photography</td><td class="mono">/images/projects/</td></tr>
+                    <tr><td>Datasheets</td><td class="mono">/datasheets/{key}.pdf</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="h4 mb-4">Reference templates</div>
+                <table class="tbl">
+                    <tr><th>Template</th><th>Path</th></tr>
+                    <tr><td>Home page (EN)</td><td class="mono">/index.html</td></tr>
+                    <tr><td>Home page (AR)</td><td class="mono">/ar/index.html</td></tr>
+                    <tr><td>Product catalog</td><td class="mono">/products.html</td></tr>
+                    <tr><td>Product detail</td><td class="mono">/product/{key}.html</td></tr>
+                    <tr><td>Project / case study</td><td class="mono">/projects.html</td></tr>
+                    <tr><td>Solutions cluster</td><td class="mono">/solutions/</td></tr>
+                </table>
+
+                <div class="h4 mt-8 mb-4">Helper scripts</div>
+                <table class="tbl">
+                    <tr><th>Script</th><th>Use</th></tr>
+                    <tr><td class="mono">/tmp/build_products.py</td><td>Generate product detail (EN+AR)</td></tr>
+                    <tr><td class="mono">/tmp/inject_prev_next.py</td><td>Update prev/next arrows</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-10 cols-2">
+            <div>
+                <div class="h4 mb-4">Quick CSS starter</div>
+                <div class="code"><span class="c">/* Drop this into a new page's &lt;head&gt; */</span>
+:root <span class="k">{</span>
+  <span class="k">--primary</span>: <span class="v">#24285e</span>;
+  <span class="k">--secondary</span>: <span class="v">#F6851F</span>;
+  <span class="k">--bg</span>: <span class="v">#F0EFEF</span>;
+  <span class="k">--dark</span>: <span class="v">#1a1c3a</span>;
+  <span class="k">--gray</span>: <span class="v">#6b7280</span>;
+  <span class="k">--border</span>: <span class="v">#e2e1e1</span>;
+  <span class="k">--radius</span>: <span class="v">12px</span>;
+  <span class="k">--radius-lg</span>: <span class="v">20px</span>;
+  <span class="k">--radius-xl</span>: <span class="v">28px</span>;
+  <span class="k">--shadow-md</span>: <span class="v">0 8px 30px rgba(36,40,94,.12)</span>;
+  <span class="k">--shadow-lg</span>: <span class="v">0 20px 60px rgba(36,40,94,.18)</span>;
+  <span class="k">--font</span>: <span class="v">'Bizmo','Outfit',sans-serif</span>;
+  <span class="k">--transition</span>: <span class="v">.3s cubic-bezier(.4,0,.2,1)</span>;
+<span class="k">}</span></div>
+            </div>
+            <div>
+                <div class="h4 mb-4">When in doubt</div>
+                <div class="body">Open <span class="mono">/index.html</span> and copy the closest existing band. The site is the source of truth - this guide describes it. If the two ever disagree, the live site wins, and this document needs an update.</div>
+
+                <div class="h4 mt-8 mb-4">Owner</div>
+                <div class="body">NLC Brand Team - <span style="color:var(--primary);font-weight:600;">info@nlc.com.sa</span><br>nlc.com.sa</div>
+
+                <div class="caption mt-6">Document version 1.0 · May 2026 · Maintained by the brand team. Update CLAUDE.md when adding new categories, components, or brand rules.</div>
+            </div>
+        </div>
+
+        <div class="page-foot">
+            <div class="brand"><span class="dot"></span><span>NLC · Visual Identity</span></div>
+            <div><span class="num">27</span> / 28</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PAGE 28 - BACK COVER -->
+<!-- ============================================ -->
+<section class="page cover">
+    <div class="cover-grid"></div>
+    <div class="cover-orb a"></div>
+    <div class="cover-orb b"></div>
+    <div class="cover-inner">
+        <div class="cover-top">
+            <div class="cover-mark">
+                <div class="markbox">N</div>
+                <div class="marktxt">National Lighting Co.</div>
+            </div>
+            <div class="cover-tag">End · v1.0</div>
+        </div>
+        <div class="cover-mid">
+            <div class="cover-eyebrow">Made in Dammam · 1993 → today</div>
+            <div class="cover-title" style="font-size:62pt;">Light <span class="ac">isn't decoration.</span><br>It's infrastructure.</div>
+            <div class="cover-sub">Build the next page like the rest of them. Use the components. Trust the spacing. Pick the orange word carefully.</div>
+        </div>
+        <div class="cover-bot">
+            <div class="cover-meta">
+                <div>
+                    <div class="lbl">Web</div>
+                    <div class="val">nlc.com.sa</div>
+                </div>
+                <div>
+                    <div class="lbl">Email</div>
+                    <div class="val">info@nlc.com.sa</div>
+                </div>
+                <div>
+                    <div class="lbl">Phone</div>
+                    <div class="val">+966 920 016 374</div>
+                </div>
+            </div>
+            <div class="cover-arabic">شركة الإنارة الوطنية · الدمام</div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

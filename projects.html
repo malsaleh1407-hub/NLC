@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Projects – NLC National Lighting Company</title>
+ <meta property="og:type" content="website"/>
+ <meta property="og:url" content="https://nlc.com.sa/projects.html"/>
+ <meta property="og:title" content="Projects – NLC National Lighting Company"/>
+ <meta property="og:description" content="NLC Projects – See our lighting installations across Saudi Arabia including NEOM, hospitals, libraries, and commercial developments."/>
+ <meta property="og:image" content="images/logo/logo-blue.svg"/>
+ <meta property="og:site_name" content="NLC – National Lighting Company"/>
+ <meta name="twitter:card" content="summary_large_image"/>
+ <meta name="twitter:title" content="Projects – NLC National Lighting Company"/>
+ <meta name="twitter:description" content="NLC Projects – See our lighting installations across Saudi Arabia including NEOM, hospitals, libraries, and commercial developments."/>
+ <link rel="stylesheet" href="/fonts/fonts.css">
+ <link rel="icon" type="image/svg+xml" href="images/logo/logo-blue.svg">
+ <link rel="icon" type="image/png" href="images/logo/logo-blue.svg">
+ <meta name="description" content="NLC Projects – See our lighting installations across Saudi Arabia including NEOM, hospitals, libraries, and commercial developments."s portfolio of landmark lighting projects across Saudi Arabia, hospitals, infrastructure, hospitality, and more.">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://nlc.com.sa/projects">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9" crossorigin="anonymous" referrerpolicy="no-referrer">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
+ <link rel="alternate" hreflang="en" href="https://nlc.com.sa/projects.html">
+ <link rel="alternate" hreflang="ar" href="https://nlc.com.sa/ar/projects.html">
+
+ <style>
+        :root {
+            --primary:#24285e; --primary-light:#2e3478;
+            --secondary:#F6851F; --secondary-dark:#e0720a;
+            --bg:#F0EFEF; --white:#fff; --dark:#1a1c3a;
+            --gray:#6b7280; --gray-light:#9ca3af; --border:#e2e1e1;
+            --shadow-md:0 8px 30px rgba(36,40,94,.12);
+            --shadow-lg:0 20px 60px rgba(36,40,94,.18);
+            --radius:12px; --radius-lg:20px; --radius-xl:28px;
+            --transition:.3s cubic-bezier(.4,0,.2,1);
+            --font:'Bizmo','Outfit',sans-serif;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font);background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+        a{text-decoration:none;color:inherit;transition:var(--transition);}
+        img{max-width:100%;height:auto;display:block;}
+        ul{list-style:none;}
+        .container{max-width:1280px;margin:0 auto;padding:0 24px;}
+
+        /* ---- NAVBAR ---- */
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 2px 30px rgba(36,40,94,.1);transition:all .4s ease;}
+        .nav-container{display:flex;align-items:center;justify-content:space-between;}
+        .nav-logo img{height:44px;width:auto;}
+        .nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;}
+        .nav-link{padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--primary);border-radius:8px;transition:var(--transition);position:relative;}
+        .nav-link:hover,.nav-link.active{color:var(--secondary);}
+        .nav-link::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--secondary);transition:width var(--transition);border-radius:2px;}
+        .nav-link:hover::after,.nav-link.active::after{width:55%;}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border-radius:50px;font-family:var(--font);font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);}
+        .btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 20px rgba(246,133,31,.35);}
+        .btn-primary:hover{background:var(--secondary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(246,133,31,.45);}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+        .hamburger span{width:26px;height:2px;background:var(--primary);border-radius:2px;transition:var(--transition);}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+        .hamburger.open span:nth-child(2){opacity:0;}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+        .mob-menu{display:none;position:fixed;inset:0;background:var(--primary);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translateX(-100%);transition:transform .4s ease;}
+        .mob-menu.open{transform:translateX(0);}
+        .mob-link{font-size:1.3rem;font-weight:700;color:rgba(255,255,255,.7);padding:10px 28px;transition:var(--transition);}
+        .mob-link:hover{color:var(--secondary);}
+        .mob-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;border:none;}
+
+        /* ---- PAGE HERO ---- */
+        .page-hero{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:140px 0 60px;position:relative;overflow:hidden;height:500px;display:flex;align-items:center;}
+        .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0;pointer-events:none;}
+        .page-hero .container{width:100%;}
+        .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.04) 1px,transparent 1px);background-size:60px 60px;}
+        .page-hero-orb{position:absolute;width:500px;height:500px;background:var(--secondary);border-radius:50%;filter:blur(80px);opacity:.1;top:-200px;right:-100px;}
+        .hero-content{position:relative;z-index:2;}
+        .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:20px;}
+        .breadcrumb a{color:rgba(255,255,255,.5);}
+        .breadcrumb a:hover{color:var(--secondary);}
+        .breadcrumb span{color:rgba(255,255,255,.3);}
+        .page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:16px;}
+        .page-hero h1 span{color:var(--secondary);}
+        .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:520px;line-height:1.75;}
+        .hero-stats{display:flex;gap:40px;margin-top:40px;padding-top:36px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap;}
+        .h-stat .num{font-size:2rem;font-weight:900;color:var(--secondary);line-height:1;}
+        .h-stat .lbl{font-size:.75rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+
+        /* ---- FILTER BAR ---- */
+        .filter-section{background:var(--white);border-bottom:1px solid var(--border);padding:22px 0;position:sticky;top:68px;z-index:100;box-shadow:0 4px 20px rgba(36,40,94,.06);scroll-margin-top:80px;}
+        .filter-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+        .filter-label{font-size:.78rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-right:8px;white-space:nowrap;}
+        .f-btn{padding:8px 20px;border-radius:50px;font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:transparent;color:var(--gray);transition:var(--transition);white-space:nowrap;}
+        .f-btn.active,.f-btn:hover{background:var(--primary);border-color:var(--primary);color:var(--white);}
+
+        /* ---- PROJECTS GRID ---- */
+        .projects-section{padding:60px 0 100px;min-height:80vh;}
+
+        /* Featured Project */
+        .featured-project{margin-bottom:60px;border-radius:var(--radius-xl);overflow:hidden;position:relative;height:520px;cursor:pointer;box-shadow:var(--shadow-lg);}
+        .featured-project img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
+        .featured-project:hover img{transform:scale(1.04);}
+        .featured-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(36,40,94,.95) 0%,rgba(36,40,94,.3) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:48px;}
+        .feat-badge{display:inline-block;background:var(--secondary);color:var(--white);padding:5px 16px;border-radius:50px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;width:fit-content;}
+        .featured-overlay h2{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;color:var(--white);margin-bottom:10px;line-height:1.2;}
+        .featured-overlay p{font-size:1rem;color:rgba(255,255,255,.75);max-width:600px;line-height:1.7;margin-bottom:20px;}
+        .feat-link{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;color:var(--secondary);}
+        .feat-link i{transition:transform var(--transition);}
+        .featured-project:hover .feat-link i{transform:translateX(5px);}
+
+        /* Projects masonry-style grid */
+        .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .proj-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--shadow-md);transition:var(--transition);}
+        .proj-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+        .proj-card.large{grid-column:span 2;}
+        .proj-img{width:100%;height:280px;object-fit:cover;display:block;transition:transform .6s ease;}
+        .proj-card.large .proj-img{height:320px;}
+        .proj-card:hover .proj-img{transform:scale(1.06);}
+        .proj-img-placeholder{width:100%;height:280px;background:linear-gradient(145deg,var(--primary),#2d3a7a);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:rgba(255,255,255,.08);}
+        .proj-card.large .proj-img-placeholder{height:320px;}
+        .proj-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(36,40,94,.92) 0%,transparent 60%);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;opacity:.8;transition:var(--transition);}
+        .proj-card:hover .proj-overlay{opacity:1;}
+        .proj-cat{display:inline-block;background:var(--secondary);color:var(--white);padding:4px 13px;border-radius:50px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;width:fit-content;}
+        .proj-overlay h3{font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:5px;line-height:1.3;}
+        .proj-overlay p{font-size:.8rem;color:rgba(255,255,255,.7);}
+        .proj-arr{position:absolute;top:18px;right:18px;width:36px;height:36px;background:var(--secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:.78rem;opacity:0;transform:translateY(-8px);transition:var(--transition);}
+        .proj-card:hover .proj-arr{opacity:1;transform:translateY(0);}
+
+        /* Stats band */
+        .stats-band{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:70px 0;position:relative;overflow:hidden;}
+        .stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.04) 1px,transparent 1px);background-size:50px 50px;}
+        .stats-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;}
+        .stat-ico{width:52px;height:52px;background:rgba(246,133,31,.14);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:1.3rem;margin:0 auto 12px;}
+        .stat-num{font-size:2.6rem;font-weight:900;color:var(--white);line-height:1;margin-bottom:6px;}
+        .stat-num span{color:var(--secondary);}
+        .stat-lbl{font-size:.78rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px;}
+
+        /* CTA */
+        .cta-band{background:linear-gradient(135deg,var(--secondary) 0%,var(--secondary-dark) 100%);padding:72px 0;position:relative;overflow:hidden;}
+        .cta-band::before{content:'';position:absolute;top:-50%;right:-8%;width:560px;height:560px;background:rgba(255,255,255,.05);border-radius:50%;}
+        .cta-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;}
+        .cta-text h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:10px;}
+        .cta-text p{font-size:1rem;color:rgba(255,255,255,.8);}
+        .btn-white{background:var(--white);color:var(--secondary);font-weight:700;}
+        .btn-outline-white{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.55);}
+        .btn-outline-white:hover{background:var(--white);color:var(--primary);}
+
+        /* Footer */
+        .footer{background:var(--primary);color:var(--white);padding:60px 0 0;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:56px;margin-bottom:48px;}
+        .footer-brand p{font-size:.86rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:20px;}
+        .footer-logo-row{margin-bottom:16px;}
+        .footer-logo-row img{height:40px;width:auto;filter:brightness(0) invert(1);}
+        .footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:16px;}
+        .footer-links{display:flex;flex-direction:column;gap:10px;}
+        .footer-links a{font-size:.86rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:7px;transition:var(--transition);}
+        .footer-links a::before{content:'›';color:var(--secondary);}
+        .footer-links a:hover{color:var(--white);padding-left:4px;}
+        .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+        .footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.38);}
+        .footer-bot-links{display:flex;gap:20px;}
+        .footer-bot-links a{font-size:.8rem;color:rgba(255,255,255,.38);transition:var(--transition);}
+        .footer-bot-links a:hover{color:var(--white);}
+
+        /* Back to top */
+        .btt{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:var(--secondary);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;box-shadow:0 4px 20px rgba(246,133,31,.4);opacity:0;transform:translateY(20px);transition:var(--transition);z-index:999;border:none;}
+        .btt.show{opacity:1;transform:translateY(0);}
+        .btt:hover{background:var(--secondary-dark);transform:translateY(-3px);}
+
+        /* Responsive */
+        @media(max-width:960px){.proj-grid{grid-template-columns:repeat(2,1fr);}.proj-card.large{grid-column:span 2;}.footer-grid{grid-template-columns:1fr 1fr;}.cta-inner{flex-direction:column;text-align:center;}.stats-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:768px){.nav-menu{display:none;}.nav-cta{display:none;}.lang-switch{display:none;}.hamburger{display:flex;order:3;}.nav-container{gap:12px;}.mob-menu{display:flex;}.proj-grid{grid-template-columns:1fr;}.proj-card.large{grid-column:span 1;}.featured-project{height:380px;}.featured-overlay{padding:28px;}}
+        @media(max-width:480px){.container{padding:0 16px;}.hero-stats{gap:24px;}.footer-grid{grid-template-columns:1fr;}}
+        
+        .lang-switch{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:600;border:1.5px solid #e2e1e1;color:#24285e;transition:var(--transition);margin-left:8px;}
+        .lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+        .navbar.scrolled .lang-switch{border-color:var(--border);color:var(--primary);}
+        .navbar.scrolled .lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+                .whatsapp-btn{position:fixed;bottom:90px;right:28px;width:48px;height:48px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:.3s cubic-bezier(.4,0,.2,1);}
+        .whatsapp-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,.5);}
+    .nl-form{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;overflow:hidden;}.nl-form input{flex:1;background:transparent;border:none;outline:none;padding:10px 18px;font-size:.85rem;color:var(--white);}.nl-form input::placeholder{color:rgba(255,255,255,.35);}.nl-form button{background:var(--secondary);border:none;padding:10px 16px;cursor:pointer;color:var(--white);font-size:.85rem;transition:var(--transition);}@media(max-width:768px){.navbar .btn-primary{display:none!important;}.navbar .lang-switch{display:none!important;}}.mob-link.mob-cta{color:var(--secondary)!important;}.mob-link.mob-lang{margin-top:18px;font-size:1rem;opacity:.75;}    </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nlc.com.sa/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://nlc.com.sa/projects.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div id="nav-root" data-active="projects" data-ar="ar/projects.html"></div>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+ <img class="hero-img" src="images/heroes/projects-hero.jpg" alt="Our projects background" onerror="this.style.display='none'">
+ <div class="page-hero-orb"></div>
+ <div class="container hero-content">
+ <h1 data-aos="fade-up">Our <span>Projects</span></h1>
+ <p data-aos="fade-up" data-aos-delay="100">From hospitals and infrastructure to iconic landmarks, explore NLC's portfolio of lighting excellence across Saudi Arabia.</p>
+ <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+ <div class="h-stat"><div class="num">3,200+</div><div class="lbl">Projects Delivered</div></div>
+ <div class="h-stat"><div class="num">33+</div><div class="lbl">Years Experience</div></div>
+ <div class="h-stat"><div class="num">6</div><div class="lbl">Regions Covered</div></div>
+ </div>
+ </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-section">
+ <div class="container">
+ <div class="filter-inner">
+ <span class="filter-label">Filter:</span>
+ <button class="f-btn active" data-filter="all">All Projects</button>
+ <button class="f-btn" data-filter="holy-mosques">Holy Mosques</button>
+ <button class="f-btn" data-filter="healthcare">Healthcare</button>
+ <button class="f-btn" data-filter="infrastructure">Infrastructure</button>
+ <button class="f-btn" data-filter="cultural">Cultural</button>
+ <button class="f-btn" data-filter="residential">Residential</button>
+ <button class="f-btn" data-filter="commercial">Commercial</button>
+ <button class="f-btn" data-filter="hospitality">Hospitality</button>
+ <button class="f-btn" data-filter="industrial">Industrial</button>
+ <button class="f-btn" data-filter="education">Education</button>
+ <button class="f-btn" data-filter="energy">Energy</button>
+ </div>
+ </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects-section">
+ <div class="container">
+
+ <!-- Projects Grid -->
+ <div class="proj-grid">
+
+ <!-- Al-Masjid Al-Haram - Makkah -->
+ <div class="proj-card" data-cat="holy-mosques" data-aos="fade-up" onclick="location.href='project/masjid-al-haram-makkah.html'">
+  <img class="proj-img" src="images/ltd-references/masjid-al-haram-makkah.jpg" alt="Al-Masjid Al-Haram - Makkah" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-mosque"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Holy Mosques</span>
+   <h3>Al-Masjid Al-Haram - Makkah</h3>
+   <p>Makkah, Saudi Arabia · A profound honor - contributing to the lighting of the Grand Mosque</p>
+  </div>
+  <a href="project/masjid-al-haram-makkah.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <!-- Al-Masjid An-Nabawi - Madinah -->
+ <div class="proj-card" data-cat="holy-mosques" data-aos="fade-up" onclick="location.href='project/masjid-al-nabawi-madinah.html'">
+  <img class="proj-img" src="images/ltd-references/masjid-al-nabawi-madinah.jpg" alt="Al-Masjid An-Nabawi - Madinah" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-mosque"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Holy Mosques</span>
+   <h3>Al-Masjid An-Nabawi - Madinah</h3>
+   <p>Madinah, Saudi Arabia · A profound honor - contributing to the lighting of the Prophet's Mosque</p>
+  </div>
+  <a href="project/masjid-al-nabawi-madinah.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- King Fahad Causeway -->
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/causeway.html'">
+ <img class="proj-img" src="https://nlc.com.sa/storage/projects/thumbnails/01KFJQ3262YDDZ912RMZNJ77KB.png" alt="King Fahad Causeway" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" referrerpolicy="no-referrer">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-archway"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Infrastructure</span>
+ <h3>King Fahad Causeway</h3>
+ <p>Iconic bridge connecting the Kingdom to Bahrain - full exterior lighting system.</p>
+ </div>
+ <a href="project/causeway.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- NEOM -->
+ <div class="proj-card" data-cat="residential" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/neom.html'">
+ <img class="proj-img"
+ src="https://nlc.com.sa/storage/projects/thumbnails/01KD3WC3W7JNGGRR8VGY7A7MZE.png"
+ alt="NEOM Residential Communities"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" referrerpolicy="no-referrer">
+ <div class="proj-img-placeholder" style="display:none;height:320px;"><i class="fas fa-city"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Residential</span>
+ <h3>NEOM Residential Communities Project</h3>
+ <p>Smart, sustainable outdoor lighting for the future city of NEOM</p>
+ </div>
+ <a href="project/neom.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Cambridge Medical -->
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" data-aos-delay="80" onclick="location.href='project/cambridge.html'">
+ <img class="proj-img"
+ src="https://nlc.com.sa/storage/projects/thumbnails/01KEXVT2DXV96N0J3W33KE6RK5.jpg"
+ alt="Cambridge Medical & Rehabilitation Center"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" referrerpolicy="no-referrer">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-hospital"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Healthcare</span>
+ <h3>Cambridge Medical &amp; Rehabilitation Center</h3>
+ <p>Al Khobar, Full clinical and ambient lighting design</p>
+ </div>
+ <a href="project/cambridge.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Al-Mouwasat Hospital -->
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/mouwasat.html'">
+ <img class="proj-img"
+ src="https://nlc.com.sa/storage/projects/thumbnails/01KFR32C7BBCEFJ14FQVYJ8YQY.jpg"
+ alt="Al-Mouwasat Hospital"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" referrerpolicy="no-referrer">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-procedures"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Healthcare</span>
+ <h3>Al-Mouwasat Hospital</h3>
+ <p>Al Khobar, Indoor and outdoor hospital lighting</p>
+ </div>
+ <a href="project/mouwasat.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Dammam Library -->
+ <div class="proj-card" data-cat="cultural" data-aos="fade-up" data-aos-delay="80" onclick="location.href='project/dammam-library.html'">
+ <img class="proj-img"
+ src="https://nlc.com.sa/storage/projects/thumbnails/01KJR0KM48ERCPZDNKX7TX065W.png"
+ alt="Dammam Library"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" referrerpolicy="no-referrer">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-book"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Cultural</span>
+ <h3>Dammam Library</h3>
+ <p>Architectural interior and facade lighting for this landmark public space</p>
+ </div>
+ <a href="project/dammam-library.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Sharma - NEOM Region LV Panels -->
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/sharma.html'">
+ <img class="proj-img"
+ src="images/projects/sharma.jpg"
+ alt="Sharma, NEOM Region LV Panels"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Infrastructure</span>
+ <h3>Sharma, NEOM Region LV Panels</h3>
+ <p>LV panel package supporting NEOM Sharma development works</p>
+ </div>
+ <a href="project/sharma.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Hotel Project Riyadh - KAF -->
+ <div class="proj-card" data-cat="hospitality" data-aos="fade-up" data-aos-delay="60" onclick="location.href='project/kaf-hotel-riyadh.html'">
+ <img class="proj-img"
+ src="images/projects/kaf-hotel-riyadh.jpg"
+ alt="Hotel Project Riyadh, KAF"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-hotel"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Hospitality</span>
+ <h3>Hotel Project Riyadh, KAF</h3>
+ <p>425 electrical panels for hotel BOH and guest-facing systems</p>
+ </div>
+ <a href="project/kaf-hotel-riyadh.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- United Carton Industries (UCIC) -->
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" data-aos-delay="120" onclick="location.href='project/ucic.html'">
+ <img class="proj-img"
+ src="images/projects/ucic.jpg"
+ alt="United Carton Industries (UCIC)"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-industry"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Industrial</span>
+ <h3>United Carton Industries (UCIC)</h3>
+ <p>280 industrial panels for a leading carton manufacturing plant</p>
+ </div>
+ <a href="project/ucic.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Armed Forces Rehabilitation Center - Taif -->
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/armed-forces-rehab-taif.html'">
+ <img class="proj-img"
+ src="images/projects/armed-forces-rehab-taif.jpg"
+ alt="Armed Forces Rehabilitation Center, Taif"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-hospital"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Healthcare</span>
+ <h3>Armed Forces Rehabilitation Center, Taif</h3>
+ <p>98 panels for a specialized military rehabilitation hospital</p>
+ </div>
+ <a href="project/armed-forces-rehab-taif.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Sipchem LV Panels -->
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" data-aos-delay="60" onclick="location.href='project/sipchem.html'">
+ <img class="proj-img"
+ src="images/projects/sipchem.jpg"
+ alt="Sipchem LV Panels"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-industry"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Industrial</span>
+ <h3>Sipchem LV Panels</h3>
+ <p>170 LV panels for petrochemical operations and utilities</p>
+ </div>
+ <a href="project/sipchem.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Complex Schools IPS - NEOM Region -->
+ <div class="proj-card" data-cat="education" data-aos="fade-up" data-aos-delay="120" onclick="location.href='project/complex-schools-ips.html'">
+ <img class="proj-img"
+ src="images/projects/complex-schools-ips.jpg"
+ alt="Complex Schools IPS, NEOM Region"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-graduation-cap"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Education</span>
+ <h3>Complex Schools IPS, NEOM Region</h3>
+ <p>320 panels for a multi-building school campus</p>
+ </div>
+ <a href="project/complex-schools-ips.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Hilton Garden Inn - Khobar -->
+ <div class="proj-card" data-cat="hospitality" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/hilton-garden-inn-khobar.html'">
+ <img class="proj-img"
+ src="images/projects/hilton-garden-inn-khobar.jpg"
+ alt="Hilton Garden Inn, Khobar"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-hotel"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Hospitality</span>
+ <h3>Hilton Garden Inn, Khobar</h3>
+ <p>400 panels for rooms, BOH and electromechanical systems</p>
+ </div>
+ <a href="project/hilton-garden-inn-khobar.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- KFU Boys & Girls School - Phase 2 -->
+ <div class="proj-card" data-cat="education" data-aos="fade-up" data-aos-delay="60" onclick="location.href='project/kfu-school-phase2.html'">
+ <img class="proj-img"
+ src="images/projects/kfu-school-phase2.jpg"
+ alt="KFU Boys &amp; Girls School, Phase 2"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-graduation-cap"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Education</span>
+ <h3>KFU Boys &amp; Girls School, Phase 2</h3>
+ <p>250 panels for King Faisal University school buildings</p>
+ </div>
+ <a href="project/kfu-school-phase2.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- SE Smart Digital Command Center -->
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" data-aos-delay="120" onclick="location.href='project/se-command-center.html'">
+ <img class="proj-img"
+ src="images/projects/se-command-center.jpg"
+ alt="SE Smart Digital Command Center"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Energy</span>
+ <h3>SE Smart Digital Command Center</h3>
+ <p>KNX smart lighting control across 15 SEC substation sites</p>
+ </div>
+ <a href="project/se-command-center.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- STC Data Center - Bahrain -->
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/stc-data-center-bahrain.html'">
+ <img class="proj-img"
+ src="images/projects/stc-data-center-bahrain.jpg"
+ alt="STC Data Center, Bahrain"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-server"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Infrastructure</span>
+ <h3>STC Data Center, Bahrain</h3>
+ <p>DALI-based lighting control for a high-availability data center</p>
+ </div>
+ <a href="project/stc-data-center-bahrain.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- SEC 115/13.8 kV Substation - Dammam -->
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" data-aos-delay="60" onclick="location.href='project/sec-substation-dammam.html'">
+ <img class="proj-img"
+ src="images/projects/sec-substation-dammam.jpg"
+ alt="SEC 115/13.8 kV Substation, Dammam"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Energy</span>
+ <h3>SEC 115/13.8 kV Substation, Dammam</h3>
+ <p>Lighting control system for a 115/13.8 kV substation</p>
+ </div>
+ <a href="project/sec-substation-dammam.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Riyas NGL Fractionation Facilities -->
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" data-aos-delay="120" onclick="location.href='project/riyas-ngl.html'">
+ <img class="proj-img"
+ src="images/projects/riyas-ngl.jpg"
+ alt="Riyas NGL Fractionation Facilities"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Energy</span>
+ <h3>Riyas NGL Fractionation Facilities</h3>
+ <p>Integrated lighting control supporting Aramco Jafurah expansion</p>
+ </div>
+ <a href="project/riyas-ngl.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- MEDLOG Cold Store at KAEC -->
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" data-aos-delay="0" onclick="location.href='project/medlog-kaec.html'">
+ <img class="proj-img"
+ src="images/projects/medlog-kaec.jpg"
+ alt="MEDLOG Cold Store at KAEC"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-warehouse"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Industrial</span>
+ <h3>MEDLOG Cold Store at KAEC</h3>
+ <p>DALI lighting control for a port-side cold storage facility</p>
+ </div>
+ <a href="project/medlog-kaec.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+ <!-- Sea Water Cooling Pipe - Phase 1, Jazan -->
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" data-aos-delay="60" onclick="location.href='project/sea-water-cooling-jazan.html'">
+ <img class="proj-img"
+ src="images/projects/sea-water-cooling-jazan.jpg"
+ alt="Sea Water Cooling Pipe, Phase 1, Jazan"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+ <div class="proj-overlay">
+ <span class="proj-cat">Energy</span>
+ <h3>Sea Water Cooling Pipe, Phase 1, Jazan</h3>
+ <p>Smart NEMA-node streetlight control with central management</p>
+ </div>
+ <a href="project/sea-water-cooling-jazan.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" onclick="location.href='project/tarshid-multi-city.html'">
+  <img class="proj-img" src="images/ltd-references/najran-tarsheed.jpg" alt="Tarshid LED Retrofit Programme" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Energy</span>
+   <h3>Tarshid LED Retrofit Programme</h3>
+   <p>Saudi Arabia (6 cities) · Energy lighting reference</p>
+  </div>
+  <a href="project/tarshid-multi-city.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/aramco-wasit-isf.html'">
+  <img class="proj-img" src="images/ltd-references/aramco-wasit-isf-project.jpg" alt="Aramco Wasit ISF" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Aramco Wasit ISF</h3>
+   <p>Wasit, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/aramco-wasit-isf.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/berri-gas-plant.html'">
+  <img class="proj-img" src="images/ltd-references/berri-gas-plant.jpg" alt="Berri Gas Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Berri Gas Plant</h3>
+   <p>Eastern Province, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/berri-gas-plant.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/fadhli-gas-plant.html'">
+  <img class="proj-img" src="images/ltd-references/fadhli-gas-plant--petrofac.jpg" alt="Fadhli Gas Plant - Petrofac" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Fadhli Gas Plant - Petrofac</h3>
+   <p>Fadhli, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/fadhli-gas-plant.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/jrtf-jizan.html'">
+  <img class="proj-img" src="images/ltd-references/jrtf--jizan-refinery-tank-farm.jpg" alt="Jizan Refinery Tank Farm (JRTF)" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Jizan Refinery Tank Farm (JRTF)</h3>
+   <p>Jizan, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/jrtf-jizan.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/jizan-tank-terminal.html'">
+  <img class="proj-img" src="images/ltd-references/jizan-north-and-south-tank-terminal.jpg" alt="Jizan Tank Terminal" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Jizan Tank Terminal</h3>
+   <p>Jizan Port, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/jizan-tank-terminal.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/khursaniyah.html'">
+  <img class="proj-img" src="images/ltd-references/khursaniyah-production-facilities.jpg" alt="Khursaniyah Production Facilities" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Khursaniyah Production Facilities</h3>
+   <p>Khursaniyah, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/khursaniyah.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/manifa-gas-plant.html'">
+  <img class="proj-img" src="images/ltd-references/manifa-gas-plant.jpg" alt="Manifa Gas Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Manifa Gas Plant</h3>
+   <p>Manifa, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/manifa-gas-plant.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/petrokemya.html'">
+  <img class="proj-img" src="images/ltd-references/petrokemya-motor-house.jpg" alt="Petrokemya Motor House" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Industrial</span>
+   <h3>Petrokemya Motor House</h3>
+   <p>Jubail, Saudi Arabia · Industrial lighting reference</p>
+  </div>
+  <a href="project/petrokemya.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/shaybah-ngl.html'">
+  <img class="proj-img" src="images/ltd-references/shaiba-ngl-package--samsung.jpg" alt="Shaybah NGL Package - Samsung" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Shaybah NGL Package - Samsung</h3>
+   <p>Shaybah, Empty Quarter, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/shaybah-ngl.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/shaybah-gas.html'">
+  <img class="proj-img" src="images/ltd-references/shaybah-gas-plant.jpg" alt="Shaybah Gas Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Shaybah Gas Plant</h3>
+   <p>Shaybah, Empty Quarter, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/shaybah-gas.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/tanajib.html'">
+  <img class="proj-img" src="images/ltd-references/tanajib-gas-plant.jpg" alt="Tanajib Gas Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Tanajib Gas Plant</h3>
+   <p>Tanajib, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/tanajib.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/petrorabigh-uosp.html'">
+  <img class="proj-img" src="images/ltd-references/uosp-petrobigh-project.jpg" alt="PetroRabigh UOSP" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>PetroRabigh UOSP</h3>
+   <p>Rabigh, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/petrorabigh-uosp.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" onclick="location.href='project/wasit-cogen.html'">
+  <img class="proj-img" src="images/ltd-references/wasit-co-gen-steam-plant--aramco.jpg" alt="Wasit Cogeneration Steam Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Energy</span>
+   <h3>Wasit Cogeneration Steam Plant</h3>
+   <p>Wasit, Saudi Arabia · Energy lighting reference</p>
+  </div>
+  <a href="project/wasit-cogen.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/yanbu-export-refinery.html'">
+  <img class="proj-img" src="images/ltd-references/yanbu-export-refinery.jpg" alt="Yanbu Export Refinery" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Oil & Gas</span>
+   <h3>Yanbu Export Refinery</h3>
+   <p>Yanbu, Saudi Arabia · Oil & Gas lighting reference</p>
+  </div>
+  <a href="project/yanbu-export-refinery.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/azn-north-kuwait.html'">
+  <img class="proj-img" src="images/ltd-references/azn-north-kuwait--water-plant.jpg" alt="AZN North Kuwait Water Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Utilities</span>
+   <h3>AZN North Kuwait Water Plant</h3>
+   <p>Northern Kuwait · Utilities lighting reference</p>
+  </div>
+  <a href="project/azn-north-kuwait.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/marafiq-package-5-6.html'">
+  <img class="proj-img" src="images/ltd-references/marafiq-package-5-and-6.jpg" alt="Marafiq Package 5 & 6" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Utilities</span>
+   <h3>Marafiq Package 5 & 6</h3>
+   <p>Jubail Industrial City · Utilities lighting reference</p>
+  </div>
+  <a href="project/marafiq-package-5-6.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/qurrayah.html'">
+  <img class="proj-img" src="images/ltd-references/qurrayah-sea-water-plant.jpg" alt="Qurrayah Sea Water Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Utilities</span>
+   <h3>Qurrayah Sea Water Plant</h3>
+   <p>Qurrayah, Saudi Arabia · Utilities lighting reference</p>
+  </div>
+  <a href="project/qurrayah.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" onclick="location.href='project/rabigh-ipp2.html'">
+  <img class="proj-img" src="images/ltd-references/rabigh-ipp-2-substation.jpg" alt="Rabigh IPP-2 Substation" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Energy</span>
+   <h3>Rabigh IPP-2 Substation</h3>
+   <p>Rabigh, Saudi Arabia · Energy lighting reference</p>
+  </div>
+  <a href="project/rabigh-ipp2.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="energy" data-aos="fade-up" onclick="location.href='project/thama-cogen.html'">
+  <img class="proj-img" src="images/ltd-references/thama-cogeneration-plant.jpg" alt="Thama Cogeneration Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Energy</span>
+   <h3>Thama Cogeneration Plant</h3>
+   <p>Saudi Arabia · Energy lighting reference</p>
+  </div>
+  <a href="project/thama-cogen.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/jizan-swcc.html'">
+  <img class="proj-img" src="images/ltd-references/jizan-water-treatment-plant--swcc.jpg" alt="Jizan SWCC Plant" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Utilities</span>
+   <h3>Jizan SWCC Plant</h3>
+   <p>Jizan, Saudi Arabia · Utilities lighting reference</p>
+  </div>
+  <a href="project/jizan-swcc.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/aquat-jeddah.html'">
+  <img class="proj-img" src="images/ltd-references/aquat-food-industries-factory--jeddah.jpg" alt="Aquat Foods - Jeddah" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Industrial</span>
+   <h3>Aquat Foods - Jeddah</h3>
+   <p>Jeddah, Saudi Arabia · Industrial lighting reference</p>
+  </div>
+  <a href="project/aquat-jeddah.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/maaden-rolling-mill.html'">
+  <img class="proj-img" src="images/ltd-references/maaden-rolling-mill--samsung.jpg" alt="Maaden Rolling Mill" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Industrial</span>
+   <h3>Maaden Rolling Mill</h3>
+   <p>Saudi Arabia · Industrial lighting reference</p>
+  </div>
+  <a href="project/maaden-rolling-mill.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/saudi-albitek.html'">
+  <img class="proj-img" src="images/ltd-references/baby-wet-wipes--saudi-albitek-company.jpg" alt="Saudi Albitek" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Industrial</span>
+   <h3>Saudi Albitek</h3>
+   <p>Saudi Arabia · Industrial lighting reference</p>
+  </div>
+  <a href="project/saudi-albitek.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="industrial" data-aos="fade-up" onclick="location.href='project/pg-tide-dammam.html'">
+  <img class="proj-img" src="images/ltd-references/proctor-and-gamble--tide-factory--dammam-1.jpg" alt="P&amp;G Tide Factory - Dammam" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Industrial</span>
+   <h3>P&amp;G Tide Factory - Dammam</h3>
+   <p>Dammam, Saudi Arabia · Industrial lighting reference</p>
+  </div>
+  <a href="project/pg-tide-dammam.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/basra-road.html'">
+  <img class="proj-img" src="images/ltd-references/basra-road.jpg" alt="Basra Road" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Infrastructure</span>
+   <h3>Basra Road</h3>
+   <p>Basra, Iraq · Infrastructure lighting reference</p>
+  </div>
+  <a href="project/basra-road.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/doha-airport.html'">
+  <img class="proj-img" src="images/ltd-references/doha-airport--qatar-1.jpg" alt="Doha International Airport" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Aviation</span>
+   <h3>Doha International Airport</h3>
+   <p>Doha, Qatar · Aviation lighting reference</p>
+  </div>
+  <a href="project/doha-airport.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="education" data-aos="fade-up" onclick="location.href='project/kaust-retrofit.html'">
+  <img class="proj-img" src="images/ltd-references/kaust-retrofit.jpg" alt="KAUST LED Retrofit" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Education</span>
+   <h3>KAUST LED Retrofit</h3>
+   <p>Thuwal, Saudi Arabia · Education lighting reference</p>
+  </div>
+  <a href="project/kaust-retrofit.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="education" data-aos="fade-up" onclick="location.href='project/kfupm.html'">
+  <img class="proj-img" src="images/ltd-references/kfupm.jpg" alt="KFUPM" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Education</span>
+   <h3>KFUPM</h3>
+   <p>Dhahran, Saudi Arabia · Education lighting reference</p>
+  </div>
+  <a href="project/kfupm.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="education" data-aos="fade-up" onclick="location.href='project/tbc-riyadh-schools.html'">
+  <img class="proj-img" src="images/ltd-references/tbc--5-riyadh-schools.jpg" alt="TBC - 5 Riyadh Schools" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Education</span>
+   <h3>TBC - 5 Riyadh Schools</h3>
+   <p>Riyadh, Saudi Arabia · Education lighting reference</p>
+  </div>
+  <a href="project/tbc-riyadh-schools.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="education" data-aos="fade-up" onclick="location.href='project/tbc-makkah-schools.html'">
+  <img class="proj-img" src="images/ltd-references/tbc--makkah-schools.jpg" alt="TBC - Makkah Schools" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Education</span>
+   <h3>TBC - Makkah Schools</h3>
+   <p>Makkah, Saudi Arabia · Education lighting reference</p>
+  </div>
+  <a href="project/tbc-makkah-schools.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="education" data-aos="fade-up" onclick="location.href='project/kapsarc.html'">
+  <img class="proj-img" src="images/ltd-references/kapsarc.jpg" alt="KAPSARC" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Research</span>
+   <h3>KAPSARC</h3>
+   <p>Riyadh, Saudi Arabia · Research lighting reference</p>
+  </div>
+  <a href="project/kapsarc.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="infrastructure" data-aos="fade-up" onclick="location.href='project/amana-alahsa.html'">
+  <img class="proj-img" src="images/ltd-references/amana-alahsa.jpg" alt="Amanat Al-Ahsa" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Government</span>
+   <h3>Amanat Al-Ahsa</h3>
+   <p>Al-Ahsa, Saudi Arabia · Government lighting reference</p>
+  </div>
+  <a href="project/amana-alahsa.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" onclick="location.href='project/mod-armed-forces-hospital.html'">
+  <img class="proj-img" src="images/ltd-references/ministry-of-defence--armed-forces-hospital.jpg" alt="MoD - Armed Forces Hospital" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Defence</span>
+   <h3>MoD - Armed Forces Hospital</h3>
+   <p>Saudi Arabia · Defence lighting reference</p>
+  </div>
+  <a href="project/mod-armed-forces-hospital.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" onclick="location.href='project/alzarga-hospital.html'">
+  <img class="proj-img" src="images/ltd-references/alzarga-hospital.jpg" alt="Al-Zarga Hospital" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Healthcare</span>
+   <h3>Al-Zarga Hospital</h3>
+   <p>Saudi Arabia · Healthcare lighting reference</p>
+  </div>
+  <a href="project/alzarga-hospital.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="healthcare" data-aos="fade-up" onclick="location.href='project/dhahran-medical.html'">
+  <img class="proj-img" src="images/ltd-references/dhahran-medical-centre.jpg" alt="Dhahran Medical Centre" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Healthcare</span>
+   <h3>Dhahran Medical Centre</h3>
+   <p>Dhahran, Saudi Arabia · Healthcare lighting reference</p>
+  </div>
+  <a href="project/dhahran-medical.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="commercial" data-aos="fade-up" onclick="location.href='project/medral-dhahran.html'">
+  <img class="proj-img" src="images/ltd-references/medral-building--dhahran.jpg" alt="Medral Building - Dhahran" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Commercial</span>
+   <h3>Medral Building - Dhahran</h3>
+   <p>Dhahran, Saudi Arabia · Commercial lighting reference</p>
+  </div>
+  <a href="project/medral-dhahran.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="commercial" data-aos="fade-up" onclick="location.href='project/thouwal-tower.html'">
+  <img class="proj-img" src="images/ltd-references/thouwal-development-tower.jpg" alt="Thouwal Development Tower" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Commercial</span>
+   <h3>Thouwal Development Tower</h3>
+   <p>Thuwal, Saudi Arabia · Commercial lighting reference</p>
+  </div>
+  <a href="project/thouwal-tower.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+ <div class="proj-card" data-cat="residential" data-aos="fade-up" onclick="location.href='project/vip-houses-dhahran.html'">
+  <img class="proj-img" src="images/ltd-references/vip-houses--dhahran.jpg" alt="VIP Houses - Dhahran" loading="lazy">
+  <div class="proj-img-placeholder" style="display:none;"><i class="fas fa-lightbulb"></i></div>
+  <div class="proj-overlay">
+   <span class="proj-cat">Residential</span>
+   <h3>VIP Houses - Dhahran</h3>
+   <p>Dhahran, Saudi Arabia · Residential lighting reference</p>
+  </div>
+  <a href="project/vip-houses-dhahran.html" class="proj-arr"><i class="fas fa-arrow-right"></i></a>
+ </div>
+
+
+
+ </div>
+
+ </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+ <div class="container">
+ <div class="stats-grid">
+ <div data-aos="fade-up" data-aos-delay="0">
+ <div class="stat-ico"><i class="fas fa-project-diagram"></i></div>
+ <div class="stat-num"><span class="counter" data-target="3200">0</span><span>+</span></div>
+ <div class="stat-lbl">Projects Delivered</div>
+ </div>
+ <div data-aos="fade-up" data-aos-delay="100">
+ <div class="stat-ico"><i class="fas fa-map-marker-alt"></i></div>
+ <div class="stat-num"><span>6</span></div>
+ <div class="stat-lbl">Regions Covered</div>
+ </div>
+ <div data-aos="fade-up" data-aos-delay="200">
+ <div class="stat-ico"><i class="fas fa-users-cog"></i></div>
+ <div class="stat-num"><span class="counter" data-target="50">0</span><span>+</span></div>
+ <div class="stat-lbl">Engineers & Experts</div>
+ </div>
+ <div data-aos="fade-up" data-aos-delay="300">
+ <div class="stat-ico"><i class="fas fa-calendar-alt"></i></div>
+ <div class="stat-num"><span class="counter" data-target="33">0</span><span>+</span></div>
+ <div class="stat-lbl">Years Experience</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+ <div class="container">
+ <div class="cta-inner">
+ <div class="cta-text">
+ <h2>Have a Project in Mind?</h2>
+ <p>Our team is ready to help you design, supply, and install the perfect lighting solution.</p>
+ </div>
+ <div style="display:flex;gap:14px;flex-shrink:0;flex-wrap:wrap;">
+ <a href="index.html#contact" class="btn btn-white">Start a Project <i class="fas fa-arrow-right"></i></a>
+ <a href="tel:+966920016374" class="btn btn-outline-white"><i class="fas fa-phone"></i> <bdi>+966 9200 16374</bdi></a>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+
+
+<footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <div class="footer-logo-row">
+ <img src="images/logo/logo-white.svg" alt="NLC National Lighting Company">
+ </div>
+ <p>Since 1993, NLC has helped shape Saudi Arabia's urban landscape through integrated lighting solutions - from landmark architecture to smart-city infrastructure - illuminating the path toward a more efficient and sustainable future.</p>
+ <div style="display:flex;gap:9px;">
+ <a href="https://www.linkedin.com/company/national-lighting-company/?viewAsMember=true" target="_blank" class="s-link" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.55);"><i class="fab fa-linkedin-in"></i></a>
+ <a href="https://youtu.be/_l-yk8gef7A" target="_blank" rel="noopener" class="s-link" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.55);"><i class="fab fa-youtube"></i></a>
+ </div>
+ </div>
+ <div class="footer-col">
+ <h4>Company</h4>
+ <ul class="footer-links">
+ <li><a href="index.html#about">About NLC</a></li>
+ <li><a href="index.html#solutions">Solutions</a></li>
+ <li><a href="index.html#contact">Contact Us</a></li>
+ <li><a href="projects.html">Projects</a></li>
+ <li><a href="products.html">Products</a></li>
+ <li><a href="news.html">News</a></li>
+ <li><a href="index.html#contact">Careers</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Solutions</h4>
+ <ul class="footer-links">
+ <li><a href="solutions/lighting-solutions.html">Lighting Solutions</a></li>
+ <li><a href="solutions/low-current-systems.html">Low Current Systems</a></li>
+ <li><a href="solutions/power-control-systems.html">Power &amp; Control</a></li>
+ <li><a href="solutions/fabrication-painting.html">Fabrication &amp; Painting</a></li>
+ <li><a href="products.html">Products Catalog</a></li>
+ <li><a href="index.html#contact">Maintenance</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Newsletter</h4>
+ <p style="font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:14px;">Subscribe for the latest news, product launches, and insights from NLC.</p>
+ <div class="nl-form">
+ <input type="email" placeholder="Your email address">
+ <button type="button"><i class="fas fa-arrow-right"></i></button>
+ </div>
+ <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:9px;">No spam. Unsubscribe anytime.</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p>© 2026 National Lighting Company (NLC). All rights reserved. Saudi Arabia</p>
+ <div class="footer-bot-links">
+ <a href="privacy.html">Privacy Policy</a>
+ <a href="terms.html">Terms of Use</a>
+ </div>
+ </div>
+ </div>
+</footer>
+
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha384-n1AULnKdMJlK1oQCLNDL9qZsDgXtH6jRYFCpBtWFc+a9Yve0KSoMn575rk755NJZ" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    AOS.init({duration:700,easing:'ease-out-cubic',once:true,offset:60});
+
+    // Back to top
+    window.addEventListener('scroll',()=>document.getElementById('btt').classList.toggle('show',window.scrollY>400));
+
+    // Mobile menu
+    const hamburger=document.getElementById('hamburger'),mobMenu=document.getElementById('mobMenu'),mobClose=document.getElementById('mobClose');
+    function closeMob(){hamburger.classList.remove('open');mobMenu.classList.remove('open');document.body.style.overflow='';}
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobMenu.classList.toggle('open');document.body.style.overflow=mobMenu.classList.contains('open')?'hidden':'';});
+    mobClose.addEventListener('click',closeMob);
+    document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',closeMob));
+
+    // Project filter
+    document.querySelectorAll('.f-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter=btn.dataset.filter;
+            document.querySelectorAll('.proj-card').forEach(card=>{
+                const match=(filter==='all'||card.dataset.cat===filter);
+                card.style.display=match?'block':'none';
+                if(match){
+                    // Force visible - !important needed because AOS uses doubled-attribute selectors that beat plain inline styles
+                    card.style.setProperty('opacity','1','important');
+                    card.style.setProperty('transform','none','important');
+                    card.style.visibility='visible';
+                    card.classList.add('aos-animate');
+                    card.removeAttribute('data-aos');
+                }
+            });
+            // Featured project
+            const feat=document.querySelector('.featured-project');
+            if(feat){
+                const fmatch=(filter==='all'||feat.dataset.filterCat===filter);
+                feat.style.display=fmatch?'block':'none';
+                if(fmatch){feat.style.setProperty('opacity','1','important');feat.style.setProperty('transform','none','important');feat.classList.add('aos-animate');feat.removeAttribute('data-aos');}
+            }
+            // FILTER_SCROLL_FIX: jump viewport to the filter bar so first match is visible.
+            // Wait one frame so the DOM reflows (cards hidden/shown) before computing scroll target.
+            setTimeout(()=>{
+                // Scroll to first visible card (positioned just below sticky filter bar)
+                const firstCard=Array.from(document.querySelectorAll('.proj-card')).find(c=>c.style.display!=='none');
+                if(!firstCard)return;
+                const HEADER_OFFSET=220;
+                const top=firstCard.getBoundingClientRect().top+window.scrollY-HEADER_OFFSET;
+                window.scrollTo(0,Math.max(0,top));
+            },50);
+        });
+    });
+
+    // Counter animation
+    let done=false;
+    const obs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!done){done=true;document.querySelectorAll('.counter').forEach(el=>{const t=+el.dataset.target,step=t/80;let c=0;const timer=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(timer);}el.textContent=Math.floor(c).toLocaleString();},20);});}},{threshold:.3});
+    const sb=document.querySelector('.stats-band');
+    if(sb)obs.observe(sb);
+
+    // URL filter param
+    const params=new URLSearchParams(window.location.search);
+    if(params.get('filter')){
+        const target=document.querySelector(`.f-btn[data-filter="${params.get('filter')}"]`);
+        if(target)target.click();
+    }
+</script>
+ <!-- WhatsApp Button -->
+ <a href="https://wa.me/966502605867" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+ <i class="fab fa-whatsapp"></i>
+ </a>
+<script src="nav.js" defer></script>
+</body>
+</html>

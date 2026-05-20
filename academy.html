@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NLC Academy – Practical Engineering Knowledge | National Lighting Company</title>
+<meta name="description" content="NLC Academy. Short, practical lessons on lighting, controls, BAS, switchgear, and the engineering behind a working building, built for the Saudi market.">
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://nlc.com.sa/academy.html"/>
+<meta property="og:title" content="NLC Academy – Practical Engineering Knowledge"/>
+<meta property="og:description" content="Short, practical lessons on lighting, controls, BAS, switchgear, and the engineering behind a working building."/>
+<meta property="og:image" content="https://nlc.com.sa/images/logo/logo-blue.svg"/>
+<link rel="canonical" href="https://nlc.com.sa/academy.html"/>
+<link rel="alternate" hreflang="en" href="https://nlc.com.sa/academy.html">
+<link rel="alternate" hreflang="ar" href="https://nlc.com.sa/ar/academy.html">
+<link rel="icon" type="image/svg+xml" href="images/logo/logo-blue.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{--primary:#24285e;--secondary:#F6851F;--secondary-dark:#e0720a;--bg:#F0EFEF;--white:#fff;--dark:#1a1c3a;--gray:#6b7280;--gray-light:#9ca3af;--border:#e2e1e1;--shadow-md:0 8px 30px rgba(36,40,94,.12);--shadow-lg:0 20px 60px rgba(36,40,94,.18);--radius:12px;--radius-lg:20px;--radius-xl:28px;--transition:.3s cubic-bezier(.4,0,.2,1);--font:'Bizmo','Outfit',sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;transition:var(--transition);}
+img{max-width:100%;height:auto;display:block;}
+ul{list-style:none;}
+.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 2px 30px rgba(36,40,94,.1);}
+.nav-container{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:44px;width:auto;}
+.nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;}
+.nav-link{padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--primary);border-radius:8px;transition:var(--transition);position:relative;}
+.nav-link:hover,.nav-link.active{color:var(--secondary);}
+.nav-link::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--secondary);transition:width var(--transition);border-radius:2px;}
+.nav-link:hover::after,.nav-link.active::after{width:55%;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border-radius:50px;font-family:var(--font);font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);}
+.btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 20px rgba(246,133,31,.3);}
+.btn-primary:hover{background:var(--secondary-dark);transform:translateY(-2px);}
+.btn-outline-white{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.55);}
+.btn-outline-white:hover{background:var(--white);color:var(--primary);}
+.lang-switch{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:600;border:1.5px solid #e2e1e1;color:#24285e;transition:var(--transition);margin-left:8px;}
+.lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.hamburger span{width:26px;height:2px;background:var(--primary);border-radius:2px;transition:var(--transition);}
+/* HERO */
+.academy-hero{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:140px 0 80px;position:relative;overflow:hidden;min-height:560px;}
+.academy-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.05) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;opacity:.6;}
+.academy-hero::after{content:'';position:absolute;top:-40%;right:-15%;width:680px;height:680px;background:radial-gradient(circle,rgba(246,133,31,.18) 0%,transparent 60%);border-radius:50%;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(246,133,31,.14);color:var(--secondary);padding:8px 16px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:22px;border:1px solid rgba(246,133,31,.3);}
+.hero-eyebrow i{font-size:.85rem;}
+.academy-hero h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;color:var(--white);line-height:1.08;margin-bottom:18px;letter-spacing:-.02em;}
+.academy-hero h1 span{color:var(--secondary);}
+.hero-lead{font-size:1.08rem;color:rgba(255,255,255,.78);line-height:1.8;max-width:560px;margin-bottom:30px;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px;}
+.meta-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.7);font-size:.86rem;}
+.meta-item i{color:var(--secondary);font-size:1rem;}
+.hero-visual{position:relative;aspect-ratio:1/1;border-radius:var(--radius-xl);overflow:hidden;background:linear-gradient(135deg,#1a1e48,#0e1130);box-shadow:0 30px 80px rgba(0,0,0,.4);}
+.hero-visual img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-visual-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.4);background-image:repeating-linear-gradient(45deg,transparent 0,transparent 12px,rgba(246,133,31,.05) 12px,rgba(246,133,31,.05) 13px);}
+.hero-visual-fallback i{font-size:5rem;color:var(--secondary);opacity:.5;margin-bottom:14px;}
+.hero-visual-fallback span{font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;}
+/* MISSION STRIP */
+.mission-strip{background:var(--white);padding:48px 0;border-bottom:1px solid var(--border);}
+.mission-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.mission-item{display:flex;align-items:flex-start;gap:14px;}
+.mission-icon{width:40px;height:40px;background:rgba(246,133,31,.1);color:var(--secondary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.mission-item h4{font-size:.92rem;font-weight:800;color:var(--primary);margin-bottom:4px;}
+.mission-item p{font-size:.8rem;color:var(--gray);line-height:1.55;}
+/* EPISODE GRID */
+.episodes-section{padding:80px 0 60px;}
+.section-head{text-align:center;max-width:720px;margin:0 auto 50px;}
+.section-label{display:inline-block;color:var(--secondary);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.32em;margin-bottom:14px;}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:var(--primary);line-height:1.15;margin-bottom:16px;}
+.section-title span{color:var(--secondary);}
+.section-subtitle{font-size:.95rem;color:var(--gray);max-width:600px;line-height:1.75;margin:0 auto;}
+.episodes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.ep-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);transition:var(--transition);display:flex;flex-direction:column;border:1px solid var(--border);}
+.ep-card.available{cursor:pointer;}
+.ep-card.available:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--secondary);}
+.ep-card.soon{opacity:.78;}
+.ep-thumb{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--primary),#1a1e48);overflow:hidden;}
+.ep-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.ep-thumb-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:3rem;background-image:repeating-linear-gradient(45deg,transparent 0,transparent 11px,rgba(246,133,31,.045) 11px,rgba(246,133,31,.045) 12px);}
+.ep-thumb-fallback i{color:var(--secondary);opacity:.55;}
+.ep-no{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.7);color:var(--white);font-size:.7rem;font-weight:800;letter-spacing:1.5px;padding:5px 11px;border-radius:50px;backdrop-filter:blur(8px);}
+.ep-badge{position:absolute;top:14px;right:14px;background:var(--secondary);color:var(--white);font-size:.66rem;font-weight:700;letter-spacing:1px;padding:5px 11px;border-radius:50px;text-transform:uppercase;}
+.ep-badge.soon-badge{background:rgba(255,255,255,.18);backdrop-filter:blur(8px);color:rgba(255,255,255,.85);}
+.ep-body{padding:24px 24px 26px;flex:1;display:flex;flex-direction:column;}
+.ep-body h3{font-size:1.1rem;font-weight:800;color:var(--primary);margin-bottom:10px;line-height:1.3;}
+.ep-body p{font-size:.86rem;color:var(--gray);line-height:1.65;margin-bottom:18px;flex:1;}
+.ep-meta{display:flex;gap:14px;font-size:.74rem;color:var(--gray-light);margin-bottom:14px;padding-top:14px;border-top:1px solid var(--border);}
+.ep-meta span{display:inline-flex;align-items:center;gap:6px;}
+.ep-meta i{color:var(--secondary);}
+.ep-link{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-size:.85rem;font-weight:700;text-decoration:none;}
+.ep-link i{transition:transform var(--transition);}
+.ep-card.available:hover .ep-link i{transform:translateX(4px);}
+.ep-card.soon .ep-link{color:var(--gray-light);}
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--secondary) 0%,var(--secondary-dark) 100%);padding:64px 0;position:relative;overflow:hidden;margin-top:40px;}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-8%;width:560px;height:560px;background:rgba(255,255,255,.05);border-radius:50%;}
+.cta-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.cta-text h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:8px;}
+.cta-text p{font-size:.98rem;color:rgba(255,255,255,.82);}
+.btn-white{background:var(--white);color:var(--secondary);font-weight:700;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18);}
+/* FOOTER */
+.footer{background:var(--primary);color:var(--white);padding:60px 0 0;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px;}
+.footer-brand p{font-size:.86rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:20px;}
+.footer-logo-row img{height:40px;width:auto;filter:brightness(0) invert(1);margin-bottom:16px;}
+.footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:.86rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:7px;}
+.footer-links a::before{content:'›';color:var(--secondary);}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.38);}
+@media (max-width:960px){
+ .hero-inner{grid-template-columns:1fr;gap:36px;}
+ .hero-visual{aspect-ratio:16/10;max-width:520px;}
+ .mission-grid{grid-template-columns:repeat(2,1fr);gap:20px;}
+ .episodes-grid{grid-template-columns:repeat(2,1fr);}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media (max-width:640px){
+ .episodes-grid{grid-template-columns:1fr;}
+ .mission-grid{grid-template-columns:1fr;}
+ .footer-grid{grid-template-columns:1fr;}
+ .cta-inner{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="nav-root" data-active="academy" data-ar="ar/academy.html"></div>
+
+
+<!-- HERO -->
+<section class="academy-hero">
+ <div class="container">
+ <div class="hero-inner">
+ <div>
+ <div class="hero-eyebrow"><i class="fas fa-graduation-cap"></i> NLC Academy</div>
+ <h1>Practical engineering <span>knowledge,</span> made for the Saudi market</h1>
+ <p class="hero-lead">Short, practical lessons on the systems behind a working building, covering lux and lumens, lighting controls, BAS, and MV/LV switchgear, and the standards that govern them. Plain language and real engineering, with no sales pitch.</p>
+ <div class="hero-meta">
+ <div class="meta-item"><i class="fas fa-film"></i> 91 episodes available</div>
+ <div class="meta-item"><i class="fas fa-clock"></i> ~2 minutes each</div>
+ <div class="meta-item"><i class="fas fa-language"></i> English &amp; العربية</div>
+ </div>
+ </div>
+ <div class="hero-visual">
+ <img src="academy/storyboards/lux-vs-lumen/01-hook.jpg" alt="NLC Academy" loading="eager"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+ <div class="hero-visual-fallback">
+ <i class="fas fa-lightbulb"></i>
+ <span>Academy</span>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- MISSION STRIP -->
+<section class="mission-strip">
+ <div class="container">
+ <div class="mission-grid">
+ <div class="mission-item">
+ <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
+ <div><h4>Practical, not promotional</h4><p>Every episode answers a real specification question.</p></div>
+ </div>
+ <div class="mission-item">
+ <div class="mission-icon"><i class="fas fa-microchip"></i></div>
+ <div><h4>Engineering-led</h4><p>Written with our R&amp;D team. Numbers traced to EN 12464-1 / SASO.</p></div>
+ </div>
+ <div class="mission-item">
+ <div class="mission-icon"><i class="fas fa-mosque"></i></div>
+ <div><h4>Saudi-context</h4><p>Examples drawn from offices, mosques, warehouses, and street installations we work on.</p></div>
+ </div>
+ <div class="mission-item">
+ <div class="mission-icon"><i class="fas fa-share-nodes"></i></div>
+ <div><h4>Made to share</h4><p>Each episode comes with a LinkedIn carousel for forwarding to a colleague.</p></div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- EPISODES -->
+<section class="episodes-section">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">The Curriculum</div>
+ <h2 class="section-title">111 episodes, twelve <span>seasons</span></h2>
+ <p class="section-subtitle">Each season builds on the last: fundamentals, hardware, design, ELV systems, MV/LV power, and general engineering with Saudi standards. The newest seasons go deeper — the physics and biology of light, lighting design room by room, advanced photometry and LED internals, and the stories and frontiers that shape modern lighting.</p>
+ </div>
+
+ </div>
+</section>
+
+<!-- SEASON 1 - FUNDAMENTALS &AMP; -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 1 · Available</div>
+ <h2 class="section-title">Fundamentals &amp; <span>hardware</span></h2>
+ <p class="section-subtitle">Seven episodes covering the building blocks: reflectors, power factor, LED chips, lux vs lumen, IP and IK ratings, and how electronic assembly actually works.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/choosing-reflectors.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bullseye"></i></div><div class="ep-no">EP 01</div></div>
+ <div class="ep-body"><h3>Choosing Reflectors</h3><p>Beam, spread, and how the right reflector turns lumens into the lux you actually want.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Hardware</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/power-factor.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bolt"></i></div><div class="ep-no">EP 02</div></div>
+ <div class="ep-body"><h3>Power Factor (pF)</h3><p>What the &gt;0.9 on your spec sheet really pays for, and the bill you save on the meter.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Electronics</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/led-chips.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microchip"></i></div><div class="ep-no">EP 03</div></div>
+ <div class="ep-body"><h3>LED Chips</h3><p>Inside the diode: bin codes, package types, and why the same wattage gives different light.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Hardware</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lux-vs-lumen.html" class="ep-card available">
+ <div class="ep-thumb">
+ <img src="academy/storyboards/lux-vs-lumen/01-hook.jpg" alt="Lux vs Lumen"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+ <div class="ep-thumb-fallback" style="display:none;"><i class="fas fa-bullseye-arrow"></i></div>
+ <div class="ep-no">EP 04</div>
+ <div class="ep-badge">New</div>
+ </div>
+ <div class="ep-body">
+ <h3>Lux vs Lumen</h3>
+ <p>The spec-sheet number you actually want. Why "more lumens" is the wrong question, and what to ask instead.</p>
+ <div class="ep-meta">
+ <span><i class="fas fa-clock"></i> 1:50</span>
+ <span><i class="fas fa-tag"></i> Fundamentals</span>
+ </div>
+ <span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span>
+ </div>
+ </a>
+
+ <a href="academy/ip-rating.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shield-halved"></i></div><div class="ep-no">EP 05</div></div>
+ <div class="ep-body"><h3>What is IP?</h3><p>The two-digit code that decides whether your fixture lasts a Saudi summer or fails by year three.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/ik-rating.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-hammer"></i></div><div class="ep-no">EP 06</div></div>
+ <div class="ep-body"><h3>What is IK?</h3><p>The other code: impact resistance. Why street and warehouse fixtures live or die by it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/smt-electronics-manufacturing.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-industry"></i></div><div class="ep-no">EP 07</div></div>
+ <div class="ep-body"><h3>SMT &amp; Electronics Manufacturing</h3><p>A tour through the line: how surface-mount technology builds a modern LED driver.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Manufacturing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 2 - LIGHT, COLOUR &AMP; -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 2 · Available</div>
+ <h2 class="section-title">Light, colour &amp; <span>materials</span></h2>
+ <p class="section-subtitle">Seven episodes on Kelvin and human-centric light, beam shaping, yellowing, the green-magenta shift, colour-rendering metrics, lux targets in real spaces, and how paint affects what you see.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/kelvin-human-centric.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-sun"></i></div><div class="ep-no">EP 08</div></div>
+ <div class="ep-body"><h3>Kelvin &amp; Human-Centric Light</h3><p>Why colour temperature matters more in a hospital than in a hangar, and how to tune it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Design</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lenses-vs-barn-doors.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-circle-half-stroke"></i></div><div class="ep-no">EP 09</div></div>
+ <div class="ep-body"><h3>Lenses vs Barn Doors</h3><p>Two ways to shape a beam. When precision beats subtraction, and when it doesn't.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Hardware</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/yellowing.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-droplet"></i></div><div class="ep-no">EP 10</div></div>
+ <div class="ep-body"><h3>Yellowing</h3><p>Why white optics turn amber, what causes it, and what to demand on the datasheet.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Materials</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/green-magenta-shift.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-palette"></i></div><div class="ep-no">EP 11</div></div>
+ <div class="ep-body"><h3>Green–Magenta Shift</h3><p>The colour-tint error nobody warns you about, and how to spot it before installation.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Colour</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cri-tlci-tm30.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-square-poll-vertical"></i></div><div class="ep-no">EP 12</div></div>
+ <div class="ep-body"><h3>CRI · TLCI · TM-30</h3><p>Three colour-rendering metrics, one decision. Which one to actually trust on a spec sheet.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Colour</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lux-in-real-life.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-building"></i></div><div class="ep-no">EP 13</div></div>
+ <div class="ep-body"><h3>Lux in Real Life</h3><p>Office, hospital, mosque, mall. The targets that pass design review, and the ones that fail.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Applications</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/painting-and-light.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-brush"></i></div><div class="ep-no">EP 14</div></div>
+ <div class="ep-body"><h3>Painting &amp; Light</h3><p>Why the same fixture reads differently on a matt grey wall vs. a satin white one.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Materials</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 3 - PRACTICE &AMP; -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 3 · Available</div>
+ <h2 class="section-title">Practice &amp; <span>components</span></h2>
+ <p class="section-subtitle">Seven episodes on photometric measurement and DIALux, the legacy of conventional sources, surge protection, drivers, thermal conductivity, flicker, and dark-sky compliance.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/dialux-and-goniophotometers.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-cube"></i></div><div class="ep-no">EP 15</div></div>
+ <div class="ep-body"><h3>DIALux &amp; Goniophotometers</h3><p>How a fixture's photometric file is measured, and how it ends up in your DIALux model.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Design</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/conventional-lights.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-lightbulb"></i></div><div class="ep-no">EP 16</div></div>
+ <div class="ep-body"><h3>Conventional Lights</h3><p>Halogen, fluorescent, HID: what they did well, and what LED still hasn't fully replaced.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> History</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/surge-protectors.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-plug"></i></div><div class="ep-no">EP 17</div></div>
+ <div class="ep-body"><h3>Surge Protectors</h3><p>The cheap component that keeps a megawatt installation alive through one bad storm.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Electronics</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/why-a-driver.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microchip"></i></div><div class="ep-no">EP 18</div></div>
+ <div class="ep-body"><h3>Why a Driver?</h3><p>The black box between the wall and the LED, and what happens when it's the wrong one.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Electronics</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/metal-and-thermal-conductivity.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-temperature-arrow-down"></i></div><div class="ep-no">EP 19</div></div>
+ <div class="ep-body"><h3>Metal &amp; Thermal Conductivity</h3><p>Why an LED's life depends on the metal around it, not the chip inside it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Materials</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/flicker.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-wave-square"></i></div><div class="ep-no">EP 20</div></div>
+ <div class="ep-body"><h3>Flicker</h3><p>The invisible quality you only notice when it's gone. How to measure it and how to avoid it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Quality</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/dark-sky.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-star"></i></div><div class="ep-no">EP 21</div></div>
+ <div class="ep-body"><h3>Dark Sky</h3><p>Designing outdoor lighting that lights the ground, not the stars. The new standard for street and resort projects.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 4 - LOW CURRENT & ELV -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 4 · New</div>
+ <h2 class="section-title">Low current &amp; <span>ELV systems</span></h2>
+ <p class="section-subtitle">Ten new episodes covering the systems NLC delivers beyond lighting: structured cabling, lighting control protocols, BAS, security, AV, GRMS, and life-safety power.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/structured-cabling.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-network-wired"></i></div><div class="ep-no">EP 22</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Structured Cabling</h3><p>Cat6, Cat6A, Cat8, and fibre: bandwidth, distance, PoE budget, and the standards behind them.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Networking</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lighting-control-protocols.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-sliders"></i></div><div class="ep-no">EP 23</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Lighting Control Protocols</h3><p>DALI, DALI-2, KNX, and 0–10V: three lighting-control languages, and which one fits the project.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Control</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/bas-backbone.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-building-circle-arrow-right"></i></div><div class="ep-no">EP 24</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>BAS Backbone: BACnet &amp; Modbus</h3><p>The two protocols that run every commercial HVAC system, and the gateways that translate between them.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> BAS</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/poe-types.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-plug-circle-bolt"></i></div><div class="ep-no">EP 25</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>PoE: Type 1, 2, 3, 4</h3><p>From 15 W to 90 W on one cable: what each PoE type really powers, and the cables that go with each.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Networking</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cctv-pixel-density.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-camera"></i></div><div class="ep-no">EP 26</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>CCTV Pixel Density (PPM)</h3><p>Detect, observe, recognise, identify: the four pixel thresholds that decide whether your camera proves anything.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Security</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/access-control-osdp.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-id-card"></i></div><div class="ep-no">EP 27</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Access Control: Wiegand vs OSDP</h3><p>Why OSDP is killing Wiegand: encrypted, bidirectional, and mandatory on new KSA government tenders.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Security</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/public-address-sti.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microphone-lines"></i></div><div class="ep-no">EP 28</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Public Address &amp; STI / STIPA</h3><p>Speech intelligibility, not loudness. The metric Civil Defense uses to certify your PA system.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Audio Visual</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/grms.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-hotel"></i></div><div class="ep-no">EP 29</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>GRMS: Guest Room Management</h3><p>Card-in scenes, DND/MUR, PMS integration, and 20% energy savings: the layer behind 5-star hospitality.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Hospitality</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/emergency-lighting-ksa.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-person-running"></i></div><div class="ep-no">EP 30</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Emergency Lighting &amp; KSA Civil Defense</h3><p>Escape-route lux, anti-panic, duration, and self-test: what KSA Civil Defense actually inspects.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Life Safety</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/central-battery-systems.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-car-battery"></i></div><div class="ep-no">EP 31</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>CBS: Central Battery Systems</h3><p>Why hospitals, malls, and high-rises run emergency lighting on a central battery, and when LiFePO4 wins.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Life Safety</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 5 - MV / LV POWER -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 5 · New</div>
+ <h2 class="section-title">MV switchgear, power <span>quality &amp; backup</span></h2>
+ <p class="section-subtitle">Ten new episodes on the power side of NLC's work: MV switchgear, type-test certification, arc-flash safety, harmonics, capacitor banks, UPS, ATS, and the SEC interface.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/mv-switchgear-ais-vs-gis.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-cube"></i></div><div class="ep-no">EP 32</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>MV Switchgear: AIS vs GIS</h3><p>Air-insulated vs gas-insulated, the SF6 controversy, and the SF6-free future NEOM is mandating.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> MV Switchgear</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/tta-iec-61439.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-clipboard-check"></i></div><div class="ep-no">EP 33</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Type-Tested Assembly (IEC 61439)</h3><p>Why 'design-verified' is not enough: what TTA actually proves at an accredited lab, and the 13 verifications.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/arc-flash-ppe.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-triangle-exclamation"></i></div><div class="ep-no">EP 34</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Arc Flash &amp; PPE</h3><p>IEEE 1584 and NFPA 70E: incident energy, PPE categories, and the boundary every Saudi contractor needs to know.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Safety</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/harmonics-thd.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-wave-square"></i></div><div class="ep-no">EP 35</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Harmonics &amp; THD</h3><p>What LED drivers and VFDs inject into the grid, and the IEEE 519 limits SEC enforces.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Power Quality</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/capacitor-banks-detuning.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-battery-three-quarters"></i></div><div class="ep-no">EP 36</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Capacitor Banks &amp; Detuning</h3><p>Why naked PFC banks blow up, and the 189 Hz detuning factor that saves them.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Power Quality</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cable-sizing-saudi-heat.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-temperature-high"></i></div><div class="ep-no">EP 37</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Cable Sizing in Saudi Heat</h3><p>Why a cable sized at 30 °C overheats in a 50 °C MEP riser: IEC 60364 derating in practice.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> LV Distribution</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/ups-sizing.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-server"></i></div><div class="ep-no">EP 38</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>UPS Sizing &amp; Topology</h3><p>Online vs line-interactive, kW vs kVA, batteries at end-of-life: UPS math for Saudi critical loads.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Backup Power</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/ats-automatic-transfer.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-toggle-on"></i></div><div class="ep-no">EP 39</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>ATS: Open vs Closed Transition</h3><p>A 50 ms gap or zero gap: the choice between open and closed ATS for hospitals, data centres, and offices.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Backup Power</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/saudi-mv-sec-interface.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-handshake"></i></div><div class="ep-no">EP 40</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Saudi MV Tariff &amp; SEC Interface</h3><p>13.8 / 33 / 132 kV ownership boundaries, contract demand, kVA penalties, time-of-use windows.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Saudi-Specific</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/k-factor-transformers.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bolt"></i></div><div class="ep-no">EP 41</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>K-Factor Transformers</h3><p>Why a modern LED+IT building needs K-13, and what a 200% rated neutral conductor means.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Saudi-Specific</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 6 - GENERAL ENGINEERING & STANDARDS -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 6 · New</div>
+ <h2 class="section-title">General engineering &amp; <span>Saudi standards</span></h2>
+ <p class="section-subtitle">Ten new episodes on the engineering and compliance topics every Saudi MEP consultant, contractor, and procurement officer needs: SLDs, BOQ/BOM, FAT/SAT, the Saudi Building Code, Mostadam, SASO, and TCO.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/reading-an-sld.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-diagram-project"></i></div><div class="ep-no">EP 42</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Reading a Single-Line Diagram</h3><p>IEC 60617 symbols, source-to-load tracing, what a consultant looks for first on every drawing.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Engineering</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/boq-vs-bom-vs-spec.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-clipboard-list"></i></div><div class="ep-no">EP 43</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>BOQ vs BOM vs Spec</h3><p>Three documents with three audiences and three ways to lose money. How to reconcile them at kick-off.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Engineering</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/fat-sat-witness-testing.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-flask-vial"></i></div><div class="ep-no">EP 44</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>FAT, SAT &amp; Witness Testing</h3><p>Three checkpoints between order and energisation: when each happens, who signs, and what the ITP looks like.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Testing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/commissioning-vs-energisation.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bolt-lightning"></i></div><div class="ep-no">EP 45</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Commissioning vs Energisation</h3><p>Power flowing is not the same as system commissioned. Why FM teams keep inheriting half-finished buildings.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Handover</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/iec-vs-nema.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-globe"></i></div><div class="ep-no">EP 46</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>IEC vs NEMA Conventions</h3><p>SEC speaks IEC. Aramco often speaks NEMA. The translation Saudi engineers must do daily.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/saudi-building-code.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-book"></i></div><div class="ep-no">EP 47</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Saudi Building Code (SBC) Navigation</h3><p>13 volumes governing every Saudi building. SBC 401, 601, and 801: which volume governs what.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Saudi-Specific</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/mostadam-vs-leed.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-leaf"></i></div><div class="ep-no">EP 48</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Mostadam vs LEED v4.1</h3><p>The Saudi Vision-2030 sustainability rating alongside the global benchmark: how to dual-certify without doubling cost.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Saudi-Specific</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/saso-saber.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-stamp"></i></div><div class="ep-no">EP 49</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>SASO Certification &amp; SABER</h3><p>The gate every imported electrical product passes through, covering PCoC, SCoC, and customs.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Saudi-Specific</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/tco-vs-capex.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-chart-line"></i></div><div class="ep-no">EP 50</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>TCO vs Capex</h3><p>Winning approval for the premium spec: the one-page lifecycle model that turns procurement into your ally.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Engineering</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/ip-ik-ifb-together.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shield-halved"></i></div><div class="ep-no">EP 51</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>IP / IK / IFB Ratings Together</h3><p>Three ratings on one fixture in a single spec line: what KSA Civil Defense audits for.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 7 -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 7 · New</div>
+ <h2 class="section-title">Light &amp; <span>vision</span></h2>
+ <p class="section-subtitle">Ten episodes on the physics and biology of light — from the EM spectrum to ipRGCs, MacAdam ellipses, and how the eye actually works. The deep foundations under every later episode.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/what-is-light.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-wave-square"></i></div><div class="ep-no">EP 52</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>What is Light?</h3><p>Visible light is 380-780 nm of the electromagnetic spectrum. Wave or particle? Both. Why every lighting engineer should know the physics.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/how-light-behaves.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-arrows-split-up-and-left"></i></div><div class="ep-no">EP 53</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>How Light Behaves</h3><p>Reflection, absorption, transmission, refraction — the four ways light interacts with matter, and why each matters for lighting design.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/spectral-power-distribution.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-chart-area"></i></div><div class="ep-no">EP 54</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Spectral Power Distribution (SPD)</h3><p>An SPD curve is a lamp's fingerprint — how much power it emits at every wavelength. The truth CCT and CRI alone can't tell.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cie-chromaticity-diagram.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-palette"></i></div><div class="ep-no">EP 55</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>The CIE Chromaticity Diagram</h3><p>CIE 1931 (x,y) plots every colour the human eye can see. The horseshoe, Planckian locus, MacAdam ellipses, and binning explained.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/metamerism.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shuffle"></i></div><div class="ep-no">EP 56</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Metamerism — Why Colours Match Then Stop Matching</h3><p>Metamerism: two materials that look identical under store light, then mismatched at home. The science of conditional colour matches.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/human-eye-anatomy.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-eye"></i></div><div class="ep-no">EP 57</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Inside the Human Eye — A Lighting Engineer's Tour</h3><p>Cornea, iris, lens, retina, fovea. The optical components that decide what lighting can and cannot do, in 2 minutes.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/rods-vs-cones.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-circle-half-stroke"></i></div><div class="ep-no">EP 58</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Rods vs Cones — Two Vision Systems</h3><p>120M rods for night and motion. 6M cones for colour and detail. How the split shapes street lighting, sports, and signage decisions.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/third-receptor-iprgcs.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-clock"></i></div><div class="ep-no">EP 59</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>The Third Receptor — ipRGCs and Melanopsin</h3><p>Beyond rods and cones, a third photoreceptor discovered in 2002 controls circadian rhythm, alertness, and melatonin. Melanopic EDI explained</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/eye-adaptation-glare.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-circle-half-stroke"></i></div><div class="ep-no">EP 60</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Eye Adaptation & Glare — UGR Explained</h3><p>From sunlight to dark stairwell, the eye spans 10^9 in dynamic range. Adaptation takes seconds to 30 minutes. UGR caps glare in offices. The</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lighting-and-age.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-person-cane"></i></div><div class="ep-no">EP 61</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Lighting & Age — Why 60 Year Olds Need 3× the Light</h3><p>Lens yellowing, pupil shrink, retinal cell loss. The over-65 demographic needs 2-3× the lux of a 20-year-old. Design implications for KSA.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Light & Vision</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 8 -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 8 · New</div>
+ <h2 class="section-title">Lighting <span>by space</span></h2>
+ <p class="section-subtitle">Ten episodes applying lighting design room by room — residential, office, classroom, hospital, retail, industrial, sports, mosque, hospitality. The lux, CCT, CRI per space.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/lighting-types-framework.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-layer-group"></i></div><div class="ep-no">EP 62</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Ambient, Task, Accent — The 3-Layer Framework</h3><p>Every room needs three lighting layers: ambient for orientation, task for the work, accent for atmosphere. The framework that turns lux into</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/residential-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-house"></i></div><div class="ep-no">EP 63</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Residential Lighting — Lux Room by Room</h3><p>Living room 100-300 lux, kitchen 500, bathroom mirror 750. The actual lux targets for every Saudi home — and the scene control that ties the</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/office-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-briefcase"></i></div><div class="ep-no">EP 64</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Office Lighting — 500 lux, UGR 19, Ra 80</h3><p>EN 12464-1 office targets: 500 lux on desk, UGR ≤ 19, Ra ≥ 80, uniformity ≥ 0.6. How to specify and commission for productive Saudi workplac</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/classroom-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-school"></i></div><div class="ep-no">EP 65</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Classroom Lighting — 300 lux + Smart Board Glare</h3><p>Classrooms need 300 lux on desks, 500 lux on the board, glare control on screens, and circadian tuning for alertness. EN 12464-1 + Saudi MOE</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/hospital-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-stethoscope"></i></div><div class="ep-no">EP 66</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Hospital Lighting — From Reception to Operating Theatre</h3><p>Wards 200 lux + circadian. Examination 1000 lux Ra 95. OR 100,000 lux Ra 95+ R9 ≥ 90. The numbers behind safe Saudi hospitals.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/retail-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bag-shopping"></i></div><div class="ep-no">EP 67</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Retail Lighting — Selling with Light</h3><p>Retail uses 300 lux ambient + 1000-3000 lux accent. CCT 3000K for warm fashion, 4000K for tech, Ra 90+ R9 50+. Studies show 20% sales lift f</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/industrial-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-industry"></i></div><div class="ep-no">EP 68</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Industrial & Warehouse Lighting — 200-1000 lux at Height</h3><p>Warehouse aisles 100 lux. Assembly 500 lux. Precision QC 1000 lux. High-bay LED, IP65, IK08, motion sensors. The industrial spec playbook.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/sports-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-futbol"></i></div><div class="ep-no">EP 69</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Sports Lighting — Training to FIFA Class IV</h3><p>Sports lighting classes I-IV per FIFA/UEFA. Lux 75-3500, uniformity 0.5-0.7, glare GR ≤ 50, broadcast TLCI ≥ 85. The Saudi stadium playbook.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/mosque-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-mosque"></i></div><div class="ep-no">EP 70</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Mosque Lighting — Reverence, Reading, and Heritage</h3><p>Saudi mosque lighting: 200 lux reading rows, 50 lux ambient, accent on mihrab + minbar, dome chandeliers. Heritage and modern best practice.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/hospitality-lighting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-hotel"></i></div><div class="ep-no">EP 71</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Hospitality Lighting — Hotels, Restaurants, Spas</h3><p>Hotel lobby 200 lux + accent. Restaurant 100 lux ambient + table accent. Guestroom dynamic 2700-3000K. Spa < 50 lux + mood. The Saudi touris</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting by Space</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 9 -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 9 · New</div>
+ <h2 class="section-title">Advanced <span>photometry</span></h2>
+ <p class="section-subtitle">Ten episodes deep on photometric science — luminance vs illuminance, candelas, LM-79 / LM-80 / TM-21, CQS, binning, p-n physics, off-state power, dimmer compatibility, Zhaga sockets.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/luminance-vs-illuminance.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-circle-dot"></i></div><div class="ep-no">EP 72</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Luminance vs Illuminance — The Two Lux Sisters</h3><p>Illuminance (lux) is light arriving at a surface. Luminance (cd/m²) is light leaving a surface toward your eye. The difference drives glare,</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/candelas-and-intensity.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bullseye"></i></div><div class="ep-no">EP 73</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Candelas — Intensity, Beam Angle, and IES Files</h3><p>Candela is light per unit solid angle. The IES/LDT file plots cd in every direction — the source of every DIALux calculation.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/absolute-vs-relative-photometry.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-flask-vial"></i></div><div class="ep-no">EP 74</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Absolute vs Relative Photometry — LM-79 Explained</h3><p>Old fluorescent IES files used relative photometry (test then scale). LED demands absolute photometry per LM-79. Why the difference matters </p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/lm79-lm80-tm21.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shapes"></i></div><div class="ep-no">EP 75</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>LM-79 / LM-80 / TM-21 — Lifetime Claims Decoded</h3><p>The three IES test methods behind every '50,000-hour' claim. What L70, L80, B10 mean, and how to read a lifetime spec without being fooled.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cqs-vs-cri.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-palette"></i></div><div class="ep-no">EP 76</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>CQS vs CRI — Why a Newer Metric Came Along</h3><p>CRI uses 8 desaturated colours from 1965. CQS uses 15 saturated VS samples. TM-30 adds gamut. Why old CRI fails LEDs — and what to spec inst</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/binning-deep-dive.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-grip"></i></div><div class="ep-no">EP 77</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>LED Binning Deep-Dive — SDCM, MacAdam, Project Consistency</h3><p>Manufacturing variance means no two LED chips are identical. Binning sorts them by chromaticity and flux. SDCM ≤ 3 = premium, ≤ 5 = standard</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/p-n-junction-led-physics.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microchip"></i></div><div class="ep-no">EP 78</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>The P-N Junction — How a LED Actually Makes Light</h3><p>An LED is a semiconductor diode that emits a photon when electrons cross the p-n junction. Bandgap determines wavelength. Phosphors make whi</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/off-state-power.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-plug"></i></div><div class="ep-no">EP 79</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Off-State Power — The Hidden Energy Drain</h3><p>Even when LEDs are 'off', smart drivers and emergency monitors draw 0.5-3 W each. Across 1000 fixtures = a constant 1-3 kW. The hidden cost </p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/dimmer-compatibility.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-sliders"></i></div><div class="ep-no">EP 80</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>LED Dimmer Compatibility — TRIAC, 0-10V, DALI, PWM</h3><p>LED dimming isn't one thing. TRIAC, 0-10V, DALI, DMX, PWM each work differently. Pick the wrong driver/dimmer pair and you get flicker, drop</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/zhaga-sockets.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microchip"></i></div><div class="ep-no">EP 81</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Zhaga Sockets — Future-Proofing Your LED</h3><p>Zhaga is the open standard for replaceable LED modules. Books 18, 20, 24 cover indoor, street, sensor sockets. Future-proof LED — swap the c</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Advanced Photometry</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 10 -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 10 · New</div>
+ <h2 class="section-title">Stories &amp; <span>frontiers</span></h2>
+ <p class="section-subtitle">Ten episodes connecting lighting to history, safety, environment, and frontier tech — 500K years of light, inventors, RoHS, light pollution, optical illusions, color systems, driver architectures.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/history-of-light.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-history"></i></div><div class="ep-no">EP 82</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>500,000 Years of Light — Fire to LED</h3><p>From the first controlled fire to LED, humans have manufactured light for 500,000 years. The 8 inventions that changed civilization.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/workplace-safety-and-light.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-helmet-safety"></i></div><div class="ep-no">EP 83</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Workplace Safety & Light — The Data Behind Accidents</h3><p>Studies show 5-25% of workplace accidents are lighting-related — wrong lux, glare, shadows, flicker. Saudi GOSI and OSHA both flag inadequat</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/rohs-compliance.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-recycle"></i></div><div class="ep-no">EP 84</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>RoHS Compliance — Why LED Killed Mercury</h3><p>RoHS restricts lead, mercury, cadmium, hexavalent chromium, and brominated flame retardants. EU 2011/65/EU. Saudi SASO follows. The reason f</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/light-pollution-deep-dive.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-cloud-moon"></i></div><div class="ep-no">EP 85</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Light Pollution Deep-Dive — Beyond Dark-Sky</h3><p>Light pollution isn't just sky-glow. It's wildlife disruption, sleep harm, energy waste, and astronomy loss. EP21 covered dark-sky basics — </p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/luminaire-types-vocabulary.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shapes"></i></div><div class="ep-no">EP 86</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Luminaire Types Vocabulary — Speak Like a Designer</h3><p>Downlight, troffer, troffer, suspended linear, pendant, sconce, bollard, high-bay, low-bay, recessed, surface, track. The 20 luminaire types</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/optical-illusions.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-eye"></i></div><div class="ep-no">EP 87</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Optical Illusions in Lighting Design</h3><p>The eye guesses. Lighting designers exploit this. Simultaneous contrast, brightness adaptation, colour after-images. The illusions that make</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/inventors-of-light.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-user-graduate"></i></div><div class="ep-no">EP 88</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Inventors of Light — Edison to Nakamura</h3><p>Five inventors whose work made modern lighting: Edison, Swan, Tesla, Holonyak, Nakamura. The patents, the rivalries, the Nobels.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/continuous-vs-discontinuous-spectrum.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-chart-area"></i></div><div class="ep-no">EP 89</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Continuous vs Discontinuous Spectrum</h3><p>Sun and incandescent = continuous. Fluorescent and old LED = spiky / discontinuous. Why continuous spectrum matters for skin, food, and art.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/color-mixing.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-droplet"></i></div><div class="ep-no">EP 90</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Color Mixing — Additive (RGB) vs Subtractive (CMY)</h3><p>Lights add: R+G+B = white. Paints subtract: C+M+Y = black. Two systems, two physics. Why your computer is RGB and your printer is CMYK.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/driver-power-architectures.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-microchip"></i></div><div class="ep-no">EP 91</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>LED Driver Architectures — CC, CV, Constant-Power</h3><p>LED drivers are the unsung hero. Constant-current, constant-voltage, constant-power, with PFC, isolation, surge protection. The driver decid</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Stories & Frontiers</span></div><span class="ep-link">Watch episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 11 - FABRICATION & FINISHING -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 11 · New</div>
+ <h2 class="section-title">Fabrication &amp; <span>finishing</span></h2>
+ <p class="section-subtitle">Ten episodes on what happens between a DXF and a finished panel — sheet-metal grades, cutting, bending, welding, surface prep, and the powder and wet coats that make it last.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/sheet-metal-gauges.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-layer-group"></i></div><div class="ep-no">EP 92</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Sheet-Metal Gauges &amp; Grades</h3><p>DKP, galvanised, stainless — gauge to millimetre, weight to cost, and which grade survives a Jeddah salt-spray test.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Fabrication</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/cnc-cutting.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bolt-lightning"></i></div><div class="ep-no">EP 93</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>CNC: Punch vs Laser vs Plasma</h3><p>Three ways to cut a sheet. Edge quality, slug control, thickness limits, and how each cutter prices the same job.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Fabrication</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/press-brake-bend-allowance.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-ruler-combined"></i></div><div class="ep-no">EP 94</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Press Brake &amp; Bend Allowance</h3><p>K-factor, springback, and how a flat DXF becomes a 90° fold that lands inside tolerance.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Fabrication</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/welding-tig-mig-spot.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-fire"></i></div><div class="ep-no">EP 95</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Welding: TIG vs MIG vs Spot</h3><p>Three weld types, three jobs. Where each lives in a luminaire body, an enclosure, or a steel frame.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Fabrication</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/surface-prep.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-spray-can-sparkles"></i></div><div class="ep-no">EP 96</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Surface Prep: Phosphating &amp; Sandblasting</h3><p>The step nobody sees — the one that decides whether paint stays for ten years or fails in two.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Finishing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/powder-coating.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-paint-roller"></i></div><div class="ep-no">EP 97</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Powder Coating</h3><p>Electrostatic spray, Faraday-cage corners, oven cure cycles — and why edge coverage is where most jobs fail.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Finishing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/wet-paint-two-pack.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-brush"></i></div><div class="ep-no">EP 98</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Wet Paint &amp; Two-Pack Systems</h3><p>When wet paint wins on smoothness and repairability — and what you trade for it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Finishing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/pre-treatment-lines.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-faucet-drip"></i></div><div class="ep-no">EP 99</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Pre-Treatment Lines</h3><p>Alkaline clean → rinse → phosphate → seal → dry. Five baths that decide everything that comes after.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Finishing</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/aluminium-vs-steel.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-cube"></i></div><div class="ep-no">EP 100</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Aluminium vs Steel Enclosures</h3><p>Corrosion, weight, machinability, cost — how a coastal Jeddah project picks differently from a Riyadh inland one.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Materials</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/ip-enclosure-build.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-shield-halved"></i></div><div class="ep-no">EP 101</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>IP Enclosures: Gaskets, Glands &amp; Drainage</h3><p>What makes an IP65 panel actually IP65 after the cables are pulled, the gaskets are seated, and the door is closed.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Standards</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- SEASON 12 - ENGINEERING SOFTWARE -->
+<section class="episodes-section" style="padding-top:20px;">
+ <div class="container">
+ <div class="section-head">
+ <div class="section-label">Season 12 · New</div>
+ <h2 class="section-title">Engineering <span>software</span></h2>
+ <p class="section-subtitle">Ten episodes on the tools NLC's design teams actually live in — AutoCAD, SolidWorks, Revit, DIALux, AGi32, Relux, ETAP, and KNX ETS — what each is for, and where one wins over another.</p>
+ </div>
+
+ <div class="episodes-grid">
+
+ <a href="academy/autocad-cad-standards.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-pen-ruler"></i></div><div class="ep-no">EP 102</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>AutoCAD: Layers, Blocks &amp; CAD Standards</h3><p>The discipline behind a drawing — layer naming, block libraries, plot styles, and why CAD standards win arguments.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> CAD</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/autocad-electrical.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-bolt"></i></div><div class="ep-no">EP 103</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>AutoCAD Electrical</h3><p>Wire numbering, panel layouts, terminal strips — turning an SLD into a wiring set without redrawing it three times.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> CAD</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/solidworks-sheet-metal.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-cube"></i></div><div class="ep-no">EP 104</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>SolidWorks: Sheet Metal</h3><p>Flat pattern → bend table → DXF → CNC. The four-step chain that gets a luminaire body off the screen and onto the brake.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> 3D CAD</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/solidworks-weldments.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-toolbox"></i></div><div class="ep-no">EP 105</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>SolidWorks: Weldments</h3><p>Structural members, cut lists, weld beads — designing a steel frame the workshop can actually fabricate.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> 3D CAD</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/revit-mep-bim.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-building"></i></div><div class="ep-no">EP 106</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Revit MEP &amp; BIM</h3><p>Luminaire and panel families that work inside a real coordination model — and why specifiers now ask for them.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> BIM</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/dialux-evo.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-lightbulb"></i></div><div class="ep-no">EP 107</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>DIALux evo: An Interior Study</h3><p>Surfaces, IES files, calculation grids, UGR — a full office study from import to report, the way a consultant expects it.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/agi32-outdoor.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-road"></i></div><div class="ep-no">EP 108</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>AGi32: Outdoor &amp; Roadway</h3><p>Where AGi32 wins — outdoor calc points, roadway IES validation, and the report formats consultants ask for.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/relux-glare.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-eye"></i></div><div class="ep-no">EP 109</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>Relux: Glare-Led Design</h3><p>The third lighting engine — different glare model, different outdoor strengths, and when to choose it over DIALux.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Lighting</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/etap-mv-lv.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-diagram-project"></i></div><div class="ep-no">EP 110</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>ETAP for MV/LV</h3><p>Load flow, short circuit, arc flash, protection coordination — the four studies every MV/LV project hands the consultant.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> Power</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ <a href="academy/knx-ets5.html" class="ep-card available">
+ <div class="ep-thumb"><div class="ep-thumb-fallback" style="display:flex;"><i class="fas fa-sliders"></i></div><div class="ep-no">EP 111</div><div class="ep-badge">New</div></div>
+ <div class="ep-body"><h3>KNX ETS5</h3><p>Individual and group addresses, group objects, commissioning a lighting controller from a laptop on site.</p><div class="ep-meta"><span><i class="fas fa-tag"></i> BAS</span></div><span class="ep-link">Read episode <i class="fas fa-arrow-right"></i></span></div>
+ </a>
+
+ </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+ <div class="container">
+ <div class="cta-inner">
+ <div class="cta-text">
+ <h2>Want a topic covered?</h2>
+ <p>Tell us what you'd like to see next. We read every suggestion.</p>
+ </div>
+ <a href="index.html#contact" class="btn btn-white">Suggest a topic <i class="fas fa-arrow-right"></i></a>
+ </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <div class="footer-logo-row"><img src="images/logo/logo-blue.svg" alt="NLC"></div>
+ <p>National Lighting Company. Saudi-built lighting, low-current, and power solutions since 1993.</p>
+ </div>
+ <div class="footer-col">
+ <h4>Explore</h4>
+ <div class="footer-links">
+ <a href="index.html">Home</a>
+ <a href="products.html">Products</a>
+ <a href="projects.html">Projects</a>
+ <a href="academy.html">Academy</a>
+ </div>
+ </div>
+ <div class="footer-col">
+ <h4>Company</h4>
+ <div class="footer-links">
+ <a href="about.html">About</a>
+ <a href="certifications.html">Certifications</a>
+ <a href="clients.html">Clients</a>
+ <a href="news.html">News</a>
+ </div>
+ </div>
+ <div class="footer-col">
+ <h4>Contact</h4>
+ <div class="footer-links">
+ <a href="index.html#contact">Get in touch</a>
+ <a href="mailto:info@nlc.com.sa">info@nlc.com.sa</a>
+ </div>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p>© 2026 National Lighting Company. All rights reserved.</p>
+ <p>Made in Saudi Arabia 🇸🇦</p>
+ </div>
+ </div>
+</footer>
+
+<script src="nav.js" defer></script>
+</body>
+</html>

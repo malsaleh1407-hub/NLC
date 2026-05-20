@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Tools – NLC</title>
+<meta name="description" content="Free interactive electrical engineering calculators by NLC: amperage (1-phase / 3-phase), cable sizing per IEC 60364-5-52, voltage drop, lux estimation, and power factor correction.">
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://nlc.com.sa/tools.html"/>
+<meta property="og:title" content="Engineering Tools – NLC"/>
+<meta property="og:description" content="Free interactive electrical engineering calculators."/>
+<meta property="og:image" content="https://nlc.com.sa/images/logo/logo-blue.svg"/>
+<link rel="canonical" href="https://nlc.com.sa/tools.html"/>
+<link rel="alternate" hreflang="en" href="https://nlc.com.sa/tools.html">
+<link rel="alternate" hreflang="ar" href="https://nlc.com.sa/ar/tools.html">
+<link rel="icon" type="image/svg+xml" href="images/logo/logo-blue.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{--primary:#24285e;--secondary:#F6851F;--secondary-dark:#e0720a;--bg:#F0EFEF;--white:#fff;--dark:#1a1c3a;--gray:#6b7280;--gray-light:#9ca3af;--border:#e2e1e1;--shadow-md:0 8px 30px rgba(36,40,94,.12);--shadow-lg:0 20px 60px rgba(36,40,94,.18);--radius:12px;--radius-lg:20px;--radius-xl:28px;--transition:.3s cubic-bezier(.4,0,.2,1);--font:'Bizmo','Outfit',sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;transition:var(--transition);}
+ul{list-style:none;}
+.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+
+/* Navbar (matches site convention) */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 2px 30px rgba(36,40,94,.1);}
+.nav-container{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:44px;width:auto;}
+.nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;}
+.nav-link{padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--primary);border-radius:8px;transition:var(--transition);position:relative;}
+.nav-link:hover,.nav-link.active{color:var(--secondary);}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border-radius:50px;font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);}
+.btn-primary{background:var(--secondary);color:var(--white);box-shadow:0 4px 20px rgba(246,133,31,.3);}
+.btn-primary:hover{background:var(--secondary-dark);transform:translateY(-2px);}
+.lang-switch{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:600;border:1.5px solid #e2e1e1;color:#24285e;transition:var(--transition);margin-left:8px;}
+.lang-switch:hover{border-color:var(--secondary);color:var(--secondary);}
+
+/* Hero */
+.page-hero{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);padding:160px 0 80px;color:var(--white);position:relative;overflow:hidden;min-height:420px;display:flex;align-items:center;}
+        .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0;pointer-events:none;}
+.page-hero .container{width:100%;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.04) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-orb{position:absolute;width:500px;height:500px;background:var(--secondary);border-radius:50%;filter:blur(80px);opacity:.1;top:-200px;right:-100px;pointer-events:none;}
+.page-hero .container{position:relative;z-index:1;}
+.page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;}
+.page-hero h1 span{color:var(--secondary);}
+.page-hero p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:680px;line-height:1.75;}
+
+/* Tabs */
+.tools-section{padding:48px 0 64px;}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:32px;scrollbar-width:thin;}
+.tab-btn{padding:11px 22px;border-radius:50px;font-family:var(--font);font-size:.9rem;font-weight:600;background:var(--white);color:var(--gray);border:1.5px solid var(--border);cursor:pointer;white-space:nowrap;transition:var(--transition);display:inline-flex;align-items:center;gap:9px;}
+.tab-btn i{font-size:.95rem;}
+.tab-btn:hover{border-color:var(--secondary);color:var(--secondary);}
+.tab-btn.active{background:var(--primary);border-color:var(--primary);color:var(--white);box-shadow:var(--shadow-md);}
+.tab-btn.active:hover{color:var(--white);}
+
+/* Calculator card */
+.calc{display:none;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;}
+.calc.active{display:block;}
+.calc-grid{display:grid;grid-template-columns:1.1fr 1fr;}
+@media(max-width:840px){.calc-grid{grid-template-columns:1fr;}}
+.calc-inputs{padding:36px clamp(24px,4vw,40px);}
+.calc-inputs h2{font-size:1.35rem;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.calc-inputs .calc-sub{color:var(--gray);font-size:.88rem;margin-bottom:24px;line-height:1.6;}
+
+.field{margin-bottom:18px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:540px){.field-row{grid-template-columns:1fr;}}
+.field label{display:block;font-size:.82rem;font-weight:600;color:var(--primary);margin-bottom:6px;line-height:1.4;}
+.field label .unit{color:var(--gray);font-weight:500;margin-left:4px;}
+.field label .info{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--gray-light);color:var(--white);font-size:.6rem;text-align:center;line-height:14px;margin-left:4px;cursor:help;}
+.field input[type="number"],.field input[type="text"],.field select{width:100%;padding:11px 14px;font-family:inherit;font-size:.95rem;color:var(--primary);background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);transition:var(--transition);outline:none;}
+.field input:focus,.field select:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(246,133,31,.15);}
+.field-segment{display:flex;gap:0;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);}
+.field-segment label{flex:1;text-align:center;padding:10px 12px;font-size:.85rem;font-weight:600;color:var(--gray);cursor:pointer;margin:0;border-right:1px solid var(--border);transition:var(--transition);}
+.field-segment label:last-child{border-right:none;}
+.field-segment input{display:none;}
+.field-segment input:checked + span{display:block;}
+.field-segment label:has(input:checked){background:var(--primary);color:var(--white);}
+
+.field-formula{font-size:.78rem;color:var(--gray-light);margin-top:6px;font-style:italic;}
+
+/* Result panel */
+.calc-result{background:linear-gradient(135deg,var(--primary) 0%,#1a1e48 100%);color:var(--white);padding:40px clamp(24px,4vw,44px);position:relative;overflow:hidden;}
+.calc-result::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(246,133,31,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(246,133,31,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.calc-result-inner{position:relative;z-index:1;}
+.calc-result h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:18px;}
+.result-main{margin-bottom:22px;}
+.result-main .num{font-size:clamp(2.4rem,5vw,3.4rem);font-weight:900;color:var(--white);line-height:1;font-family:var(--font);letter-spacing:-1px;}
+.result-main .unit{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.6);margin-left:6px;}
+.result-main .label{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:6px;letter-spacing:.5px;}
+.result-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-top:1px solid rgba(255,255,255,.1);font-size:.88rem;}
+.result-row .key{color:rgba(255,255,255,.6);}
+.result-row .val{color:var(--white);font-weight:700;font-family:var(--font);}
+.result-row .val.warn{color:#fde68a;}
+.result-row .val.bad{color:#fca5a5;}
+.result-row .val.good{color:#bbf7d0;}
+.result-note{margin-top:18px;padding:12px 14px;background:rgba(255,255,255,.05);border-left:3px solid var(--secondary);border-radius:6px;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.55;}
+.result-note strong{color:var(--white);}
+
+/* Visualization panel */
+.calc-viz{padding:30px clamp(20px,3vw,40px);background:linear-gradient(180deg,#fafafa,#fff);border-top:1px solid var(--border);}
+.viz-title{font-size:.78rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.viz-title i{color:var(--secondary);}
+.viz-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start;}
+@media(max-width:760px){.viz-grid{grid-template-columns:1fr;}}
+.viz-grid.single{grid-template-columns:1fr;}
+.viz-grid.dual{grid-template-columns:1fr 1fr;}
+@media(max-width:560px){.viz-grid.dual{grid-template-columns:1fr;}}
+.viz-svg-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;}
+.viz-svg-wrap svg{width:100%;height:auto;display:block;}
+.viz-cap{font-size:.72rem;color:var(--gray);text-align:center;margin-top:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;}
+.viz-legend{font-size:.78rem;color:var(--gray);line-height:1.65;background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.viz-legend dt{font-weight:700;color:var(--primary);margin-top:10px;font-size:.8rem;}
+.viz-legend dt:first-child{margin-top:0;}
+.viz-legend dd{margin:3px 0 0;}
+.viz-chip{display:inline-block;padding:2px 9px;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:.5px;}
+.viz-chip.lo{background:#dbeafe;color:#1e40af;}
+.viz-chip.ok{background:#dcfce7;color:#166534;}
+.viz-chip.hi{background:#ffedd5;color:#9a3412;}
+
+/* Footer */
+.footer{background:var(--primary);color:var(--white);padding:60px 0 0;margin-top:60px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:56px;margin-bottom:48px;}
+.footer-brand p{font-size:.86rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:20px;}
+.footer-logo-row img{height:40px;width:auto;filter:brightness(0) invert(1);}
+.footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--secondary);margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:.86rem;color:rgba(255,255,255,.55);}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:.8rem;color:rgba(255,255,255,.38);text-align:center;}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.nav-menu{display:none;}}
+</style>
+</head>
+<body>
+<div id="nav-root" data-active="academy" data-ar="ar/tools.html"></div>
+
+
+<section class="page-hero">
+ <img class="hero-img" src="images/heroes/tools-hero.jpg" alt="Engineering tools background" onerror="this.style.display='none'">
+ <div class="page-hero-orb"></div>
+ <div class="container">
+  <h1>Engineering <span>Tools</span></h1>
+  <p>A free toolkit for electrical and lighting engineers. Run quick checks for current, cable size, voltage drop, illuminance, and power factor correction. All calculations run in your browser. Nothing is sent to a server.</p>
+ </div>
+</section>
+
+<section class="tools-section">
+ <div class="container">
+
+  <div class="tabs" role="tablist">
+   <button class="tab-btn active" data-tab="amp"><i class="fas fa-bolt"></i> Current (Amp)</button>
+   <button class="tab-btn" data-tab="cable"><i class="fas fa-bezier-curve"></i> Cable Size</button>
+   <button class="tab-btn" data-tab="vdrop"><i class="fas fa-wave-square"></i> Voltage Drop</button>
+   <button class="tab-btn" data-tab="lux"><i class="fas fa-lightbulb"></i> Lux</button>
+   <button class="tab-btn" data-tab="pfc"><i class="fas fa-charging-station"></i> Power Factor Correction</button>
+   <button class="tab-btn" data-tab="ups"><i class="fas fa-battery-full"></i> UPS Sizing</button>
+  </div>
+
+  <!-- ==================== 1. AMP CALCULATOR ==================== -->
+  <div class="calc active" id="calc-amp">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>Current (Amperage)</h2>
+     <p class="calc-sub">Calculate line current from real power, voltage, power factor, and motor efficiency. Supports 1-phase and 3-phase circuits.</p>
+
+     <div class="field">
+      <label>Phase System</label>
+      <div class="field-segment">
+       <label><input type="radio" name="amp_phase" value="1" id="amp_p1"><span>1-Phase</span></label>
+       <label><input type="radio" name="amp_phase" value="3" id="amp_p3" checked><span>3-Phase</span></label>
+      </div>
+     </div>
+
+     <div class="field" id="amp_conn_field">
+      <label>Connection Type <span class="unit">(3-phase only)</span></label>
+      <div class="field-segment">
+       <label><input type="radio" name="amp_conn" value="star" id="amp_star" checked><span>Star (Y)</span></label>
+       <label><input type="radio" name="amp_conn" value="delta" id="amp_delta"><span>Delta (Δ)</span></label>
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Power <span class="unit">(kW)</span></label>
+       <input type="number" id="amp_power" step="0.1" min="0" value="50">
+      </div>
+      <div class="field">
+       <label>Voltage <span class="unit">(V, line-to-line for 3φ)</span></label>
+       <input type="number" id="amp_volt" step="1" min="1" value="400">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Power Factor <span class="unit">(cos φ, 0–1)</span></label>
+       <input type="number" id="amp_pf" step="0.01" min="0.1" max="1" value="0.85">
+      </div>
+      <div class="field">
+       <label>Efficiency <span class="unit">(η, 0–1; use 1 for non-motor loads)</span></label>
+       <input type="number" id="amp_eff" step="0.01" min="0.1" max="1" value="1">
+      </div>
+     </div>
+     <p class="field-formula">Formula: I_line = P / (V · PF · η) for 1-phase · I_line = P / (√3 · V_LL · PF · η) for 3-phase. In Star: V_phase = V_LL/√3, I_phase = I_line. In Delta: V_phase = V_LL, I_phase = I_line/√3.</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Result</h3>
+      <div class="result-main">
+       <span class="num" id="amp_out">85.0</span><span class="unit">A</span>
+       <div class="label">Line current</div>
+      </div>
+      <div class="result-row" id="amp_row_iphase"><span class="key">Phase current (I<sub>ph</sub>)</span><span class="val" id="amp_iphase">85.0 A</span></div>
+      <div class="result-row" id="amp_row_vphase"><span class="key">Phase voltage (V<sub>ph</sub>)</span><span class="val" id="amp_vphase">230.9 V</span></div>
+      <div class="result-row"><span class="key">Apparent Power (S)</span><span class="val" id="amp_kva">58.8 kVA</span></div>
+      <div class="result-row"><span class="key">Reactive Power (Q)</span><span class="val" id="amp_kvar">31.0 kVAR</span></div>
+      <div class="result-row"><span class="key">Phase angle (φ)</span><span class="val" id="amp_phi">31.8°</span></div>
+      <div class="result-note"><strong>Sizing rule of thumb:</strong> select breakers ≥ 1.25× this current for continuous loads (NEC) or per IEC 60364 utilisation factor.</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid dual">
+     <div class="viz-svg-wrap">
+      <svg id="amp_tri_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="Power triangle"></svg>
+      <div class="viz-cap">Power triangle (P · Q · S)</div>
+     </div>
+     <div class="viz-svg-wrap">
+      <svg id="amp_conn_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="3-phase connection schematic"></svg>
+      <div class="viz-cap" id="amp_conn_cap">Connection schematic</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ==================== 2. CABLE SIZE CALCULATOR ==================== -->
+  <div class="calc" id="calc-cable">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>Cable Size</h2>
+     <p class="calc-sub">Pick the smallest cable that satisfies both ampacity and voltage drop. Two standards: <strong>IEC 60364-5-52</strong> (Method C, mm² cross-section) or <strong>NEC Table 310.16</strong> (single conductor in raceway, AWG sizes). Cu conductors.</p>
+
+     <div class="field">
+      <label>Standard</label>
+      <div class="field-segment">
+       <label><input type="radio" name="cab_std" value="iec" checked><span>IEC 60364 (mm²)</span></label>
+       <label><input type="radio" name="cab_std" value="nec"><span>NEC (AWG)</span></label>
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Phase System</label>
+       <select id="cab_phase">
+        <option value="1">1-Phase (230 V default)</option>
+        <option value="3" selected>3-Phase (400 V default)</option>
+       </select>
+      </div>
+      <div class="field">
+       <label>Insulation</label>
+       <select id="cab_ins">
+        <option value="pvc">PVC / THWN (70–75°C)</option>
+        <option value="xlpe" selected>XLPE / XHHW (90°C)</option>
+       </select>
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Load Current <span class="unit">(A)</span></label>
+       <input type="number" id="cab_amps" step="1" min="1" value="100">
+      </div>
+      <div class="field">
+       <label>Voltage <span class="unit">(V)</span></label>
+       <input type="number" id="cab_volt" step="1" min="1" value="400">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Cable Length <span class="unit">(m, one-way)</span></label>
+       <input type="number" id="cab_len" step="1" min="1" value="50">
+      </div>
+      <div class="field">
+       <label>Allowed Voltage Drop <span class="unit">(%)</span></label>
+       <input type="number" id="cab_vd" step="0.1" min="0.5" max="10" value="3">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Ambient Temp <span class="unit">(°C)</span></label>
+       <select id="cab_amb">
+        <option value="20">20°C</option>
+        <option value="25">25°C</option>
+        <option value="30" selected>30°C</option>
+        <option value="35">35°C</option>
+        <option value="40">40°C</option>
+        <option value="45">45°C (hot Saudi)</option>
+        <option value="50">50°C</option>
+        <option value="55">55°C</option>
+       </select>
+      </div>
+      <div class="field">
+       <label>Cables in Group <span class="unit">(in same conduit/tray)</span></label>
+       <select id="cab_grp">
+        <option value="1" selected>1 (single circuit)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10+</option>
+       </select>
+      </div>
+     </div>
+     <p class="field-formula">Sizes shown are nominal Cu cross-sections. Voltage drop uses Vd = √3 · I · R · L / 1000 (3φ) or Vd = 2 · I · R · L / 1000 (1φ).</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Recommended Size</h3>
+      <div class="result-main">
+       <span class="num" id="cab_out">25</span><span class="unit" id="cab_out_unit">mm²</span>
+       <div class="label">Minimum Cu conductor passing both ampacity + Vd</div>
+      </div>
+      <div class="result-row"><span class="key">Derated ampacity at this size</span><span class="val good" id="cab_ampacity">95.2 A</span></div>
+      <div class="result-row"><span class="key">Voltage drop at this size</span><span class="val good" id="cab_vd_act">2.6 V (0.65%)</span></div>
+      <div class="result-row"><span class="key">Sized by</span><span class="val" id="cab_limit">Voltage drop</span></div>
+      <div class="result-row"><span class="key">Temperature derating</span><span class="val" id="cab_tempcf">×1.00</span></div>
+      <div class="result-row"><span class="key">Grouping derating</span><span class="val" id="cab_grpcf">×1.00</span></div>
+      <div class="result-note"><strong>Reference:</strong> IEC 60364-5-52, Method C, copper conductor, single 3-phase loaded circuit. For other installation methods or aluminium, consult full standard.</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid dual">
+     <div class="viz-svg-wrap">
+      <svg id="cab_xs_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="Cable cross-section"></svg>
+      <div class="viz-cap" id="cab_xs_cap">Cable cross-section · Cu cores</div>
+     </div>
+     <div class="viz-svg-wrap">
+      <svg id="cab_chart_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="Ampacity vs cable size"></svg>
+      <div class="viz-cap">Ampacity vs cross-section</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ==================== 3. VOLTAGE DROP CALCULATOR ==================== -->
+  <div class="calc" id="calc-vdrop">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>Voltage Drop</h2>
+     <p class="calc-sub">Standalone Vd calculation for a known cable size. Use to verify a sizing decision or check existing installation.</p>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Phase System</label>
+       <select id="vd_phase">
+        <option value="1">1-Phase</option>
+        <option value="3" selected>3-Phase</option>
+       </select>
+      </div>
+      <div class="field">
+       <label>Conductor</label>
+       <select id="vd_mat">
+        <option value="cu" selected>Copper (Cu)</option>
+        <option value="al">Aluminium (Al)</option>
+       </select>
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Current <span class="unit">(A)</span></label>
+       <input type="number" id="vd_amps" step="1" min="1" value="100">
+      </div>
+      <div class="field">
+       <label>Voltage <span class="unit">(V)</span></label>
+       <input type="number" id="vd_volt" step="1" min="1" value="400">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Cable Length <span class="unit">(m)</span></label>
+       <input type="number" id="vd_len" step="1" min="1" value="50">
+      </div>
+      <div class="field">
+       <label>Cable Size <span class="unit">(mm²)</span></label>
+       <select id="vd_size">
+        <option>1.5</option><option>2.5</option><option>4</option><option>6</option>
+        <option>10</option><option>16</option><option selected>25</option><option>35</option>
+        <option>50</option><option>70</option><option>95</option><option>120</option>
+        <option>150</option><option>185</option><option>240</option><option>300</option>
+       </select>
+      </div>
+     </div>
+
+     <div class="field">
+      <label>Power Factor <span class="unit">(only used for 3-phase, cos φ)</span></label>
+      <input type="number" id="vd_pf" step="0.01" min="0.1" max="1" value="0.85">
+     </div>
+     <p class="field-formula">Vd = 2·I·R·L / 1000 (1φ) · Vd = √3·I·R·L·cos φ / 1000 (3φ). R taken at 70°C operating temperature.</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Result</h3>
+      <div class="result-main">
+       <span class="num" id="vd_out">3.77</span><span class="unit">V</span>
+       <div class="label">Voltage drop along the cable</div>
+      </div>
+      <div class="result-row"><span class="key">Drop as % of nominal</span><span class="val" id="vd_pct">0.94%</span></div>
+      <div class="result-row"><span class="key">Voltage at load end</span><span class="val" id="vd_load">396.2 V</span></div>
+      <div class="result-row"><span class="key">Power lost in cable</span><span class="val" id="vd_loss">377 W</span></div>
+      <div class="result-note"><strong>Recommended limits</strong> (IEC 60364-5-52 Annex G): lighting circuits ≤ 3% from origin to load · power circuits ≤ 5%. Tighter limits apply to motor starting and harmonic-sensitive loads.</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid single">
+     <div class="viz-svg-wrap">
+      <svg id="vd_line_svg" viewBox="0 0 800 230" preserveAspectRatio="xMidYMid meet" aria-label="Voltage drop along cable"></svg>
+      <div class="viz-cap">Source → cable → load · voltage along the run</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ==================== 4. LUX CALCULATOR ==================== -->
+  <div class="calc" id="calc-lux">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>Lux (Illuminance)</h2>
+     <p class="calc-sub">Average illuminance using the lumen method: E = (N · Φ · CU · LLF) / A. Calculates lux at the floor and at table-top height (0.75 m).</p>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Number of Fixtures (N)</label>
+       <input type="number" id="lux_n" step="1" min="1" value="20">
+      </div>
+      <div class="field">
+       <label>Lumens per Fixture (Φ)</label>
+       <input type="number" id="lux_lm" step="50" min="100" value="3500">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Wattage per Fixture <span class="unit">(W, info only)</span></label>
+       <input type="number" id="lux_w" step="1" min="0" value="36">
+      </div>
+      <div class="field">
+       <label>Light Loss Factor (LLF)</label>
+       <input type="number" id="lux_llf" step="0.05" min="0.5" max="1" value="0.8">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Room Length <span class="unit">(m)</span></label>
+       <input type="number" id="lux_l" step="0.1" min="0.5" value="10">
+      </div>
+      <div class="field">
+       <label>Room Width <span class="unit">(m)</span></label>
+       <input type="number" id="lux_w_m" step="0.1" min="0.5" value="8">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Ceiling Height <span class="unit">(m)</span></label>
+       <input type="number" id="lux_h" step="0.1" min="2" value="3">
+      </div>
+      <div class="field">
+       <label>Reflectance preset</label>
+       <select id="lux_refl">
+        <option value="hi">High (white office, 80/50/20)</option>
+        <option value="med" selected>Medium (typical, 70/30/20)</option>
+        <option value="lo">Low (industrial, 50/30/20)</option>
+       </select>
+      </div>
+     </div>
+     <p class="field-formula">Lux at floor uses RCR(h_room). Lux at table top uses RCR(h_room − 0.75 m). CU is interpolated from typical direct-luminaire tables.</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Result</h3>
+      <div class="result-main">
+       <span class="num" id="lux_floor">700</span><span class="unit">lx</span>
+       <div class="label">Average lux at floor</div>
+      </div>
+      <div class="result-row"><span class="key">Lux at table top (0.75 m)</span><span class="val" id="lux_table">820 lx</span></div>
+      <div class="result-row"><span class="key">Total luminous flux installed</span><span class="val" id="lux_total">70,000 lm</span></div>
+      <div class="result-row"><span class="key">Room area</span><span class="val" id="lux_area">80 m²</span></div>
+      <div class="result-row"><span class="key">Watts / m² (LPD)</span><span class="val" id="lux_lpd">9.0</span></div>
+      <div class="result-row"><span class="key">Efficacy (system lm/W)</span><span class="val" id="lux_eff">97.2</span></div>
+      <div class="result-note"><strong>Typical targets (EN 12464-1):</strong> office desks 500 lx · meeting rooms 500 lx · corridors 100 lx · warehouse aisles 200 lx · retail sales floor 300 lx.</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid">
+     <div class="viz-svg-wrap">
+      <svg id="lux_room_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="Top-down room plan with luminaire grid"></svg>
+      <div class="viz-cap">Top-down plan · luminaire grid</div>
+     </div>
+     <div class="viz-svg-wrap">
+      <svg id="lux_scale_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="Illuminance level vs EN 12464-1 targets"></svg>
+      <div class="viz-cap">Lux level vs application standards</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ==================== 5. POWER FACTOR CORRECTION ==================== -->
+  <div class="calc" id="calc-pfc">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>Power Factor Correction</h2>
+     <p class="calc-sub">kVAR of capacitor bank required to lift the existing power factor up to the target. Q = P · (tan φ₁ − tan φ₂).</p>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Real Power (P) <span class="unit">(kW)</span></label>
+       <input type="number" id="pfc_p" step="1" min="1" value="200">
+      </div>
+      <div class="field">
+       <label>System Voltage <span class="unit">(V, info only)</span></label>
+       <input type="number" id="pfc_v" step="1" min="1" value="400">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Existing PF (cos φ₁)</label>
+       <input type="number" id="pfc_pf1" step="0.01" min="0.1" max="0.999" value="0.75">
+      </div>
+      <div class="field">
+       <label>Target PF (cos φ₂)</label>
+       <input type="number" id="pfc_pf2" step="0.01" min="0.1" max="1" value="0.95">
+      </div>
+     </div>
+     <p class="field-formula">Saudi grid penalty kicks in below PF 0.85. Industrial best practice targets 0.95 unity.</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Capacitor Bank Required</h3>
+      <div class="result-main">
+       <span class="num" id="pfc_out">110.6</span><span class="unit">kVAR</span>
+       <div class="label">Compensation needed to reach target PF</div>
+      </div>
+      <div class="result-row"><span class="key">Apparent power before correction (S₁)</span><span class="val" id="pfc_s1">266.7 kVA</span></div>
+      <div class="result-row"><span class="key">Apparent power after correction (S₂)</span><span class="val" id="pfc_s2">210.5 kVA</span></div>
+      <div class="result-row"><span class="key">Reactive before (Q₁)</span><span class="val" id="pfc_q1">176.4 kVAR</span></div>
+      <div class="result-row"><span class="key">Reactive after (Q₂)</span><span class="val" id="pfc_q2">65.7 kVAR</span></div>
+      <div class="result-row"><span class="key">Apparent power saved</span><span class="val good" id="pfc_save">−56.2 kVA</span></div>
+      <div class="result-note"><strong>Bank sizing tip:</strong> round up to standard step sizes (12.5, 25, 50, 100 kVAR) and use a multi-step automatic capacitor controller for variable loads. Always include detuning reactors if the site has significant harmonic content.</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid single">
+     <div class="viz-svg-wrap">
+      <svg id="pfc_tri_svg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" aria-label="Power triangles before and after correction"></svg>
+      <div class="viz-cap">Power triangles · before vs after correction</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ==================== 6. UPS SIZING CALCULATOR ==================== -->
+  <div class="calc" id="calc-ups">
+   <div class="calc-grid">
+    <div class="calc-inputs">
+     <h2>UPS Sizing</h2>
+     <p class="calc-sub">Build the connected load list, set runtime and battery voltage, get the recommended UPS rating in kVA + battery capacity in Ah. Defaults match a typical NLC field-equipment-cabinet (FEC) project.</p>
+
+     <h3 style="font-size:.95rem;font-weight:700;color:var(--primary);margin:14px 0 10px;">Connected Devices</h3>
+     <div id="ups_devices" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px;"></div>
+     <button type="button" id="ups_add_dev" style="background:transparent;color:var(--secondary);border:1.5px dashed var(--secondary);padding:8px 14px;border-radius:8px;font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;width:100%;">+ Add device</button>
+
+     <div class="field-row" style="margin-top:18px;">
+      <div class="field">
+       <label>Cabinets / FECs <span class="unit">(qty)</span></label>
+       <input type="number" id="ups_cabinets" step="1" min="1" value="6">
+      </div>
+      <div class="field">
+       <label>UPS self-consumption <span class="unit">(W per cabinet)</span></label>
+       <input type="number" id="ups_self" step="1" min="0" value="116">
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Backup time <span class="unit">(minutes)</span></label>
+       <input type="number" id="ups_backup" step="1" min="1" value="30">
+      </div>
+      <div class="field">
+       <label>Battery system voltage <span class="unit">(V DC)</span></label>
+       <select id="ups_voltage">
+        <option value="12">12 V</option>
+        <option value="24">24 V</option>
+        <option value="48" selected>48 V</option>
+        <option value="120">120 V</option>
+        <option value="240">240 V</option>
+       </select>
+      </div>
+     </div>
+
+     <div class="field-row">
+      <div class="field">
+       <label>Power factor <span class="unit">(UPS output)</span></label>
+       <input type="number" id="ups_pf" step="0.05" min="0.5" max="1" value="0.8">
+      </div>
+      <div class="field">
+       <label>Safety margin <span class="unit">(%)</span></label>
+       <input type="number" id="ups_margin" step="5" min="0" value="30">
+      </div>
+     </div>
+     <p class="field-formula">Formula: Total W = Σ(qty × W) × cabinets + UPS self × cabinets · KVA = (W × 1+margin)/(PF × 1000) · Battery Ah = (W × backup/60) / V_DC</p>
+    </div>
+    <div class="calc-result">
+     <div class="calc-result-inner">
+      <h3>Recommended UPS</h3>
+      <div class="result-main">
+       <span class="num" id="ups_rec_kva">10</span><span class="unit">kVA</span>
+       <div class="label">Standard size (round-up)</div>
+      </div>
+      <div class="result-row"><span class="key">Total connected load</span><span class="val" id="ups_total_w">5,908 W</span></div>
+      <div class="result-row"><span class="key">With safety margin</span><span class="val" id="ups_with_margin">7,681 W</span></div>
+      <div class="result-row"><span class="key">Required apparent power</span><span class="val" id="ups_req_kva">9.60 kVA</span></div>
+      <div class="result-row"><span class="key">Battery energy needed</span><span class="val" id="ups_batt_wh">3,840 Wh</span></div>
+      <div class="result-row"><span class="key">Battery capacity</span><span class="val good" id="ups_batt_ah">80 Ah @ 48 V</span></div>
+      <div class="result-note"><strong>Standard UPS sizes:</strong> 1, 2, 3, 5, 6, 10, 15, 20, 30, 40, 60, 80, 100, 120, 160, 200 kVA. The recommendation rounds up to the next standard. For battery, choose the next standard Ah block (e.g. 100 Ah if calc gives 80).</div>
+     </div>
+    </div>
+   </div>
+   <div class="calc-viz">
+    <div class="viz-title"><i class="fas fa-eye"></i> Visualization</div>
+    <div class="viz-grid">
+     <div class="viz-svg-wrap">
+      <svg id="ups_flow_svg" viewBox="0 0 480 280" preserveAspectRatio="xMidYMid meet" aria-label="UPS power-flow diagram"></svg>
+      <div class="viz-cap">Power-flow system diagram</div>
+     </div>
+     <div class="viz-svg-wrap">
+      <svg id="ups_size_svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid meet" aria-label="UPS rating sizing breakdown"></svg>
+      <div class="viz-cap">Sizing breakdown vs standard UPS</div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="container">
+  <div class="footer-grid">
+   <div class="footer-brand">
+    <div class="footer-logo-row"><img src="https://nlc.com.sa/images/logo/logo-white.svg" alt="NLC"></div>
+    <p>Since 1993, NLC has helped shape Saudi Arabia's urban landscape through integrated lighting solutions - from landmark architecture to smart-city infrastructure - illuminating the path toward a more efficient and sustainable future.</p>
+   </div>
+   <div class="footer-col">
+    <h4>Solutions</h4>
+    <ul class="footer-links">
+     <li><a href="solutions/lighting-solutions.html">Lighting</a></li>
+     <li><a href="solutions/low-current-systems.html">Low Current</a></li>
+     <li><a href="solutions/power-control-systems.html">Power &amp; Control</a></li>
+    </ul>
+   </div>
+   <div class="footer-col">
+    <h4>Company</h4>
+    <ul class="footer-links">
+     <li><a href="index.html">Home</a></li>
+     <li><a href="projects.html">Projects</a></li>
+     <li><a href="products.html">Products</a></li>
+     <li><a href="clients.html">Clients</a></li>
+     <li><a href="tools.html">Tools</a></li>
+     <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+   </div>
+   <div class="footer-col">
+    <h4>Register</h4>
+    <ul class="footer-links">
+     <li><a href="forms/customer-registration.html">Customer Registration</a></li>
+     <li><a href="forms/vendor-registration.html">Vendor Registration</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 National Lighting Company (NLC). All rights reserved. Calculators provided as engineering aids only; verify against project standards before implementation.</p></div>
+ </div>
+</footer>
+
+<script>
+// ===== TAB SWITCHING =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.calc').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('calc-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== UTILITIES =====
+const fmt = (n, d=2) => isFinite(n) ? Number(n).toLocaleString('en-US',{maximumFractionDigits:d, minimumFractionDigits:d}) : '-';
+const fmtInt = (n) => isFinite(n) ? Math.round(n).toLocaleString('en-US') : '-';
+
+// ===== 1. AMP CALCULATOR =====
+function calcAmp(){
+  const phase = document.querySelector('input[name="amp_phase"]:checked').value;
+  const conn = document.querySelector('input[name="amp_conn"]:checked').value;
+  const P = parseFloat(document.getElementById('amp_power').value) * 1000; // W
+  const V = parseFloat(document.getElementById('amp_volt').value);
+  const PF = parseFloat(document.getElementById('amp_pf').value);
+  const eff = parseFloat(document.getElementById('amp_eff').value);
+  // show/hide connection field + phase rows depending on phase system
+  const connField = document.getElementById('amp_conn_field');
+  const rowIph = document.getElementById('amp_row_iphase');
+  const rowVph = document.getElementById('amp_row_vphase');
+  const is3 = phase === '3';
+  connField.style.display = is3 ? '' : 'none';
+  rowIph.style.display = is3 ? '' : 'none';
+  rowVph.style.display = is3 ? '' : 'none';
+  if (!P || !V || !PF || !eff) return;
+  const denom = (is3 ? Math.sqrt(3) * V : V) * PF * eff;
+  const I = P / denom; // line current
+  const S = (P / 1000) / PF; // kVA
+  const Q = S * Math.sin(Math.acos(PF)); // kVAR
+  const phi = Math.acos(PF) * 180 / Math.PI;
+  // per-phase quantities
+  let Iph = I, Vph = V;
+  if (is3) {
+    if (conn === 'star')  { Vph = V / Math.sqrt(3); Iph = I; }
+    else                  { Vph = V;                 Iph = I / Math.sqrt(3); }
+  }
+  document.getElementById('amp_out').textContent = fmt(I, 1);
+  document.getElementById('amp_iphase').textContent = fmt(Iph, 1) + ' A';
+  document.getElementById('amp_vphase').textContent = fmt(Vph, 1) + ' V';
+  document.getElementById('amp_kva').textContent = fmt(S, 2) + ' kVA';
+  document.getElementById('amp_kvar').textContent = fmt(Q, 2) + ' kVAR';
+  document.getElementById('amp_phi').textContent = fmt(phi, 1) + '°';
+}
+['amp_power','amp_volt','amp_pf','amp_eff'].forEach(id => document.getElementById(id).addEventListener('input', calcAmp));
+document.querySelectorAll('input[name="amp_phase"]').forEach(el => el.addEventListener('change', calcAmp));
+document.querySelectorAll('input[name="amp_conn"]').forEach(el => el.addEventListener('change', calcAmp));
+
+// ===== 2. CABLE SIZE =====
+// IEC 60364-5-52 Method C (clipped to wall), Cu, single circuit, 30°C ambient
+// values are approximate; confirm against full standard for production designs
+const AMPACITY = {
+  // mm²: [PVC 70°C, XLPE/EPR 90°C]
+  1.5:[19.5,26], 2.5:[27,36], 4:[36,49], 6:[46,63], 10:[63,86], 16:[85,115],
+  25:[112,149], 35:[138,185], 50:[168,225], 70:[213,289], 95:[258,352],
+  120:[299,410], 150:[344,473], 185:[392,542], 240:[461,641], 300:[530,741]
+};
+// Resistance Ω/km at 70°C, Cu
+const R_CU = {
+  1.5:14.5, 2.5:8.87, 4:5.52, 6:3.69, 10:2.19, 16:1.38, 25:0.870, 35:0.627,
+  50:0.463, 70:0.321, 95:0.232, 120:0.184, 150:0.150, 185:0.121, 240:0.0921, 300:0.0735
+};
+// NEC Table 310.16 - single conductor in raceway, Cu, 30°C ambient
+// AWG: [75°C THWN ampacity, 90°C XHHW ampacity]
+const AWG_AMPACITY = {
+  '14':[20,25], '12':[25,30], '10':[35,40], '8':[50,55], '6':[65,75], '4':[85,95],
+  '3':[100,110], '2':[115,130], '1':[130,150], '1/0':[150,170], '2/0':[175,195],
+  '3/0':[200,225], '4/0':[230,260],
+  '250':[255,290], '350':[310,350], '500':[380,430], '750':[475,535], '1000':[545,615]
+};
+// NEC Ch9 Table 8 - Cu uncoated, 75°C, in raceway, Ω/km
+const R_AWG_CU = {
+  '14':10.30, '12':6.50, '10':4.07, '8':2.553, '6':1.611, '4':1.010, '3':0.804,
+  '2':0.637, '1':0.505, '1/0':0.400, '2/0':0.317, '3/0':0.251, '4/0':0.199,
+  '250':0.169, '350':0.120, '500':0.0846, '750':0.0564, '1000':0.0423
+};
+// Ordered list of AWG sizes (smallest current capacity to largest)
+const AWG_ORDER = ['14','12','10','8','6','4','3','2','1','1/0','2/0','3/0','4/0','250','350','500','750','1000'];
+// Ambient temperature correction (Method C, Cu)
+const TEMP_CF = {
+  pvc:  {20:1.12, 25:1.06, 30:1.00, 35:0.94, 40:0.87, 45:0.79, 50:0.71, 55:0.61, 60:0.50},
+  xlpe: {20:1.12, 25:1.07, 30:1.00, 35:0.96, 40:0.91, 45:0.87, 50:0.82, 55:0.76, 60:0.71}
+};
+// Grouping correction (cables in same conduit/tray)
+const GROUP_CF = {1:1.00, 2:0.80, 3:0.70, 4:0.65, 5:0.60, 6:0.57, 7:0.54, 8:0.52, 9:0.50, 10:0.48};
+
+function calcCable(){
+  const std = document.querySelector('input[name="cab_std"]:checked').value; // 'iec' | 'nec'
+  const phase = document.getElementById('cab_phase').value;
+  const ins = document.getElementById('cab_ins').value;
+  const I = parseFloat(document.getElementById('cab_amps').value);
+  const V = parseFloat(document.getElementById('cab_volt').value);
+  const L = parseFloat(document.getElementById('cab_len').value);
+  const vdMax = parseFloat(document.getElementById('cab_vd').value) / 100;
+  const amb = parseInt(document.getElementById('cab_amb').value);
+  const grp = parseInt(document.getElementById('cab_grp').value);
+  if (!I || !V || !L || !vdMax) return;
+  const tcf = TEMP_CF[ins][amb] || 1;
+  const gcf = GROUP_CF[grp] || 0.48;
+  const insIdx = ins === 'pvc' ? 0 : 1;
+  const vdAllowed = V * vdMax; // V
+
+  // Pick the lookup tables + sizes list based on standard
+  const sizes = std === 'nec' ? AWG_ORDER : Object.keys(AMPACITY).map(Number);
+  const ampacityOf = sz => (std === 'nec' ? AWG_AMPACITY[sz][insIdx] : AMPACITY[sz][insIdx]) * tcf * gcf;
+  const resistOf  = sz => std === 'nec' ? R_AWG_CU[sz] : R_CU[sz];
+  document.getElementById('cab_out_unit').textContent = std === 'nec' ? 'AWG' : 'mm²';
+
+  let chosenSize = null;
+  let chosenAmp = 0;
+  let chosenVd = 0;
+  let limitedBy = '';
+  for (const sz of sizes) {
+    const ampac = ampacityOf(sz);
+    const R = resistOf(sz);
+    let Vd;
+    if (phase === '3') Vd = Math.sqrt(3) * I * R * L / 1000;
+    else                Vd = 2 * I * R * L / 1000;
+    if (ampac >= I && Vd <= vdAllowed) {
+      chosenSize = sz; chosenAmp = ampac; chosenVd = Vd;
+      const prevIdx = sizes.indexOf(sz) - 1;
+      if (prevIdx >= 0) {
+        const prevSz = sizes[prevIdx];
+        const prevAmp = ampacityOf(prevSz);
+        const prevR = resistOf(prevSz);
+        const prevVd = phase === '3' ? Math.sqrt(3) * I * prevR * L / 1000 : 2 * I * prevR * L / 1000;
+        if (prevAmp >= I && prevVd > vdAllowed) limitedBy = 'Voltage drop';
+        else if (prevAmp < I) limitedBy = 'Ampacity';
+        else limitedBy = 'Both';
+      } else {
+        limitedBy = 'Both pass at minimum size';
+      }
+      break;
+    }
+  }
+  if (!chosenSize) {
+    document.getElementById('cab_out').textContent = std === 'nec' ? '> 1000' : '> 300';
+    document.getElementById('cab_ampacity').textContent = 'requires parallel runs';
+    document.getElementById('cab_ampacity').className = 'val bad';
+    document.getElementById('cab_vd_act').textContent = '-';
+    document.getElementById('cab_vd_act').className = 'val';
+    document.getElementById('cab_limit').textContent = '-';
+    document.getElementById('cab_tempcf').textContent = '×' + fmt(tcf, 2);
+    document.getElementById('cab_grpcf').textContent = '×' + fmt(gcf, 2);
+    return;
+  }
+  document.getElementById('cab_out').textContent = chosenSize;
+  document.getElementById('cab_ampacity').textContent = fmt(chosenAmp, 1) + ' A';
+  document.getElementById('cab_ampacity').className = 'val good';
+  const vdPct = (chosenVd / V) * 100;
+  document.getElementById('cab_vd_act').textContent = fmt(chosenVd, 2) + ' V (' + fmt(vdPct, 2) + '%)';
+  document.getElementById('cab_vd_act').className = 'val good';
+  document.getElementById('cab_limit').textContent = limitedBy;
+  document.getElementById('cab_tempcf').textContent = '×' + fmt(tcf, 2);
+  document.getElementById('cab_grpcf').textContent = '×' + fmt(gcf, 2);
+}
+['cab_phase','cab_ins','cab_amps','cab_volt','cab_len','cab_vd','cab_amb','cab_grp'].forEach(id => document.getElementById(id).addEventListener('input', calcCable));
+document.querySelectorAll('input[name="cab_std"]').forEach(el => el.addEventListener('change', calcCable));
+
+// ===== 3. VOLTAGE DROP =====
+const R_AL = {
+  16:2.27, 25:1.43, 35:1.03, 50:0.762, 70:0.527, 95:0.381, 120:0.302,
+  150:0.246, 185:0.198, 240:0.151, 300:0.121
+};
+function calcVd(){
+  const phase = document.getElementById('vd_phase').value;
+  const mat = document.getElementById('vd_mat').value;
+  const I = parseFloat(document.getElementById('vd_amps').value);
+  const V = parseFloat(document.getElementById('vd_volt').value);
+  const L = parseFloat(document.getElementById('vd_len').value);
+  const sz = parseFloat(document.getElementById('vd_size').value);
+  const PF = parseFloat(document.getElementById('vd_pf').value);
+  if (!I || !V || !L || !sz) return;
+  const Rtab = mat === 'cu' ? R_CU : R_AL;
+  if (!(sz in Rtab)) {
+    document.getElementById('vd_out').textContent = '-';
+    document.getElementById('vd_pct').textContent = mat === 'al' ? 'Al not available below 16 mm²' : '-';
+    return;
+  }
+  const R = Rtab[sz];
+  let Vd;
+  if (phase === '3') Vd = Math.sqrt(3) * I * R * L * PF / 1000;
+  else                Vd = 2 * I * R * L / 1000;
+  const pct = (Vd / V) * 100;
+  const Vload = V - Vd;
+  // Power lost (heat) ≈ phase * I² · R_total · L
+  const Rtotal_ohm = R * L / 1000;
+  const Ploss = phase === '3' ? 3 * I * I * Rtotal_ohm : 2 * I * I * Rtotal_ohm;
+  document.getElementById('vd_out').textContent = fmt(Vd, 2);
+  const pctEl = document.getElementById('vd_pct');
+  pctEl.textContent = fmt(pct, 2) + '%';
+  pctEl.className = pct > 5 ? 'val bad' : pct > 3 ? 'val warn' : 'val good';
+  document.getElementById('vd_load').textContent = fmt(Vload, 1) + ' V';
+  document.getElementById('vd_loss').textContent = fmtInt(Ploss) + ' W';
+}
+['vd_phase','vd_mat','vd_amps','vd_volt','vd_len','vd_size','vd_pf'].forEach(id => document.getElementById(id).addEventListener('input', calcVd));
+
+// ===== 4. LUX =====
+// Coefficient of Utilization lookup by Room Cavity Ratio + reflectance preset
+// Typical for direct/recessed luminaires (e.g. 600x600 LED panels, lensed troffers)
+const CU_TABLE = {
+  hi:  {1:0.85, 2:0.78, 3:0.71, 4:0.65, 5:0.60, 6:0.55, 7:0.50, 8:0.46, 9:0.42, 10:0.39},
+  med: {1:0.78, 2:0.71, 3:0.64, 4:0.58, 5:0.53, 6:0.48, 7:0.43, 8:0.39, 9:0.36, 10:0.33},
+  lo:  {1:0.70, 2:0.63, 3:0.57, 4:0.51, 5:0.46, 6:0.41, 7:0.37, 8:0.33, 9:0.30, 10:0.27}
+};
+function lookupCU(rcr, refl){
+  const t = CU_TABLE[refl];
+  if (rcr <= 1) return t[1];
+  if (rcr >= 10) return t[10];
+  const lo = Math.floor(rcr), hi = Math.ceil(rcr);
+  if (lo === hi) return t[lo];
+  return t[lo] + (t[hi] - t[lo]) * (rcr - lo);
+}
+function calcLux(){
+  const N = parseFloat(document.getElementById('lux_n').value);
+  const Phi = parseFloat(document.getElementById('lux_lm').value);
+  const W = parseFloat(document.getElementById('lux_w').value);
+  const LLF = parseFloat(document.getElementById('lux_llf').value);
+  const L = parseFloat(document.getElementById('lux_l').value);
+  const Wm = parseFloat(document.getElementById('lux_w_m').value);
+  const H = parseFloat(document.getElementById('lux_h').value);
+  const refl = document.getElementById('lux_refl').value;
+  if (!N || !Phi || !L || !Wm || !H) return;
+
+  const A = L * Wm;
+  // RCR at floor work plane: h = full ceiling height
+  const rcrFloor = (5 * H * (L + Wm)) / (L * Wm);
+  // RCR at table top (0.75 m above floor): h = ceiling - 0.75
+  const hTable = Math.max(0.5, H - 0.75);
+  const rcrTable = (5 * hTable * (L + Wm)) / (L * Wm);
+  const cuFloor = lookupCU(rcrFloor, refl);
+  const cuTable = lookupCU(rcrTable, refl);
+  const Efloor = (N * Phi * cuFloor * LLF) / A;
+  const Etable = (N * Phi * cuTable * LLF) / A;
+  const totalLm = N * Phi;
+  const totalW = N * (W || 0);
+  const lpd = totalW / A;
+  const sysEff = totalW > 0 ? totalLm / totalW : 0;
+
+  document.getElementById('lux_floor').textContent = fmtInt(Efloor);
+  document.getElementById('lux_table').textContent = fmtInt(Etable) + ' lx';
+  document.getElementById('lux_total').textContent = fmtInt(totalLm) + ' lm';
+  document.getElementById('lux_area').textContent = fmt(A, 1) + ' m²';
+  document.getElementById('lux_lpd').textContent = fmt(lpd, 2);
+  document.getElementById('lux_eff').textContent = sysEff > 0 ? fmt(sysEff, 1) : '-';
+}
+['lux_n','lux_lm','lux_w','lux_llf','lux_l','lux_w_m','lux_h','lux_refl'].forEach(id => document.getElementById(id).addEventListener('input', calcLux));
+
+// ===== 5. POWER FACTOR CORRECTION =====
+function calcPfc(){
+  const P = parseFloat(document.getElementById('pfc_p').value);
+  const pf1 = parseFloat(document.getElementById('pfc_pf1').value);
+  const pf2 = parseFloat(document.getElementById('pfc_pf2').value);
+  if (!P || !pf1 || !pf2) return;
+  const tan1 = Math.tan(Math.acos(pf1));
+  const tan2 = Math.tan(Math.acos(pf2));
+  const Q_needed = P * (tan1 - tan2);
+  const S1 = P / pf1;
+  const S2 = P / pf2;
+  const Q1 = S1 * Math.sin(Math.acos(pf1));
+  const Q2 = S2 * Math.sin(Math.acos(pf2));
+  const Ssave = S2 - S1; // negative number => savings
+  document.getElementById('pfc_out').textContent = fmt(Q_needed, 1);
+  document.getElementById('pfc_s1').textContent = fmt(S1, 1) + ' kVA';
+  document.getElementById('pfc_s2').textContent = fmt(S2, 1) + ' kVA';
+  document.getElementById('pfc_q1').textContent = fmt(Q1, 1) + ' kVAR';
+  document.getElementById('pfc_q2').textContent = fmt(Q2, 1) + ' kVAR';
+  const saveEl = document.getElementById('pfc_save');
+  saveEl.textContent = fmt(Ssave, 1) + ' kVA';
+  saveEl.className = 'val good';
+}
+['pfc_p','pfc_v','pfc_pf1','pfc_pf2'].forEach(id => document.getElementById(id).addEventListener('input', calcPfc));
+
+// ===== 6. UPS SIZING =====
+const UPS_STANDARDS = [1, 2, 3, 5, 6, 10, 15, 20, 30, 40, 60, 80, 100, 120, 160, 200, 250, 300, 400, 500];
+const UPS_DEFAULT_DEVICES = [
+  {name:'Bullet Camera',  qty:2, watts:12.95},
+  {name:'PTZ Camera',     qty:1, watts:51},
+  {name:'PoE Switch',     qty:2, watts:42}
+];
+function renderUpsDevices(){
+  const wrap = document.getElementById('ups_devices');
+  wrap.innerHTML = '';
+  UPS_DEFAULT_DEVICES.forEach((d, i) => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:grid;grid-template-columns:1.6fr 70px 90px 30px;gap:6px;align-items:center;';
+    row.innerHTML = `
+      <input type="text"   data-ups-i="${i}" data-ups-k="name"  value="${d.name}"  placeholder="Device" style="padding:8px 10px;font-family:inherit;font-size:.85rem;border:1.5px solid var(--border);border-radius:8px;outline:none;">
+      <input type="number" data-ups-i="${i}" data-ups-k="qty"   value="${d.qty}"   step="1" min="0"   placeholder="Qty" style="padding:8px 10px;font-family:inherit;font-size:.85rem;border:1.5px solid var(--border);border-radius:8px;outline:none;text-align:center;">
+      <input type="number" data-ups-i="${i}" data-ups-k="watts" value="${d.watts}" step="0.1" min="0" placeholder="W"   style="padding:8px 10px;font-family:inherit;font-size:.85rem;border:1.5px solid var(--border);border-radius:8px;outline:none;text-align:center;">
+      <button type="button" data-ups-rm="${i}" style="background:transparent;border:none;color:var(--gray-light);cursor:pointer;font-size:1.1rem;padding:0;">×</button>
+    `;
+    wrap.appendChild(row);
+  });
+  // wire input listeners
+  wrap.querySelectorAll('input[data-ups-i]').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const i = +e.target.dataset.upsI, k = e.target.dataset.upsK;
+      UPS_DEFAULT_DEVICES[i][k] = (k === 'name') ? e.target.value : parseFloat(e.target.value)||0;
+      calcUps();
+    });
+  });
+  wrap.querySelectorAll('button[data-ups-rm]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      UPS_DEFAULT_DEVICES.splice(+e.target.dataset.upsRm, 1);
+      renderUpsDevices(); calcUps();
+    });
+  });
+}
+function calcUps(){
+  const cabinets = parseFloat(document.getElementById('ups_cabinets').value) || 0;
+  const selfPerCab = parseFloat(document.getElementById('ups_self').value) || 0;
+  const backup = parseFloat(document.getElementById('ups_backup').value) || 0;
+  const vdc = parseFloat(document.getElementById('ups_voltage').value) || 48;
+  const pf = parseFloat(document.getElementById('ups_pf').value) || 0.8;
+  const margin = (parseFloat(document.getElementById('ups_margin').value) || 0) / 100;
+  const loadPerCab = UPS_DEFAULT_DEVICES.reduce((s,d) => s + (d.qty * d.watts), 0);
+  const totalLoad = (loadPerCab + selfPerCab) * cabinets;
+  const withMargin = totalLoad * (1 + margin);
+  const reqKva = withMargin / pf / 1000;
+  const recKva = UPS_STANDARDS.find(s => s >= reqKva) || UPS_STANDARDS[UPS_STANDARDS.length-1];
+  const battWh = withMargin * (backup / 60);
+  const battAh = battWh / vdc;
+  document.getElementById('ups_total_w').textContent     = fmtInt(totalLoad) + ' W';
+  document.getElementById('ups_with_margin').textContent = fmtInt(withMargin) + ' W';
+  document.getElementById('ups_req_kva').textContent     = fmt(reqKva, 2) + ' kVA';
+  document.getElementById('ups_rec_kva').textContent     = recKva;
+  document.getElementById('ups_batt_wh').textContent     = fmtInt(battWh) + ' Wh';
+  document.getElementById('ups_batt_ah').textContent     = fmt(battAh, 1) + ' Ah @ ' + vdc + ' V';
+}
+['ups_cabinets','ups_self','ups_backup','ups_voltage','ups_pf','ups_margin'].forEach(id => document.getElementById(id).addEventListener('input', calcUps));
+document.getElementById('ups_add_dev').addEventListener('click', () => {
+  UPS_DEFAULT_DEVICES.push({name:'New device', qty:1, watts:0});
+  renderUpsDevices(); calcUps();
+});
+renderUpsDevices();
+
+// =====================================================================
+// VISUALIZATIONS - SVG renderers, called from each calculator function
+// =====================================================================
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const VIZ_PRIMARY = '#24285e', VIZ_SECONDARY = '#F6851F', VIZ_GRID = '#e2e1e1', VIZ_TEXT = '#475569', VIZ_OK = '#16a34a', VIZ_WARN = '#dc2626';
+
+function svgEl(tag, attrs){
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+function clearSvg(svg){ while (svg.firstChild) svg.removeChild(svg.firstChild); }
+function svgText(x, y, text, opts={}){
+  const t = svgEl('text', {x, y, 'font-family':'inherit', 'font-size': opts.size||'11', 'font-weight': opts.weight||'500', fill: opts.fill||VIZ_TEXT, 'text-anchor': opts.anchor||'start', 'dominant-baseline': opts.baseline||'auto'});
+  t.textContent = text;
+  return t;
+}
+
+// ----- LUX: top-down room with luminaire grid -----
+function vizLuxRoom(N, L, W){
+  const svg = document.getElementById('lux_room_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=400, VH=280, M=30;
+  const aw = VW - 2*M, ah = VH - 2*M - 18; // -18 for top label
+  const scale = Math.min(aw / L, ah / W);
+  const rw = L * scale, rh = W * scale;
+  const x0 = (VW - rw)/2, y0 = (VH - rh)/2 + 8;
+  // Room outline
+  svg.appendChild(svgEl('rect', {x:x0, y:y0, width:rw, height:rh, fill:'#fffaf0', stroke:VIZ_PRIMARY, 'stroke-width':2, rx:4}));
+  // Best-fit grid: cols × rows ≈ N with cols/rows ≈ L/W
+  let cols = Math.max(1, Math.round(Math.sqrt(N * L / W)));
+  let rows = Math.max(1, Math.round(N / cols));
+  // adjust until cols*rows >= N
+  while (cols*rows < N){ if ((cols+1)/rows <= (L/W) * 1.4) cols++; else rows++; }
+  const sx = rw / cols, sy = rh / rows;
+  // Draw fixtures
+  let placed = 0;
+  for (let r=0; r<rows && placed<N; r++){
+    for (let c=0; c<cols && placed<N; c++){
+      const cx = x0 + sx*(c+0.5), cy = y0 + sy*(r+0.5);
+      // glow
+      svg.appendChild(svgEl('circle', {cx, cy, r:Math.min(sx,sy)*0.42, fill:VIZ_SECONDARY, opacity:0.15}));
+      // fixture body
+      svg.appendChild(svgEl('rect', {x:cx-9, y:cy-3, width:18, height:6, fill:VIZ_SECONDARY, rx:1}));
+      placed++;
+    }
+  }
+  // Dimensions labels
+  svg.appendChild(svgText(VW/2, y0-6, `Length: ${L.toFixed(1)} m`, {anchor:'middle', size:11, weight:'600', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(x0-6, VH/2+8, `${W.toFixed(1)} m`, {anchor:'end', size:11, weight:'600', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(VW/2, y0+rh+18, `${cols} × ${rows} grid · ${placed} fixtures · spacing ${(L/cols).toFixed(2)} × ${(W/rows).toFixed(2)} m`, {anchor:'middle', size:10, fill:VIZ_TEXT}));
+}
+
+// ----- LUX: vertical scale of standards -----
+function vizLuxScale(E){
+  const svg = document.getElementById('lux_scale_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=400, VH=280, top=22, bot=VH-30, barX=120, barW=24;
+  const max = Math.max(1200, E * 1.25);
+  const yFor = lx => bot - (lx/max) * (bot-top);
+  // Color gradient bar (low→high)
+  const grad = svgEl('linearGradient', {id:'luxGrad', x1:0, y1:1, x2:0, y2:0});
+  [['0','#3b82f6'], ['0.4','#22c55e'], ['0.75','#f59e0b'], ['1','#ef4444']].forEach(([off,c])=>{
+    const s = svgEl('stop', {offset:off, 'stop-color':c}); grad.appendChild(s);
+  });
+  const defs = svgEl('defs'); defs.appendChild(grad); svg.appendChild(defs);
+  svg.appendChild(svgEl('rect', {x:barX, y:top, width:barW, height:bot-top, fill:'url(#luxGrad)', opacity:0.85, rx:4}));
+  // Threshold ticks (EN 12464-1 typical targets)
+  const targets = [
+    [100,'Corridor'], [200,'Warehouse'], [300,'Retail'],
+    [500,'Office desk'], [750,'Drawing / detail'], [1000,'Surgical / lab']
+  ];
+  targets.forEach(([lx, label])=>{
+    if (lx>max) return;
+    const y = yFor(lx);
+    svg.appendChild(svgEl('line', {x1:barX-4, y1:y, x2:barX+barW+4, y2:y, stroke:'#fff', 'stroke-width':1.4}));
+    svg.appendChild(svgText(barX+barW+10, y+3, `${lx} lx · ${label}`, {size:10, fill:VIZ_TEXT}));
+  });
+  // Indicator triangle pointing at calculated value
+  const yE = Math.max(top, Math.min(bot, yFor(E)));
+  const ix = barX-7;
+  svg.appendChild(svgEl('polygon', {points:`${ix},${yE} ${ix-12},${yE-7} ${ix-12},${yE+7}`, fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(ix-16, yE+4, `${Math.round(E)} lx`, {anchor:'end', size:12, weight:'800', fill:VIZ_PRIMARY}));
+  // Title
+  svg.appendChild(svgText(VW/2, 14, 'Average lux at floor', {anchor:'middle', size:11, weight:'700', fill:VIZ_PRIMARY}));
+}
+
+// ----- AMP: power triangle -----
+function vizAmpTri(P, Q, S, phi){
+  const svg = document.getElementById('amp_tri_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=400, VH=280, M=40;
+  const maxP = Math.max(P, 1);
+  const maxQ = Math.max(Q, 0.0001);
+  // Scale so P fits in width, Q fits in height
+  const wAvail = VW - 2*M, hAvail = VH - 2*M;
+  const scaleX = wAvail / maxP;
+  const scaleY = hAvail / Math.max(maxQ, maxP*0.4);
+  const scale = Math.min(scaleX, scaleY);
+  const ox = M, oy = VH - M;
+  const px = ox + P*scale, py = oy;
+  const qx = px, qy = oy - Q*scale;
+  // P (real, horizontal)
+  svg.appendChild(svgEl('line', {x1:ox, y1:oy, x2:px, y2:py, stroke:VIZ_PRIMARY, 'stroke-width':3}));
+  svg.appendChild(svgText((ox+px)/2, oy+18, `P = ${P.toFixed(1)} kW`, {anchor:'middle', size:11, weight:'700', fill:VIZ_PRIMARY}));
+  // Q (reactive, vertical)
+  svg.appendChild(svgEl('line', {x1:px, y1:py, x2:qx, y2:qy, stroke:VIZ_SECONDARY, 'stroke-width':3}));
+  svg.appendChild(svgText(qx+8, (py+qy)/2, `Q = ${Q.toFixed(1)} kVAR`, {size:11, weight:'700', fill:VIZ_SECONDARY}));
+  // S (apparent, hypotenuse)
+  svg.appendChild(svgEl('line', {x1:ox, y1:oy, x2:qx, y2:qy, stroke:'#16a34a', 'stroke-width':3, 'stroke-dasharray':'5,3'}));
+  svg.appendChild(svgText((ox+qx)/2-12, (oy+qy)/2-6, `S = ${S.toFixed(1)} kVA`, {anchor:'end', size:11, weight:'700', fill:'#16a34a'}));
+  // φ angle arc
+  const arcR = 28;
+  const phiRad = phi * Math.PI/180;
+  svg.appendChild(svgEl('path', {d:`M ${ox+arcR} ${oy} A ${arcR} ${arcR} 0 0 0 ${ox+arcR*Math.cos(phiRad)} ${oy-arcR*Math.sin(phiRad)}`, fill:'none', stroke:VIZ_TEXT, 'stroke-width':1.5}));
+  svg.appendChild(svgText(ox+arcR+6, oy-8, `φ = ${phi.toFixed(1)}°`, {size:11, weight:'700', fill:VIZ_TEXT}));
+  // Origin dot
+  svg.appendChild(svgEl('circle', {cx:ox, cy:oy, r:3, fill:VIZ_PRIMARY}));
+}
+
+// ----- AMP: connection schematic (Star vs Delta or 1ph) -----
+function vizAmpConn(phase, conn){
+  const svg = document.getElementById('amp_conn_svg'); if (!svg) return;
+  const cap = document.getElementById('amp_conn_cap');
+  clearSvg(svg);
+  const cx=200, cy=140;
+  if (phase !== '3'){
+    // Single phase
+    cap.textContent = '1-phase: line + neutral';
+    svg.appendChild(svgEl('line', {x1:60, y1:90, x2:340, y2:90, stroke:'#dc2626', 'stroke-width':3}));
+    svg.appendChild(svgText(50, 94, 'L', {anchor:'end', size:14, weight:'800', fill:'#dc2626'}));
+    svg.appendChild(svgEl('line', {x1:60, y1:190, x2:340, y2:190, stroke:'#0ea5e9', 'stroke-width':3}));
+    svg.appendChild(svgText(50, 194, 'N', {anchor:'end', size:14, weight:'800', fill:'#0ea5e9'}));
+    // Load
+    svg.appendChild(svgEl('rect', {x:240, y:110, width:80, height:60, fill:'#fff', stroke:VIZ_PRIMARY, 'stroke-width':2, rx:4}));
+    svg.appendChild(svgText(280, 145, 'Load', {anchor:'middle', size:12, weight:'700', fill:VIZ_PRIMARY}));
+    return;
+  }
+  if (conn === 'star'){
+    cap.textContent = 'Star (Y) - common neutral, V_phase = V_LL/√3';
+    // Three lines from outer points to common center
+    const a = [{ang:-90, c:'#dc2626', label:'L1'}, {ang:30, c:'#16a34a', label:'L2'}, {ang:150, c:'#0ea5e9', label:'L3'}];
+    a.forEach(p=>{
+      const rx = cx + Math.cos(p.ang*Math.PI/180)*90;
+      const ry = cy + Math.sin(p.ang*Math.PI/180)*90;
+      svg.appendChild(svgEl('line', {x1:cx, y1:cy, x2:rx, y2:ry, stroke:p.c, 'stroke-width':3}));
+      svg.appendChild(svgEl('circle', {cx:rx, cy:ry, r:6, fill:p.c}));
+      const lx = cx + Math.cos(p.ang*Math.PI/180)*112;
+      const ly = cy + Math.sin(p.ang*Math.PI/180)*112;
+      svg.appendChild(svgText(lx, ly+4, p.label, {anchor:'middle', size:13, weight:'800', fill:p.c}));
+    });
+    svg.appendChild(svgEl('circle', {cx, cy, r:6, fill:'#fff', stroke:VIZ_PRIMARY, 'stroke-width':2.5}));
+    svg.appendChild(svgText(cx, cy+22, 'N', {anchor:'middle', size:12, weight:'800', fill:VIZ_PRIMARY}));
+  } else {
+    cap.textContent = 'Delta (Δ) - closed loop, V_phase = V_LL';
+    // Triangle vertices
+    const a = [{ang:-90, c:'#dc2626', label:'L1'}, {ang:30, c:'#16a34a', label:'L2'}, {ang:150, c:'#0ea5e9', label:'L3'}];
+    const pts = a.map(p => ({x:cx + Math.cos(p.ang*Math.PI/180)*85, y:cy + Math.sin(p.ang*Math.PI/180)*85, c:p.c, label:p.label}));
+    // Sides
+    for (let i=0; i<3; i++){
+      const p1 = pts[i], p2 = pts[(i+1)%3];
+      svg.appendChild(svgEl('line', {x1:p1.x, y1:p1.y, x2:p2.x, y2:p2.y, stroke:VIZ_PRIMARY, 'stroke-width':3}));
+    }
+    // Vertices + labels
+    pts.forEach(p => {
+      svg.appendChild(svgEl('circle', {cx:p.x, cy:p.y, r:6, fill:p.c}));
+      const lx = cx + (p.x-cx)*1.28, ly = cy + (p.y-cy)*1.28;
+      svg.appendChild(svgText(lx, ly+4, p.label, {anchor:'middle', size:13, weight:'800', fill:p.c}));
+    });
+  }
+}
+
+// ----- CABLE: cross-section -----
+function vizCableXs(size, phase, sizeLabel){
+  const svg = document.getElementById('cab_xs_svg'); if (!svg) return;
+  const cap = document.getElementById('cab_xs_cap');
+  clearSvg(svg);
+  const cx=200, cy=140;
+  // Conductor radius proportional to sqrt(size). At size=300mm² → r≈55px max
+  const condR = Math.max(8, Math.min(55, Math.sqrt(size)*4.5));
+  const cores = phase === '1' ? 2 : 4; // 1ph: L+N · 3ph: L1+L2+L3+N
+  const labels = phase === '1' ? ['L','N'] : ['L1','L2','L3','N'];
+  const colors = phase === '1' ? ['#dc2626','#0ea5e9'] : ['#dc2626','#16a34a','#f59e0b','#0ea5e9'];
+  // Sheath
+  const sheathR = condR*2.4 + 16;
+  svg.appendChild(svgEl('circle', {cx, cy, r:sheathR, fill:'#1f2937', opacity:0.9}));
+  svg.appendChild(svgEl('circle', {cx, cy, r:sheathR-4, fill:'#374151'}));
+  // Place cores
+  for (let i=0; i<cores; i++){
+    const ang = -Math.PI/2 + (2*Math.PI * i / cores);
+    const rPlace = condR*1.05;
+    const ccx = cx + Math.cos(ang)*rPlace;
+    const ccy = cy + Math.sin(ang)*rPlace;
+    // Insulation
+    svg.appendChild(svgEl('circle', {cx:ccx, cy:ccy, r:condR, fill:colors[i], opacity:0.85}));
+    // Copper core
+    svg.appendChild(svgEl('circle', {cx:ccx, cy:ccy, r:condR*0.62, fill:'#b45309'}));
+    svg.appendChild(svgEl('circle', {cx:ccx, cy:ccy, r:condR*0.62, fill:'url(#cuShine)', opacity:0.6}));
+    svg.appendChild(svgText(ccx, ccy+4, labels[i], {anchor:'middle', size:11, weight:'800', fill:'#fff'}));
+  }
+  // Shine gradient (reused)
+  if (!svg.querySelector('#cuShine')){
+    const defs = svgEl('defs');
+    const g = svgEl('radialGradient', {id:'cuShine', cx:'30%', cy:'30%', r:'70%'});
+    const s1 = svgEl('stop', {offset:'0', 'stop-color':'#fde68a'});
+    const s2 = svgEl('stop', {offset:'1', 'stop-color':'#b45309', 'stop-opacity':'0'});
+    g.appendChild(s1); g.appendChild(s2); defs.appendChild(g); svg.appendChild(defs);
+  }
+  const lbl = sizeLabel || `${size} mm²`;
+  cap.textContent = `${cores}×${lbl} Cu · ${phase==='1'?'1-phase':'3-phase + neutral'}`;
+}
+
+// ----- CABLE: ampacity vs size bar chart -----
+function vizCableChart(chosenSize, demand, ampacities){
+  const svg = document.getElementById('cab_chart_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=400, VH=280, ML=44, MR=14, MT=22, MB=42;
+  // Detect AWG (string keys with letters/slashes) vs IEC (numeric mm²)
+  const isAwg = Object.keys(ampacities).some(k => isNaN(parseFloat(k)) || /[\/]/.test(k));
+  const sizes = isAwg ? AWG_ORDER.filter(k => k in ampacities) : Object.keys(ampacities).map(Number).sort((a,b)=>a-b);
+  const maxAmp = Math.max(...sizes.map(s => ampacities[s]));
+  const xFor = i => ML + (i/(sizes.length-1)) * (VW-ML-MR);
+  const yFor = a => VH - MB - (a/maxAmp) * (VH-MT-MB);
+  svg.appendChild(svgEl('line', {x1:ML, y1:VH-MB, x2:VW-MR, y2:VH-MB, stroke:VIZ_GRID}));
+  svg.appendChild(svgEl('line', {x1:ML, y1:MT, x2:ML, y2:VH-MB, stroke:VIZ_GRID}));
+  if (demand > 0){
+    const yD = yFor(demand);
+    svg.appendChild(svgEl('line', {x1:ML, y1:yD, x2:VW-MR, y2:yD, stroke:VIZ_WARN, 'stroke-width':1.5, 'stroke-dasharray':'4,3'}));
+    svg.appendChild(svgText(VW-MR-4, yD-4, `demand ${Math.round(demand)} A`, {anchor:'end', size:10, weight:'700', fill:VIZ_WARN}));
+  }
+  const barW = (VW-ML-MR) / sizes.length * 0.7;
+  sizes.forEach((s, i)=>{
+    const x = xFor(i) - barW/2;
+    const y = yFor(ampacities[s]);
+    const h = (VH-MB) - y;
+    const isChosen = isAwg ? (s === String(chosenSize)) : (s === chosenSize);
+    svg.appendChild(svgEl('rect', {x, y, width:barW, height:h, fill:isChosen?VIZ_SECONDARY:VIZ_PRIMARY, opacity: isChosen?1:0.55, rx:2}));
+    if (i % 2 === 0 || isChosen){
+      svg.appendChild(svgText(xFor(i), VH-MB+12, s, {anchor:'middle', size:9, weight: isChosen?'800':'500', fill: isChosen?VIZ_SECONDARY:VIZ_TEXT}));
+    }
+  });
+  [0, maxAmp/2, maxAmp].forEach(a=>{
+    const y = yFor(a);
+    svg.appendChild(svgText(ML-6, y+3, Math.round(a), {anchor:'end', size:9, fill:VIZ_TEXT}));
+  });
+  const title = isAwg ? 'Cu AWG vs ampacity (A)' : 'Cu cross-section (mm²) vs ampacity (A)';
+  const xUnit = isAwg ? 'AWG / kcmil' : 'mm²';
+  svg.appendChild(svgText(VW/2, 14, title, {anchor:'middle', size:10, weight:'700', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(VW/2, VH-6, xUnit, {anchor:'middle', size:10, weight:'700', fill:VIZ_TEXT}));
+}
+
+// ----- VOLTAGE DROP: cable run -----
+function vizVdLine(Vsrc, Vdrop, Vload, lengthM, pct){
+  const svg = document.getElementById('vd_line_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=800, VH=230, M=70;
+  const x1 = M, x2 = VW - M, y = 130;
+  // Cable line
+  svg.appendChild(svgEl('rect', {x:x1, y:y-12, width:x2-x1, height:24, fill:'#f3f4f6', stroke:VIZ_GRID, rx:4}));
+  // Voltage gradient overlay (drop visualized as a tapered bar)
+  const grad = svgEl('linearGradient', {id:'vdGrad', x1:0, x2:1, y1:0, y2:0});
+  grad.appendChild(svgEl('stop', {offset:'0', 'stop-color':'#16a34a'}));
+  grad.appendChild(svgEl('stop', {offset:'1', 'stop-color':pct > 5 ? '#dc2626' : (pct > 3 ? '#f59e0b' : '#16a34a')}));
+  const defs = svgEl('defs'); defs.appendChild(grad); svg.appendChild(defs);
+  svg.appendChild(svgEl('rect', {x:x1, y:y-12, width:x2-x1, height:24, fill:'url(#vdGrad)', opacity:0.85, rx:4}));
+  // Source box
+  svg.appendChild(svgEl('rect', {x:x1-45, y:y-26, width:45, height:52, fill:VIZ_PRIMARY, rx:4}));
+  svg.appendChild(svgText(x1-22, y-8, 'SRC', {anchor:'middle', size:10, weight:'800', fill:'#fff'}));
+  svg.appendChild(svgText(x1-22, y+8, `${Vsrc.toFixed(0)} V`, {anchor:'middle', size:11, weight:'800', fill:'#fff'}));
+  // Load box
+  svg.appendChild(svgEl('rect', {x:x2, y:y-26, width:55, height:52, fill:'#1e293b', rx:4}));
+  svg.appendChild(svgText(x2+27, y-8, 'LOAD', {anchor:'middle', size:10, weight:'800', fill:'#fff'}));
+  svg.appendChild(svgText(x2+27, y+8, `${Vload.toFixed(1)} V`, {anchor:'middle', size:11, weight:'800', fill:'#fff'}));
+  // Length label
+  svg.appendChild(svgText((x1+x2)/2, y-22, `${lengthM} m`, {anchor:'middle', size:11, weight:'700', fill:VIZ_TEXT}));
+  // Drop arrow + label
+  svg.appendChild(svgEl('line', {x1:(x1+x2)/2, y1:y+30, x2:(x1+x2)/2, y2:y+55, stroke:VIZ_SECONDARY, 'stroke-width':2}));
+  svg.appendChild(svgText((x1+x2)/2, y+72, `Vdrop = ${Vdrop.toFixed(2)} V (${pct.toFixed(2)}%)`, {anchor:'middle', size:13, weight:'800', fill:pct>5?VIZ_WARN:(pct>3?'#f59e0b':VIZ_OK)}));
+  // Limits
+  svg.appendChild(svgText((x1+x2)/2, y+92, 'Limits: ≤3% lighting · ≤5% power (IEC 60364-5-52)', {anchor:'middle', size:10, fill:VIZ_TEXT}));
+  // Title
+  svg.appendChild(svgText(VW/2, 22, 'Voltage along the cable run', {anchor:'middle', size:12, weight:'700', fill:VIZ_PRIMARY}));
+}
+
+// ----- PFC: power triangles before vs after -----
+function vizPfcTri(P, Q1, S1, phi1, Q2, S2, phi2){
+  const svg = document.getElementById('pfc_tri_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=800, VH=320;
+  // Two side-by-side triangles
+  function drawTri(ox, oy, P, Q, S, phi, label, color){
+    const maxScale = 200; // triangle fits within ~200×200 region
+    const denom = Math.max(P, Q, 1);
+    const sc = maxScale / denom;
+    const px = ox + P*sc, py = oy;
+    const qx = px, qy = oy - Q*sc;
+    svg.appendChild(svgEl('line', {x1:ox, y1:oy, x2:px, y2:py, stroke:VIZ_PRIMARY, 'stroke-width':3}));
+    svg.appendChild(svgEl('line', {x1:px, y1:py, x2:qx, y2:qy, stroke:VIZ_SECONDARY, 'stroke-width':3}));
+    svg.appendChild(svgEl('line', {x1:ox, y1:oy, x2:qx, y2:qy, stroke:color, 'stroke-width':3}));
+    svg.appendChild(svgText((ox+px)/2, oy+18, `P=${P.toFixed(0)} kW`, {anchor:'middle', size:11, weight:'700', fill:VIZ_PRIMARY}));
+    svg.appendChild(svgText(qx+8, (py+qy)/2, `Q=${Q.toFixed(0)} kVAR`, {size:10, weight:'700', fill:VIZ_SECONDARY}));
+    svg.appendChild(svgText((ox+qx)/2-10, (oy+qy)/2-6, `S=${S.toFixed(0)} kVA`, {anchor:'end', size:10, weight:'700', fill:color}));
+    // Arc for phi
+    const arcR = 26;
+    const phiRad = phi * Math.PI/180;
+    svg.appendChild(svgEl('path', {d:`M ${ox+arcR} ${oy} A ${arcR} ${arcR} 0 0 0 ${ox+arcR*Math.cos(phiRad)} ${oy-arcR*Math.sin(phiRad)}`, fill:'none', stroke:VIZ_TEXT, 'stroke-width':1.5}));
+    svg.appendChild(svgText(ox+arcR+4, oy-6, `φ=${phi.toFixed(0)}°`, {size:10, weight:'700', fill:VIZ_TEXT}));
+    svg.appendChild(svgEl('circle', {cx:ox, cy:oy, r:3, fill:VIZ_PRIMARY}));
+    svg.appendChild(svgText(ox-10, oy+38, label, {size:13, weight:'800', fill:color}));
+  }
+  drawTri(60, 260, P, Q1, S1, phi1, 'BEFORE', '#dc2626');
+  drawTri(440, 260, P, Q2, S2, phi2, 'AFTER', '#16a34a');
+  // Capacitor label between
+  const Qc = Q1 - Q2;
+  svg.appendChild(svgEl('line', {x1:380, y1:160, x2:420, y2:160, stroke:VIZ_TEXT, 'stroke-dasharray':'4,3', 'stroke-width':1.5}));
+  svg.appendChild(svgText(400, 152, '→', {anchor:'middle', size:14, weight:'800', fill:VIZ_TEXT}));
+  svg.appendChild(svgText(400, 178, `Capacitor: ${Qc.toFixed(0)} kVAR`, {anchor:'middle', size:11, weight:'800', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(VW/2, 22, 'Reactive power compensation', {anchor:'middle', size:12, weight:'700', fill:VIZ_PRIMARY}));
+}
+
+// =====================================================================
+// Per-calculator viz dispatchers - read DOM AFTER calc has updated it
+// =====================================================================
+function vizAllAmp(){
+  const phase = document.querySelector('input[name="amp_phase"]:checked').value;
+  const conn = document.querySelector('input[name="amp_conn"]:checked').value;
+  const P = parseFloat(document.getElementById('amp_power').value) || 0;
+  const PF = parseFloat(document.getElementById('amp_pf').value) || 1;
+  const S = P / PF, Q = S * Math.sin(Math.acos(PF)), phi = Math.acos(PF)*180/Math.PI;
+  vizAmpTri(P, Q, S, phi);
+  vizAmpConn(phase, conn);
+}
+function vizAllCable(){
+  const std = document.querySelector('input[name="cab_std"]:checked').value;
+  const phase = document.getElementById('cab_phase').value;
+  const sizeText = document.getElementById('cab_out').textContent;
+  const I = parseFloat(document.getElementById('cab_amps').value) || 0;
+  const tcf = parseFloat((document.getElementById('cab_tempcf').textContent.match(/[\d.]+/)||['1'])[0]);
+  const gcf = parseFloat((document.getElementById('cab_grpcf').textContent.match(/[\d.]+/)||['1'])[0]);
+  const ins = document.getElementById('cab_ins').value;
+  const idx = ins === 'pvc' ? 0 : 1;
+  const derated = {};
+  if (std === 'nec') {
+    for (const s of AWG_ORDER) derated[s] = AWG_AMPACITY[s][idx] * tcf * gcf;
+    const AWG_MM2 = {'14':2.08,'12':3.31,'10':5.26,'8':8.37,'6':13.3,'4':21.2,'3':26.7,'2':33.6,'1':42.4,'1/0':53.5,'2/0':67.4,'3/0':85.0,'4/0':107,'250':127,'350':177,'500':253,'750':380,'1000':507};
+    const isKcmil = ['250','350','500','750','1000'].includes(sizeText);
+    const sizeLbl = sizeText + (isKcmil ? ' kcmil' : ' AWG');
+    vizCableXs(AWG_MM2[sizeText] || 25, phase, sizeLbl);
+    vizCableChart(sizeText, I, derated);
+  } else {
+    for (const s in AMPACITY) derated[s] = AMPACITY[s][idx] * tcf * gcf;
+    vizCableXs(parseFloat(sizeText) || 25, phase);
+    vizCableChart(parseFloat(sizeText) || 0, I, derated);
+  }
+}
+function vizAllVd(){
+  const Vsrc = parseFloat(document.getElementById('vd_volt').value) || 0;
+  const Vdrop = parseFloat(document.getElementById('vd_out').textContent) || 0;
+  const Vload = Vsrc - Vdrop;
+  const len = parseFloat(document.getElementById('vd_len').value) || 0;
+  const pct = parseFloat(document.getElementById('vd_pct').textContent) || 0;
+  vizVdLine(Vsrc, Vdrop, Vload, len, pct);
+}
+function vizAllLux(){
+  const N = parseFloat(document.getElementById('lux_n').value) || 0;
+  const L = parseFloat(document.getElementById('lux_l').value) || 1;
+  const W = parseFloat(document.getElementById('lux_w_m').value) || 1;
+  const E = parseFloat(document.getElementById('lux_floor').textContent.replace(/,/g,'')) || 0;
+  vizLuxRoom(N, L, W);
+  vizLuxScale(E);
+}
+function vizAllPfc(){
+  const P = parseFloat(document.getElementById('pfc_p').value) || 0;
+  const pf1 = parseFloat(document.getElementById('pfc_pf1').value) || 1;
+  const pf2 = parseFloat(document.getElementById('pfc_pf2').value) || 1;
+  const phi1 = Math.acos(pf1)*180/Math.PI;
+  const phi2 = Math.acos(pf2)*180/Math.PI;
+  const S1 = P/pf1, S2 = P/pf2;
+  const Q1 = S1 * Math.sin(Math.acos(pf1)), Q2 = S2 * Math.sin(Math.acos(pf2));
+  vizPfcTri(P, Q1, S1, phi1, Q2, S2, phi2);
+}
+
+// ----- UPS: power-flow system diagram -----
+function vizUpsFlow(totalLoadW, recKva, battAh, vdc, backupMin){
+  const svg = document.getElementById('ups_flow_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=480, VH=280;
+  const y = 120;
+  // Four boxes: Mains → UPS → Load (with Battery branching down from UPS)
+  const boxes = [
+    {x:20,  w:90, label:'MAINS',   sub:'AC IN',                    color:'#475569'},
+    {x:155, w:100,label:'UPS',     sub:`${recKva} kVA`,            color:VIZ_PRIMARY},
+    {x:355, w:105,label:'LOAD',    sub:`${(totalLoadW/1000).toFixed(2)} kW`, color:'#1e293b'}
+  ];
+  boxes.forEach(b => {
+    svg.appendChild(svgEl('rect', {x:b.x, y:y-32, width:b.w, height:64, fill:b.color, rx:8}));
+    svg.appendChild(svgText(b.x + b.w/2, y-8,  b.label, {anchor:'middle', size:13, weight:'800', fill:'#fff'}));
+    svg.appendChild(svgText(b.x + b.w/2, y+14, b.sub,   {anchor:'middle', size:11, weight:'700', fill:'rgba(255,255,255,.85)'}));
+  });
+  // Arrow lightning bolts between boxes (Mains → UPS, UPS → Load)
+  const arrowAt = (x1, x2, label) => {
+    const mid = (x1+x2)/2;
+    svg.appendChild(svgEl('line', {x1, y1:y, x2:x2-6, y2:y, stroke:VIZ_SECONDARY, 'stroke-width':2.5}));
+    svg.appendChild(svgEl('polygon', {points:`${x2-6},${y-5} ${x2},${y} ${x2-6},${y+5}`, fill:VIZ_SECONDARY}));
+    if (label) svg.appendChild(svgText(mid, y-8, label, {anchor:'middle', size:10, weight:'700', fill:VIZ_TEXT}));
+  };
+  arrowAt(110, 155);
+  arrowAt(255, 355);
+  // Battery box below UPS, branched
+  const bx=180, by=210, bw=50, bh=44;
+  // Branch line from UPS bottom down to battery
+  svg.appendChild(svgEl('line', {x1:205, y1:y+32, x2:205, y2:by, stroke:VIZ_SECONDARY, 'stroke-width':2, 'stroke-dasharray':'4,3'}));
+  // Battery cluster (3 cells)
+  for (let i=0; i<3; i++){
+    svg.appendChild(svgEl('rect', {x:bx + i*18, y:by, width:14, height:bh, fill:'#16a34a', rx:2}));
+    svg.appendChild(svgEl('rect', {x:bx + i*18 + 4, y:by-3, width:6, height:3, fill:'#15803d'}));
+  }
+  // Battery label box
+  svg.appendChild(svgEl('rect', {x:bx+bw+12, y:by+4, width:130, height:36, fill:'#fff', stroke:'#16a34a', 'stroke-width':1.5, rx:6}));
+  svg.appendChild(svgText(bx+bw+77, by+18, `${battAh.toFixed(1)} Ah @ ${vdc} V`, {anchor:'middle', size:11, weight:'800', fill:'#15803d'}));
+  svg.appendChild(svgText(bx+bw+77, by+32, `${backupMin} min runtime`, {anchor:'middle', size:9.5, weight:'600', fill:VIZ_TEXT}));
+  // Title
+  svg.appendChild(svgText(VW/2, 22, 'AC supply protected by UPS, with battery autonomy', {anchor:'middle', size:11, weight:'700', fill:VIZ_PRIMARY}));
+  // Legend
+  svg.appendChild(svgText(20, 270, '- normal flow', {size:9, weight:'600', fill:VIZ_SECONDARY}));
+  svg.appendChild(svgText(120, 270, '⋯ DC backup branch', {size:9, weight:'600', fill:VIZ_TEXT}));
+}
+
+// ----- UPS: sizing breakdown (stacked bar vs standard) -----
+function vizUpsSize(loadW, selfW, marginW, reqKva, recKva, pf){
+  const svg = document.getElementById('ups_size_svg'); if (!svg) return;
+  clearSvg(svg);
+  const VW=400, VH=280;
+  // Build stacked bar at left showing components in kVA
+  const reqKvaPart = w => (w / pf / 1000);
+  const loadPart   = reqKvaPart(loadW);
+  const selfPart   = reqKvaPart(selfW);
+  const marginPart = reqKvaPart(marginW);
+  const totalReq   = loadPart + selfPart + marginPart;  // = reqKva
+  const headroom   = Math.max(0, recKva - totalReq);
+  // Scale: tallest bar = recKva
+  const maxKva = Math.max(recKva, totalReq) * 1.05;
+  const barX = 70, barW = 70;
+  const barTop = 50, barBot = 240;
+  const barH = barBot - barTop;
+  const k = barH / maxKva;     // px per kVA
+  // Background frame
+  svg.appendChild(svgEl('rect', {x:barX-5, y:barTop-10, width:barW+10, height:barH+20, fill:'#fff', stroke:VIZ_GRID, rx:6}));
+  // Stacked segments - bottom up: load, self, margin, headroom
+  let cy = barBot;
+  const segs = [
+    {kva: loadPart,   color:VIZ_PRIMARY,   label:'Connected load'},
+    {kva: selfPart,   color:'#64748b',     label:'UPS self-consumption'},
+    {kva: marginPart, color:VIZ_SECONDARY, label:'Safety margin'},
+    {kva: headroom,   color:'#dcfce7',     label:'Headroom (rounded up)'}
+  ];
+  segs.forEach(s => {
+    const h = s.kva * k;
+    if (h <= 0) return;
+    svg.appendChild(svgEl('rect', {x:barX, y:cy - h, width:barW, height:h, fill:s.color}));
+    cy -= h;
+  });
+  // Standard UPS line at recKva
+  const stdY = barBot - recKva * k;
+  svg.appendChild(svgEl('line', {x1:barX-10, y1:stdY, x2:barX+barW+10, y2:stdY, stroke:VIZ_PRIMARY, 'stroke-width':2, 'stroke-dasharray':'4,3'}));
+  svg.appendChild(svgText(barX + barW + 14, stdY+4, `${recKva} kVA`, {size:11, weight:'800', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(barX + barW + 14, stdY+18, 'Standard rating', {size:9, fill:VIZ_TEXT}));
+  // Legend on the right
+  const legX = 195, legY0 = 60;
+  segs.slice(0, 3).forEach((s, i) => {
+    const ly = legY0 + i*32;
+    svg.appendChild(svgEl('rect', {x:legX, y:ly-9, width:14, height:14, fill:s.color, rx:2}));
+    svg.appendChild(svgText(legX + 22, ly+1, s.label, {size:10.5, weight:'700', fill:VIZ_PRIMARY}));
+    svg.appendChild(svgText(legX + 22, ly+15, `${s.kva.toFixed(2)} kVA`, {size:10, fill:VIZ_TEXT}));
+  });
+  // Required total label
+  const ly = legY0 + 3*32 + 6;
+  svg.appendChild(svgEl('line', {x1:legX, y1:ly-3, x2:legX+150, y2:ly-3, stroke:VIZ_GRID, 'stroke-width':1}));
+  svg.appendChild(svgText(legX, ly+10, 'Required (calc):', {size:10.5, weight:'700', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(legX, ly+24, `${totalReq.toFixed(2)} kVA`, {size:11, weight:'800', fill:VIZ_SECONDARY}));
+  svg.appendChild(svgText(legX, ly+44, 'Recommended UPS:', {size:10.5, weight:'700', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(legX, ly+58, `${recKva} kVA`, {size:13, weight:'900', fill:VIZ_OK}));
+  // Title + axis label
+  svg.appendChild(svgText(VW/2, 22, 'How the UPS rating was sized', {anchor:'middle', size:11, weight:'700', fill:VIZ_PRIMARY}));
+  svg.appendChild(svgText(barX + barW/2, barBot + 18, 'kVA stack', {anchor:'middle', size:9, fill:VIZ_TEXT}));
+}
+
+function vizAllUps(){
+  const cabinets = parseFloat(document.getElementById('ups_cabinets').value) || 0;
+  const selfPerCab = parseFloat(document.getElementById('ups_self').value) || 0;
+  const backup = parseFloat(document.getElementById('ups_backup').value) || 0;
+  const vdc = parseFloat(document.getElementById('ups_voltage').value) || 48;
+  const pf = parseFloat(document.getElementById('ups_pf').value) || 0.8;
+  const margin = (parseFloat(document.getElementById('ups_margin').value) || 0) / 100;
+  const loadPerCab = UPS_DEFAULT_DEVICES.reduce((s,d) => s + (d.qty * d.watts), 0);
+  const deviceLoad = loadPerCab * cabinets;          // pure devices
+  const selfLoad = selfPerCab * cabinets;            // UPS self-consumption
+  const totalLoad = deviceLoad + selfLoad;           // before margin
+  const marginW = totalLoad * margin;                // margin portion
+  const withMargin = totalLoad + marginW;
+  const reqKva = withMargin / pf / 1000;
+  const recKva = UPS_STANDARDS.find(s => s >= reqKva) || UPS_STANDARDS[UPS_STANDARDS.length-1];
+  const battAh = (withMargin * (backup / 60)) / vdc;
+  vizUpsFlow(withMargin, recKva, battAh, vdc, backup);
+  vizUpsSize(deviceLoad, selfLoad, marginW, reqKva, recKva, pf);
+}
+
+// Re-bind listeners so viz fires AFTER calc updates the DOM
+['amp_power','amp_volt','amp_pf','amp_eff'].forEach(id => document.getElementById(id).addEventListener('input', vizAllAmp));
+document.querySelectorAll('input[name="amp_phase"]').forEach(el => el.addEventListener('change', vizAllAmp));
+document.querySelectorAll('input[name="amp_conn"]').forEach(el => el.addEventListener('change', vizAllAmp));
+['cab_phase','cab_ins','cab_amps','cab_volt','cab_len','cab_vd','cab_amb','cab_grp'].forEach(id => document.getElementById(id).addEventListener('input', vizAllCable));
+document.querySelectorAll('input[name="cab_std"]').forEach(el => el.addEventListener('change', vizAllCable));
+['vd_phase','vd_mat','vd_amps','vd_volt','vd_len','vd_size','vd_pf'].forEach(id => document.getElementById(id).addEventListener('input', vizAllVd));
+['lux_n','lux_lm','lux_w','lux_llf','lux_l','lux_w_m','lux_h','lux_refl'].forEach(id => document.getElementById(id).addEventListener('input', vizAllLux));
+['pfc_p','pfc_v','pfc_pf1','pfc_pf2'].forEach(id => document.getElementById(id).addEventListener('input', vizAllPfc));
+['ups_cabinets','ups_self','ups_backup','ups_voltage','ups_pf','ups_margin'].forEach(id => document.getElementById(id).addEventListener('input', vizAllUps));
+// Also re-render UPS viz when device rows change (qty/watts edits, add, remove)
+document.getElementById('ups_devices').addEventListener('input', vizAllUps);
+document.getElementById('ups_add_dev').addEventListener('click', () => requestAnimationFrame(vizAllUps));
+
+// Initial render - calcs first to populate result DOM, then viz reads from DOM
+calcAmp(); calcCable(); calcVd(); calcLux(); calcPfc(); calcUps();
+vizAllAmp(); vizAllCable(); vizAllVd(); vizAllLux(); vizAllPfc(); vizAllUps();
+</script>
+<script src="nav.js" defer></script>
+</body>
+</html>
