@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Bizmo is the NLC brand font. If you have a licensed Bizmo web font,
+ * drop the files in /public/fonts and uncomment the @font-face block below.
+ * Until then the app falls back to Inter (loaded in app/layout.tsx).
+ */
+/*
+@font-face {
+  font-family: "Bizmo";
+  src: url("/fonts/Bizmo.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+*/
+
+:root {
+  --nlc-navy: #24285e;
+  --nlc-orange: #f6851f;
+  --nlc-canvas: #f0efef;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--nlc-canvas);
+  color: #1f2230;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Thin, branded scrollbars for the dashboard chrome */
+.nlc-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.nlc-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+.nlc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Recharts focus outline cleanup */
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
