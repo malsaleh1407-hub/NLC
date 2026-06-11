@@ -88,6 +88,7 @@ dashboard/
       google-maps/page.tsx     3) Google Maps / Business Profile
       website/page.tsx         4) Website Performance
       leads/page.tsx           5) Lead & Inquiry Performance
+    api/gbp/route.ts           JSON endpoint for the live GBP report
   components/
     Sidebar.tsx  Topbar.tsx  DateRangeSelector.tsx
     SectionHeading.tsx  Badge.tsx  PlatformChip.tsx
@@ -100,10 +101,25 @@ dashboard/
     mockData.ts                ALL dashboard data + TS types (single source)
   lib/
     theme.ts   format.ts   icon.tsx   nav.ts
+    gbp.ts                     Google Business Profile API client (live data)
+  GBP-SETUP.md                 Step-by-step guide to go live with GBP data
+  .env.example                 Required env vars for live mode
   tailwind.config.ts  tsconfig.json  next.config.js  postcss.config.js
 ```
 
 ---
+
+## Live Google Business Profile data (built in)
+
+The "Latest Google Business Profile Report" panel on the Google Maps page is
+**already wired to the GBP Performance API**. Without credentials it shows a
+bundled sample digest (badge: *Sample*); add the `GBP_*` variables from
+`.env.example` to `.env.local` and it switches to live data (badge: *Live*),
+fetching the last full month's calls, directions, website clicks, chat clicks,
+profile views, searches and top search terms with month-over-month deltas.
+
+**Full setup walkthrough: [`GBP-SETUP.md`](./GBP-SETUP.md)** (free — one-time
+Google approval required). Raw JSON is also served at `/api/gbp`.
 
 ## Connecting real APIs
 

@@ -1,22 +1,32 @@
 import { getIcon } from "@/lib/icon";
-import { latestGbpReport } from "@/data/mockData";
+import { getGbpReport } from "@/lib/gbp";
 
 /**
  * "Latest Google Business Profile Report" panel.
- * Renders the actual monthly GBP digest for a single location, kept visually
- * distinct from the illustrative aggregate metrics on the rest of the page.
- * Data: data/mockData.ts -> latestGbpReport.
+ * Server component — fetches the live monthly report from the Google Business
+ * Profile Performance API when GBP_* env vars are set (see GBP-SETUP.md), and
+ * falls back to the bundled sample digest otherwise. A badge in the header
+ * shows which source is being displayed.
  */
-export default function GbpReportPanel() {
-  const r = latestGbpReport;
+export default async function GbpReportPanel() {
+  const r = await getGbpReport();
 
   return (
     <section className="overflow-hidden rounded-2xl bg-white shadow-card">
       {/* Navy header strip */}
       <div className="flex flex-col gap-3 bg-navy px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-white/55">
+          <p className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-white/55">
             Latest Google Business Profile Report
+            <span
+              className={`rounded-full px-2 py-0.5 text-[10px] font-bold normal-case tracking-normal ${
+                r.source === "live"
+                  ? "bg-emerald-400/15 text-emerald-300"
+                  : "bg-orange/20 text-orange-light"
+              }`}
+            >
+              {r.source === "live" ? "Live" : "Sample"}
+            </span>
           </p>
           <h3 className="text-base font-bold text-white">
             {r.period} · {r.location}
@@ -58,7 +68,7 @@ export default function GbpReportPanel() {
               >
                 {m.change}
                 <span className="ml-1 font-normal text-slate-400">
-                  vs. Apr
+                  vs. prev. month
                 </span>
               </span>
             </div>
@@ -87,9 +97,9 @@ export default function GbpReportPanel() {
       </div>
 
       <p className="px-5 pb-4 text-[11px] text-slate-400 sm:px-6">
-        Source: Google Business Profile monthly digest — single location.
-        Connect the GBP Performance API to refresh automatically and add other
-        NLC branches.
+        {r.source === "live"
+          ? "Source: Google Business Profile Performance API — refreshes automatically (6-hour cache). Single location; more branches can be added in lib/gbp.ts."
+          : "Sample data from the GBP email digest. Add GBP_* credentials (see GBP-SETUP.md) to switch this panel to live API data."}
       </p>
     </section>
   );

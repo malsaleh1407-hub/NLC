@@ -280,12 +280,11 @@ export const googleMapsKpis: Kpi[] = [
 ];
 
 /* ---------------------------------------------------------------------------
- * Latest Google Business Profile monthly report (ACTUAL data).
- * Unlike the illustrative aggregate figures elsewhere in this section, this is
- * a real report for a single NLC location, taken from the GBP email digest.
- * Connect: Google Business Profile Performance API —
- *   businessprofileperformance.locations.fetchMultiDailyMetricsTimeSeries
- * (one report object per location, then list them for the multi-location view).
+ * Latest Google Business Profile monthly report.
+ * LIVE integration: lib/gbp.ts fetches this from the GBP Performance API when
+ * GBP_* env vars are configured (see GBP-SETUP.md). The object below is the
+ * sample fallback — real May 2026 figures for one NLC location, taken from the
+ * GBP email digest — served whenever credentials are absent or the API errors.
  * ------------------------------------------------------------------------- */
 export interface GbpReportMetric {
   id: string;
@@ -308,6 +307,8 @@ export interface GbpMonthlyReport {
   totalInteractions: number;
   metrics: GbpReportMetric[];
   topSearchTerms: GbpReportSearchTerm[];
+  /** "live" when fetched from the GBP API, "sample" for the bundled fallback. */
+  source: "live" | "sample";
 }
 
 export const latestGbpReport: GbpMonthlyReport = {
@@ -327,6 +328,7 @@ export const latestGbpReport: GbpMonthlyReport = {
     { term: "nlc", count: 37 },
     { term: "national lighting company", count: 27 },
   ],
+  source: "sample",
 };
 
 export interface MapsActionPoint {
