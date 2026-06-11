@@ -1,5 +1,6 @@
 import ChartCard from "@/components/charts/ChartCard";
 import LineTrendChart from "@/components/charts/LineTrendChart";
+import DualAxisLineChart from "@/components/charts/DualAxisLineChart";
 import BarSeriesChart from "@/components/charts/BarSeriesChart";
 import DataTable, { type Column } from "@/components/tables/DataTable";
 import PlatformChip from "@/components/PlatformChip";
@@ -10,6 +11,7 @@ import {
   engagementRateComparison,
   reachByPlatform,
   contentTypePerformance,
+  linkedinTrend,
   topPerformingPosts,
   type TopPost,
 } from "@/data/mockData";
@@ -117,6 +119,33 @@ export default function SocialMediaPage() {
           />
         </ChartCard>
       </div>
+
+      <section>
+        <SectionHeading
+          title="LinkedIn Analytics"
+          description="Impressions, reactions, comments, reposts, visitors and followers over time."
+        />
+        <ChartCard
+          title="LinkedIn Performance Over Time"
+          subtitle="Left axis: impressions, followers, visitors · Right axis: reactions, comments, reposts"
+          bodyHeight={360}
+        >
+          <DualAxisLineChart
+            data={linkedinTrend}
+            xKey="period"
+            series={[
+              // Left axis — high-volume audience & reach metrics
+              { key: "impressions", name: "Impressions", color: "#24285e", axis: "left" },
+              { key: "followers", name: "Followers", color: "#5a5fa8", axis: "left" },
+              { key: "visitors", name: "Visitors", color: "#9aa0d6", axis: "left" },
+              // Right axis — engagement metrics (smaller scale)
+              { key: "reactions", name: "Reactions", color: "#F6851F", axis: "right" },
+              { key: "comments", name: "Comments", color: "#d96d0c", axis: "right" },
+              { key: "reposts", name: "Reposts", color: "#ffb066", axis: "right" },
+            ]}
+          />
+        </ChartCard>
+      </section>
 
       <section>
         <SectionHeading title="Top Performing Posts" />

@@ -94,7 +94,7 @@ dashboard/
     cards/      KpiCard.tsx  KpiGrid.tsx  PlatformCard.tsx
     charts/     ChartCard.tsx  ChartTooltip.tsx
                 AreaTrendChart.tsx  LineTrendChart.tsx
-                BarSeriesChart.tsx  DonutChart.tsx
+                DualAxisLineChart.tsx  BarSeriesChart.tsx  DonutChart.tsx
     tables/     DataTable.tsx
   data/
     mockData.ts                ALL dashboard data + TS types (single source)

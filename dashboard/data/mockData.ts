@@ -218,6 +218,31 @@ export const contentTypePerformance: ContentTypeRow[] = [
   { type: "Article / Link", engagement: 8500, reach: 158000 },
 ];
 
+export interface LinkedInTrendPoint {
+  period: string;
+  impressions: number;
+  reactions: number;
+  comments: number;
+  reposts: number;
+  visitors: number;
+  followers: number;
+}
+
+// Connect: LinkedIn Marketing API — organization share statistics
+// (impressionCount, likeCount, commentCount, shareCount) + page statistics
+// (pageViews / uniqueVisitors) + follower statistics (organicFollowerGain).
+// Followers below align with followerGrowthByPlatform.linkedin for consistency.
+export const linkedinTrend: LinkedInTrendPoint[] = [
+  { period: "Jan", impressions: 118000, reactions: 2480, comments: 312, reposts: 148, visitors: 4200, followers: 39200 },
+  { period: "Feb", impressions: 132000, reactions: 2710, comments: 348, reposts: 172, visitors: 4600, followers: 40500 },
+  { period: "Mar", impressions: 149000, reactions: 3050, comments: 402, reposts: 198, visitors: 5100, followers: 41900 },
+  { period: "Apr", impressions: 141000, reactions: 2920, comments: 380, reposts: 186, visitors: 4900, followers: 43100 },
+  { period: "May", impressions: 168000, reactions: 3480, comments: 456, reposts: 224, visitors: 5800, followers: 44600 },
+  { period: "Jun", impressions: 184000, reactions: 3820, comments: 502, reposts: 256, visitors: 6300, followers: 45800 },
+  { period: "Jul", impressions: 196000, reactions: 4060, comments: 538, reposts: 278, visitors: 6700, followers: 46900 },
+  { period: "Aug", impressions: 214000, reactions: 4380, comments: 586, reposts: 312, visitors: 7200, followers: 48200 },
+];
+
 export interface TopPost {
   platform: PlatformKey;
   platformName: string;
