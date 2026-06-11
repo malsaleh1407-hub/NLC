@@ -279,6 +279,56 @@ export const googleMapsKpis: Kpi[] = [
   { id: "avg-rating", label: "Average Rating", value: "4.7", change: "+0.2", trend: "up", icon: "Star" },
 ];
 
+/* ---------------------------------------------------------------------------
+ * Latest Google Business Profile monthly report (ACTUAL data).
+ * Unlike the illustrative aggregate figures elsewhere in this section, this is
+ * a real report for a single NLC location, taken from the GBP email digest.
+ * Connect: Google Business Profile Performance API —
+ *   businessprofileperformance.locations.fetchMultiDailyMetricsTimeSeries
+ * (one report object per location, then list them for the multi-location view).
+ * ------------------------------------------------------------------------- */
+export interface GbpReportMetric {
+  id: string;
+  label: string;
+  value: string;
+  change: string;
+  trend: TrendDirection;
+  icon: string;
+}
+
+export interface GbpReportSearchTerm {
+  term: string;
+  count: number;
+}
+
+export interface GbpMonthlyReport {
+  location: string;
+  period: string;
+  /** "An interaction is a call, booking, website visit or direction request." */
+  totalInteractions: number;
+  metrics: GbpReportMetric[];
+  topSearchTerms: GbpReportSearchTerm[];
+}
+
+export const latestGbpReport: GbpMonthlyReport = {
+  location: "NLC — Factory#2, 106, Dammam",
+  period: "May 2026",
+  totalInteractions: 398,
+  metrics: [
+    { id: "views", label: "Profile Views", value: "462", change: "-2%", trend: "down", icon: "Eye" },
+    { id: "searches", label: "Searches", value: "141", change: "-2%", trend: "down", icon: "Search" },
+    { id: "directions", label: "Direction Requests", value: "379", change: "+28%", trend: "up", icon: "Navigation" },
+    { id: "calls", label: "Calls", value: "9", change: "-35%", trend: "down", icon: "PhoneCall" },
+    { id: "website", label: "Website Visits", value: "8", change: "-27%", trend: "down", icon: "MousePointerClick" },
+    { id: "chat", label: "Chat Clicks", value: "2", change: "+100%", trend: "up", icon: "MessageCircle" },
+  ],
+  topSearchTerms: [
+    { term: "national lighting company (nlc) - factory#2, 106, dammam", count: 44 },
+    { term: "nlc", count: 37 },
+    { term: "national lighting company", count: 27 },
+  ],
+};
+
 export interface MapsActionPoint {
   period: string;
   calls: number;

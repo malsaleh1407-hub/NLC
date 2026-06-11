@@ -4,6 +4,7 @@ import LineTrendChart from "@/components/charts/LineTrendChart";
 import BarSeriesChart from "@/components/charts/BarSeriesChart";
 import DataTable, { type Column } from "@/components/tables/DataTable";
 import SectionHeading from "@/components/SectionHeading";
+import GbpReportPanel from "@/components/GbpReportPanel";
 import Badge from "@/components/Badge";
 import {
   googleMapsKpis,
@@ -45,7 +46,14 @@ export default function GoogleMapsPage() {
     <div className="space-y-8">
       <SectionHeading
         title="Google Maps / Business Profile"
-        description="How customers find and act on the NLC Google Business Profile."
+        description="How customers find and act on NLC Business Profiles across locations."
+      />
+
+      <GbpReportPanel />
+
+      <SectionHeading
+        title="All Locations — Overview"
+        description="Aggregate Business Profile performance across all NLC branches."
       />
 
       <KpiGrid kpis={googleMapsKpis} />
