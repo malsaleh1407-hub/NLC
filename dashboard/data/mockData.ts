@@ -101,6 +101,32 @@ export const executiveKpis: Kpi[] = [
   { id: "rating", label: "Average Rating", value: "4.7", change: "+0.2", trend: "up", icon: "Star", caption: "1,034 reviews" },
 ];
 
+export interface GaugeMetric {
+  id: string;
+  label: string;
+  /** Current value (raw). */
+  value: number;
+  /** Maximum of the gauge scale. */
+  max: number;
+  /** Pre-formatted big number shown in the gauge center, e.g. "4.7", "82%". */
+  display: string;
+  /** Small line under the big number, e.g. "out of 5.0". */
+  suffix: string;
+  /** Helper caption under the gauge label. */
+  caption: string;
+  /** Arc color (brand palette). */
+  color: string;
+}
+
+// Connect: derive from the same sources as the KPIs (rating from Google
+// Business Profile, conversion from CRM/GA4, goal attainment vs. your targets).
+export const executiveGauges: GaugeMetric[] = [
+  { id: "rating", label: "Average Rating", value: 4.7, max: 5, display: "4.7", suffix: "out of 5.0", caption: "1,034 Google reviews", color: "#F6851F" },
+  { id: "conversion", label: "Lead Conversion", value: 3.8, max: 6, display: "3.8%", suffix: "of 6% target", caption: "63% to goal", color: "#24285e" },
+  { id: "reach-goal", label: "Monthly Reach Goal", value: 81, max: 100, display: "81%", suffix: "of 3.5M target", caption: "2.84M reached", color: "#5a5fa8" },
+  { id: "sentiment", label: "Positive Sentiment", value: 91, max: 100, display: "91%", suffix: "positive reviews", caption: "+4 pts vs. last quarter", color: "#16a34a" },
+];
+
 export interface TrendPoint {
   /** Period label, e.g. "Jan", "Wk 1". */
   period: string;
@@ -440,6 +466,13 @@ export const leadKpis: Kpi[] = [
   { id: "phone-calls", label: "Phone Calls", value: "612", change: "-3.2%", trend: "down", icon: "PhoneCall" },
   { id: "email-clicks", label: "Email Clicks", value: "894", change: "+7.6%", trend: "up", icon: "Mail" },
   { id: "conversion-rate", label: "Conversion Rate", value: "3.8%", change: "+0.6pp", trend: "up", icon: "Percent" },
+];
+
+// Connect: CRM funnel ratios + GA4 conversions vs. your monthly targets.
+export const leadGauges: GaugeMetric[] = [
+  { id: "conv-rate", label: "Conversion Rate", value: 3.8, max: 6, display: "3.8%", suffix: "of 6% target", caption: "lead → opportunity", color: "#F6851F" },
+  { id: "lead-goal", label: "Monthly Lead Goal", value: 1248, max: 1500, display: "83%", suffix: "1,248 of 1,500", caption: "on track this month", color: "#24285e" },
+  { id: "response", label: "Response Rate", value: 88, max: 100, display: "88%", suffix: "within 24h", caption: "+6 pts vs. last month", color: "#16a34a" },
 ];
 
 export type LeadQuality = "High" | "Medium" | "Low";

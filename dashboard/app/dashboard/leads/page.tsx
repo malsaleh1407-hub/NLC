@@ -1,4 +1,5 @@
 import KpiGrid from "@/components/cards/KpiGrid";
+import GaugeCard from "@/components/cards/GaugeCard";
 import ChartCard from "@/components/charts/ChartCard";
 import LineTrendChart from "@/components/charts/LineTrendChart";
 import DataTable, { type Column } from "@/components/tables/DataTable";
@@ -6,6 +7,7 @@ import SectionHeading from "@/components/SectionHeading";
 import Badge from "@/components/Badge";
 import {
   leadKpis,
+  leadGauges,
   leadSources,
   leadTrend,
   type LeadSourceRow,
@@ -57,6 +59,12 @@ export default function LeadsPage() {
       />
 
       <KpiGrid kpis={leadKpis} />
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {leadGauges.map((g) => (
+          <GaugeCard key={g.id} gauge={g} />
+        ))}
+      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
         <div className="lg:col-span-3">
