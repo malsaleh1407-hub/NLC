@@ -1,0 +1,13 @@
+# Netlify configuration for the NLC Digital Performance Dashboard.
+# This file lives inside the dashboard/ app so it only governs the dashboard
+# deploy — the static marketing site at the repo root is never affected.
+#
+# In the Netlify site's build settings, set "Base directory" to: dashboard
+# Netlify then reads this file and builds the Next.js app here.
+[build]
+  command = "npm run build"
+
+# Official Next.js runtime — handles SSR routes (e.g. /api/gbp), the App
+# Router, image optimization and caching automatically.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
