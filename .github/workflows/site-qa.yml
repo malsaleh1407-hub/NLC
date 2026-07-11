@@ -1,0 +1,55 @@
+name: Site QA
+
+on:
+  push:
+  pull_request:
+
+env:
+  # The repo currently holds a partial snapshot of the site, so missing-link
+  # findings are expected and the job only reports them. After the full site
+  # (images/, datasheets/, ar/, product/) is pushed, set STRICT to "1" so any
+  # broken internal link fails the build.
+  STRICT: "0"
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Broken internal link scan
+        run: |
+          python test_site.py | tee link-report.txt
+          COUNT=$(grep -c '^MISSING_LINK' link-report.txt || true)
+          echo "Broken internal links: $COUNT"
+          echo "### Site QA: $COUNT broken internal links" >> "$GITHUB_STEP_SUMMARY"
+          head -50 link-report.txt >> "$GITHUB_STEP_SUMMARY" || true
+          if [ "$STRICT" = "1" ] && [ "$COUNT" -gt 0 ]; then
+            echo "STRICT mode: failing build."
+            exit 1
+          fi
+
+      - name: Image budget scan (500 KB limit per STYLE-GUIDE)
+        run: |
+          if [ -d images ]; then
+            OVER=$(find images -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' \) -size +500k | tee oversize.txt | wc -l)
+            echo "Images over 500 KB: $OVER"
+            echo "### Images over 500 KB: $OVER" >> "$GITHUB_STEP_SUMMARY"
+            cat oversize.txt >> "$GITHUB_STEP_SUMMARY" || true
+            if [ "$STRICT" = "1" ] && [ "$OVER" -gt 0 ]; then exit 1; fi
+          else
+            echo "images/ not in repo yet; skipping."
+          fi
+
+      - name: Upload full report
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-qa-report
+          path: |
+            link-report.txt
+            oversize.txt
+          if-no-files-found: ignore
