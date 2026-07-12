@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>NLC Workboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#24285e; --primary-light:#2e3478; --primary-dark:#1a1e48;
+  --secondary:#F6851F; --secondary-dark:#e0720a;
+  --bg:#F0EFEF; --white:#fff; --dark:#1a1c3a; --gray:#6b7280; --gray-light:#9ca3af;
+  --border:#e2e1e1;
+  --good:#1e7d46; --good-bg:#e7f4ec;
+  --serious:#b3261e; --serious-bg:#fbeae9;
+  --warn:#8a5a00; --warn-bg:#fdf3e0;
+  --radius:12px; --radius-lg:20px;
+  --shadow-md:0 8px 30px rgba(36,40,94,.12); --shadow-lg:0 20px 60px rgba(36,40,94,.18);
+  --transition:0.3s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Bizmo','Outfit','Segoe UI',sans-serif;background:var(--bg);color:var(--dark);line-height:1.6}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+
+/* ---------- header ---------- */
+.topbar{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:var(--white);padding:22px 0}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{width:34px;height:34px;flex:0 0 auto}
+.brand h1{font-size:1.35rem;font-weight:900;letter-spacing:.5px}
+.brand span{display:block;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.25em}
+.topbar .actions{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:50px;font-weight:600;font-size:.85rem;cursor:pointer;border:none;transition:var(--transition);text-decoration:none;font-family:inherit}
+.btn-primary{background:var(--secondary);color:var(--white)}
+.btn-primary:hover{background:var(--secondary-dark)}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{border-color:var(--white)}
+.btn-outline{background:var(--white);color:var(--primary);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--secondary);color:var(--secondary-dark)}
+
+/* ---------- KPI tiles ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:26px 0 8px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow-md)}
+.kpi .label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gray)}
+.kpi .value{font-size:2.1rem;font-weight:900;color:var(--primary);line-height:1.2;margin-top:2px}
+.kpi .note{font-size:.78rem;color:var(--gray-light);display:flex;align-items:center;gap:6px}
+.kpi.state-bad .value{color:var(--serious)}
+.kpi.state-bad{background:var(--serious-bg);border-color:#efc4c1}
+.kpi.state-warn{background:var(--warn-bg);border-color:#ecd9ae}
+.kpi.state-warn .value{color:var(--warn)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:50px}
+.badge.bad{background:var(--serious-bg);color:var(--serious)}
+.badge.good{background:var(--good-bg);color:var(--good)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+
+/* ---------- chart ---------- */
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px 12px;box-shadow:var(--shadow-md);margin:16px 0 8px}
+.chart-card h3{font-size:.85rem;font-weight:800;color:var(--primary);margin-bottom:12px}
+.chart{display:flex;align-items:flex-end;gap:10px;height:110px;border-bottom:1px solid var(--border);padding:0 4px;position:relative}
+.chart .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;cursor:default}
+.chart .bar{width:100%;max-width:38px;background:var(--primary);border-radius:4px 4px 0 0;min-height:2px;transition:var(--transition)}
+.chart .col:hover .bar{background:var(--primary-light)}
+.chart .val{font-size:.72rem;font-weight:700;color:var(--dark);margin-bottom:3px;height:16px}
+.chart .tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--primary-dark);color:var(--white);font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.chart .col:hover .tip{opacity:1}
+.chart-x{display:flex;gap:10px;padding:6px 4px 0}
+.chart-x span{flex:1;text-align:center;font-size:.7rem;color:var(--gray-light);font-weight:600}
+.chart-x span.today{color:var(--secondary-dark);font-weight:800}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:8px;margin:22px 0 18px;flex-wrap:wrap}
+.tab{padding:9px 22px;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--primary);transition:var(--transition);font-family:inherit}
+.tab.current{background:var(--secondary);border-color:var(--secondary);color:var(--white)}
+.panel{display:none}
+.panel.current{display:block}
+
+/* ---------- board ---------- */
+.add-row{display:flex;gap:10px;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;box-shadow:var(--shadow-md);margin-bottom:18px}
+.add-row input,.add-row select{padding:10px 14px;font-size:.9rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:inherit;color:var(--dark);background:var(--white)}
+.add-row input:focus,.add-row select:focus{outline:none;border-color:var(--secondary);box-shadow:0 0 0 3px rgba(246,133,31,.15)}
+.add-row input[type=text]{flex:2;min-width:200px}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:start}
+.col-box{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;min-height:220px}
+.col-box.dragover{outline:2px dashed var(--secondary);outline-offset:-6px}
+.col-box h3{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:var(--gray);display:flex;justify-content:space-between;margin:2px 4px 12px}
+.col-box h3 .cnt{background:var(--bg);color:var(--primary);border-radius:50px;padding:0 10px;font-size:.75rem}
+.card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px 12px 10px;margin-bottom:10px;cursor:grab;transition:var(--transition)}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.card.overdue{border-color:#efc4c1;background:var(--serious-bg)}
+.card .t{font-size:.9rem;font-weight:700;color:var(--dark)}
+.card.done-card .t{text-decoration:line-through;color:var(--gray)}
+.card .chips{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0 4px}
+.chip{font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:50px;background:var(--white);border:1px solid var(--border);color:var(--gray)}
+.chip.pri-High{border-color:var(--secondary);color:var(--secondary-dark)}
+.chip.pri-Low{color:var(--gray-light)}
+.card .steps{margin:6px 0 2px}
+.card .steps label{display:flex;gap:8px;align-items:flex-start;font-size:.78rem;color:var(--gray);padding:2px 0;cursor:pointer}
+.card .steps input{accent-color:var(--secondary);margin-top:4px}
+.card .steps label.d span{text-decoration:line-through;color:var(--gray-light)}
+.prog{height:5px;background:var(--white);border:1px solid var(--border);border-radius:50px;overflow:hidden;margin:6px 0 2px}
+.prog i{display:block;height:100%;background:var(--good);border-radius:50px}
+.card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.card .foot .mv{display:flex;gap:4px}
+.icon-btn{border:1px solid var(--border);background:var(--white);color:var(--primary);width:26px;height:26px;border-radius:8px;cursor:pointer;font-size:.8rem;line-height:1;transition:var(--transition);font-family:inherit}
+.icon-btn:hover{border-color:var(--secondary);color:var(--secondary-dark)}
+.icon-btn.del:hover{border-color:var(--serious);color:var(--serious)}
+.toggle-steps{background:none;border:none;color:var(--primary);font-size:.72rem;font-weight:700;cursor:pointer;padding:0;font-family:inherit}
+.empty{font-size:.8rem;color:var(--gray-light);text-align:center;padding:20px 0}
+
+/* ---------- templates ---------- */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.tpl{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);display:flex;flex-direction:column}
+.tpl h3{font-size:1rem;font-weight:800;color:var(--primary)}
+.tpl p{font-size:.82rem;color:var(--gray);margin:6px 0 10px}
+.tpl ol{font-size:.78rem;color:var(--gray);padding-left:18px;margin-bottom:14px;flex:1}
+.tpl ol li{margin-bottom:2px}
+.tpl .btn{align-self:flex-start}
+
+/* ---------- roadmap ---------- */
+.rmap-group{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);margin-bottom:16px}
+.rmap-group h3{font-size:.95rem;font-weight:800;color:var(--primary);margin-bottom:4px}
+.rmap-group .sub{font-size:.8rem;color:var(--gray);margin-bottom:12px}
+.rmap-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--border)}
+.rmap-item input{accent-color:var(--secondary);width:17px;height:17px;margin-top:3px;flex:0 0 auto;cursor:pointer}
+.rmap-item .rt{font-size:.88rem;font-weight:700;color:var(--dark)}
+.rmap-item.done .rt{text-decoration:line-through;color:var(--gray-light)}
+.rmap-item .rd{font-size:.78rem;color:var(--gray)}
+
+/* ---------- week ---------- */
+.week-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);overflow-x:auto}
+.week-card table{border-collapse:collapse;width:100%;min-width:720px;font-size:.8rem}
+.week-card th{background:var(--primary);color:var(--white);padding:9px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+.week-card td{border:1px solid var(--border);padding:8px 12px;color:var(--gray)}
+.week-card td.blk{font-weight:700;color:var(--primary);white-space:nowrap}
+.week-card .deep{background:rgba(36,40,94,.06)}
+.week-card .ship{background:rgba(246,133,31,.1)}
+.rules{margin-top:16px;font-size:.85rem;color:var(--gray)}
+.rules li{margin-bottom:6px}
+.rules b{color:var(--primary)}
+
+.footer-note{text-align:center;font-size:.75rem;color:var(--gray-light);padding:26px 0 34px}
+@media(max-width:640px){.board{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <g fill="#F6851F">
+          <path d="M20 2 L23 17 L20 20 L17 17 Z"/><path d="M20 38 L17 23 L20 20 L23 23 Z"/>
+          <path d="M2 20 L17 17 L20 20 L17 23 Z"/><path d="M38 20 L23 23 L20 20 L23 17 Z"/>
+          <path d="M7.3 7.3 L18 15.2 L20 20 L15.2 18 Z"/><path d="M32.7 32.7 L22 24.8 L20 20 L24.8 22 Z"/>
+          <path d="M32.7 7.3 L24.8 18 L20 20 L22 15.2 Z"/><path d="M7.3 32.7 L15.2 22 L20 20 L18 24.8 Z"/>
+        </g>
+      </svg>
+      <div>
+        <h1>NLC Workboard</h1>
+        <span>Plan. Build. Ship.</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="exportData()">Export backup</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('importFile').click()">Import</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(this)">
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="chart-card">
+    <h3>Tasks completed, last 7 days</h3>
+    <div class="chart" id="chart" role="img" aria-label="Bar chart of tasks completed per day over the last 7 days"></div>
+    <div class="chart-x" id="chartX"></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab current" data-panel="board" onclick="showTab(this)">Board</button>
+    <button class="tab" data-panel="templates" onclick="showTab(this)">Checklists</button>
+    <button class="tab" data-panel="roadmap" onclick="showTab(this)">Improvement roadmap</button>
+    <button class="tab" data-panel="week" onclick="showTab(this)">Weekly rhythm</button>
+  </div>
+
+  <!-- BOARD -->
+  <section class="panel current" id="panel-board">
+    <div class="add-row">
+      <input type="text" id="newTitle" placeholder="New task, e.g. Add product FL-90 to catalog" onkeydown="if(event.key==='Enter')addTask()">
+      <select id="newCat">
+        <option>Product</option><option>Page</option><option>Content</option>
+        <option>Images</option><option>Admin</option><option>Deploy</option>
+      </select>
+      <select id="newPri"><option>High</option><option selected>Medium</option><option>Low</option></select>
+      <input type="date" id="newDue">
+      <button class="btn btn-primary" onclick="addTask()">Add task</button>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section class="panel" id="panel-templates">
+    <div class="tpl-grid" id="tplGrid"></div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="panel" id="panel-roadmap">
+    <div id="rmap"></div>
+  </section>
+
+  <!-- WEEK -->
+  <section class="panel" id="panel-week">
+    <div class="week-card">
+      <table>
+        <tr><th>Block</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th></tr>
+        <tr><td class="blk">09:00 - 09:30</td><td>Plan week here</td><td>Admin + approvals</td><td>Admin + approvals</td><td>Admin + approvals</td><td>Admin + approvals</td></tr>
+        <tr><td class="blk">09:30 - 12:30</td><td class="deep">Deep build 1</td><td class="deep">Deep build</td><td class="deep">Content batch</td><td class="deep">Deep build</td><td class="ship">Finish + QA sweep</td></tr>
+        <tr><td class="blk">12:30 - 14:00</td><td>Break</td><td>Break</td><td>Break</td><td>Break</td><td>Break</td></tr>
+        <tr><td class="blk">14:00 - 16:30</td><td class="deep">Deep build 2</td><td class="deep">Content batch</td><td class="deep">Deep build</td><td class="deep">Content batch</td><td class="ship">Deploy + verify live</td></tr>
+        <tr><td class="blk">16:30 - 17:00</td><td>Push + log done</td><td>Push + log done</td><td>Push + log done</td><td>Push + log done</td><td class="ship">Week review</td></tr>
+      </table>
+      <ul class="rules">
+        <li><b>Batch by mode.</b> Site work, content/image work, and admin are separate blocks. Never alternate within a block.</li>
+        <li><b>WIP limit 3.</b> The In Progress column holds at most 3 cards. Finish before pulling more.</li>
+        <li><b>Definition of done:</b> EN done + AR mirrored + links pass test_site.py + committed + pushed.</li>
+        <li><b>Every day ends with a push.</b> Work that is not on GitHub does not exist.</li>
+        <li><b>Thursday afternoon is sacred:</b> QA, deploy, verify live, review the week, plan Sunday.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="footer-note container">
+  Data is stored locally in this browser (localStorage). Use Export backup weekly and keep the file with the repo.
+</div>
+
+<script>
+'use strict';
+const LS_KEY = 'nlc_workboard_v1';
+const COLS = [ {id:'backlog',label:'Backlog'}, {id:'today',label:'Today'}, {id:'doing',label:'In Progress'}, {id:'done',label:'Done'} ];
+const WIP_LIMIT = 3;
+
+/* ---------- templates (recurring NLC checklists) ---------- */
+const TEMPLATES = [
+  { name:'Add new product', cat:'Product',
+    desc:'The full 6-step flow from CLAUDE.md. One card, tick as you go.',
+    steps:[
+      'Photo to images/products/{key}.png (1200x1200 max, keep RGBA)',
+      'Datasheet PDF to datasheets/{key}.pdf',
+      'Define PRODUCT dict, run build_product() for EN + AR pages',
+      'Add catalog card to products.html AND ar/products.html',
+      'Insert key into tools/product_order.txt in position',
+      'Run inject_prev_next.py to refresh arrows',
+      'Run test_site.py, then commit and push' ] },
+  { name:'New page (EN + AR)', cat:'Page',
+    desc:'STYLE-GUIDE section 11 procedure.',
+    steps:[
+      'Copy nearest sibling EN page, replace content only',
+      'Reuse existing classes, no new style selectors',
+      'Mirror to /ar/ with dir=rtl and nav.js root',
+      'Add hreflang alternates in both files',
+      'Visual diff vs sibling: navbar, hero, buttons, grid',
+      'Scroll test EN and AR, confirm parity',
+      'Commit and push' ] },
+  { name:'Update product photo', cat:'Images',
+    desc:'Photo swap without breaking transparency.',
+    steps:[
+      'thumbnail((1200,1200), LANCZOS)',
+      'Keep RGBA, never convert to RGB',
+      'Save optimized PNG over images/products/{key}.png',
+      'Gallery shots as {key}-g2.png, {key}-g3.png',
+      'Check the page renders with transparent background',
+      'Commit and push' ] },
+  { name:'Pre-deploy QA', cat:'Deploy',
+    desc:'Run before every deploy. Zero broken links is the bar.',
+    steps:[
+      'python test_site.py (zero MISSING_LINK lines)',
+      'python check_links.py',
+      'No shipped image over 500 KB',
+      'Spot check 3 EN pages and their AR mirrors',
+      'Commit, push, deploy',
+      'Verify live site: home, products, one product page, one PDF gate' ] },
+];
+
+/* ---------- improvement roadmap (from IMPROVEMENT-PLAN.md) ---------- */
+const ROADMAP = [
+  { id:'p0', title:'P0. Protect the work (this week)', sub:'Highest risk first. About 2 hours total.', items:[
+    {id:'p0-tmp', t:'Rescue /tmp toolchain into tools/ folder', d:'cp build_products.py, inject_prev_next.py, product_order.txt and the rest out of /tmp. Steps in tools/README.md. 15 minutes, do first.'},
+    {id:'p0-git', t:'Push the FULL site to GitHub', d:'286 pages, images, datasheets. git add -A, commit, push from the real Website folder.'},
+    {id:'p0-sec', t:'Rotate and remove committed passwords', d:'SERVER-AUTH.md and CLAUDE.md contain live passwords. Change them, then strip them from the files.'},
+    {id:'p0-cf', t:'Protect admin.html with Cloudflare Access', d:'Option C in SERVER-AUTH.md. Easiest and most secure per your own doc.'} ]},
+  { id:'p1', title:'P1. Automate the multiplied work (week 2)', sub:'Convert 45-minute tasks into 5-minute ones.', items:[
+    {id:'p1-add', t:'One-command product add script', d:'tools/add_product.py wrapping all 6 steps. The add-product Claude skill in the repo has the full spec.'},
+    {id:'p1-ci', t:'Turn CI strict', d:'After the full site is pushed, set STRICT: "1" in .github/workflows/site-qa.yml so broken links fail the build.'},
+    {id:'p1-deploy', t:'Automated deploy', d:'Cloudflare Pages or Netlify connected to the repo. Push = live. Kills partial-upload bugs.'} ]},
+  { id:'p2', title:'P2. Work system (ongoing)', sub:'Rules that remove delay.', items:[
+    {id:'p2-batch', t:'Batch by mode, WIP limit 3', d:'Same-type tasks in one block. At most 3 cards In Progress.'},
+    {id:'p2-dod', t:'Adopt the definition of done', d:'EN + AR mirrored + links pass + committed + pushed. Otherwise it stays In Progress.'},
+    {id:'p2-cadence', t:'Deploy on cadence', d:'One consolidated deploy per work day after QA. Thursday PM is the anchor.'} ]},
+  { id:'p3', title:'P3. Multipliers (as capacity allows)', sub:'Compound wins.', items:[
+    {id:'p3-img', t:'Image budget guard in CI', d:'Fail the build if any shipped image exceeds 500 KB (STYLE-GUIDE rule).'},
+    {id:'p3-batchgen', t:'Batch the AI image pipeline', d:'Drive PROMPTS-ALL.md sections through the banana CLI generator in loops instead of paste-per-prompt.'},
+    {id:'p3-b44', t:'base44 auto-approval email', d:'Automation on PortalUser.status = approved replaces the manual mailto flow.'} ]},
+];
+
+/* ---------- state ---------- */
+function seedTasks(){
+  const today = isoToday();
+  return [
+    mkTask('Rescue /tmp scripts into tools/ (15 min, do first)','Admin','High',today,'today',
+      ['Run the cp commands in tools/README.md','Fix /tmp/ paths inside the scripts','Update CLAUDE.md paths','Commit and push']),
+    mkTask('Push the full website folder to GitHub','Admin','High',today,'today',
+      ['git init / set remote in the real Website folder','git add -A and commit','Push (use Git LFS if PDFs exceed 100 MB)']),
+    mkTask('Rotate the two leaked passwords','Admin','High',today,'backlog',
+      ['Change server admin password','Change base44 portal password','Strip plaintext from SERVER-AUTH.md and CLAUDE.md','Commit and push']),
+  ];
+}
+function mkTask(title,cat,pri,due,col,steps){
+  return { id:'t'+Math.random().toString(36).slice(2,9), title, cat, pri, due:due||'', col:col||'backlog',
+           steps:(steps||[]).map(s=>({t:s,d:false})), open:false, createdAt:isoToday(), completedAt:null };
+}
+let state = load();
+function load(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){ const s = JSON.parse(raw); s.roadmap = s.roadmap||{}; s.tasks = s.tasks||[]; s.archive = s.archive||[]; return s; }
+  }catch(e){}
+  return { tasks:seedTasks(), roadmap:{}, archive:[] };
+}
+function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+/* ---------- date helpers ---------- */
+function isoToday(){ return toISO(new Date()); }
+function toISO(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function daysAgo(n){ const d=new Date(); d.setDate(d.getDate()-n); return toISO(d); }
+const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+/* ---------- KPIs ---------- */
+function renderKpis(){
+  const today = isoToday();
+  const overdue = state.tasks.filter(t=>t.col!=='done' && t.due && t.due<today).length;
+  const dueToday = state.tasks.filter(t=>t.col!=='done' && t.due===today).length;
+  const doing = state.tasks.filter(t=>t.col==='doing').length;
+  const week7 = new Set([0,1,2,3,4,5,6].map(daysAgo));
+  const doneWeek = completions().filter(d=>week7.has(d)).length;
+  const el = document.getElementById('kpis');
+  el.innerHTML =
+    kpi('Due today', dueToday, dueToday? 'get these done first':'clear', '') +
+    kpi('In progress', doing, doing>WIP_LIMIT? 'over WIP limit of '+WIP_LIMIT : 'WIP limit '+WIP_LIMIT, doing>WIP_LIMIT?'state-warn':'') +
+    kpi('Done, last 7 days', doneWeek, 'target: trend up', '') +
+    kpi('Overdue', overdue, overdue? '&#9888; needs rescheduling':'&#10003; on schedule', overdue?'state-bad':'');
+}
+function kpi(label,value,note,cls){
+  return '<div class="kpi '+cls+'"><div class="label">'+label+'</div><div class="value">'+value+'</div><div class="note">'+note+'</div></div>';
+}
+function completions(){
+  return state.tasks.filter(t=>t.completedAt).map(t=>t.completedAt).concat(state.archive.map(a=>a.date));
+}
+
+/* ---------- 7-day chart ---------- */
+function renderChart(){
+  const counts = [], labels = [];
+  for(let i=6;i>=0;i--){
+    const d = daysAgo(i);
+    counts.push(completions().filter(x=>x===d).length);
+    const dt = new Date(); dt.setDate(dt.getDate()-i);
+    labels.push({name:DAY_NAMES[dt.getDay()], iso:d, today:i===0});
+  }
+  const max = Math.max(1, ...counts);
+  const chart = document.getElementById('chart');
+  chart.innerHTML = counts.map((c,idx)=>{
+    const h = Math.round(c/max*88);
+    const showVal = (c===Math.max(...counts) && c>0) || labels[idx].today;
+    return '<div class="col"><div class="tip">'+labels[idx].name+' '+labels[idx].iso.slice(5)+': '+c+' done</div>'+
+           '<div class="val">'+(showVal? c : '')+'</div>'+
+           '<div class="bar" style="height:'+Math.max(h, c>0?6:2)+'px"></div></div>';
+  }).join('');
+  document.getElementById('chartX').innerHTML =
+    labels.map(l=>'<span class="'+(l.today?'today':'')+'">'+(l.today?'Today':l.name)+'</span>').join('');
+}
+
+/* ---------- board ---------- */
+function renderBoard(){
+  const today = isoToday();
+  const board = document.getElementById('board');
+  board.innerHTML = COLS.map(c=>{
+    const tasks = state.tasks.filter(t=>t.col===c.id);
+    return '<div class="col-box" data-col="'+c.id+'" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">'+
+      '<h3>'+c.label+'<span class="cnt">'+tasks.length+'</span></h3>'+
+      (tasks.length? tasks.map(t=>cardHtml(t,today,c.id)).join('') : '<div class="empty">Drop tasks here</div>')+
+      '</div>';
+  }).join('');
+}
+function cardHtml(t,today,colId){
+  const overdue = colId!=='done' && t.due && t.due<today;
+  const doneSteps = t.steps.filter(s=>s.d).length;
+  const ci = COLS.findIndex(c=>c.id===colId);
+  return '<div class="card '+(overdue?'overdue':'')+(colId==='done'?' done-card':'')+'" draggable="true" ondragstart="dragStart(event,\''+t.id+'\')">'+
+    '<div class="t">'+esc(t.title)+'</div>'+
+    '<div class="chips">'+
+      '<span class="chip">'+t.cat+'</span>'+
+      '<span class="chip pri-'+t.pri+'">'+t.pri+'</span>'+
+      (t.due? '<span class="chip">due '+t.due.slice(5)+'</span>':'')+
+      (overdue? '<span class="badge bad">&#9888; Overdue</span>':'')+
+    '</div>'+
+    (t.steps.length? '<div class="prog"><i style="width:'+Math.round(doneSteps/t.steps.length*100)+'%"></i></div>'+
+      '<button class="toggle-steps" onclick="toggleSteps(\''+t.id+'\')">'+(t.open?'Hide':'Show')+' checklist ('+doneSteps+'/'+t.steps.length+')</button>'+
+      (t.open? '<div class="steps">'+t.steps.map((s,i)=>
+        '<label class="'+(s.d?'d':'')+'"><input type="checkbox" '+(s.d?'checked':'')+' onchange="tickStep(\''+t.id+'\','+i+')"><span>'+esc(s.t)+'</span></label>'
+      ).join('')+'</div>':'') : '')+
+    '<div class="foot"><div class="mv">'+
+      (ci>0? '<button class="icon-btn" title="Move left" onclick="moveTask(\''+t.id+'\',-1)">&#8592;</button>':'')+
+      (ci<COLS.length-1? '<button class="icon-btn" title="Move right" onclick="moveTask(\''+t.id+'\',1)">&#8594;</button>':'')+
+    '</div><button class="icon-btn del" title="Delete" onclick="delTask(\''+t.id+'\')">&#10005;</button></div>'+
+  '</div>';
+}
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function addTask(){
+  const title = document.getElementById('newTitle').value.trim();
+  if(!title) return;
+  state.tasks.unshift(mkTask(title, document.getElementById('newCat').value,
+    document.getElementById('newPri').value, document.getElementById('newDue').value, 'backlog', []));
+  document.getElementById('newTitle').value='';
+  commit();
+}
+function findTask(id){ return state.tasks.find(t=>t.id===id); }
+function setCol(t,col){
+  if(t.col!=='done' && col==='done'){ t.completedAt = isoToday(); }
+  if(t.col==='done' && col!=='done'){ t.completedAt = null; }
+  t.col = col;
+}
+function moveTask(id,dir){
+  const t = findTask(id); if(!t) return;
+  const i = COLS.findIndex(c=>c.id===t.col);
+  const ni = Math.min(COLS.length-1, Math.max(0, i+dir));
+  setCol(t, COLS[ni].id); commit();
+}
+function delTask(id){
+  const t = findTask(id); if(!t) return;
+  if(t.completedAt) state.archive.push({date:t.completedAt});
+  state.tasks = state.tasks.filter(x=>x.id!==id); commit();
+}
+function tickStep(id,i){ const t=findTask(id); if(!t) return; t.steps[i].d=!t.steps[i].d; commit(); }
+function toggleSteps(id){ const t=findTask(id); if(!t) return; t.open=!t.open; commit(); }
+
+/* drag and drop */
+function dragStart(ev,id){ ev.dataTransfer.setData('text/plain', id); }
+function dragOver(ev){ ev.preventDefault(); ev.currentTarget.classList.add('dragover'); }
+function dragLeave(ev){ ev.currentTarget.classList.remove('dragover'); }
+function drop(ev){
+  ev.preventDefault(); ev.currentTarget.classList.remove('dragover');
+  const t = findTask(ev.dataTransfer.getData('text/plain')); if(!t) return;
+  setCol(t, ev.currentTarget.dataset.col); commit();
+}
+
+/* ---------- templates ---------- */
+function renderTemplates(){
+  document.getElementById('tplGrid').innerHTML = TEMPLATES.map((tp,i)=>
+    '<div class="tpl"><h3>'+tp.name+'</h3><p>'+tp.desc+'</p><ol>'+
+    tp.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>'+
+    '<button class="btn btn-primary" onclick="useTemplate('+i+')">Add to board</button></div>'
+  ).join('');
+}
+function useTemplate(i){
+  const tp = TEMPLATES[i];
+  const t = mkTask(tp.name, tp.cat, 'Medium', '', 'backlog', tp.steps);
+  t.open = true;
+  state.tasks.unshift(t); commit();
+  showTab(document.querySelector('.tab[data-panel=board]'));
+}
+
+/* ---------- roadmap ---------- */
+function renderRoadmap(){
+  document.getElementById('rmap').innerHTML = ROADMAP.map(g=>
+    '<div class="rmap-group"><h3>'+g.title+'</h3><div class="sub">'+g.sub+'</div>'+
+    g.items.map(it=>{
+      const done = !!state.roadmap[it.id];
+      return '<div class="rmap-item '+(done?'done':'')+'"><input type="checkbox" '+(done?'checked':'')+
+        ' onchange="tickRoadmap(\''+it.id+'\')"><div><div class="rt">'+it.t+'</div><div class="rd">'+it.d+'</div></div></div>';
+    }).join('')+'</div>'
+  ).join('');
+}
+function tickRoadmap(id){ state.roadmap[id] = !state.roadmap[id]; commit(); }
+
+/* ---------- tabs ---------- */
+function showTab(btn){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('current', b===btn));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('current', p.id==='panel-'+btn.dataset.panel));
+}
+
+/* ---------- backup ---------- */
+function exportData(){
+  const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'nlc-workboard-backup-'+isoToday()+'.json';
+  a.click(); URL.revokeObjectURL(a.href);
+}
+function importData(input){
+  const f = input.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = ()=>{ try{
+      const s = JSON.parse(r.result);
+      if(!Array.isArray(s.tasks)) throw new Error('bad file');
+      state = {tasks:s.tasks, roadmap:s.roadmap||{}, archive:s.archive||[]};
+      commit();
+    }catch(e){ alert('Not a valid workboard backup file.'); } };
+  r.readAsText(f); input.value='';
+}
+
+/* ---------- render all ---------- */
+function commit(){ save(); renderAll(); }
+function renderAll(){ renderKpis(); renderChart(); renderBoard(); renderTemplates(); renderRoadmap(); }
+renderAll();
+</script>
+</body>
+</html>
