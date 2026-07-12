@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Site Command Center – NLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#24285e; --primary-light:#2e3478; --primary-dark:#1a1e48;
+  --secondary:#F6851F; --secondary-dark:#e0720a;
+  --bg:#f4f5f9; --white:#fff; --dark:#1a1c3a;
+  --gray:#6b7280; --gray-light:#9ca3af; --border:#e0e2ef;
+  --success:#16a34a; --warning:#d97706; --danger:#dc2626;
+  --success-bg:#ecfdf3; --warning-bg:#fff7ea; --danger-bg:#fef1f1;
+  --shadow:0 4px 24px rgba(36,40,94,.08); --shadow-lg:0 12px 48px rgba(36,40,94,.14);
+  --radius:12px; --radius-lg:20px;
+  --transition:.22s cubic-bezier(.4,0,.2,1);
+  --font:'Outfit',-apple-system,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--dark);line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+button{font-family:var(--font);cursor:pointer;}
+input,select{font-family:var(--font);}
+.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+
+/* ── Header ── */
+.topbar{background:var(--white);box-shadow:0 2px 30px rgba(36,40,94,.08);position:sticky;top:0;z-index:100;}
+.topbar-inner{display:flex;align-items:center;gap:14px;padding:14px 0;}
+.mark{width:34px;height:34px;flex-shrink:0;}
+.brand h1{font-size:1.05rem;font-weight:800;color:var(--primary);line-height:1.2;}
+.brand .sub{font-size:.7rem;color:var(--gray-light);letter-spacing:.18em;text-transform:uppercase;font-weight:600;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:.78rem;color:var(--gray);}
+.refresh-pill{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:5px 14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.72rem;color:var(--primary);white-space:nowrap;}
+.topbar-right .adminlink{font-weight:600;color:var(--secondary-dark);}
+@media(max-width:720px){.topbar-right .gen,.refresh-pill{display:none;}}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:var(--white);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(246,133,31,.5) 1px,transparent 1px);background-size:26px 26px;opacity:.09;}
+.hero-inner{position:relative;display:flex;align-items:center;gap:52px;padding:48px 0;flex-wrap:wrap;}
+.gauge{position:relative;width:172px;height:172px;flex-shrink:0;}
+.gauge svg{transform:rotate(-90deg);}
+.gauge .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.gauge .num{font-size:52px;font-weight:900;line-height:1;}
+.gauge .of{font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.12em;text-transform:uppercase;margin-top:4px;font-weight:600;}
+.hero-copy{flex:1;min-width:260px;}
+.verdict-chip{display:inline-flex;align-items:center;gap:7px;border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700;margin-bottom:12px;}
+.hero-copy h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;line-height:1.15;margin-bottom:8px;}
+.hero-copy p{color:rgba(255,255,255,.72);font-size:.95rem;max-width:640px;}
+.penalty-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.penalty{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:4px 13px;font-size:.74rem;color:rgba(255,255,255,.85);}
+.penalty b{color:#fca5a5;font-weight:700;}
+
+/* ── KPI tiles ── */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:-26px;position:relative;z-index:5;}
+.tile{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:20px 22px;border-top:3px solid transparent;}
+.tile .label{font-size:.74rem;font-weight:600;color:var(--gray);letter-spacing:.02em;}
+.tile .value{font-size:1.9rem;font-weight:800;color:var(--primary);line-height:1.25;}
+.tile .note{font-size:.72rem;color:var(--gray-light);}
+.tile.t-danger{border-top-color:var(--danger);}
+.tile.t-warning{border-top-color:var(--warning);}
+.tile.t-success{border-top-color:var(--success);}
+
+/* ── Sections ── */
+.section{margin-top:44px;}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.section-head h3{font-size:1.15rem;font-weight:800;color:var(--primary);}
+.section-head .hint{font-size:.78rem;color:var(--gray-light);}
+.card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:26px 28px;}
+
+/* ── Actions ── */
+.action{display:flex;gap:14px;align-items:flex-start;padding:15px 18px;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:10px;background:var(--white);}
+.action:last-child{margin-bottom:0;}
+.action .ico{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.action h4{font-size:.92rem;font-weight:700;color:var(--dark);}
+.action p{font-size:.8rem;color:var(--gray);line-height:1.55;}
+.sev{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px;}
+.action.critical{border-left:3px solid var(--danger);}
+.action.critical .ico{background:var(--danger-bg);color:var(--danger);}
+.action.critical .sev{background:var(--danger-bg);color:var(--danger);}
+.action.serious{border-left:3px solid var(--secondary-dark);}
+.action.serious .ico{background:#fff2e4;color:var(--secondary-dark);}
+.action.serious .sev{background:#fff2e4;color:var(--secondary-dark);}
+.action.warning{border-left:3px solid var(--warning);}
+.action.warning .ico{background:var(--warning-bg);color:var(--warning);}
+.action.warning .sev{background:var(--warning-bg);color:var(--warning);}
+.action.good{border-left:3px solid var(--success);}
+.action.good .ico{background:var(--success-bg);color:var(--success);}
+.action.good .sev{background:var(--success-bg);color:var(--success);}
+
+/* ── Charts ── */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:860px){.charts{grid-template-columns:1fr;}}
+.chart-title{font-size:.95rem;font-weight:700;color:var(--primary);margin-bottom:2px;}
+.chart-sub{font-size:.75rem;color:var(--gray-light);margin-bottom:16px;}
+.bar-row{display:grid;grid-template-columns:118px 1fr 52px;align-items:center;gap:10px;min-height:28px;border-radius:6px;padding:0 4px;}
+.bar-row:hover{background:var(--bg);}
+.bar-row .bl{font-size:.78rem;color:var(--gray);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.bar-track{height:18px;display:flex;align-items:center;}
+.bar-fill{height:18px;background:var(--primary);border-radius:0 4px 4px 0;min-width:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.bar-row .bv{font-size:.78rem;font-weight:700;color:var(--dark);font-variant-numeric:tabular-nums;}
+.empty-note{font-size:.82rem;color:var(--gray-light);padding:18px 0;text-align:center;}
+
+/* ── Parity ── */
+.parity-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:860px){.parity-grid{grid-template-columns:1fr;}}
+.chiplist{display:flex;flex-wrap:wrap;gap:7px;max-height:220px;overflow-y:auto;padding-top:6px;}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:3px 12px;font-size:.74rem;color:var(--gray);font-family:ui-monospace,'SF Mono',Menlo,monospace;}
+
+/* ── Tables ── */
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.filter-row input,.filter-row select{padding:9px 14px;font-size:.85rem;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--white);outline:none;transition:border-color var(--transition);}
+.filter-row input:focus,.filter-row select:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(246,133,31,.15);}
+.filter-row input{flex:1;min-width:180px;}
+.count-note{font-size:.78rem;color:var(--gray-light);margin-left:auto;}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);}
+table{width:100%;border-collapse:collapse;font-size:.82rem;}
+th{background:var(--bg);color:var(--primary);font-weight:700;text-align:left;padding:10px 14px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;position:sticky;top:0;}
+td{padding:9px 14px;border-top:1px solid var(--border);vertical-align:middle;}
+tbody tr:hover{background:var(--bg);}
+td.mono{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.76rem;color:var(--gray);}
+td.num{font-variant-numeric:tabular-nums;text-align:right;}
+.typechip{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:1px 8px;background:var(--bg);border:1px solid var(--border);color:var(--gray);}
+.okx{display:inline-flex;width:20px;height:20px;border-radius:50%;align-items:center;justify-content:center;}
+.okx.ok{background:var(--success-bg);color:var(--success);}
+.okx.no{background:var(--danger-bg);color:var(--danger);}
+.okx.na{background:var(--bg);color:var(--gray-light);}
+.badnum{color:var(--danger);font-weight:700;}
+.btn-more{display:block;margin:16px auto 0;padding:10px 26px;border:1.5px solid var(--border);border-radius:50px;background:var(--white);font-size:.82rem;font-weight:600;color:var(--primary);transition:var(--transition);}
+.btn-more:hover{border-color:var(--secondary);color:var(--secondary-dark);}
+
+/* ── Tooltip ── */
+#tip{position:fixed;pointer-events:none;background:var(--primary);color:var(--white);font-size:.76rem;padding:7px 12px;border-radius:8px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .12s;z-index:999;max-width:300px;line-height:1.45;}
+#tip b{color:#fdba74;}
+
+/* ── Footer ── */
+.foot{margin:56px 0 0;background:var(--primary);color:rgba(255,255,255,.65);font-size:.8rem;}
+.foot-inner{padding:28px 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;line-height:1.7;}
+.foot code{background:rgba(255,255,255,.1);border-radius:6px;padding:2px 8px;font-size:.74rem;}
+.err-banner{background:var(--danger-bg);border:1px solid #fecaca;color:var(--danger);border-radius:var(--radius);padding:18px 22px;margin:40px auto;max-width:720px;font-size:.9rem;font-weight:600;text-align:center;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="#F6851F">
+        <path d="M50 2 L58 42 L50 50 L42 42 Z"/><path d="M50 98 L42 58 L50 50 L58 58 Z"/>
+        <path d="M2 50 L42 42 L50 50 L42 58 Z"/><path d="M98 50 L58 58 L50 50 L58 42 Z"/>
+        <path d="M16 16 L48 38 L50 50 L38 48 Z" opacity=".82"/><path d="M84 84 L52 62 L50 50 L62 52 Z" opacity=".82"/>
+        <path d="M84 16 L62 48 L50 50 L52 38 Z" opacity=".82"/><path d="M16 84 L38 52 L50 50 L48 62 Z" opacity=".82"/>
+      </g>
+    </svg>
+    <div class="brand">
+      <h1>Site Command Center</h1>
+      <div class="sub">NLC · National Lighting Company</div>
+    </div>
+    <div class="topbar-right">
+      <span class="gen" id="genTime"></span>
+      <span class="refresh-pill">python3 site_audit.py</span>
+      <a class="adminlink" href="admin.html">Content CMS →</a>
+    </div>
+  </div>
+</header>
+
+<div id="app"></div>
+<div id="tip" role="tooltip"></div>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <div><strong style="color:#fff">How this works</strong><br>
+      <code>site_audit.py</code> scans every HTML file for broken references, SEO metadata,
+      EN/AR parity and image weight, then writes <code>dashboard-data.js</code>.
+      Re-run it any time; this page re-reads the data on refresh.</div>
+    <div style="text-align:right">Internal tool, not linked from the public site.<br>
+      Protect like <code>admin.html</code> if deployed (see SERVER-AUTH.md).</div>
+  </div>
+</footer>
+
+<script src="dashboard-data.js"></script>
+<script>
+(function(){
+'use strict';
+var D = window.NLC_AUDIT;
+var app = document.getElementById('app');
+if(!D){
+  app.innerHTML = '<div class="err-banner">dashboard-data.js not found. Run <code>python3 site_audit.py</code> from the site root, then refresh this page.</div>';
+  return;
+}
+var S = D.summary;
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmt(n){return Number(n).toLocaleString('en-US');}
+
+/* inline SVG icons (no icon-font dependency) */
+var IC = {
+  check:'<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  x:'<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  warn:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3L2.5 20h19L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.15" fill="currentColor"/></svg>',
+  alert:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16.4" r="1.15" fill="currentColor"/></svg>',
+  ok:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12.3l2.6 2.6L16.4 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+};
+function okx(v, na){
+  if(na) return '<span class="okx na" title="not applicable">–</span>';
+  return v ? '<span class="okx ok" title="present">'+IC.check+'</span>'
+           : '<span class="okx no" title="missing">'+IC.x+'</span>';
+}
+
+/* ── verdict ── */
+var band = D.score>=85 ? {c:'#4ade80',bg:'rgba(74,222,128,.14)',label:'Healthy',icon:IC.ok,
+                          text:'The site tree is in good shape. Review the remaining items below.'}
+        : D.score>=60 ? {c:'#fbbf24',bg:'rgba(251,191,36,.14)',label:'Fair, needs attention',icon:IC.warn,
+                          text:'The site works but is carrying issues that will bite in production. Work the action list below, worst first.'}
+        : {c:'#f87171',bg:'rgba(248,113,113,.16)',label:'Needs attention',icon:IC.alert,
+           text:'This tree has serious gaps. Work the action list below, worst first; most points come back quickly.'};
+
+document.getElementById('genTime').textContent = 'Generated ' + D.generated;
+
+/* ── hero ── */
+var R=76, CIRC=2*Math.PI*R;
+var penaltyNames={brokenRefs:'broken refs',parity:'AR parity',seoMeta:'title/description',hreflang:'hreflang',altText:'alt text',imgWeight:'image weight'};
+var penaltyHtml = Object.keys(D.penalties).filter(function(k){return D.penalties[k]>0;})
+  .sort(function(a,b){return D.penalties[b]-D.penalties[a];})
+  .map(function(k){return '<span class="penalty">'+esc(penaltyNames[k]||k)+' <b>−'+D.penalties[k]+'</b></span>';}).join('');
+
+var html = '';
+html += '<section class="hero"><div class="container hero-inner">';
+html += '<div class="gauge"><svg width="172" height="172" viewBox="0 0 172 172">';
+html += '<circle cx="86" cy="86" r="'+R+'" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="11"/>';
+html += '<circle cx="86" cy="86" r="'+R+'" fill="none" stroke="'+band.c+'" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+(CIRC*D.score/100).toFixed(1)+' '+CIRC.toFixed(1)+'"/>';
+html += '</svg><div class="val"><div class="num">'+D.score+'</div><div class="of">Health / 100</div></div></div>';
+html += '<div class="hero-copy">';
+html += '<span class="verdict-chip" style="background:'+band.bg+';color:'+band.c+'">'+band.icon+' '+band.label+'</span>';
+html += '<h2>'+fmt(S.totalPages)+' pages scanned · '+fmt(S.refsChecked)+' references checked</h2>';
+html += '<p>'+band.text+'</p>';
+html += '<div class="penalty-row">'+(penaltyHtml||'<span class="penalty">No point deductions</span>')+'</div>';
+html += '</div></div></section>';
+
+/* ── KPI tiles ── */
+function tile(label,value,note,tone){
+  return '<div class="tile'+(tone?' t-'+tone:'')+'"><div class="label">'+label+'</div><div class="value">'+value+'</div>'+(note?'<div class="note">'+note+'</div>':'')+'</div>';
+}
+html += '<main class="container">';
+html += '<div class="kpis">';
+html += tile('Pages', fmt(S.totalPages), S.enPages+' EN · '+S.arPages+' AR');
+html += tile('Broken references', fmt(S.brokenRefs), 'of '+fmt(S.refsChecked)+' checked', S.brokenRefs? 'danger':'success');
+html += tile('EN → AR parity', S.parityPct+'%', D.parity.missingAr.length+' EN pages lack a mirror', S.parityPct>=95?'success':S.parityPct>=60?'warning':'danger');
+html += tile('Alt-text coverage', S.altPct+'%', fmt(S.totalPages)+' pages scanned', S.altPct>=95?'success':'warning');
+html += tile('Pages with SEO gaps', fmt(S.seoIssuePages), 'missing title, description or hreflang', S.seoIssuePages? 'warning':'success');
+html += tile('Images over budget', fmt(S.imgOverBudget),
+             S.imgTotal? fmt(S.imgTotal)+' files · '+fmt(Math.round(S.imgTotalKB/1024))+' MB total' : 'no image files in this tree',
+             S.imgOverBudget? 'warning' : (S.imgTotal? 'success' : undefined));
+html += '</div>';
+
+/* ── actions ── */
+html += '<section class="section"><div class="section-head"><h3>Action items</h3><span class="hint">worst first, auto-generated from the audit</span></div>';
+var sevIcon = {critical:IC.alert, serious:IC.warn, warning:IC.warn, good:IC.ok};
+D.actions.forEach(function(a){
+  html += '<div class="action '+a.severity+'"><div class="ico">'+ (sevIcon[a.severity]||IC.warn) +'</div><div>';
+  html += '<h4>'+esc(a.title)+'<span class="sev">'+a.severity+'</span></h4><p>'+esc(a.detail)+'</p></div></div>';
+});
+html += '</section>';
+
+/* ── charts ── */
+function barChart(title, sub, entries, tipWord){
+  var out = '<div class="card"><div class="chart-title">'+title+'</div><div class="chart-sub">'+sub+'</div>';
+  if(!entries.length) return out + '<div class="empty-note">Nothing to show. That is good news.</div></div>';
+  var max = entries[0][1], total = entries.reduce(function(t,e){return t+e[1];},0);
+  entries.forEach(function(e){
+    var pct = total? Math.round(1000*e[1]/total)/10 : 0;
+    out += '<div class="bar-row" data-tip="<b>'+esc(e[0])+'</b><br>'+fmt(e[1])+' '+tipWord+' · '+pct+'% of total">';
+    out += '<div class="bl" title="'+esc(e[0])+'">'+esc(e[0])+'</div>';
+    out += '<div class="bar-track"><div class="bar-fill" style="width:'+Math.max(100*e[1]/max,.5)+'%"></div></div>';
+    out += '<div class="bv">'+fmt(e[1])+'</div></div>';
+  });
+  return out+'</div>';
+}
+function topEntries(obj, n){
+  var arr = Object.keys(obj).map(function(k){return [k, obj[k]];}).sort(function(a,b){return b[1]-a[1];});
+  if(arr.length>n){
+    var rest = arr.slice(n-1).reduce(function(t,e){return t+e[1];},0);
+    arr = arr.slice(0,n-1); arr.push(['other', rest]);
+  }
+  return arr;
+}
+html += '<section class="section"><div class="section-head"><h3>Where the gaps are</h3><span class="hint">hover a bar for detail · full list in the explorer below</span></div><div class="charts">';
+html += barChart('Missing files by directory','broken reference targets, grouped by top-level folder',topEntries(D.missingByDir,8),'missing refs');
+html += barChart('Missing references by type','what kind of asset each broken reference points at',topEntries(D.missingByType,8),'missing refs');
+html += '</div></section>';
+
+/* ── parity ── */
+html += '<section class="section"><div class="section-head"><h3>Bilingual parity</h3><span class="hint">the AR side mirrors EN 1:1 (STYLE-GUIDE §8)</span></div><div class="parity-grid">';
+html += '<div class="card"><div class="chart-title">EN pages with no Arabic mirror</div><div class="chart-sub">'+D.parity.missingAr.length+' of '+D.parity.expected+' expected under /ar/</div>';
+html += D.parity.missingAr.length? '<div class="chiplist">'+D.parity.missingAr.map(function(p){return '<span class="chip">'+esc(p)+'</span>';}).join('')+'</div>' : '<div class="empty-note">Full parity. Every EN page has its /ar/ mirror.</div>';
+html += '</div>';
+html += '<div class="card"><div class="chart-title">AR pages with no English source</div><div class="chart-sub">'+D.parity.missingEn.length+' orphaned Arabic pages</div>';
+html += D.parity.missingEn.length? '<div class="chiplist">'+D.parity.missingEn.map(function(p){return '<span class="chip">'+esc(p)+'</span>';}).join('')+'</div>' : '<div class="empty-note">No orphans on the Arabic side.</div>';
+html += '</div></div></section>';
+
+/* ── SEO table ── */
+html += '<section class="section"><div class="section-head"><h3>Per-page SEO health</h3><span class="hint">noindex pages (admin) are exempt from checks</span></div><div class="card">';
+html += '<div class="filter-row"><input id="seoSearch" type="search" placeholder="Filter pages…" aria-label="Filter pages"><span class="count-note" id="seoCount"></span></div>';
+html += '<div class="tbl-wrap" style="max-height:440px;overflow-y:auto"><table><thead><tr><th>Page</th><th>Title</th><th>Description</th><th>Hreflang</th><th>Open Graph</th><th style="text-align:right">Alt gaps</th><th style="text-align:right">Broken refs</th><th style="text-align:right">Size</th></tr></thead><tbody id="seoBody"></tbody></table></div>';
+html += '</div></section>';
+
+/* ── broken refs explorer ── */
+html += '<section class="section"><div class="section-head"><h3>Broken references explorer</h3><span class="hint">every internal href/src that points at a file which does not exist</span></div><div class="card">';
+html += '<div class="filter-row">';
+html += '<input id="brSearch" type="search" placeholder="Search source or target…" aria-label="Search broken references">';
+html += '<select id="brType" aria-label="Filter by type"><option value="">All types</option></select>';
+html += '<select id="brDir" aria-label="Filter by directory"><option value="">All directories</option></select>';
+html += '<span class="count-note" id="brCount"></span></div>';
+html += '<div class="tbl-wrap"><table><thead><tr><th>Source page</th><th>Missing target</th><th>Type</th></tr></thead><tbody id="brBody"></tbody></table></div>';
+html += '<button class="btn-more" id="brMore" hidden>Show 100 more</button>';
+html += '</div></section>';
+
+html += '</main>';
+app.innerHTML = html;
+
+/* ── tooltip wiring ── */
+var tip = document.getElementById('tip');
+document.addEventListener('mousemove', function(e){
+  var row = e.target.closest ? e.target.closest('[data-tip]') : null;
+  if(row){
+    tip.innerHTML = row.getAttribute('data-tip');
+    tip.style.opacity = 1;
+    var x = Math.min(e.clientX+14, window.innerWidth-tip.offsetWidth-10);
+    var y = e.clientY - tip.offsetHeight - 10;
+    if(y < 8) y = e.clientY + 18;
+    tip.style.left = x+'px'; tip.style.top = y+'px';
+  } else tip.style.opacity = 0;
+});
+
+/* ── SEO table ── */
+var seoBody = document.getElementById('seoBody'), seoCount = document.getElementById('seoCount');
+function renderSeo(q){
+  q = (q||'').toLowerCase();
+  var rows = D.pages.filter(function(p){return !q || p.path.toLowerCase().indexOf(q)>=0 || (p.title||'').toLowerCase().indexOf(q)>=0;});
+  seoCount.textContent = rows.length+' of '+D.pages.length+' pages';
+  seoBody.innerHTML = rows.map(function(p){
+    var na = p.noindex;
+    return '<tr><td class="mono" title="'+esc(p.title||'(no title)')+'">'+esc(p.path)+(na?' <span class="typechip">noindex</span>':'')+'</td>'
+      +'<td>'+okx(p.hasTitle,na)+'</td><td>'+okx(p.hasDesc,na)+'</td><td>'+okx(p.hasHreflang,na)+'</td><td>'+okx(p.hasOg,na)+'</td>'
+      +'<td class="num">'+(p.altMissing? '<span class="badnum">'+p.altMissing+'</span>' : '0')+'</td>'
+      +'<td class="num">'+(p.brokenRefs? '<span class="badnum">'+fmt(p.brokenRefs)+'</span>' : '0')+'</td>'
+      +'<td class="num">'+p.sizeKB+' KB</td></tr>';
+  }).join('') || '<tr><td colspan="8" class="empty-note">No pages match.</td></tr>';
+}
+document.getElementById('seoSearch').addEventListener('input', function(){renderSeo(this.value);});
+renderSeo('');
+
+/* ── broken refs explorer ── */
+var brBody = document.getElementById('brBody'), brCount = document.getElementById('brCount'),
+    brMore = document.getElementById('brMore'), brSearch = document.getElementById('brSearch'),
+    brType = document.getElementById('brType'), brDir = document.getElementById('brDir');
+Object.keys(D.missingByType).forEach(function(t){brType.insertAdjacentHTML('beforeend','<option>'+esc(t)+'</option>');});
+Object.keys(D.missingByDir).forEach(function(d){brDir.insertAdjacentHTML('beforeend','<option>'+esc(d)+'</option>');});
+var brShown = 100;
+function renderBr(){
+  var q = brSearch.value.toLowerCase(), t = brType.value, d = brDir.value;
+  var rows = D.brokenRefs.filter(function(b){
+    return (!t || b.type===t) && (!d || b.dir===d) &&
+           (!q || b.source.toLowerCase().indexOf(q)>=0 || b.target.toLowerCase().indexOf(q)>=0);
+  });
+  brCount.textContent = fmt(rows.length)+' of '+fmt(D.brokenRefs.length)+' broken references';
+  brBody.innerHTML = rows.slice(0,brShown).map(function(b){
+    return '<tr><td class="mono">'+esc(b.source)+'</td><td class="mono">'+esc(b.target)+'</td><td><span class="typechip">'+esc(b.type)+'</span></td></tr>';
+  }).join('') || '<tr><td colspan="3" class="empty-note">No broken references match. </td></tr>';
+  brMore.hidden = rows.length <= brShown;
+}
+[brSearch,brType,brDir].forEach(function(el){el.addEventListener('input',function(){brShown=100;renderBr();});});
+brMore.addEventListener('click', function(){brShown+=100;renderBr();});
+renderBr();
+})();
+</script>
+</body>
+</html>
