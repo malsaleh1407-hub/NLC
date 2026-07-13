@@ -1,0 +1,26 @@
+name: Site audit
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Fails the build when broken internal references exceed .audit-baseline.
+      # Ratchet the baseline down as the site heals; never raise it silently.
+      - name: Run audit against baseline
+        run: python3 site_audit.py --max-broken "$(cat .audit-baseline)" | tee audit-summary.txt
+
+      - name: Publish job summary
+        if: always()
+        run: |
+          {
+            echo "## NLC site audit"
+            echo '```'
+            cat audit-summary.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
