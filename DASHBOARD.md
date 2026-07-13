@@ -34,6 +34,11 @@ how you catch upload gaps.
   `noindex` pages (admin) are exempt.
 - **Bilingual parity.** Which EN pages have no `/ar/` mirror and which AR
   pages are orphaned (STYLE-GUIDE section 8).
+- **Sitemap coverage.** Both directions: sitemap URLs that would 404
+  because the file does not exist, and indexable pages missing from
+  `sitemap.xml`.
+- **Orphan pages.** Pages no other page links to, reachable only by
+  typing the URL.
 - **Image weight budget.** Flags anything over the 500 KB budget from
   STYLE-GUIDE section 7.1, red-flags anything over 2 MB.
 - **Health score.** 100 minus capped penalties per problem class. The hero
@@ -61,10 +66,21 @@ Then re-run `python3 site_audit.py` and watch the score jump.
 public page. If you deploy it to production, protect it the same way as
 `admin.html` (see `SERVER-AUTH.md`).
 
+## CI guard
+
+`.github/workflows/site-audit.yml` runs the audit on every push and pull
+request. It fails the build when broken internal references exceed the
+number in `.audit-baseline`, so new breakage can never land silently.
+The baseline starts at the current count; lower it as the site heals
+(the audit prints a reminder whenever it can be ratcheted down). Local
+check before pushing:
+
+```bash
+python3 site_audit.py --max-broken "$(cat .audit-baseline)"
+```
+
 ## Ideas for later
 
-- **CI audit.** A GitHub Action that runs `site_audit.py` on every push and
-  fails the build if new broken references appear.
 - **Registrations panel.** Feed the base44 `PortalUser` export (CSV) into a
   second dashboard tab: pending approvals, downloads per datasheet,
   registrations per week.

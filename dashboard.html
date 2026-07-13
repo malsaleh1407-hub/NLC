@@ -108,6 +108,8 @@ input,select{font-family:var(--font);}
 /* ── Parity ── */
 .parity-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media(max-width:860px){.parity-grid{grid-template-columns:1fr;}}
+.tri-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:1000px){.tri-grid{grid-template-columns:1fr;}}
 .chiplist{display:flex;flex-wrap:wrap;gap:7px;max-height:220px;overflow-y:auto;padding-top:6px;}
 .chip{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:3px 12px;font-size:.74rem;color:var(--gray);font-family:ui-monospace,'SF Mono',Menlo,monospace;}
 
@@ -222,7 +224,7 @@ document.getElementById('genTime').textContent = 'Generated ' + D.generated;
 
 /* ── hero ── */
 var R=76, CIRC=2*Math.PI*R;
-var penaltyNames={brokenRefs:'broken refs',parity:'AR parity',seoMeta:'title/description',hreflang:'hreflang',altText:'alt text',imgWeight:'image weight'};
+var penaltyNames={brokenRefs:'broken refs',parity:'AR parity',seoMeta:'title/description',hreflang:'hreflang',altText:'alt text',imgWeight:'image weight',sitemap:'sitemap',orphans:'orphans'};
 var penaltyHtml = Object.keys(D.penalties).filter(function(k){return D.penalties[k]>0;})
   .sort(function(a,b){return D.penalties[b]-D.penalties[a];})
   .map(function(k){return '<span class="penalty">'+esc(penaltyNames[k]||k)+' <b>−'+D.penalties[k]+'</b></span>';}).join('');
@@ -300,6 +302,24 @@ html += '</div>';
 html += '<div class="card"><div class="chart-title">AR pages with no English source</div><div class="chart-sub">'+D.parity.missingEn.length+' orphaned Arabic pages</div>';
 html += D.parity.missingEn.length? '<div class="chiplist">'+D.parity.missingEn.map(function(p){return '<span class="chip">'+esc(p)+'</span>';}).join('')+'</div>' : '<div class="empty-note">No orphans on the Arabic side.</div>';
 html += '</div></div></section>';
+
+/* ── search visibility ── */
+function chipCard(title, sub, list, emptyMsg){
+  var out = '<div class="card"><div class="chart-title">'+title+'</div><div class="chart-sub">'+sub+'</div>';
+  out += list.length? '<div class="chiplist">'+list.map(function(p){return '<span class="chip">'+esc(p)+'</span>';}).join('')+'</div>'
+                    : '<div class="empty-note">'+emptyMsg+'</div>';
+  return out+'</div>';
+}
+var SM = D.sitemap || {present:false, count:0, missingOnDisk:[], notListed:[]};
+html += '<section class="section"><div class="section-head"><h3>Search visibility</h3><span class="hint">sitemap.xml coverage and pages nothing links to</span></div><div class="tri-grid">';
+if(SM.present){
+  html += chipCard('In sitemap, missing on disk', SM.missingOnDisk.length+' of '+SM.count+' sitemap URLs would 404', SM.missingOnDisk, 'Every sitemap URL resolves to a real file.');
+  html += chipCard('On disk, not in sitemap', SM.notListed.length+' indexable pages unlisted', SM.notListed, 'Every indexable page is listed.');
+}else{
+  html += '<div class="card"><div class="chart-title">No sitemap.xml found</div><div class="empty-note">robots.txt advertises one; generate it so crawlers can discover all pages.</div></div>';
+}
+html += chipCard('Orphan pages', (D.orphans||[]).length+' pages no other page links to', D.orphans||[], 'Every page is reachable from another page.');
+html += '</div></section>';
 
 /* ── SEO table ── */
 html += '<section class="section"><div class="section-head"><h3>Per-page SEO health</h3><span class="hint">noindex pages (admin) are exempt from checks</span></div><div class="card">';

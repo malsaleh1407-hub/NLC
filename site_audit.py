@@ -7,8 +7,12 @@ Usage:  python3 site_audit.py            (run from the site root)
 
 Checks: broken internal references, SEO health per page (title, meta
 description, hreflang, canonical, Open Graph, alt text), EN/AR parity,
-image weight budget (STYLE-GUIDE.md: never ship >500 KB), and an
-overall health score. Pure stdlib, no dependencies.
+sitemap coverage, orphan pages, image weight budget (STYLE-GUIDE.md:
+never ship >500 KB), and an overall health score. Pure stdlib.
+
+CI mode:  python3 site_audit.py --max-broken "$(cat .audit-baseline)"
+exits 1 when broken references exceed the baseline (ratchet it down
+as the site heals).
 """
 
 import json
@@ -88,7 +92,8 @@ def audit(root):
     pages = []
     broken = []
     ok_refs = 0
-    existing = {}  # cache: rel path -> bool
+    linked = set()  # page targets referenced from at least one other page
+    existing = {}   # cache: rel path -> bool
 
     def exists(rel):
         if rel not in existing:
@@ -122,6 +127,8 @@ def audit(root):
             target = resolve(ref, rel, root)
             if target is None:
                 continue
+            if target != rel and target.endswith(('.html', '.htm')):
+                linked.add(target)
             if exists(target):
                 ok_refs += 1
             else:
@@ -160,6 +167,30 @@ def audit(root):
     ar_paths = {p['path'] for p in pages if p['path'].startswith('ar/')}
     missing_ar = sorted(p for p in en_paths if 'ar/' + p not in ar_paths)
     missing_en = sorted(p for p in ar_paths if p[3:] not in en_paths)
+
+    # Sitemap coverage
+    page_paths = {p['path'] for p in pages}
+    indexable = {p['path'] for p in pages
+                 if not p['noindex'] and p['path'] not in exempt}
+    sitemap = {'present': False, 'count': 0, 'missingOnDisk': [], 'notListed': []}
+    sm_file = os.path.join(root, 'sitemap.xml')
+    if os.path.exists(sm_file):
+        sitemap['present'] = True
+        with open(sm_file, encoding='utf-8', errors='replace') as f:
+            locs = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', f.read())
+        sm_paths = set()
+        for loc in locs:
+            path = re.sub(r'^https?://[^/]+/?', '', loc.strip())
+            path = path or 'index.html'
+            sm_paths.add(path)
+        sitemap['count'] = len(sm_paths)
+        sitemap['missingOnDisk'] = sorted(p for p in sm_paths
+                                          if p.endswith(('.html', '.htm')) and p not in page_paths)
+        sitemap['notListed'] = sorted(p for p in indexable if p not in sm_paths)
+
+    # Orphan pages: no other page links to them (home page is never an orphan)
+    orphans = sorted(p for p in page_paths
+                     if p not in linked and p != 'index.html' and p not in exempt)
 
     # Image weight audit
     images = {'total': 0, 'totalKB': 0, 'overBudget': []}
@@ -207,6 +238,10 @@ def audit(root):
         'hreflang': min(10, round(no_hreflang * 0.25, 1)),
         'altText': min(10, round(total_alt_missing * 0.1, 1)),
         'imgWeight': min(10, len(images['overBudget']) * 2),
+        'sitemap': min(5, round((len(sitemap['missingOnDisk'])
+                                 + len(sitemap['notListed'])) * 0.05, 1))
+                   if sitemap['present'] else 5,
+        'orphans': min(5, round(len(orphans) * 0.5, 1)),
     }
     score = max(0, round(100 - sum(penalties.values())))
 
@@ -238,6 +273,23 @@ def audit(root):
         actions.append({'severity': 'warning',
                         'title': f'{no_hreflang} pages lack hreflang alternates',
                         'detail': 'Both EN and AR files need <link rel="alternate" hreflang> pairs (STYLE-GUIDE section 8).'})
+    if sitemap['present'] and sitemap['missingOnDisk']:
+        actions.append({'severity': 'warning',
+                        'title': f"sitemap.xml promises {len(sitemap['missingOnDisk'])} pages that do not exist here",
+                        'detail': 'Crawlers hitting those URLs get 404s, which hurts crawl trust. '
+                                  'Either add the files or prune the sitemap. See Search visibility below.'})
+    if sitemap['present'] and sitemap['notListed']:
+        actions.append({'severity': 'warning',
+                        'title': f"{len(sitemap['notListed'])} indexable pages are not in sitemap.xml",
+                        'detail': 'They can still be crawled via links, but listing them speeds discovery.'})
+    if not sitemap['present']:
+        actions.append({'severity': 'warning',
+                        'title': 'No sitemap.xml at the site root',
+                        'detail': 'robots.txt advertises one; generate it so search engines can discover all pages.'})
+    if orphans:
+        actions.append({'severity': 'warning',
+                        'title': f'{len(orphans)} pages are orphaned (no page links to them)',
+                        'detail': 'Visitors can only reach them by typing the URL. Link them from a nav, footer or index.'})
     if total_alt_missing:
         actions.append({'severity': 'warning',
                         'title': f'{total_alt_missing} <img> tags have no alt attribute',
@@ -274,6 +326,8 @@ def audit(root):
         'actions': actions,
         'parity': {'missingAr': missing_ar, 'missingEn': missing_en,
                    'expected': parity_expected},
+        'sitemap': sitemap,
+        'orphans': orphans,
         'images': images,
         'pages': pages,
         'brokenRefs': broken,
@@ -281,7 +335,13 @@ def audit(root):
 
 
 def main():
-    root = sys.argv[1] if len(sys.argv) > 1 else '.'
+    args = sys.argv[1:]
+    max_broken = None
+    if '--max-broken' in args:
+        i = args.index('--max-broken')
+        max_broken = int(args[i + 1])
+        del args[i:i + 2]
+    root = args[0] if args else '.'
     data = audit(root)
     out = os.path.join(root, 'dashboard-data.js')
     with open(out, 'w', encoding='utf-8') as f:
@@ -301,8 +361,25 @@ def main():
     print(f"  SEO issue pages:   {s['seoIssuePages']}")
     print(f"  Images:            {s['imgTotal']} files, {s['imgTotalKB']} KB total, "
           f"{s['imgOverBudget']} over 500 KB budget")
+    sm = data['sitemap']
+    if sm['present']:
+        print(f"  Sitemap:           {sm['count']} URLs, {len(sm['missingOnDisk'])} missing on disk, "
+              f"{len(sm['notListed'])} pages not listed")
+    else:
+        print("  Sitemap:           sitemap.xml not found")
+    print(f"  Orphan pages:      {len(data['orphans'])}")
     print(f"  Wrote {out}")
     print("  Open dashboard.html in a browser to explore.")
+
+    if max_broken is not None:
+        n = s['brokenRefs']
+        if n > max_broken:
+            print(f"\nFAIL: {n} broken references exceed the baseline of {max_broken}.")
+            print("Fix the new breakage, or raise .audit-baseline if intentional.")
+            sys.exit(1)
+        if n < max_broken:
+            print(f"\nBaseline can ratchet down: .audit-baseline is {max_broken}, actual is {n}.")
+        print("Baseline check passed.")
 
 
 if __name__ == '__main__':
