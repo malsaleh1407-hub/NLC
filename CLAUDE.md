@@ -9,8 +9,8 @@ Path: `/Users/mohammedalsaleh/Documents/Claude/Projects/Website`
 
 ```
 Website/
-  products.html          ← EN product catalog (142 products)
-  ar/products.html       ← AR product catalog (same 142 products, RTL)
+  products.html          ← EN product catalog (156 products)
+  ar/products.html       ← AR product catalog (same 156 products, RTL)
   product/{key}.html     ← EN product detail pages
   ar/product/{key}.html  ← AR product detail pages
   images/products/       ← All product photos (PNG, ~1200×1200)
@@ -46,61 +46,61 @@ Website/
 
 ## Product Catalog Categories
 
-| data-cat value       | EN Label              |
-|----------------------|-----------------------|
-| indoor               | Indoor / Downlight    |
-| outdoor-downlight    | Outdoor Service Light |
-| wall-light           | Wall Light            |
-| emergency            | Emergency             |
-| high-bay             | High Bay              |
-| track-light          | Track Light           |
-| flood-light          | Flood Light           |
-| projector            | Projector             |
-| street-light         | Street Light          |
-| solar                | Solar                 |
-| wall-pack            | Wall Pack             |
-| bollard              | Bollard               |
-| linear               | Linear Light          |
-| strip-light          | Strip Light           |
-| spike                | Spike                 |
-| outdoor-collection   | Outdoor Collection    |
+In catalog order. Run `python3 scripts/check_catalog.py` for the live list —
+that reads `products.html`, so it can never go stale the way this table can.
+
+| data-cat value | EN Label        | | data-cat value | EN Label      |
+|----------------|-----------------|-|----------------|---------------|
+| indoor         | Downlight       | | high-bay       | High Bay      |
+| panel          | Panels          | | flood-light    | Flood Light   |
+| track-light    | Tracking System | | projector      | Projector     |
+| linear         | Linear Light    | | street-light   | Street Light  |
+| strip-light    | Flexibles       | | solar          | Solar         |
+| pendant        | Pendant         | | underwater     | Under Water   |
+| block-heads    | Bulkhead        | | in-ground      | In-Ground     |
+| wall-light     | Wall Light      | | marco-system   | Marco System  |
+| wall-pack      | Wall Pack       | | emergency      | Emergency     |
+| bollard        | Bollard         | | canopy         | Canopy        |
+| spike          | Spike           | | stadium        | Stadium Light |
+| post-top       | Post Top        | |                |               |
 
 **Note:** `data-cat` value is never changed when renaming a category label (keeps filters working).
+Rename the `<h2 class="cat-title">` and the matching `.f-btn` label instead.
+
+A product may appear under two categories (SLEEK is under both `post-top` and
+`high-bay`). The browse order keeps only its first appearance.
 
 ---
 
-## Product Pages Template
+## Product Pages
 
-The core builder is `/tmp/build_products.py` — `build_product(PRODUCT)` generates both EN + AR pages.
+New pages are **cloned from an existing product**, not generated from a
+template stored in a script. Pick the closest existing product, clone it, then
+edit the text. New markup therefore always matches the current design, and the
+tooling never needs updating when the page design changes.
 
-Each `PRODUCT` dict contains:
-```python
-{
-  'key': 'product-key',          # used for filename, image, datasheet
-  'name': 'DISPLAY NAME',
-  'cat': 'data-cat-value',
-  'cat_label': 'EN Category',
-  'cat_label_ar': 'AR Category',
-  'description': 'EN description...',
-  'description_ar': 'AR description...',
-  'badges': [('IK', '08'), ('IP', '65'), ('CRI', '80+')],
-  'specs': [('Wattage', '30W'), ...],
-  'specs_ar': [('الطاقة', '30W'), ...],
-  'gallery': ['key', 'key-g2', 'key-g3'],   # keys for gallery images
-  'has_datasheet': True,
-}
-```
+If a page's design needs to change, change it on a real page and clone from
+that one afterwards.
 
 ---
 
 ## Adding a New Product
 
-1. Add product photo to `images/products/{key}.png` (1200×1200 max)
-2. Add datasheet PDF to `datasheets/{key}.pdf`
-3. Define the `PRODUCT` dict and call `build_product(PRODUCT)` from `/tmp/build_products.py`
-4. Add catalog card to both `products.html` and `ar/products.html` using `add_to_cat()` pattern
-5. Add to `/tmp/product_order.txt` in the correct position
-6. Run `/tmp/inject_prev_next.py` to update all prev/next arrows
+Full walkthrough in `.claude/skills/nlc-catalog/SKILL.md`. Short version:
+
+1. Add photo to `images/products/{key}.png` (1200×1200 max, keep transparency)
+   and datasheet to `datasheets/{key}.pdf`
+2. Write a spec: `{"key","name","name_ar","cat","template"}` where `template`
+   is the existing product to clone
+3. `python3 scripts/new_product.py spec.json` → preview, then `--write`
+4. **Edit the new pages** — description, specs and badges are still the
+   template's
+5. `python3 scripts/gen_product_order.py`
+6. `python3 scripts/inject_prev_next.py --write`
+7. `python3 scripts/check_catalog.py` and add both URLs to `sitemap.xml`
+
+`new_product.py` and `inject_prev_next.py` preview by default and write nothing
+until passed `--write`.
 
 ---
 
@@ -113,7 +113,7 @@ img.thumbnail((1200, 1200), Image.LANCZOS)
 if img.mode != 'RGBA':
     img = img.convert('RGBA')
 # IMPORTANT: do NOT convert to RGB — product photos have transparent backgrounds
-img.save('/Users/mohammedalsaleh/Documents/Claude/Projects/Website/images/products/{key}.png', 'PNG', optimize=True)
+img.save('images/products/{key}.png', 'PNG', optimize=True)   # run from the site root
 ```
 
 Gallery photos use suffix `-g2`, `-g3`, etc.: `images/products/{key}-g2.png`
@@ -122,31 +122,45 @@ Gallery photos use suffix `-g2`, `-g3`, etc.: `images/products/{key}-g2.png`
 
 ## Prev/Next Navigation
 
-All 142 product pages have floating prev/next arrows (CSS logical properties — auto-RTL flip).
+All product pages carry floating prev/next arrows (CSS logical properties —
+auto-RTL flip). The chain follows catalog order and wraps from the last product
+back to the first.
 
-- Order list: `/tmp/product_order.txt` (141 entries)
-- Injection script: `/tmp/inject_prev_next.py`
-- Re-run after adding new products to update arrows
+- Order list: `scripts/product_order.txt` — generated, do not hand-edit
+- Injection script: `scripts/inject_prev_next.py`
+- The block sits between `<!-- nlc:prev-next start -->` / `<!-- ... end -->`
+  markers, so re-running replaces it instead of stacking a second set
+- Re-run after adding, removing or reordering any product
 
 ---
 
-## Key Scripts (in /tmp)
+## Key Scripts (in `scripts/`)
 
-| Script                    | Purpose                                          |
-|---------------------------|--------------------------------------------------|
-| `build_products.py`       | Core product page builder (EN + AR)              |
-| `inject_prev_next.py`     | Injects prev/next arrows into all product pages  |
-| `product_order.txt`       | Ordered list of all product keys                 |
-| `add_legacy_catalog.py`   | Added 18 legacy products to both catalogs        |
-| `catalog_reorg.py`        | Created Projector category, moved cards          |
-| `inject_full.py`          | Scans gallery images, injects pd-gallery markup  |
-| `spec_legacy.py`          | Built 18 legacy product pages from scanned PDFs  |
+Committed to the repo, standard library only. Earlier versions of these lived
+in `/tmp` and were lost whenever the machine or session reset.
+
+| Script                    | Purpose                                              |
+|---------------------------|------------------------------------------------------|
+| `new_product.py`          | Adds a product — clones pages + catalog cards        |
+| `gen_product_order.py`    | Rebuilds `product_order.txt` from catalog order      |
+| `inject_prev_next.py`     | Injects/refreshes prev/next arrows on all pages      |
+| `check_catalog.py`        | Audits missing pages, photos, orphans, EN/AR drift   |
+| `nlc_catalog.py`          | Shared catalog parsing used by the above             |
+| `product_order.txt`       | Generated browse order (156 products)                |
+
+`products.html` is the single source of truth — the scripts read it rather than
+keeping a parallel list, so the catalog and the tooling cannot drift apart.
 
 ---
 
 ## Notes
 
 - **No build system** — pure static HTML/CSS/JS, edit files directly
+- **The git repo holds only the top-level pages.** `product/`, `ar/`,
+  `images/`, `datasheets/` and `js/` exist on the local machine but are not
+  committed, so a cloud session sees `products.html` without the pages it links
+  to. `scripts/check_catalog.py` skips the checks it cannot run and says which.
+  Committing those directories would let any session work on product pages.
 - Gallery markup: `.pd-gallery > .gal-main` (new template) — thumbnail strips were removed from all pages
 - `onerror` on catalog card images: falls back to lightbulb icon placeholder
 - All product image URLs were localized — no CDN references remain on product pages
