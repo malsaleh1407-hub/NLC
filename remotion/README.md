@@ -17,6 +17,34 @@ Brand tokens mirror the website: navy `#24285e`, orange `#F6851F`, Outfit font
 | `InstagramReel` | 1080×1920 · 30 fps | 15 s | Vertical hook-first cutdown for Reels/Stories/TikTok |
 | `InstagramPost` | 1080×1080 · 30 fps | 12 s | **Seamless loop** square post (every animation is periodic) |
 | `LinkedInPost` | 1920×1080 · 30 fps | 20 s | B2B cut: credibility → stats → portfolio → partnership CTA |
+| `ArabicReel` | 1080×1920 · 30 fps | 15.6 s | النسخة العربية — RTL vertical reel, Cairo typeface |
+| `SaudiProjectMap` | 1920×1080 · 30 fps | 18 s | Geographic proof film — the Kingdom ignites city by city |
+| `ProductSpot` | 1080×1350 · 30 fps | 8 s | **Per-product spot**, rendered once per catalogue product |
+
+### The product-video factory
+
+`ProductSpot` is parameterised, and `src/data/products.ts` is derived from the
+live `products.html` catalogue (156 products, 23 categories). One command
+renders a spot for every product:
+
+```bash
+npm run render:products                    # all 156 → out/products/<key>.mp4
+node scripts/render-products.mjs comet     # a single product
+node scripts/render-products.mjs --cat=high-bay
+```
+
+Each spot's hero visual is the product's **photometric distribution curve** —
+the polar intensity plot a lighting engineer actually reads — drawn live, swept
+by a scan ray, with the beam angle computed from the curve itself
+(`beamAngle()` measures full-width-half-maximum). A street light's asymmetric
+road-side throw and a high bay's tight downward lobe produce visibly different
+films from the same template.
+
+> **Accuracy note.** The distribution shapes in `src/data/products.ts` are
+> *category-typical* illustrations, not measured photometry, and the on-screen
+> footnote says so. Wire real IES/LDT data (or per-product `specs`) in before
+> using these as spec claims — `specs` is deliberately empty by default so the
+> template can never invent a wattage or lumen figure.
 
 ## Commands
 
@@ -41,8 +69,11 @@ headless browser automatically.
 ```
 src/
   brand.ts                  # colors, font stack, taglines
-  fonts.ts                  # local Outfit font loading (no network needed)
+  fonts.ts                  # local Outfit + Cairo font loading (no network needed)
+  data/products.ts          # 156 products derived from products.html
   components/               # reusable animated pieces
+    Photometric.tsx         # animated polar light-distribution plot
+    SaudiMap.tsx            # KSA outline (real lon/lat) + city ignition
     Spark.tsx               # flickering ignition point-light
     BulbDraw.tsx            # self-drawing bulb, "N" filament, ignition flash
     Skyline.tsx             # procedural skyline w/ arch tower, ignition wave

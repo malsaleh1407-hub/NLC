@@ -14,6 +14,8 @@ export const TypeReveal: React.FC<{
   letterSpacing?: string;
   maxWidth?: number | string;
   glow?: boolean;
+  rtl?: boolean;
+  fontFamily?: string;
 }> = ({
   text,
   startAt = 0,
@@ -25,6 +27,8 @@ export const TypeReveal: React.FC<{
   letterSpacing = '0.01em',
   maxWidth = '86%',
   glow = false,
+  rtl = false,
+  fontFamily = FONT,
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(' ');
@@ -32,16 +36,17 @@ export const TypeReveal: React.FC<{
   return (
     <div
       style={{
-        fontFamily: FONT,
+        fontFamily,
         fontSize,
         fontWeight,
         color,
         letterSpacing,
         textAlign: align,
         maxWidth,
-        lineHeight: 1.22,
+        lineHeight: rtl ? 1.45 : 1.22,
         display: 'flex',
         flexWrap: 'wrap',
+        direction: rtl ? 'rtl' : 'ltr',
         justifyContent: align === 'center' ? 'center' : 'flex-start',
         columnGap: '0.28em',
       }}

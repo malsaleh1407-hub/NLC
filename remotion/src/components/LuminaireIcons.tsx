@@ -3,9 +3,9 @@ import {interpolate, useCurrentFrame} from 'remotion';
 import {NAVY, ORANGE, ORANGE_GLOW, WHITE, FONT} from '../brand';
 
 // Procedural luminaire silhouettes, each casting an animated light cone.
-type Kind = 'street' | 'flood' | 'highbay' | 'linear';
+export type Kind = 'street' | 'flood' | 'highbay' | 'linear';
 
-const Fixture: React.FC<{kind: Kind; lit: number}> = ({kind, lit}) => {
+export const Fixture: React.FC<{kind: Kind; lit: number}> = ({kind, lit}) => {
   const stroke = WHITE;
   const cone = (
     <linearGradient id={`cone-${kind}`} x1="0" y1="0" x2="0" y2="1">

@@ -9,7 +9,10 @@
     "render:reel": "remotion render src/index.ts InstagramReel out/nlc-instagram-reel.mp4",
     "render:square": "remotion render src/index.ts InstagramPost out/nlc-instagram-post.mp4",
     "render:linkedin": "remotion render src/index.ts LinkedInPost out/nlc-linkedin-post.mp4",
-    "render:all": "npm run render:youtube && npm run render:reel && npm run render:square && npm run render:linkedin"
+    "render:arabic": "remotion render src/index.ts ArabicReel out/nlc-arabic-reel.mp4",
+    "render:map": "remotion render src/index.ts SaudiProjectMap out/nlc-saudi-project-map.mp4",
+    "render:products": "node scripts/render-products.mjs",
+    "render:all": "npm run render:youtube && npm run render:reel && npm run render:square && npm run render:linkedin && npm run render:arabic && npm run render:map"
   },
   "dependencies": {
     "react": "18.3.1",
