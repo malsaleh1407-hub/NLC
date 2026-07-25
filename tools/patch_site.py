@@ -551,6 +551,9 @@ def main() -> int:
                     help="Folder holding contact.php etc.")
     ap.add_argument("--fetch", action="store_true", help="Try to recover missing CMS photos")
     ap.add_argument("--in-place", action="store_true", help="Also patch the original Website folder")
+    ap.add_argument("--no-zip", action="store_true",
+                    help="Patch and verify only; skip packaging. Use when your own "
+                         "publish.sh builds the archive.")
     args = ap.parse_args()
 
     site = args.site.expanduser().resolve()
@@ -703,25 +706,34 @@ def main() -> int:
     print("  clean — nothing credential-like is staged\n")
 
     # ---- Package ----------------------------------------------------------
-    print("=" * 74)
-    print("PACKAGING")
-    print("=" * 74)
-    out = args.out.expanduser().resolve()
-    n, mb = make_zip(staging, out)
-    print(f"  {n} files -> {out}  ({mb:.1f} MB)")
+    if args.no_zip:
+        print("=" * 74)
+        print("PACKAGING SKIPPED (--no-zip)")
+        print("=" * 74)
+        print("  Source is patched. Build the archive with your own publish.sh.")
+        out = None
+    else:
+        print("=" * 74)
+        print("PACKAGING")
+        print("=" * 74)
+        out = args.out.expanduser().resolve()
+        n, mb = make_zip(staging, out)
+        print(f"  {n} files -> {out}  ({mb:.1f} MB)")
 
     # ---- Result -----------------------------------------------------------
     print("\n" + "=" * 74)
     if missing:
-        print(f"BUILT WITH {len(missing)} MISSING FILE(S)")
+        print(f"{len(missing)} REFERENCE(S) STILL UNRESOLVED")
         print("=" * 74)
-        print("The ZIP is usable, but those references will 404 until you add the")
-        print("files to the Website folder and re-run this script.")
+        noun = "Your archive" if args.no_zip else "The ZIP"
+        print(f"{noun} will work, but those references will 404 until you add")
+        print("the files to the Website folder and re-run this script.")
     else:
         print("BUILT CLEAN — every internal reference resolves")
         print("=" * 74)
 
-    print(f"\nUpload:  {out}")
+    if out:
+        print(f"\nUpload:  {out}")
     print("Next:    follow deploy/DEPLOY.md\n")
     return 0
 
