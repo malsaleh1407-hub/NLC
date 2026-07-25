@@ -132,6 +132,23 @@ one would have been downloadable by anyone. `admin.html` in particular has a
 client-side-only password gate whose password sits in plain text in
 `SERVER-AUTH.md` — it stays off the server until real server-side auth exists.
 
+### Credentials are never packaged
+
+`private/`, `_backup/`, `_audit/` and `admin/` are excluded unconditionally.
+
+`private/` holds the live CMS token and admin credential hash. On the server
+those sit behind `private/.htaccess` → `Require all denied`, but **that
+protection does not travel inside a ZIP** — anyone who opens the archive reads
+them as plain text. `_backup/` is worse still, since it accumulates dated
+copies of every secret ever rotated.
+
+Provision `private/` on the server directly, once, out-of-band.
+
+A fail-closed scan runs before packaging and **aborts the build** if anything
+credential-shaped is staged, whatever directory it turned up in. A blocklist
+only stops what it was told about; the scan catches the rest. If it stops on a
+false positive, add the path to `SECRET_ALLOWLIST` in `tools/patch_site.py`.
+
 ---
 
 ## Step 2 — Create the database

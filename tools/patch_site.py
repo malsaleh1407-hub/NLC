@@ -71,8 +71,38 @@ EXCLUDE_NAMES = {
 EXCLUDE_SUFFIXES = {".py", ".pyc", ".pptx", ".xlsx", ".docx", ".csv", ".sql",
                     ".log", ".bak", ".orig", ".tmp"}
 
-EXCLUDE_DIRS = {".git", ".github", "__pycache__", "node_modules", "deploy",
-                "tools", ".vscode", ".idea", ".claude"}
+EXCLUDE_DIRS = {
+    ".git", ".github", "__pycache__", "node_modules", "deploy",
+    "tools", ".vscode", ".idea", ".claude",
+    # Credential and working directories.
+    #
+    # private/ holds the live CMS token and the admin credential hash. On the
+    # server it is protected by private/.htaccess, but that protection does not
+    # travel inside a ZIP — anyone who opens the archive reads the tokens in
+    # plain text. It must be provisioned on the server out-of-band, never
+    # shipped in a build artifact.
+    #
+    # _backup/ is worse: it accumulates dated copies of every secret ever
+    # rotated, so shipping it would expose the old values as well as the new.
+    "private", "_backup", "_audit", "admin", "_site", ".netlify",
+}
+
+# Fail-closed secret scan.
+#
+# A blocklist only stops what it has been told about. This pattern is checked
+# against everything actually staged, and packaging aborts on a match — so a
+# credential file in a directory nobody thought of still cannot ship.
+SECRET_PATTERNS = re.compile(
+    r"(^\.env)|(^\.htpasswd$)|(secret)|(admin-auth)|(credential)|(_rsa$)"
+    r"|(\.pem$)|(\.key$)|(\.p12$)|(\.pfx$)|(token)|(password)",
+    re.I,
+)
+
+# Files whose names trip the pattern but are demonstrably safe to publish.
+SECRET_ALLOWLIST = {
+    "js/dl-gate.js",       # references a gate, contains no credential
+    "tokens.css",          # design tokens
+}
 
 # HTML files that are patched but never shipped — skip them entirely.
 SKIP_PATCH = {"NLC-Brand-Guidelines-source.html"}
@@ -474,6 +504,30 @@ def add_backend(staging: Path, deploy: Path) -> list[str]:
     return added
 
 
+def scan_for_secrets(staging: Path) -> list[str]:
+    """
+    Last line of defence before anything is packaged.
+
+    Returns the staged paths that look like credentials. Packaging must abort
+    on a non-empty result: a ZIP is an outbound file, and unlike the server
+    there is no .htaccess inside it to keep anyone out.
+    """
+    hits = []
+    for f in sorted(staging.rglob("*")):
+        if not f.is_file():
+            continue
+        rel = f.relative_to(staging).as_posix()
+        if rel in SECRET_ALLOWLIST:
+            continue
+        # Match on the filename, and on any directory component, so that
+        # private/backups/20260630 is caught by the directory as well.
+        if SECRET_PATTERNS.search(f.name) or any(
+            SECRET_PATTERNS.search(part) for part in f.relative_to(staging).parts[:-1]
+        ):
+            hits.append(rel)
+    return hits
+
+
 def make_zip(staging: Path, out: Path) -> tuple[int, float]:
     if out.exists():
         out.unlink()
@@ -624,6 +678,29 @@ def main() -> int:
             print("    'absent' is only a problem if the page has no fallback;")
             print("    products-order.json is optional by design.")
         print()
+
+    # ---- Secret scan — fail closed ----------------------------------------
+    print("=" * 74)
+    print("SECRET SCAN")
+    print("=" * 74)
+    leaks = scan_for_secrets(staging)
+    if leaks:
+        print(f"  ABORTED — {len(leaks)} credential-like file(s) staged:\n")
+        for p in leaks[:25]:
+            print(f"    {p}")
+        if len(leaks) > 25:
+            print(f"    … and {len(leaks) - 25} more")
+        print(
+            "\n  These would be readable by anyone who opens the ZIP. On the"
+            "\n  server they may sit behind .htaccess, but that protection does"
+            "\n  not travel inside an archive."
+            "\n"
+            "\n  Add the directory to EXCLUDE_DIRS, or the file to"
+            "\n  SECRET_ALLOWLIST if it genuinely holds no credential."
+            "\n\n  No ZIP was written."
+        )
+        return 2
+    print("  clean — nothing credential-like is staged\n")
 
     # ---- Package ----------------------------------------------------------
     print("=" * 74)
