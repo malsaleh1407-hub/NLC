@@ -340,6 +340,40 @@ def check_refs(root: Path) -> tuple[dict[str, set[str]], int]:
     return missing, len(refs)
 
 
+# Files pulled in at runtime by JavaScript rather than by markup. These are
+# reported separately: markup references are hard failures, whereas a fetch()
+# is usually written with a fallback and its absence may be entirely intended.
+FETCH_RE = re.compile(
+    r"""(?:fetch|\.open)\s*\(\s*['"]([^'"]+?)(?:\?[^'"]*)?['"]""",
+    re.I,
+)
+
+
+def check_runtime_fetches(root: Path) -> list[tuple[str, str, bool]]:
+    """Return (target, referencing file, exists) for each local fetch() target."""
+    found: dict[tuple[str, str], bool] = {}
+
+    for f in sorted(root.rglob("*")):
+        if not f.is_file() or f.suffix.lower() not in {".html", ".htm", ".js"}:
+            continue
+
+        text = f.read_text(encoding="utf-8", errors="ignore")
+
+        for m in FETCH_RE.finditer(text):
+            target = m.group(1).strip()
+            low = target.lower()
+            if low.startswith(("http://", "https://", "//", "data:", "blob:")):
+                continue
+            # Server endpoints are generated, not files on disk.
+            if low.lstrip("/") in {"contact.php", "subscribe.php"}:
+                continue
+
+            probe = (root / target.lstrip("/")) if target.startswith("/") else (f.parent / target)
+            found[(target, f.relative_to(root).as_posix())] = probe.exists()
+
+    return [(t, src, ok) for (t, src), ok in sorted(found.items())]
+
+
 # ==========================================================================
 # Optional recovery of the CMS photos
 # ==========================================================================
@@ -579,6 +613,17 @@ def main() -> int:
             if len(items) > 6:
                 print(f"        … and {len(items) - 6} more")
             print()
+
+    # Runtime fetch() targets — informational, never a build failure.
+    runtime = check_runtime_fetches(staging)
+    if runtime:
+        print("  Runtime fetch() targets (JavaScript, not markup):")
+        for target, src, ok in runtime:
+            print(f"    {'ok     ' if ok else 'absent '} {target:<34} <- {src}")
+        if any(not ok for _, _, ok in runtime):
+            print("    'absent' is only a problem if the page has no fallback;")
+            print("    products-order.json is optional by design.")
+        print()
 
     # ---- Package ----------------------------------------------------------
     print("=" * 74)
