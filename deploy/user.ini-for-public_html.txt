@@ -1,0 +1,33 @@
+; ============================================================================
+; NLC Website — PHP settings
+;
+; UPLOAD TO public_html AND RENAME TO EXACTLY:  .user.ini
+;
+; Why a .user.ini and not php_value lines in .htaccess: cPanel runs PHP through
+; PHP-FPM, where php_value directives in .htaccess cause a 500 error. .user.ini
+; is the supported route.
+;
+; Changes can take up to 5 minutes to apply (PHP caches this file). To apply
+; immediately, restart PHP from cPanel → Select PHP Version.
+; ============================================================================
+
+; The form accepts attachments up to 10 MB. post_max_size must exceed
+; upload_max_filesize to leave room for the other fields, or large uploads
+; arrive as an empty $_POST with no error.
+upload_max_filesize = 12M
+post_max_size = 14M
+max_file_uploads = 2
+
+; Generous enough for an SMTP handshake over a slow link.
+max_execution_time = 60
+memory_limit = 128M
+
+; Never render PHP errors into the response — they leak paths and credentials.
+; contact.php logs everything to the private log file instead.
+display_errors = Off
+log_errors = On
+
+; Session cookies, in case you add an admin area later.
+session.cookie_httponly = 1
+session.cookie_secure = 1
+session.cookie_samesite = Lax

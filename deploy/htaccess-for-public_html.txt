@@ -1,0 +1,161 @@
+# =============================================================================
+# NLC Website — Apache configuration
+#
+# UPLOAD THIS FILE TO public_html AND RENAME IT TO EXACTLY:  .htaccess
+# (leading dot, no extension)
+#
+# In cPanel File Manager you must tick Settings → "Show Hidden Files (dotfiles)"
+# before you can see it after uploading.
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# 1. Index order — index.html wins
+#
+# cPanel's default tries index.php first. If any file from the old Laravel site
+# survived in public_html, that stale index.php would be served instead of the
+# new site. This makes that impossible.
+# -----------------------------------------------------------------------------
+DirectoryIndex index.html index.htm index.php
+
+
+# -----------------------------------------------------------------------------
+# 2. Force HTTPS
+# -----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # --- Canonical hostname ---------------------------------------------------
+    # Active rule below sends www → non-www (https://nlc.com.sa).
+    # If you would rather standardise on www, comment these two lines out and
+    # uncomment the pair beneath them.
+    RewriteCond %{HTTP_HOST} ^www\.nlc\.com\.sa$ [NC]
+    RewriteRule ^ https://nlc.com.sa%{REQUEST_URI} [R=301,L]
+
+    # RewriteCond %{HTTP_HOST} ^nlc\.com\.sa$ [NC]
+    # RewriteRule ^ https://www.nlc.com.sa%{REQUEST_URI} [R=301,L]
+
+    # --- Drop any stale Laravel front-controller route ------------------------
+    # Harmless if no index.php exists; prevents a leftover one being reachable.
+    RewriteRule ^index\.php$ / [R=301,L]
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 3. Never list a directory's contents
+# -----------------------------------------------------------------------------
+Options -Indexes
+
+
+# -----------------------------------------------------------------------------
+# 4. Block source, data and documentation files
+#
+# These must never be downloadable. Ideally they are not uploaded at all (the
+# packaging script excludes them) — this is the belt-and-braces layer.
+# -----------------------------------------------------------------------------
+<FilesMatch "\.(md|py|sql|log|json|lock|ini|sh|bak|old|orig|tmp|dist|pptx|docx|xlsx|csv|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# Config must never be served, wherever it ends up.
+<FilesMatch "^(config|config\.sample)\.php$">
+    Require all denied
+</FilesMatch>
+
+# Dotfiles: .git, .env, .htpasswd, editor droppings.
+# .well-known is excluded — SSL certificate renewal depends on it.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule "(^|/)\.(?!well-known)" - [F,L]
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 5. Security headers
+# -----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+    # Tell browsers to stay on HTTPS for a year.
+    # Only enable once you have confirmed HTTPS works on every page — while
+    # this is active a browser will refuse to fall back to HTTP.
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Stop proxies caching a form response.
+    <FilesMatch "\.php$">
+        Header always set Cache-Control "no-store, no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 6. Compression
+# -----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff font/woff2 application/font-woff
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 7. Browser caching
+#
+# HTML is deliberately short-lived so content edits appear immediately.
+# Static assets are cached hard — rename the file if you need to bust it.
+# -----------------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    ExpiresByType text/html                 "access plus 10 minutes"
+
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 1 year"
+    ExpiresByType image/gif                 "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType image/webp                "access plus 1 year"
+    ExpiresByType image/x-icon              "access plus 1 year"
+
+    ExpiresByType text/css                  "access plus 1 month"
+    ExpiresByType application/javascript    "access plus 1 month"
+
+    ExpiresByType font/woff                 "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType application/font-woff2    "access plus 1 year"
+
+    ExpiresByType application/pdf           "access plus 1 week"
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 8. Correct MIME types
+#
+# A wrong Content-Type on woff2 is the usual reason a custom font silently
+# falls back to a system face.
+# -----------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType font/woff2                      .woff2
+    AddType font/woff                       .woff
+    AddType image/svg+xml                   .svg
+    AddType image/webp                      .webp
+    AddType application/pdf                 .pdf
+
+    AddDefaultCharset UTF-8
+    AddCharset UTF-8 .html .css .js .json .xml .svg
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 9. Error pages
+#
+# Uncomment once 404.html exists in public_html.
+# -----------------------------------------------------------------------------
+# ErrorDocument 404 /404.html
