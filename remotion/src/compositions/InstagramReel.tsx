@@ -73,7 +73,7 @@ const Outro: React.FC = () => {
       <ParticleField count={20} opacity={0.4} seed="r4" />
       <CinematicOverlay vignette={0.5} />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingBottom: 120}}>
-        <LogoLockup startAt={2} scale={0.86} />
+        <LogoLockup startAt={2} height={190} />
       </AbsoluteFill>
       <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 280}}>
         <div

@@ -5,6 +5,7 @@ import {loadBrandFonts} from '../fonts';
 import {CinematicOverlay, NavyBackdrop} from '../components/Atmosphere';
 import {Fixture, type Kind} from '../components/LuminaireIcons';
 import {beamAngle, Photometric, type Profile} from '../components/Photometric';
+import {NLCLogo} from '../components/NLCLogo';
 import {ParticleField} from '../components/ParticleField';
 import {TypeReveal} from '../components/TypeReveal';
 
@@ -157,12 +158,12 @@ export const ProductSpot: React.FC<ProductSpotProps> = ({label, catLabel, profil
         >
           Typical distribution — full photometric data in the datasheet
         </div>
-        <div style={{display: 'flex', alignItems: 'center', gap: 18, opacity: ctaIn}}>
-          <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 44, color: WHITE, lineHeight: 1}}>
-            N<span style={{color: ORANGE}}>L</span>C
+        <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+          <NLCLogo height={62} variant="reversed" showDescriptor={false} revealAt={188} revealFrames={20} />
+          <div style={{width: 2, height: 34, background: 'rgba(255,255,255,0.25)', opacity: ctaIn}} />
+          <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 30, color: ORANGE_GLOW, opacity: ctaIn}}>
+            {SITE}
           </div>
-          <div style={{width: 2, height: 34, background: 'rgba(255,255,255,0.25)'}} />
-          <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 30, color: ORANGE_GLOW}}>{SITE}</div>
         </div>
       </AbsoluteFill>
 

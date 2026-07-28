@@ -84,7 +84,7 @@ const Close: React.FC = () => {
     <AbsoluteFill>
       <LightRays cx={50} cy={42} radius={85} opacity={0.35} speed={0.08} />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingBottom: 140}}>
-        <LogoLockup startAt={2} scale={0.8} />
+        <LogoLockup startAt={2} height={165} />
         <div
           style={{
             marginTop: 40,

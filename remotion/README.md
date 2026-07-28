@@ -6,8 +6,25 @@ components — no stock footage, no editing suite. All visuals are procedural:
 the spark, the self-drawing bulb (with an "N" filament), the light-cone
 luminaire icons, and the Saudi skyline that ignites window-by-window.
 
-Brand tokens mirror the website: navy `#24285e`, orange `#F6851F`, Outfit font
-(bundled locally in `public/fonts`).
+## Brand compliance
+
+Colours, logo and typography follow `NLC-Brand-Guidelines-source.html`:
+navy `#24285E`, orange `#F6851F`, navy deep `#0F1235`.
+
+**The logo is the master vector**, not a recreation. `src/components/NLCLogo.tsx`
+embeds the exact mark path lifted from the guidelines' master SVG, with the
+official variants (A primary / B reversed / C mark-only). It is built to respect
+all eight misuse rules — never rotated, stretched, recoloured, re-typeset,
+shadowed, or set below 100% opacity — so the entrance is a **light wipe**
+(a clip reveal) rather than a fade.
+
+⚠️ **Bizmo is not bundled** (licensed). The wordmark inside the lockup falls back
+to Outfit until you copy `Bizmo-*.woff2` into `public/fonts/` — see
+`public/fonts/README.md`. Everything else in the logo is already exact.
+
+ℹ️ Note: the master logo artwork fills the mark with `#F4831F`, which differs
+very slightly from the documented brand orange `#F6851F` used everywhere else.
+The component reproduces the artwork's own value; worth reconciling at source.
 
 ## Compositions
 

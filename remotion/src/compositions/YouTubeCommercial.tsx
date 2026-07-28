@@ -139,7 +139,7 @@ const SceneFinale: React.FC = () => {
       <ParticleField count={24} opacity={0.4} seed="s6" />
       <CinematicOverlay vignette={0.5} />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingBottom: 150}}>
-        <LogoLockup startAt={4} />
+        <LogoLockup startAt={4} height={200} />
         <div
           style={{
             marginTop: 46,

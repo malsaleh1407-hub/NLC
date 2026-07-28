@@ -3,6 +3,7 @@ import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import {FONT, NAVY, NAVY_DEEP, NIGHT, ORANGE, ORANGE_GLOW, WHITE} from '../brand';
 import {loadBrandFonts} from '../fonts';
 import {CinematicOverlay} from '../components/Atmosphere';
+import {NLCLogo} from '../components/NLCLogo';
 
 // 1:1 seamless loop — every animation is periodic in `duration` frames,
 // so the post loops forever in the feed with no visible seam.
@@ -74,27 +75,7 @@ export const InstagramPost: React.FC = () => {
 
       {/* Wordmark + tagline */}
       <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 128}}>
-        <div
-          style={{
-            fontFamily: FONT,
-            fontWeight: 900,
-            fontSize: 150,
-            color: WHITE,
-            lineHeight: 1,
-            textShadow: `0 0 50px rgba(246,133,31,${0.3 + 0.2 * pulse})`,
-          }}
-        >
-          N<span style={{color: ORANGE}}>L</span>C
-        </div>
-        <div
-          style={{
-            width: 340,
-            height: 6,
-            marginTop: 22,
-            borderRadius: 3,
-            background: `linear-gradient(90deg, transparent, ${ORANGE_GLOW}, ${ORANGE}, ${ORANGE_GLOW}, transparent)`,
-          }}
-        />
+        <NLCLogo height={185} variant="reversed" />
         <div
           style={{
             fontFamily: FONT,

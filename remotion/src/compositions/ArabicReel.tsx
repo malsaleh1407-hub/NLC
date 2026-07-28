@@ -7,6 +7,7 @@ import {BulbDraw} from '../components/BulbDraw';
 import {ParticleField} from '../components/ParticleField';
 import {Skyline} from '../components/Skyline';
 import {Spark} from '../components/Spark';
+import {NLCLogo} from '../components/NLCLogo';
 import {TypeReveal} from '../components/TypeReveal';
 
 // النسخة العربية — vertical Arabic reel, RTL, Cairo typeface.
@@ -114,30 +115,7 @@ const Outro: React.FC = () => {
       <ParticleField count={20} opacity={0.4} seed="ar4" />
       <CinematicOverlay vignette={0.5} />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingBottom: 150}}>
-        <div
-          style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontWeight: 900,
-            fontSize: 168,
-            color: WHITE,
-            lineHeight: 1,
-            opacity: pop,
-            transform: `scale(${0.75 + 0.25 * pop})`,
-            textShadow: `0 0 60px rgba(246,133,31,${0.45 * sweep})`,
-          }}
-        >
-          N<span style={{color: ORANGE}}>L</span>C
-        </div>
-        <div
-          style={{
-            width: 420 * sweep,
-            height: 8,
-            marginTop: 24,
-            borderRadius: 4,
-            background: `linear-gradient(90deg, transparent, ${ORANGE_GLOW}, ${ORANGE}, ${ORANGE_GLOW}, transparent)`,
-            boxShadow: `0 0 24px 4px rgba(246,133,31,${0.5 * sweep})`,
-          }}
-        />
+        <NLCLogo height={180} variant="reversed" showDescriptor={false} revealAt={4} revealFrames={28} />
         <div
           style={{
             fontFamily: AR,

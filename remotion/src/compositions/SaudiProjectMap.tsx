@@ -72,7 +72,7 @@ const MapOutro: React.FC = () => {
       <NavyBackdrop />
       <ParticleField count={18} opacity={0.35} seed="mapout" />
       <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 90}}>
-        <LogoLockup startAt={2} scale={0.82} />
+        <LogoLockup startAt={2} height={170} />
         <div
           style={{
             marginTop: 42,

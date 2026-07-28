@@ -1,71 +1,45 @@
 import React from 'react';
-import {Easing, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {FONT, ORANGE, ORANGE_GLOW, WHITE} from '../brand';
+import {interpolate, useCurrentFrame} from 'remotion';
+import {FONT, WHITE} from '../brand';
+import {NLCLogo} from './NLCLogo';
 
-// Typographic NLC lockup: big wordmark, orange light-sweep underline,
-// letterspaced company name below. `startAt` is relative to enclosing sequence.
+// Outro lockup: the master logo revealed by a light wipe, with an optional
+// supporting line beneath it.
+//
+// The logo itself is never restyled — no glow, no recolour, no re-typesetting,
+// no opacity below 100%. Any supporting text is separate from the lockup and
+// sits outside its clear space.
 export const LogoLockup: React.FC<{
-  scale?: number;
+  height?: number;
   startAt?: number;
   showSubtitle?: boolean;
-}> = ({scale = 1, startAt = 0, showSubtitle = true}) => {
+  subtitle?: string;
+}> = ({height = 190, startAt = 0, showSubtitle = true, subtitle}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
   const f = Math.max(0, frame - startAt);
 
-  const pop = spring({frame: f, fps, config: {damping: 14, stiffness: 120}});
-  const sweep = interpolate(f, [8, 40], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-    easing: Easing.out(Easing.cubic),
-  });
-  const subIn = interpolate(f, [26, 48], [0, 1], {
+  const subIn = interpolate(f, [30, 52], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${scale})`}}>
-      <div
-        style={{
-          fontFamily: FONT,
-          fontWeight: 900,
-          fontSize: 190,
-          letterSpacing: '0.02em',
-          color: WHITE,
-          transform: `scale(${0.7 + 0.3 * pop})`,
-          opacity: pop,
-          textShadow: `0 0 60px rgba(246,133,31,${0.45 * sweep}), 0 0 140px rgba(246,133,31,${0.25 * sweep})`,
-          lineHeight: 1,
-        }}
-      >
-        N<span style={{color: ORANGE}}>L</span>C
-      </div>
-      <div
-        style={{
-          width: 460 * sweep,
-          height: 8,
-          marginTop: 26,
-          borderRadius: 4,
-          background: `linear-gradient(90deg, transparent, ${ORANGE_GLOW}, ${ORANGE}, ${ORANGE_GLOW}, transparent)`,
-          boxShadow: `0 0 24px 4px rgba(246,133,31,${0.5 * sweep})`,
-        }}
-      />
-      {showSubtitle ? (
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <NLCLogo height={height} variant="reversed" revealAt={startAt} revealFrames={30} />
+      {showSubtitle && subtitle ? (
         <div
           style={{
             fontFamily: FONT,
-            fontWeight: 600,
-            fontSize: 30,
-            letterSpacing: '0.42em',
-            marginTop: 30,
-            paddingLeft: '0.42em',
-            color: 'rgba(255,255,255,0.85)',
+            fontWeight: 400,
+            fontSize: height * 0.2,
+            marginTop: height * 0.22,
+            color: WHITE,
             opacity: subIn,
             transform: `translateY(${(1 - subIn) * 14}px)`,
+            textAlign: 'center',
           }}
         >
-          NATIONAL LIGHTING COMPANY
+          {subtitle}
         </div>
       ) : null}
     </div>
