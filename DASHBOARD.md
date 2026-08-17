@@ -79,6 +79,12 @@ check before pushing:
 python3 site_audit.py --max-broken "$(cat .audit-baseline)"
 ```
 
+After every push, the workflow also regenerates `dashboard-data.js` and
+commits it back to the branch when the numbers changed (timestamp-only
+churn is ignored). So the committed dashboard is always in sync with
+the latest push: `git pull`, open `dashboard.html`, and you see the
+current state without running anything.
+
 ## Ideas for later
 
 - **Registrations panel.** Feed the base44 `PortalUser` export (CSV) into a

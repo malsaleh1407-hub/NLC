@@ -119,7 +119,7 @@ def audit(root):
         except OSError:
             continue
 
-        refs = set(REF_RE.findall(content)) | set(CSS_URL_RE.findall(content))
+        refs = sorted(set(REF_RE.findall(content)) | set(CSS_URL_RE.findall(content)))
         page_broken = 0
         for ref in refs:
             if is_external(ref) or is_template(ref):
@@ -320,9 +320,9 @@ def audit(root):
             'imgTotalKB': images['totalKB'],
             'imgOverBudget': len(images['overBudget']),
         },
-        'missingByDir': dict(sorted(by_dir.items(), key=lambda kv: -kv[1])),
-        'missingByType': dict(sorted(by_type.items(), key=lambda kv: -kv[1])),
-        'pagesBySection': dict(sorted(pages_by_section.items(), key=lambda kv: -kv[1])),
+        'missingByDir': dict(sorted(by_dir.items(), key=lambda kv: (-kv[1], kv[0]))),
+        'missingByType': dict(sorted(by_type.items(), key=lambda kv: (-kv[1], kv[0]))),
+        'pagesBySection': dict(sorted(pages_by_section.items(), key=lambda kv: (-kv[1], kv[0]))),
         'actions': actions,
         'parity': {'missingAr': missing_ar, 'missingEn': missing_en,
                    'expected': parity_expected},
