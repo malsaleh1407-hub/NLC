@@ -1,0 +1,86 @@
+{
+  "key": "solid",
+  "name": "SOLID",
+  "category": "LED Strip",
+  "tagline": "Light that follows every line.",
+  "reference_images": ["images/products/solid.png"],
+  "style_prefix": "Photorealistic cinematic architectural interior photograph for a premium lighting commercial. Shot on Sony A7R IV, 24mm prime, f/4, shallow depth of field. Warm 3000K light, deep navy shadows (#24285e), warm orange highlights (#F6851F), teal-and-orange editorial grade, modern Saudi luxury interior. The luminaire in the scene is the EXACT flexible linear LED light shown in the attached product photo: match its profile, diffuser, finish, width and colour exactly; do not redesign it and do not add dots, segments or details that are not in the photo. No text, no logos, no signage, no watermark, no people. Wide 16:9 frame.",
+  "shots": [
+    {
+      "id": "01-hero",
+      "prompt": "Extreme macro product hero: a length of the light lies in a gentle S-curve on a matte deep-navy surface, lit and glowing warm along its full length, the curve fading into soft darkness.",
+      "duration": 5,
+      "move": "pan_right",
+      "kicker": "Introducing",
+      "headline": "NLC SOLID",
+      "spec": "Light that follows every line."
+    },
+    {
+      "id": "02-majlis-cove",
+      "prompt": "Wide view of a modern Saudi majlis at night: low cream seating, plain plastered walls, a recessed ceiling cove running around the room with the light hidden inside, washing the ceiling in an even warm glow.",
+      "duration": 6,
+      "move": "push_in",
+      "kicker": "Majlis & residential",
+      "headline": "Cove light that sets the tone.",
+      "spec": ""
+    },
+    {
+      "id": "03-stair",
+      "prompt": "Floating travertine staircase in a villa entrance hall, each tread under-lit by the light set into a shadow groove, a clean line of warm light beneath every step, deep shadow around.",
+      "duration": 5,
+      "move": "rise",
+      "kicker": "Stairs & circulation",
+      "headline": "Every step, clearly drawn.",
+      "spec": ""
+    },
+    {
+      "id": "04-arch",
+      "prompt": "Arched plaster niche in a hotel lobby wall, the light bent smoothly around the full arch outline, a brass dallah on a stone plinth inside the niche.",
+      "duration": 5,
+      "move": "push_in",
+      "kicker": "Arches & curves",
+      "headline": "Bends with the architecture.",
+      "spec": ""
+    },
+    {
+      "id": "05-vanity",
+      "prompt": "Luxury hotel bathroom: marble vanity, frameless mirror with the light behind it creating a soft warm halo on the stone wall.",
+      "duration": 5,
+      "move": "pan_left",
+      "kicker": "Hospitality",
+      "headline": "A soft halo behind every mirror.",
+      "spec": ""
+    },
+    {
+      "id": "06-retail",
+      "prompt": "High-end boutique: walnut shelving with the light concealed under each shelf edge, grazing down onto folded garments and leather handbags.",
+      "duration": 5,
+      "move": "pan_right",
+      "kicker": "Retail display",
+      "headline": "Light that sells the shelf.",
+      "spec": ""
+    },
+    {
+      "id": "07-corridor",
+      "prompt": "Long hotel corridor with timber wall panels, a continuous line of the light at skirting level running the full length of both walls into the vanishing point.",
+      "duration": 6,
+      "move": "push_in",
+      "kicker": "Corridors & lobbies",
+      "headline": "Guides the way, end to end.",
+      "spec": ""
+    },
+    {
+      "id": "08-closing",
+      "prompt": "A single sweeping curve of the lit light across a dark navy feature wall in an otherwise empty gallery, the rest of the room in deep shadow.",
+      "duration": 6,
+      "move": "pull_out",
+      "kicker": "",
+      "headline": "",
+      "spec": ""
+    }
+  ],
+  "end_card": {
+    "duration": 5,
+    "site": "nlc.com.sa"
+  }
+}
