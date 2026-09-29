@@ -47,6 +47,33 @@ Append this suffix to every prompt:
 White text sits over the left side of every still (a navy gradient is added in the
 edit), so busy detail belongs on the right.
 
+### Generating them with Claude in Chrome
+
+Run this from a Claude session on your own computer with the Chrome extension
+connected: the Claude Desktop app, or `claude remote-control` in the NLC folder.
+Paste:
+
+> On branch `claude/festive-maxwell-bhqugk`, read `remotion/HARMONY-SHOTLIST.md`.
+> Using Chrome, open gemini.google.com and switch to image generation
+> (Nano Banana). For each of the six stills in the table, start a new chat and
+> attach `Harmony-1.png` (Google Drive → "Add from Drive"). Send "Use the attached
+> ceiling luminaire as the product." followed by the row's prompt and the suffix,
+> in 16:9. Download the full-size result.
+>
+> Check each still before keeping it: the fitting is round, flat-diffuser and
+> flush to the ceiling, with no text, logos or people. Regenerate any still that
+> fails.
+>
+> Save the stills as JPEG, at most 2400 px wide, under
+> `remotion/public/harmony/stills/` with the file names in the table. List them in
+> `HARMONY_MEDIA.lifestyle`, then run `npm ci && npm run render:harmony` in
+> `remotion/`. Check a few frames of the applications scene, then commit the
+> stills and the new MP4 and push.
+
+If you use the Chrome side panel on its own instead, have it download the six
+stills and put them in Google Drive with those file names. A cloud session can
+pull them from Drive and do the render.
+
 ## 2 · Layering them in
 
 Save the six stills as `public/harmony/stills/01-homes.jpg` … `06-hospitals.jpg`
