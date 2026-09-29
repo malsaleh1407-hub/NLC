@@ -378,10 +378,11 @@ def render_mark(height, color=MARK_ORANGE):
 # --------------------------------------------------------------------------- shots
 
 class Shot:
-    def __init__(self, spec, path):
+    def __init__(self, spec, path, zoom=1.0):
         self.d = float(spec["duration"])
         move = spec.get("move", "push_in")
-        self.a, self.b = MOVES[move] if isinstance(move, str) else (tuple(move["from"]), tuple(move["to"]))
+        a, b = MOVES[move] if isinstance(move, str) else (tuple(move["from"]), tuple(move["to"]))
+        self.a, self.b = ((x, y, z * zoom) for x, y, z in (a, b))  # zoom > 1 trims edges, e.g. watermarks
         src = Image.open(path).convert("RGB")
         zmax = max(self.a[2], self.b[2])
         want = W * zmax * 1.15                              # keep ~1:1 sampling at the tightest crop
@@ -528,7 +529,7 @@ def cmd_video(spec, args, stills_dir, out_path):
     missing = [s["id"] for s in spec["shots"] if not still_path(stills_dir, s["id"])]
     if missing:
         sys.exit(f"Missing stills in {stills_dir}: {', '.join(missing)}. Run the `stills` step first.")
-    segs = [Shot(s, still_path(stills_dir, s["id"])) for s in spec["shots"]] + [EndCard(spec)]
+    segs = [Shot(s, still_path(stills_dir, s["id"]), args.zoom) for s in spec["shots"]] + [EndCard(spec)]
     starts, t = [], 0.0
     for seg in segs:
         starts.append(t)
@@ -582,6 +583,8 @@ def main():
     ap.add_argument("--stills-dir", help="override the stills folder")
     ap.add_argument("--out", help="override the output MP4 path")
     ap.add_argument("--fps", type=int, default=30)
+    ap.add_argument("--zoom", type=float, default=1.0,
+                    help="extra zoom on every shot, e.g. 1.1 to crop a corner watermark")
     args = ap.parse_args()
 
     pdir = HERE / args.product
