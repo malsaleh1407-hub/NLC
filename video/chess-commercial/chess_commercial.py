@@ -3,7 +3,10 @@
 
 Every frame is drawn with Pillow + numpy and piped to ffmpeg; the soundtrack is
 synthesised with numpy. Product photos, the NLC logo and the Outfit font are
-read from --assets (fetch_assets.sh downloads them from nlc.com.sa).
+read from --assets (fetch_assets.sh downloads them from nlc.com.sa). When
+generate_stills.py has made a Gemini scene still for a shape
+(assets/scenes/<shape>.png), that shape's scene uses the photo; otherwise it
+shows the product cut-out on the lit chessboard stage.
 
 Every spec on screen comes from the live CHESS product pages on nlc.com.sa
 (values at 4000K, +/-10%). Nothing is invented: if a page does not state a
@@ -244,6 +247,36 @@ def make_backdrops():
     return bg0, bg1, vig
 
 
+# Scene stills from generate_stills.py (assets/scenes/<shape>.png).
+KB = 1.12   # headroom for the push-in
+
+
+def load_scene(path):
+    im = Image.open(path).convert('RGB')
+    s = max(W * KB / im.width, H * KB / im.height)
+    return im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+
+
+def kb_box(img, t):
+    cw = W * KB / (1.0 + 0.07 * t)
+    ch = cw * H / W
+    cx = img.width / 2 + (t - 0.5) * 0.03 * W
+    cy = img.height / 2
+    x0 = clamp(cx - cw / 2, 0, img.width - cw)
+    y0 = clamp(cy - ch / 2, 0, img.height - ch)
+    return (x0, y0, x0 + cw, y0 + ch)
+
+
+def make_scrim():
+    """Navy veil on the left (text column) and along the bottom (progress marks)."""
+    x = np.linspace(0, 1, W, dtype=np.float32)
+    y = np.linspace(0, 1, H, dtype=np.float32)
+    t = np.clip((x - 0.28) / 0.36, 0, 1)
+    left = 0.9 * (1 - t * t * (3 - 2 * t))
+    bottom = np.clip((y - 0.8) / 0.2, 0, 1) * 0.5
+    return Image.fromarray((np.maximum(left[None, :], bottom[:, None]) * 255).astype(np.uint8), 'L')
+
+
 # Board scene: a ceiling of panels seen from below, lighting up like a chessboard.
 BW, BH, TS, TG = 2200, 1250, 112, 10
 
@@ -404,9 +437,16 @@ def piece(f):
     ig = eo(prog(u, 8, 36))
     enter = eo(prog(u, 0, 20))
     ex = eio(prog(u, 92, PIECE_LEN))
-    fr = Image.blend(BG0, BG1, ig * (1 - ex) * 0.95)
-    PROD[p['img']].draw(fr, PCX, PCY, scale=0.97 + 0.05 * u / PIECE_LEN, ig=ig,
-                        alpha=enter * (1 - ex), dx=(1 - enter) * 90 - ex * 50)
+    photo = SCENE_IMG.get(p['name'].lower())
+    if photo is not None:
+        # Gemini still: slow push-in while the room 'powers on' from navy dark.
+        ph = photo.resize((W, H), Image.BILINEAR, box=kb_box(photo, u / PIECE_LEN))
+        ph = Image.composite(DEEP, Image.blend(DEEP, ph, 0.3 + 0.7 * ig), SCRIM)
+        fr = Image.blend(BG0, ph, enter * (1 - ex))
+    else:
+        fr = Image.blend(BG0, BG1, ig * (1 - ex) * 0.95)
+        PROD[p['img']].draw(fr, PCX, PCY, scale=0.97 + 0.05 * u / PIECE_LEN, ig=ig,
+                            alpha=enter * (1 - ex), dx=(1 - enter) * 90 - ex * 50)
     ga = 1 - ex
     tx(fr, f'MOVE {k + 1:02d} / 07', 600, 24, TXL, 292, u, 6, color=ORANGE, track=6, galpha=ga)
     tx(fr, 'CHESS', 300, 46, TXL, 330, u, 10, color=MUTED, track=14, galpha=ga)
@@ -602,8 +642,17 @@ def make_audio(path, seconds, sr=48000):
 
 # -------------------------------------------------------------------- main ---
 def load_assets(adir):
-    global ASSETS, PROD, LINE_PROD, LOGO, BG0, BG1, VIG, TILES
+    global ASSETS, PROD, LINE_PROD, LOGO, BG0, BG1, VIG, TILES, SCENE_IMG, SCRIM, DEEP
     ASSETS = adir
+    SCENE_IMG = {}
+    for p in PIECES:
+        for ext in ('png', 'jpg', 'jpeg', 'webp'):
+            path = os.path.join(adir, 'scenes', f"{p['name'].lower()}.{ext}")
+            if os.path.exists(path):
+                SCENE_IMG[p['name'].lower()] = load_scene(path)
+                break
+    SCRIM = make_scrim()
+    DEEP = Image.new('RGB', (W, H), NAVY_DEEP)
     hero = {p['img'] for p in PIECES} | {'chess-master-1'}
     PROD = {k: Product(os.path.join(adir, k + '.png'), PBOX) for k in hero}
     LINE_PROD = {k: Product(os.path.join(adir, k + '.png'), (205, 160), pad=60) for k in LINEUP}
@@ -638,6 +687,9 @@ def main():
             y0, y1 = int(PCY - pr.size0[1] / 2), int(PCY + pr.size0[1] / 2)
             reg = fr[max(0, y0):y1, max(0, x0):x1]
             clip = (reg.min(-1) >= 250).mean()
+            if p['name'].lower() in SCENE_IMG:
+                print(f"{p['name']:7s} uses scene still {SCENE_IMG[p['name'].lower()].size}")
+                continue
             print(f"{p['name']:7s} dark={pr.dark} size={pr.size0} left={left:.0f} name_r={name_r} gap={left - max(name_r, line_r):.0f} "
                   f"y={y0}..{y1} clip={clip:.2f} mean={reg.mean():.0f}")
         for key in LINEUP:
