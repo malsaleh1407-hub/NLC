@@ -1,0 +1,67 @@
+{
+  "product": "OCEAN",
+  "category": "Linear Light",
+  "url": "nlc.com.sa",
+  "seg": 4.8,
+  "xfade": 0.7,
+  "end": 5.0,
+  "generation": {
+    "model": "nano_banana_2",
+    "aspect_ratio": "16:9",
+    "resolution": "2k",
+    "reference_media_id": "8a70bd4b-276b-42eb-81b4-caffa87a610a",
+    "brand": "Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people.",
+    "product": "The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts."
+  },
+  "shots": [
+    {
+      "name": "hero",
+      "move": "in",
+      "eyebrow": "NLC · LINEAR LIGHT",
+      "title": "OCEAN",
+      "sub": "Made for wet, demanding spaces.",
+      "prompt": "Hero product shot: one luminaire floating horizontally at a slight three-quarter angle in a dark navy studio, its diffuser glowing clean white. Fine water droplets bead across the housing and a few drops fall from its underside, lit by a thin warm orange rim light from behind. Light mist in the air. Place the fixture in the right two-thirds of the frame and keep the left third dark and empty.",
+      "url": ""
+    },
+    {
+      "name": "macro",
+      "move": "right",
+      "eyebrow": "OCEAN",
+      "caption": "Built for the wet.",
+      "prompt": "Extreme close-up macro of the luminaire's edge where the glowing opal diffuser meets the white housing and a stainless clip. Water runs down the surface in beads and thin streams; the light glows evenly through the wet diffuser. Dark navy background, warm orange reflections in the droplets, shallow depth of field. Keep the bottom third of the frame darker and uncluttered.",
+      "url": ""
+    },
+    {
+      "name": "car-park",
+      "move": "in",
+      "eyebrow": "OCEAN",
+      "caption": "Car parks",
+      "prompt": "Wide shot of a modern underground car park beneath a Riyadh commercial building at night: long parallel rows of the luminaire mounted on the concrete ceiling, all glowing clean white and receding in deep perspective. Freshly washed epoxy floor with puddles mirroring the light lines, concrete columns with navy-blue painted bands, one dark SUV softly out of focus in the mid-ground. 24mm, f/5.6.",
+      "url": ""
+    },
+    {
+      "name": "wash-down",
+      "move": "left",
+      "eyebrow": "OCEAN",
+      "caption": "Wash-down areas",
+      "prompt": "Stainless-steel food-processing hall in Saudi Arabia during wash-down: high-pressure water spray arcs through the air, mist hangs in the light, and a row of the luminaire is mounted overhead glowing bright white with droplets on the housings; light rays visible through the mist. Stainless machinery, white epoxy floor with running water, warm orange glow at the far end. 35mm, shallow depth of field.",
+      "url": ""
+    },
+    {
+      "name": "coastal",
+      "move": "out",
+      "eyebrow": "OCEAN",
+      "caption": "Coastal walkways",
+      "prompt": "Blue-hour view of a covered waterfront walkway on the Red Sea coast in Jeddah: a neat line of the luminaire mounted under a concrete canopy, glowing clean white onto wet stone paving. Sea spray and light drizzle in the air, calm sea, a warm orange afterglow on the horizon under a deep navy sky. Modern Saudi architecture. 24mm.",
+      "url": ""
+    },
+    {
+      "name": "car-wash",
+      "move": "rise",
+      "eyebrow": "OCEAN",
+      "caption": "Car washes",
+      "prompt": "Inside a modern automatic car-wash tunnel at night: water jets and foam spray across a dark sedan with no badges, heavy mist in the air, and the luminaire mounted along both walls glowing bright white through the spray, droplets streaming off the housings. Deep navy tones with warm orange accent lights. 28mm, frozen water droplets.",
+      "url": ""
+    }
+  ]
+}
