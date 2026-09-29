@@ -1,8 +1,9 @@
 import React from 'react';
 import {Easing, interpolate, useCurrentFrame} from 'remotion';
-import {FONT, WHITE} from '../brand';
+import {FONT, ORANGE_GLOW, WHITE} from '../brand';
 
 // Word-by-word rise-and-glow text reveal.
+// `highlight` sets one word in brand orange — one orange word per headline.
 export const TypeReveal: React.FC<{
   text: string;
   startAt?: number;
@@ -16,6 +17,8 @@ export const TypeReveal: React.FC<{
   glow?: boolean;
   rtl?: boolean;
   fontFamily?: string;
+  highlight?: string;
+  lineHeight?: number;
 }> = ({
   text,
   startAt = 0,
@@ -29,6 +32,8 @@ export const TypeReveal: React.FC<{
   glow = false,
   rtl = false,
   fontFamily = FONT,
+  highlight,
+  lineHeight,
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(' ');
@@ -43,7 +48,7 @@ export const TypeReveal: React.FC<{
         letterSpacing,
         textAlign: align,
         maxWidth,
-        lineHeight: rtl ? 1.45 : 1.22,
+        lineHeight: lineHeight ?? (rtl ? 1.45 : 1.22),
         display: 'flex',
         flexWrap: 'wrap',
         direction: rtl ? 'rtl' : 'ltr',
@@ -66,6 +71,7 @@ export const TypeReveal: React.FC<{
               transform: `translateY(${(1 - p) * 0.5}em)`,
               textShadow: glow ? `0 0 ${30 * p}px rgba(246,133,31,0.45)` : undefined,
               display: 'inline-block',
+              color: highlight !== undefined && word === highlight ? ORANGE_GLOW : undefined,
             }}
           >
             {word}

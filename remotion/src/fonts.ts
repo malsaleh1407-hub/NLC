@@ -31,6 +31,19 @@ const FACES: Array<{family: string; weight: string; file: string; required: bool
     file: `fonts/Bizmo-${name}.woff2`,
     required: false,
   })),
+  // Lama Sans is the brand Arabic face (guidelines §04) — licensed, so optional
+  // like Bizmo. Without it Arabic falls back to the bundled Cairo.
+  ...[
+    ['400', 'Regular'],
+    ['500', 'Medium'],
+    ['700', 'Bold'],
+    ['900', 'Black'],
+  ].map(([w, name]) => ({
+    family: 'Lama Sans',
+    weight: w,
+    file: `fonts/LamaSans-${name}.woff2`,
+    required: false,
+  })),
 ];
 
 let loaded = false;

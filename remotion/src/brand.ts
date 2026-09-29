@@ -18,6 +18,11 @@ export const FONT = "'Outfit', 'DejaVu Sans', sans-serif";
 // Headline face per the guidelines is Bizmo; supply the .woff2 files in
 // public/fonts/ to use it (see public/fonts/README.md).
 export const DISPLAY_FONT = "'Bizmo', 'Outfit', sans-serif";
+// Arabic: Lama Sans per the guidelines, falling back to the bundled Cairo.
+export const AR_FONT = "'Lama Sans', 'Cairo', sans-serif";
+
+// The one easing curve the guidelines allow (§08 Motion): cubic-bezier(.4, 0, .2, 1).
+export const BRAND_EASE = [0.4, 0, 0.2, 1] as const;
 
 export const TAGLINE_TOP = "Engineering the Kingdom's";
 export const TAGLINE_BOTTOM = 'Light, Power & Systems';

@@ -32,9 +32,9 @@ export const CinematicOverlay: React.FC<{vignette?: number}> = ({vignette = 0.55
 
 // A light-flash used as scene transition: quick warm flash that blooms and decays.
 // Place at the cut point; `at` is the frame of the cut within the parent sequence.
-export const LightSweep: React.FC<{at: number}> = ({at}) => {
+export const LightSweep: React.FC<{at: number; peak?: number}> = ({at, peak = 0.92}) => {
   const frame = useCurrentFrame();
-  const o = interpolate(frame, [at - 6, at, at + 14], [0, 0.92, 0], {
+  const o = interpolate(frame, [at - 6, at, at + 14], [0, peak, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });

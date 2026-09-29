@@ -7,6 +7,8 @@ import {LinkedInPost} from './compositions/LinkedInPost';
 import {ArabicReel} from './compositions/ArabicReel';
 import {SaudiProjectMap} from './compositions/SaudiProjectMap';
 import {ProductSpot, productSpotDefaults} from './compositions/ProductSpot';
+import {COMMERCIAL_FPS, COMMERCIAL_FRAMES, ProductCommercial} from './compositions/ProductCommercial';
+import {commercialDefaults, commercialDefaultsAr} from './data/commercials';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -74,6 +76,34 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1350}
         defaultProps={productSpotDefaults}
+      />
+      {/* 25s datasheet commercial per product — scripts/render-commercial.mjs <key> */}
+      <Composition
+        id="ProductCommercial"
+        component={ProductCommercial}
+        durationInFrames={COMMERCIAL_FRAMES}
+        fps={COMMERCIAL_FPS}
+        width={1920}
+        height={1080}
+        defaultProps={commercialDefaults}
+      />
+      <Composition
+        id="ProductCommercialVertical"
+        component={ProductCommercial}
+        durationInFrames={COMMERCIAL_FRAMES}
+        fps={COMMERCIAL_FPS}
+        width={1080}
+        height={1920}
+        defaultProps={commercialDefaults}
+      />
+      <Composition
+        id="ProductCommercialArabic"
+        component={ProductCommercial}
+        durationInFrames={COMMERCIAL_FRAMES}
+        fps={COMMERCIAL_FPS}
+        width={1080}
+        height={1920}
+        defaultProps={commercialDefaultsAr}
       />
     </>
   );

@@ -1,2 +1,9 @@
 node_modules/
 .cache/
+# Copied in at render time by scripts/render-commercial.mjs
+public/products/
+# Licensed brand fonts — copy from the website's fonts/ folder, never commit
+public/fonts/Bizmo-*
+public/fonts/LamaSans-*
+# Local QA fixtures
+public/_qa/
