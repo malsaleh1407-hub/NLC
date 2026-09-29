@@ -173,19 +173,38 @@ def generate_still(key, model, refs, prompt, state):
     raise RuntimeError("Gemini rejected every generation config.")
 
 
+SITE = "https://nlc.com.sa"
+
+
+def _download(url, dest):
+    try:
+        with urllib.request.urlopen(url, timeout=60) as r:
+            data = r.read()
+    except (urllib.error.URLError, OSError):
+        return False
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(data)
+    return True
+
+
 def find_refs(spec):
+    """Product photo + gallery shots from the site checkout, else downloaded from nlc.com.sa."""
     refs = []
-    for rel in spec.get("reference_images", [f"images/products/{spec['key']}.png"]):
-        p = ROOT / rel
-        if p.exists():
-            refs.append(p)
-            for n in range(2, 7):                           # gallery shots: key-g2.png ...
-                g = p.with_name(f"{p.stem}-g{n}{p.suffix}")
-                if g.exists():
-                    refs.append(g)
+    cache = HERE / spec["key"] / "ref"
+    for rel_path in spec.get("reference_images", [f"images/products/{spec['key']}.png"]):
+        p = Path(rel_path)
+        names = [p.name] + [f"{p.stem}-g{n}{p.suffix}" for n in range(2, 7)]  # key.png, key-g2.png ...
+        for name in names:
+            local, cached = ROOT / p.parent / name, cache / name
+            if local.exists():
+                refs.append(local)
+            elif cached.exists() or _download(f"{SITE}/{p.parent.as_posix()}/{name}", cached):
+                refs.append(cached)
+            elif name == p.name:
+                break                                       # no main photo: skip its gallery lookups
     if not refs:
-        sys.exit("Product photo not found. Expected " + ", ".join(spec.get("reference_images", []))
-                 + " under the site root; run this from the website project or pass --ref.")
+        sys.exit("Product photo not found locally or at " + SITE
+                 + ". Run from the website project, allow nlc.com.sa, or pass --ref.")
     return refs[:3]
 
 

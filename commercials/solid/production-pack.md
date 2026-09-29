@@ -22,6 +22,10 @@ python3 commercials/make_commercial.py solid stills   # 8 stills + stills/_conta
 python3 commercials/make_commercial.py solid video    # ~2 min render
 ```
 
+In a cloud session (no `images/` folder in the repo) the script downloads the product photo
+from nlc.com.sa into `solid/ref/`, so the environment needs `GEMINI_API_KEY` set and
+`nlc.com.sa` in its allowed domains.
+
 Redo one still: `... solid stills --only 04-arch --force`.
 Add a voiceover or music: `... solid video --audio vo.mp3` (faded out over the last 2 s).
 
