@@ -249,7 +249,7 @@ const LightSweep: React.FC = () => {
     <AbsoluteFill
       style={{
         opacity: o,
-        background: `radial-gradient(circle at 66% 48%, #FFF4E0 0%, ${ORANGE_SOFT} 24%, rgba(246,133,31,0.35) 52%, transparent 78%)`,
+        background: `radial-gradient(circle at 71% 47%, #FFF4E0 0%, ${ORANGE_SOFT} 24%, rgba(246,133,31,0.35) 52%, transparent 78%)`,
       }}
     />
   );
@@ -280,14 +280,14 @@ const EndCard: React.FC<{productSrc?: string; logoSrc?: string; tagline: string;
     <AbsoluteFill
       style={{
         opacity: bgIn,
-        background: `radial-gradient(ellipse at 68% 46%, #2f357a 0%, ${NAVY} 30%, ${NAVY_DEEP} 68%, ${NIGHT} 100%)`,
+        background: `radial-gradient(ellipse at 71% 46%, #2f357a 0%, ${NAVY} 30%, ${NAVY_DEEP} 68%, ${NIGHT} 100%)`,
       }}
     >
       {/* warm pool of light behind the fixture */}
       <div
         style={{
           position: 'absolute',
-          left: '68%',
+          left: '71%',
           top: '47%',
           width: 900,
           height: 900,
@@ -302,7 +302,7 @@ const EndCard: React.FC<{productSrc?: string; logoSrc?: string; tagline: string;
       <div
         style={{
           position: 'absolute',
-          left: '68%',
+          left: '71%',
           top: '47%',
           width: 700,
           height: 620,
@@ -328,7 +328,7 @@ const EndCard: React.FC<{productSrc?: string; logoSrc?: string; tagline: string;
         <div style={{...rise(14), fontFamily: BODY, fontWeight: 600, fontSize: 24, letterSpacing: 8, color: ORANGE, textTransform: 'uppercase'}}>
           Recessed COB Downlight
         </div>
-        <div style={{...rise(20), fontFamily: DISPLAY, fontWeight: 900, fontSize: 176, lineHeight: 1, letterSpacing: 16, marginTop: 10}}>
+        <div style={{...rise(20), fontFamily: DISPLAY, fontWeight: 900, fontSize: 160, lineHeight: 1, letterSpacing: 12, marginTop: 10}}>
           ALPHA
         </div>
         <div style={{...rise(28), fontFamily: BODY, fontWeight: 300, fontSize: 38, marginTop: 14, color: 'rgba(255,255,255,0.9)'}}>
