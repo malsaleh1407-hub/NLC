@@ -17,12 +17,24 @@ import {TypeReveal} from '../components/TypeReveal';
 //     never invents a wattage, lumen, CRI or IP figure.
 //   · `photo` is the real catalogue photograph (public/products/<key>.png).
 //     Without it the hero shows a line of light, never a made-up housing.
+//   · `stills` are Gemini stills made image-to-image from that photo
+//     (scripts/gemini_stills.py). The edit animates them; no AI video is used.
+//     Any shot left out falls back to the procedural scene.
+
+export type CommercialStills = {
+  hero?: string | null;
+  office?: string | null;
+  lobby?: string | null;
+  detail?: string | null;
+};
 
 export type LinearCommercialProps = {
   label: string;
   catLabel: string;
   /** Path under public/, e.g. "products/alligator.png". null → light-only hero. */
   photo: string | null;
+  /** Paths under public/ for the Gemini stills of this format. */
+  stills: CommercialStills;
   specs: Array<{k: string; v: string}>;
   hook: string;
   line2: string;
@@ -110,6 +122,57 @@ const SceneCorridor: React.FC<{line2: string}> = ({line2}) => {
   );
 };
 
+// A full-bleed still with a slow push and drift, faded in at the start.
+const StillShot: React.FC<{
+  src: string;
+  durationInFrames: number;
+  fadeIn?: number;
+  push?: [number, number];
+  drift?: number; // horizontal drift as a fraction of width, signed
+  dim?: number; // 0..1 brightness multiplier
+}> = ({src, durationInFrames, fadeIn = 12, push = [1.04, 1.12], drift = 0.02, dim = 1}) => {
+  const frame = useCurrentFrame();
+  const t = interpolate(frame, [0, durationInFrames], [0, 1], {...clamp, easing: Easing.inOut(Easing.sin)});
+  const scale = push[0] + (push[1] - push[0]) * t;
+  const x = (t - 0.5) * drift * 100;
+  const o = fadeIn > 0 ? interpolate(frame, [0, fadeIn], [0, 1], clamp) : 1;
+  return (
+    <AbsoluteFill style={{overflow: 'hidden', opacity: o}}>
+      <Img
+        src={staticFile(src)}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          transform: `translateX(${x}%) scale(${scale})`,
+          filter: dim < 1 ? `brightness(${dim})` : undefined,
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// ————— Scene 2 (stills): the product at work, shot by shot —————
+const SceneApplications: React.FC<{line2: string; shots: string[]}> = ({line2, shots}) => {
+  const {H, u} = useUnit();
+  const total = S3 - S2;
+  const len = Math.floor(total / shots.length);
+  return (
+    <AbsoluteFill style={{backgroundColor: '#000'}}>
+      {shots.map((src, i) => (
+        <Sequence key={src} from={i * len} durationInFrames={total - i * len}>
+          <StillShot src={src} durationInFrames={len + 12} fadeIn={i === 0 ? 10 : 14} drift={i % 2 ? -0.03 : 0.03} />
+        </Sequence>
+      ))}
+      <AbsoluteFill style={{background: 'linear-gradient(180deg, transparent 55%, rgba(15,18,53,0.85) 100%)'}} />
+      <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: H * 0.1}}>
+        <TypeReveal text={line2} startAt={Math.min(62, len)} fontSize={76 * u} fontWeight={700} glow />
+      </AbsoluteFill>
+      <CinematicOverlay vignette={0.45} />
+    </AbsoluteFill>
+  );
+};
+
 // A line-of-light stand-in used when no catalogue photo is supplied.
 const LightBar: React.FC<{width: number; u: number; on: number}> = ({width, u, on}) => (
   <div style={{position: 'relative', width, height: 260 * u}}>
@@ -140,7 +203,12 @@ const LightBar: React.FC<{width: number; u: number; on: number}> = ({width, u, o
 );
 
 // ————— Scene 3: the hero — product name and the product itself —————
-const SceneHero: React.FC<{label: string; catLabel: string; photo: string | null}> = ({label, catLabel, photo}) => {
+const SceneHero: React.FC<{label: string; catLabel: string; photo: string | null; still?: string | null}> = ({
+  label,
+  catLabel,
+  photo,
+  still,
+}) => {
   const frame = useCurrentFrame();
   const {W, H, u, portrait} = useUnit();
   const catIn = interpolate(frame, [4, 20], [0, 1], clamp);
@@ -153,8 +221,17 @@ const SceneHero: React.FC<{label: string; catLabel: string; photo: string | null
 
   return (
     <AbsoluteFill>
-      <NavyBackdrop />
-      <ParticleField count={16} opacity={0.28} seed="lc-3" />
+      {still ? (
+        <>
+          <StillShot src={still} durationInFrames={S4 - S3} fadeIn={0} push={[1.0, 1.07]} drift={0} />
+          <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(15,18,53,0.75) 0%, transparent 38%)'}} />
+        </>
+      ) : (
+        <>
+          <NavyBackdrop />
+          <ParticleField count={16} opacity={0.28} seed="lc-3" />
+        </>
+      )}
       <AbsoluteFill style={{alignItems: 'center', paddingTop: portrait ? H * 0.14 : H * 0.08}}>
         <div
           style={{
@@ -183,6 +260,7 @@ const SceneHero: React.FC<{label: string; catLabel: string; photo: string | null
         />
       </AbsoluteFill>
 
+      {still ? null : (
       <AbsoluteFill
         style={{
           alignItems: 'center',
@@ -232,13 +310,14 @@ const SceneHero: React.FC<{label: string; catLabel: string; photo: string | null
           )}
         </div>
       </AbsoluteFill>
+      )}
       <CinematicOverlay vignette={0.42} />
     </AbsoluteFill>
   );
 };
 
 // ————— Scene 4: how the light lands — distribution and datasheet specs —————
-const SceneLight: React.FC<{specs: Array<{k: string; v: string}>}> = ({specs}) => {
+const SceneLight: React.FC<{specs: Array<{k: string; v: string}>; still?: string | null}> = ({specs, still}) => {
   const frame = useCurrentFrame();
   const {H, u, portrait} = useUnit();
   const titleIn = interpolate(frame, [2, 16], [0, 1], clamp);
@@ -283,7 +362,11 @@ const SceneLight: React.FC<{specs: Array<{k: string; v: string}>}> = ({specs}) =
 
   return (
     <AbsoluteFill>
-      <NavyBackdrop />
+      {still ? (
+        <StillShot src={still} durationInFrames={S5 - S4} fadeIn={0} push={[1.08, 1.0]} drift={0} dim={0.32} />
+      ) : (
+        <NavyBackdrop />
+      )}
       <AbsoluteFill style={{alignItems: 'center', paddingTop: portrait ? H * 0.12 : H * 0.07}}>
         <div
           style={{
@@ -371,21 +454,31 @@ const SceneEnd: React.FC<{label: string; catLabel: string; productUrl: string}> 
   );
 };
 
-export const LinearCommercial: React.FC<LinearCommercialProps> = ({label, catLabel, photo, specs, hook, line2, productUrl}) => {
+export const LinearCommercial: React.FC<LinearCommercialProps> = ({
+  label,
+  catLabel,
+  photo,
+  stills,
+  specs,
+  hook,
+  line2,
+  productUrl,
+}) => {
   loadBrandFonts();
+  const appShots = [stills.office, stills.lobby].filter((x): x is string => Boolean(x));
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
       <Sequence from={S1} durationInFrames={S2 - S1}>
         <SceneLine hook={hook} />
       </Sequence>
       <Sequence from={S2} durationInFrames={S3 - S2}>
-        <SceneCorridor line2={line2} />
+        {appShots.length ? <SceneApplications line2={line2} shots={appShots} /> : <SceneCorridor line2={line2} />}
       </Sequence>
       <Sequence from={S3} durationInFrames={S4 - S3}>
-        <SceneHero label={label} catLabel={catLabel} photo={photo} />
+        <SceneHero label={label} catLabel={catLabel} photo={photo} still={stills.hero} />
       </Sequence>
       <Sequence from={S4} durationInFrames={S5 - S4}>
-        <SceneLight specs={specs} />
+        <SceneLight specs={specs} still={stills.detail} />
       </Sequence>
       <Sequence from={S5} durationInFrames={LINEAR_COMMERCIAL_FRAMES - S5}>
         <SceneEnd label={label} catLabel={catLabel} productUrl={productUrl} />

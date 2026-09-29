@@ -1,0 +1,30 @@
+{
+  "key": "alligator",
+  "label": "ALLIGATOR",
+  "site_photo": "https://nlc.com.sa/images/products/alligator.png",
+  "brand_prefix": "Cinematic photographic, shot on Sony A7R IV at f/5.6, dramatic teal-and-orange colour grade: cool navy shadows (#24285e) and warm orange highlights (#F6851F), signature warm 3000K light. National Geographic industrial-tech editorial aesthetic. Modern Saudi commercial interior, premium finishes, NEOM-style architecture. Saturated navy and orange only; desaturate any green or red.",
+  "product_lock": "PRODUCT: the attached image is the NLC ALLIGATOR linear luminaire. Reproduce this exact product: identical housing shape, proportions, colour, finish, end caps, diffuser and any mounting or suspension hardware. Do not redesign, simplify or add features. Its light-emitting face glows with warm 3000K light.",
+  "negative": "No readable text, no logos, no brand names, no signage and no watermark anywhere, including on the product. No faces in focus.",
+  "shots": [
+    {
+      "id": "hero",
+      "use": "Scene 3 · full-bleed hero behind the ALLIGATOR title",
+      "prompt": "Hero product shot. The ALLIGATOR luminaire, lit, floats in a deep navy void at a slight three-quarter angle, in the lower-middle of the frame. Soft amber rim light traces its edges and faint volumetric haze catches the glow beneath it. Keep the upper third of the frame empty dark navy for a title. Studio product photography, razor-sharp product, clean and premium."
+    },
+    {
+      "id": "office",
+      "use": "Scene 2 · first application shot",
+      "prompt": "Wide interior of a modern Saudi corporate open-plan office at blue hour, empty of people. A long row of ALLIGATOR luminaires installed above the workstations the way this product is designed to be mounted, all glowing warm 3000K and casting even pools of light on the desks. Floor-to-ceiling glass with a navy dusk sky, polished concrete floor reflecting the lights. Strong one-point perspective along the row of luminaires."
+    },
+    {
+      "id": "lobby",
+      "use": "Scene 2 · second application shot",
+      "prompt": "Premium Saudi hotel reception at night, empty of people. Several ALLIGATOR luminaires installed in a precise geometric arrangement the way this product is designed to be mounted, washing a travertine reception desk and walnut wall panels in warm 3000K light. Deep navy shadows, calm luxurious mood, editorial composition with strong leading lines."
+    },
+    {
+      "id": "detail",
+      "use": "Scene 4 · dimmed background behind the light distribution",
+      "prompt": "Macro close-up of the ALLIGATOR luminaire's end and light-emitting face, glowing warm 3000K, shallow depth of field, the rest of the fixture falling away into soft bokeh, dust motes drifting in the light, deep navy background. Emphasise build quality, finish and precision."
+    }
+  ]
+}

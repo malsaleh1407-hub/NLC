@@ -78,16 +78,37 @@ pointing to the datasheet.
 npm run render:alligator   # out/commercials/alligator-16x9.mp4 + alligator-9x16.mp4
 ```
 
-Two inputs make it final, and neither is guessed:
+**Stills come from Gemini, motion from the edit.** No AI video is generated:
+Gemini (Nano Banana 2, `gemini-3.1-flash-image-preview`) makes four stills
+image-to-image from the real catalogue photo, and the commercial animates
+them with slow push-ins and crossfades.
 
-1. **Product photo.** Copy the site's `images/products/alligator.png` to
-   `public/products/alligator.png`. The render script picks it up
-   automatically and the hero becomes the real product with a light sweep
-   masked to its silhouette. Without it the hero is a line of light, never an
-   invented housing.
-2. **Specs.** Fill `specs` in `src/data/commercials.ts` from
-   `datasheets/alligator.pdf` (e.g. `{k: 'CRI', v: '90+'}`). They appear as
-   chips beside the distribution curve. Empty means no chips.
+| Shot | Where it plays |
+|------|----------------|
+| `hero` | Scene 3, full-bleed behind the ALLIGATOR title |
+| `office`, `lobby` | Scene 2, the product at work |
+| `detail` | Scene 4, dimmed behind the light distribution |
+
+```bash
+export GEMINI_API_KEY=...                          # https://aistudio.google.com/apikey
+python3 scripts/gemini_stills.py alligator          # 4 shots × 16:9 + 9:16 → public/commercials/alligator/
+npm run render:alligator                            # picks the stills up automatically
+```
+
+`python3 scripts/gemini_stills.py alligator --print` prints the finished
+prompts instead, for pasting into AI Studio by hand (attach the product photo,
+set the aspect ratio, 2K). Save the results as
+`public/commercials/alligator/<shot>-16x9.png` / `<shot>-9x16.png`. Shot
+prompts live in `stills/alligator.json`. Any shot that is missing falls back to
+the procedural scene.
+
+The script uses `public/products/alligator.png` as the reference, downloading
+it from the site on first run. Without that photo there are no stills, so
+Gemini is never asked to imagine the product.
+
+**Specs.** Fill `specs` in `src/data/commercials.ts` from
+`datasheets/alligator.pdf` (e.g. `{k: 'CRI', v: '90+'}`). They appear as chips
+beside the distribution curve. Empty means no chips.
 
 The distribution curve is illustrative (captioned as such on screen) and
 shows no numeric readout. Music is added in the edit, per the brand video
