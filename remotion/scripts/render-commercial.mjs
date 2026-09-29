@@ -172,6 +172,15 @@ const datasheet = (() => {
 })();
 const hasDatasheet = datasheet.state === 'yes' ? true : datasheet.state === 'no' ? false : !!data.hasDatasheet;
 
+// Gemini photo plates (scripts/generate-stills.mjs) — keep only files that exist.
+const stills = {};
+for (const [scene, byAspect] of Object.entries(data.stills ?? {})) {
+  for (const [aspect, file] of Object.entries(byAspect ?? {})) {
+    if (existsSync(join(root, 'public', file))) (stills[scene] ??= {})[aspect] = file;
+    else console.warn(`! still ${file} is missing from public/ — that scene uses the drawn visual.`);
+  }
+}
+
 // ——— 5. Specs from the product page ————————————————————————————————
 const ENTITIES = {
   nbsp: ' ', times: '×', Oslash: 'Ø', oslash: 'ø', plusmn: '±', ndash: '–', mdash: '—', ge: '≥', le: '≤',
@@ -316,6 +325,12 @@ line(
 );
 line(bizmo, bizmo ? 'Bizmo: loaded (English type and logo wordmark exact)' : 'Bizmo: missing — English falls back to Outfit (see public/fonts/README.md)');
 line(lamaSans, lamaSans ? 'Lama Sans: loaded' : 'Lama Sans: missing — Arabic falls back to Cairo');
+line(
+  Object.keys(stills).length > 0,
+  Object.keys(stills).length
+    ? `Gemini stills: ${Object.entries(stills).map(([s, a]) => `${s} (${Object.keys(a).join(', ')})`).join(', ')}`
+    : `Gemini stills: none — drawn visuals (generate with: node scripts/generate-stills.mjs ${key})`,
+);
 
 // ——— 7. Pre-flight for the Arabic cut ——————————————————————————————————
 const problems = [];
@@ -347,6 +362,7 @@ for (const f of formats) {
     hookAr: data.hookAr ?? null,
     revealSub: data.revealSub ?? null,
     revealSubAr: data.revealSubAr ?? null,
+    stills: Object.keys(stills).length ? stills : null,
     photo,
     gallery,
     specs,

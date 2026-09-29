@@ -7,6 +7,7 @@ import {SingleBeam, WallWash} from '../components/Downlight';
 import {Eyebrow} from '../components/Eyebrow';
 import {NLCLogo} from '../components/NLCLogo';
 import {ParticleField} from '../components/ParticleField';
+import {PhotoPlate} from '../components/PhotoPlate';
 import {Photometric} from '../components/Photometric';
 import {ProductHero} from '../components/ProductHero';
 import {SpecSheet} from '../components/SpecSheet';
@@ -26,7 +27,9 @@ import {copyFor, type CommercialCopy, type Line} from '../data/commercialCopy';
 // One layout engine serves 16:9 and 9:16 (it reads the composition size) and
 // English or Arabic (`lang`), so every format is cut from the same timeline.
 // In 9:16 all copy stays inside x 150–930 and above y ≈ 1480, clear of the
-// Reels / TikTok action rail and caption band.
+// Reels / TikTok action rail and caption band. With Gemini stills
+// (`stills`, from scripts/generate-stills.mjs) the hook and application scenes
+// play those photos instead of the drawn visuals.
 
 export const COMMERCIAL_FPS = 30;
 export const COMMERCIAL_FRAMES = 750;
@@ -56,6 +59,8 @@ type Ctx = CommercialProps & {
   W: number;
   H: number;
 };
+
+const plateFor = (ctx: Ctx, scene: 'hook' | 'application') => ctx.stills?.[scene]?.[ctx.portrait ? '9x16' : '16x9'] ?? null;
 
 const useFadeUp = (startAt: number, frames = 16) => {
   const frame = useCurrentFrame();
@@ -121,11 +126,18 @@ const Headline: React.FC<{
 const Hook: React.FC<{ctx: Ctx}> = ({ctx}) => {
   const hook = (ctx.rtl ? ctx.hookAr : ctx.hook) ?? ctx.copy.hook;
   const beamX = ctx.portrait ? 0.5 : ctx.rtl ? 0.3 : 0.7;
+  const plate = plateFor(ctx, 'hook');
   return (
     <AbsoluteFill>
-      <NightBackdrop />
-      <ParticleField count={14} opacity={0.3} seed={`ch-${ctx.key}`} />
-      <SingleBeam x={beamX} igniteAt={10} />
+      {plate ? (
+        <PhotoPlate src={plate} frames={SCENES.hook[1]} igniteAt={6} scrim={ctx.portrait ? 'bottom' : ctx.rtl ? 'right' : 'left'} />
+      ) : (
+        <>
+          <NightBackdrop />
+          <ParticleField count={14} opacity={0.3} seed={`ch-${ctx.key}`} />
+          <SingleBeam x={beamX} igniteAt={10} />
+        </>
+      )}
       {ctx.portrait ? (
         <AbsoluteFill style={{alignItems: 'center', justifyContent: 'flex-start', paddingTop: ctx.H * 0.52}}>
           <Headline ctx={ctx} line={hook} startAt={22} stagger={3} size={ctx.rtl ? 58 : 62} center maxWidth={SAFE_W} />
@@ -352,6 +364,23 @@ const Application: React.FC<{ctx: Ctx}> = ({ctx}) => {
       />
     </div>
   );
+  const plate = plateFor(ctx, 'application');
+  if (plate) {
+    return (
+      <AbsoluteFill>
+        <PhotoPlate src={plate} frames={SCENES.app[1] - SCENES.app[0]} scrim={ctx.portrait ? 'bottom' : ctx.rtl ? 'right' : 'left'} />
+        <AbsoluteFill
+          style={
+            ctx.portrait
+              ? {alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 440}
+              : {justifyContent: 'center', alignItems: ctx.rtl ? 'flex-end' : 'flex-start', padding: '0 150px'}
+          }
+        >
+          {copy}
+        </AbsoluteFill>
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill>
       <NightBackdrop lift={0.4} />

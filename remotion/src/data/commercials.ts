@@ -53,6 +53,11 @@ export type CommercialProduct = {
   /** Optional line under the name; defaults to the company name. */
   revealSub?: string | null;
   revealSubAr?: string | null;
+  /**
+   * Gemini photo plates from scripts/generate-stills.mjs, relative to public/.
+   * When present they replace the drawn hook / application visuals.
+   */
+  stills?: Partial<Record<'hook' | 'application', {'16x9'?: string; '9x16'?: string}>> | null;
 };
 
 export type CommercialProps = CommercialProduct & {lang: Lang};

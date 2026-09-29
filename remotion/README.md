@@ -100,6 +100,23 @@ files.** Run from the website repo and the script picks them up by itself:
 value there and re-render. A product without a JSON file is seeded from the
 catalogue on first run.
 
+**Gemini photo plates (optional).** The hook and application scenes can play
+real-looking stills instead of the drawn visuals — stills only, no AI video;
+Remotion adds the motion (slow push-in, lights "switching on", text on a navy
+scrim):
+
+```bash
+GOOGLE_AI_API_KEY=… node scripts/generate-stills.mjs delta   # → public/stills/delta/{hook,application}-{16x9,9x16}.png
+node scripts/render-commercial.mjs delta                      # uses them automatically
+```
+
+It calls Gemini "Nano Banana 2" (`gemini-3.1-flash-image-preview`, `--model=` to
+change) with the master brand prefix from `PROMPTS-ALL.md`, and always sends the
+product's real photo as the reference so the fixture in the scene *is* the
+product. Without a product photo it stops rather than let Gemini invent one.
+Prompts are saved next to the images (`prompts.json`). Check every plate
+against the product photo before rendering.
+
 Guard rails — the template never invents a claim:
 
 - **No photo** → a flat line-art downlight icon, never a render posing as the product.
