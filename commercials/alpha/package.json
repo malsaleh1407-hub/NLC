@@ -1,0 +1,22 @@
+{
+  "name": "nlc-alpha-commercial",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ALPHA recessed COB downlight commercial: Gemini stills + Remotion edit, same recipe as the MINI and LUXO spots",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render src/index.ts AlphaCommercial out/alpha-commercial.mp4 --props=props/alpha.json",
+    "render:preview": "remotion render src/index.ts AlphaCommercial out/alpha-commercial-preview.mp4",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.242"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.242",
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

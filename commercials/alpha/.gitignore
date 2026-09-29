@@ -1,0 +1,5 @@
+node_modules/
+.cache/
+out/
+# Licensed brand face, fetched from nlc.com.sa at render time; never commit it.
+public/fonts/Bizmo-*
