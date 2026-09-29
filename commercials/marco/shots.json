@@ -1,0 +1,18 @@
+{
+  "title": "MARCO SYSTEM",
+  "tagline": "Where creativity meets light",
+  "note": "Concept visualisation",
+  "open_dur": 3.0,
+  "end_dur": 4.0,
+  "shots": [
+    {"image": "STILL_01_URL", "dur": 3.6, "move": "in",    "kicker": "01 · Modular",     "title": "Built around light",           "sub": "Optical modules in one aluminium profile"},
+    {"image": "STILL_02_URL", "dur": 3.6, "move": "in",    "kicker": "02 · Offices",     "title": "Any length · Any shape",       "sub": "Frameless, framed, surface or suspended"},
+    {"image": "STILL_03_URL", "dur": 3.6, "move": "right", "kicker": "03 · Retail",      "title": "Light exactly where it sells", "sub": "Spot, grill and line optics in one run"},
+    {"image": "STILL_04_URL", "dur": 3.6, "move": "in",    "kicker": "04 · Hospitality", "title": "Suspended up to 4 m",          "sub": "Adjustable wire suspension, any run length"},
+    {"image": "STILL_05_URL", "dur": 3.6, "move": "left",  "kicker": "05 · Museums",     "title": "CRI ≥90",                      "sub": "True colour on every surface"},
+    {"image": "STILL_06_URL", "dur": 3.6, "move": "in",    "kicker": "06 · Corridors",   "title": "Dimmable · DALI ready",        "sub": "1–10V or DALI, with sensor integration"},
+    {"image": "STILL_07_URL", "dur": 3.6, "move": "right", "kicker": "07 · Showrooms",   "title": "One system · Every space",     "sub": "Surface, recessed or suspended profiles"},
+    {"image": "STILL_08_URL", "dur": 3.6, "move": "in",    "kicker": "08 · Service",     "title": "Swap modules · No rewiring",   "sub": "Simpler design, installation and maintenance"}
+  ],
+  "end": {"name": "MARCO SYSTEM", "specs": "6–208W · 580–12,940 lm · CRI ≥90 · IP40", "url": "nlc.com.sa"}
+}
