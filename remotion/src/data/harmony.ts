@@ -38,8 +38,7 @@ export const HARMONY = {
 } as const;
 
 // Voice-over script, written in the same voice and cadence as the MINI and
-// CENTURY spots (Higgsfield text2speech_v2 · ElevenLabs · preset voice "Fraser").
-// One paragraph per scene, in scene order.
+// CENTURY spots. One paragraph per scene, in scene order.
 export const HARMONY_VO = [
   'Some spaces just need light. Done right.',
   'This is the N L C Harmony. Light that lasts, performance you trust.',
@@ -57,7 +56,8 @@ export const HARMONY_VO = [
 // (relative to public/) to layer them in; null keeps the fully rendered version.
 //  - voiceover: the HARMONY_VO read as one file (mp3/wav)
 //  - music:     a bed, mixed under the voice-over
-//  - lifestyle: Kling 3.0 clips for the applications scene (see HARMONY-SHOTLIST.md)
+//  - lifestyle: six Gemini stills, one per application in HARMONY.applications
+//               order, animated in the edit (see HARMONY-SHOTLIST.md)
 export const HARMONY_MEDIA: {
   voiceover: string | null;
   music: string | null;

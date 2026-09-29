@@ -73,10 +73,10 @@ imagery (the studio photo plus the datasheet's Opal and Microprismatic front vie
 in `public/harmony/`). Every figure it shows lives in `src/data/harmony.ts`,
 transcribed from the HARMONY datasheet.
 
-`HARMONY-SHOTLIST.md` holds the matching Higgsfield pack: the Fraser voice-over
-script, six lifestyle start-still prompts and the Kling 3.0 motion prompts. Set the
-downloaded files in `HARMONY_MEDIA` and re-render; the voice-over, music and
-lifestyle montage layer in automatically.
+`HARMONY-SHOTLIST.md` holds six Gemini still prompts, one per application (homes,
+hotels, lobbies, offices, museums, hospitals). List the stills in `HARMONY_MEDIA`
+and re-render: they become a slow push-in montage under the *Made for …* words, no
+video generation needed. An optional voice-over and music bed layer in the same way.
 
 ```bash
 npm run render:harmony   # out/nlc-harmony-commercial.mp4

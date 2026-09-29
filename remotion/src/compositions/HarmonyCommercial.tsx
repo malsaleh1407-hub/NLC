@@ -34,8 +34,8 @@ const ramp = (f: number, a: number, b: number, easing = smooth) =>
 // ─── Timeline — scene lengths in frames; neighbours overlap for crossfades ────
 const APP_START = 16; // applications: frames before the first word lands
 const APP_WORD = 22; // applications: frames per word, product-only version
-const APP_CLIP = 48; // applications: frames per word when lifestyle clips are supplied
-const hasClips = HARMONY_MEDIA.lifestyle.length > 0;
+const APP_SHOT = 48; // applications: frames per word when lifestyle shots are supplied
+const hasShots = HARMONY_MEDIA.lifestyle.length > 0;
 const DUR = {
   hook: 150,
   title: 165,
@@ -45,7 +45,7 @@ const DUR = {
   cct: 165,
   durability: 190,
   install: 165,
-  applications: hasClips ? APP_START + HARMONY.applications.length * APP_CLIP + 12 : 165,
+  applications: hasShots ? APP_START + HARMONY.applications.length * APP_SHOT + 12 : 165,
   warranty: 105,
   endcard: 135,
 };
@@ -886,30 +886,50 @@ const Install: React.FC = () => {
   );
 };
 
-// 9 · APPLICATIONS — word cycle; lifestyle clips replace the backdrop when supplied
+// Lifestyle shot: a Gemini still animated with a slow push-in and drift (a video
+// file also works). Each shot fades in over the previous one.
+const isVideo = (src: string) => /\.(mp4|mov|webm)$/i.test(src);
+const LifestyleShot: React.FC<{src: string; index: number; dur: number}> = ({src, index, dur}) => {
+  const f = useCurrentFrame();
+  const fadeIn = index === 0 ? 1 : ramp(f, 0, 10, Easing.linear);
+  const zoom = interpolate(f, [0, dur], [1.04, 1.12], clamp);
+  const dir = index % 2 === 0 ? 1 : -1;
+  const pan = interpolate(f, [0, dur], [-24 * dir, 24 * dir], clamp);
+  return (
+    <AbsoluteFill style={{opacity: fadeIn, overflow: 'hidden'}}>
+      {isVideo(src) ? (
+        <OffthreadVideo src={staticFile(src)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+      ) : (
+        <Img
+          src={staticFile(src)}
+          style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${zoom}) translateX(${pan}px)`}}
+        />
+      )}
+      <AbsoluteFill style={{background: 'linear-gradient(90deg, rgba(15,18,53,0.85) 0%, rgba(15,18,53,0.35) 55%, rgba(15,18,53,0.1) 100%)'}} />
+    </AbsoluteFill>
+  );
+};
+
+// 9 · APPLICATIONS — word cycle; lifestyle shots replace the backdrop when supplied
 const Applications: React.FC = () => {
   const f = useCurrentFrame();
   const apps = HARMONY.applications;
-  const clips = HARMONY_MEDIA.lifestyle;
-  const per = hasClips ? APP_CLIP : APP_WORD;
+  const shots = HARMONY_MEDIA.lifestyle;
+  const per = hasShots ? APP_SHOT : APP_WORD;
   const start = APP_START;
   const active = Math.min(apps.length - 1, Math.max(0, Math.floor((f - start) / per)));
   const local = f - start - active * per;
   const wordIn = ramp(local, 0, 10);
   return (
     <AbsoluteFill>
-      {hasClips ? (
-        // Clip i plays under word i (clips are listed in application order).
-        clips.map((src, i) => {
-          const from = i === 0 ? 0 : start + i * per;
-          const to = i === clips.length - 1 ? T.applications[1] : start + (i + 1) * per;
+      {hasShots ? (
+        // Shot i sits under word i (shots are listed in application order).
+        shots.map((src, i) => {
+          const from = i === 0 ? 0 : start + i * per - 6;
+          const to = i === shots.length - 1 ? T.applications[1] : start + (i + 1) * per + 6;
           return (
             <Sequence key={src} from={from} durationInFrames={to - from}>
-              <AbsoluteFill>
-                {/* skip the first second, where Kling clips are still nearly static */}
-                <OffthreadVideo src={staticFile(src)} startFrom={30} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-                <AbsoluteFill style={{background: 'linear-gradient(90deg, rgba(15,18,53,0.85) 0%, rgba(15,18,53,0.35) 55%, rgba(15,18,53,0.1) 100%)'}} />
-              </AbsoluteFill>
+              <LifestyleShot src={src} index={i} dur={to - from} />
             </Sequence>
           );
         })
