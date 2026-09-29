@@ -3,7 +3,7 @@
 
 Each still gets a slow Ken Burns move, a Bizmo title card and a crossfade;
 the spot opens on a navy light-sweep card and closes on the white NLC logo.
-Runs in the Higgsfield sandbox (Pillow, Playwright/Chromium, ffmpeg).
+Runs in the Higgsfield sandbox (Pillow, Node Playwright/Chromium, ffmpeg).
 
     python3 build_commercial.py shots.json out.mp4
 """
@@ -54,7 +54,6 @@ html,body{width:1920px;height:1080px;background:transparent;font-family:Bizmo,sa
 
 
 def overlays(cfg):
-    from playwright.sync_api import sync_playwright
     faces = "".join(
         "@font-face{font-family:Bizmo;src:url(file://%s/Bizmo-%s.woff2);font-weight:%d}"
         % (WORK, w, {"Light": 300, "Regular": 400, "Bold": 700, "Black": 900}[w]) for w in FONTS)
@@ -71,19 +70,31 @@ def overlays(cfg):
     pages["end"] = ('<div class="center"><img class="logo" src="file://%s/logo-white.svg">'
                     '<div class="name">%s</div><div class="specs">%s</div><div class="url">%s</div></div>'
                     % (WORK, e["name"], e["specs"], e["url"]))
-    out = {}
-    with sync_playwright() as p:
-        b = p.chromium.launch()
-        pg = b.new_page(viewport={"width": W, "height": H})
-        for k, body in pages.items():
-            path = os.path.join(WORK, "ov_%s.png" % k)
-            pg.set_content("<html><head>%s</head><body>%s</body></html>" % (style, body))
-            pg.evaluate("document.fonts.ready")
-            pg.wait_for_timeout(150)
-            pg.screenshot(path=path, omit_background=True)
-            out[k] = Image.open(path).convert("RGBA")
-        b.close()
-    return out
+    jobs = []
+    for k, body in pages.items():
+        html = os.path.join(WORK, "ov_%s.html" % k)
+        with open(html, "w", encoding="utf-8") as f:
+            f.write('<html><head><meta charset="utf-8">%s</head><body>%s</body></html>' % (style, body))
+        jobs.append([html, os.path.join(WORK, "ov_%s.png" % k)])
+    env = dict(os.environ, NODE_PATH=subprocess.check_output(["npm", "root", "-g"], text=True).strip())
+    subprocess.run(["node", "-e", SHOT_JS, json.dumps(jobs)], check=True, env=env)
+    return {k: Image.open(png).convert("RGBA") for k, (_, png) in zip(pages, jobs)}
+
+
+SHOT_JS = """
+const {chromium} = require('playwright');
+(async () => {
+  const b = await chromium.launch();
+  const p = await b.newPage({viewport: {width: 1920, height: 1080}});
+  for (const [html, png] of JSON.parse(process.argv[1])) {
+    await p.goto('file://' + html);
+    await p.evaluate(() => document.fonts.ready);
+    await p.waitForTimeout(150);
+    await p.screenshot({path: png, omitBackground: true});
+  }
+  await b.close();
+})();
+"""
 
 
 # ---------- backgrounds ----------
