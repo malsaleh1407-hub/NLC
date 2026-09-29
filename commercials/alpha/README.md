@@ -20,10 +20,11 @@ footnote says so (brand honesty rule). The end card uses the real product photo.
 
 ## Pipeline
 
-1. **Stills.** Generate the six prompts in `PROMPTS.md` with Nano Banana 2 (Gemini)
-   in Higgsfield, using the real ALPHA photos as references.
-2. **Wire them in.** Paste the six result URLs, in shot order, into
-   `props/alpha.json` → `stills`.
+1. **Stills.** Generate the six stills in Gemini (web, e.g. driven by Claude in
+   Chrome with `GEMINI-CHROME-TASK.md`, or Nano Banana 2 in Higgsfield with
+   `PROMPTS.md`), using the real ALPHA photos as references.
+2. **Wire them in.** Upload them to `public/stills/` (or paste Higgsfield result
+   URLs) and list them, in shot order, in `props/alpha.json` → `stills`.
 3. **Render.** Run `scripts/render-in-higgsfield-sandbox.sh` in the Higgsfield
    sandbox. It pulls Bizmo and the master logo from nlc.com.sa, which are never
    committed, then renders and uploads the MP4 to Higgsfield.
