@@ -4,8 +4,9 @@
 Every frame is drawn with Pillow + numpy and piped to ffmpeg; the soundtrack is
 synthesised with numpy. Product photos, the NLC logo and the Outfit font are
 read from --assets (fetch_assets.sh downloads them from nlc.com.sa). When
-generate_stills.py has made a Gemini scene still for a shape
-(assets/scenes/<shape>.png), that shape's scene uses the photo; otherwise it
+there is a Gemini scene still for a shape (assets/scenes/<shape>.png from
+generate_stills.py, or scenes/<shape>.png committed next to this script),
+that shape's scene uses the photo; otherwise it
 shows the product cut-out on the lit chessboard stage.
 
 Every spec on screen comes from the live CHESS product pages on nlc.com.sa
@@ -645,12 +646,15 @@ def load_assets(adir):
     global ASSETS, PROD, LINE_PROD, LOGO, BG0, BG1, VIG, TILES, SCENE_IMG, SCRIM, DEEP
     ASSETS = adir
     SCENE_IMG = {}
+    here = os.path.dirname(os.path.abspath(__file__))
     for p in PIECES:
-        for ext in ('png', 'jpg', 'jpeg', 'webp'):
-            path = os.path.join(adir, 'scenes', f"{p['name'].lower()}.{ext}")
-            if os.path.exists(path):
-                SCENE_IMG[p['name'].lower()] = load_scene(path)
-                break
+        shape = p['name'].lower()
+        for d in (os.path.join(adir, 'scenes'), os.path.join(here, 'scenes')):
+            for stem in (shape, 'chess-' + shape):
+                for ext in ('png', 'jpg', 'jpeg', 'webp'):
+                    path = os.path.join(d, f'{stem}.{ext}')
+                    if shape not in SCENE_IMG and os.path.exists(path):
+                        SCENE_IMG[shape] = load_scene(path)
     SCRIM = make_scrim()
     DEEP = Image.new('RGB', (W, H), NAVY_DEEP)
     hero = {p['img'] for p in PIECES} | {'chess-master-1'}
