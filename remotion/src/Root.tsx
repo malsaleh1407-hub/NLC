@@ -7,6 +7,7 @@ import {LinkedInPost} from './compositions/LinkedInPost';
 import {ArabicReel} from './compositions/ArabicReel';
 import {SaudiProjectMap} from './compositions/SaudiProjectMap';
 import {ProductSpot, productSpotDefaults} from './compositions/ProductSpot';
+import {HANDY_COMMERCIAL_FRAMES, HandyCommercial} from './compositions/HandyCommercial';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -74,6 +75,15 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1350}
         defaultProps={productSpotDefaults}
+      />
+      {/* 35s HANDY SERIES commercial — HANDY ECO (DOB) vs HANDY (external driver) */}
+      <Composition
+        id="HandyCommercial"
+        component={HandyCommercial}
+        durationInFrames={HANDY_COMMERCIAL_FRAMES}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );

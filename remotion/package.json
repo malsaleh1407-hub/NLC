@@ -12,6 +12,7 @@
     "render:arabic": "remotion render src/index.ts ArabicReel out/nlc-arabic-reel.mp4",
     "render:map": "remotion render src/index.ts SaudiProjectMap out/nlc-saudi-project-map.mp4",
     "render:products": "node scripts/render-products.mjs",
+    "render:handy": "remotion render src/index.ts HandyCommercial out/handy-series-commercial.mp4",
     "render:all": "npm run render:youtube && npm run render:reel && npm run render:square && npm run render:linkedin && npm run render:arabic && npm run render:map"
   },
   "dependencies": {

@@ -37,6 +37,17 @@ The component reproduces the artwork's own value; worth reconciling at source.
 | `ArabicReel` | 1080×1920 · 30 fps | 15.6 s | النسخة العربية — RTL vertical reel, Cairo typeface |
 | `SaudiProjectMap` | 1920×1080 · 30 fps | 18 s | Geographic proof film — the Kingdom ignites city by city |
 | `ProductSpot` | 1080×1350 · 30 fps | 8 s | **Per-product spot**, rendered once per catalogue product |
+| `HandyCommercial` | 1920×1080 · 30 fps | 35 s | HANDY SERIES commercial — HANDY ECO (driver on board) vs HANDY (external driver) |
+
+### HANDY SERIES commercial
+
+`npm run render:handy` → `out/handy-series-commercial.mp4`. Built on the real
+catalogue photo (`public/products/handy.png` — both models share the housing),
+with animated diagrams of the two drivers: the ECO's driver ICs sit on the LED
+board itself, while the HANDY's LED board is fed by a separate driver box.
+Every figure on screen lives in `src/data/handy.ts`, transcribed from the
+*Handy* and *HandyEco* datasheets. The render is silent; add the music bed in
+the edit.
 
 ### The product-video factory
 
@@ -74,6 +85,7 @@ npm run render:youtube   # out/nlc-youtube-commercial.mp4
 npm run render:reel      # out/nlc-instagram-reel.mp4
 npm run render:square    # out/nlc-instagram-post.mp4
 npm run render:linkedin  # out/nlc-linkedin-post.mp4
+npm run render:handy     # out/handy-series-commercial.mp4
 npm run render:all
 ```
 
