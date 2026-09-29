@@ -12,7 +12,8 @@
     "render:arabic": "remotion render src/index.ts ArabicReel out/nlc-arabic-reel.mp4",
     "render:map": "remotion render src/index.ts SaudiProjectMap out/nlc-saudi-project-map.mp4",
     "render:products": "node scripts/render-products.mjs",
-    "render:all": "npm run render:youtube && npm run render:reel && npm run render:square && npm run render:linkedin && npm run render:arabic && npm run render:map"
+    "render:all": "npm run render:youtube && npm run render:reel && npm run render:square && npm run render:linkedin && npm run render:arabic && npm run render:map",
+    "render:alligator": "node scripts/render-commercial.mjs"
   },
   "dependencies": {
     "react": "18.3.1",

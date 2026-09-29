@@ -7,6 +7,8 @@ import {LinkedInPost} from './compositions/LinkedInPost';
 import {ArabicReel} from './compositions/ArabicReel';
 import {SaudiProjectMap} from './compositions/SaudiProjectMap';
 import {ProductSpot, productSpotDefaults} from './compositions/ProductSpot';
+import {LINEAR_COMMERCIAL_FRAMES, LinearCommercial} from './compositions/LinearCommercial';
+import {ALLIGATOR} from './data/commercials';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -74,6 +76,25 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1350}
         defaultProps={productSpotDefaults}
+      />
+      {/* 20s ALLIGATOR linear-light commercial — 16:9 master + 9:16 cut */}
+      <Composition
+        id="AlligatorCommercial"
+        component={LinearCommercial}
+        durationInFrames={LINEAR_COMMERCIAL_FRAMES}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={ALLIGATOR}
+      />
+      <Composition
+        id="AlligatorReel"
+        component={LinearCommercial}
+        durationInFrames={LINEAR_COMMERCIAL_FRAMES}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={ALLIGATOR}
       />
     </>
   );

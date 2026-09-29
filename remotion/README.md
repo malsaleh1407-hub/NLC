@@ -37,6 +37,8 @@ The component reproduces the artwork's own value; worth reconciling at source.
 | `ArabicReel` | 1080×1920 · 30 fps | 15.6 s | النسخة العربية — RTL vertical reel, Cairo typeface |
 | `SaudiProjectMap` | 1920×1080 · 30 fps | 18 s | Geographic proof film — the Kingdom ignites city by city |
 | `ProductSpot` | 1080×1350 · 30 fps | 8 s | **Per-product spot**, rendered once per catalogue product |
+| `AlligatorCommercial` | 1920×1080 · 30 fps | 20 s | ALLIGATOR linear-light commercial, 16:9 master |
+| `AlligatorReel` | 1080×1920 · 30 fps | 20 s | Same commercial, vertical cut for Reels/Stories/TikTok |
 
 ### The product-video factory
 
@@ -62,6 +64,34 @@ films from the same template.
 > footnote says so. Wire real IES/LDT data (or per-product `specs`) in before
 > using these as spec claims — `specs` is deliberately empty by default so the
 > template can never invent a wattage or lumen figure.
+
+### The ALLIGATOR commercial
+
+`LinearCommercial` is a 20-second product commercial for a linear luminaire,
+laid out for any frame size. Five beats: a single line of light is drawn
+across the dark ("Every space has a line.") → a corridor's ceiling runs ignite
+segment by segment as the camera dollies in ("Draw it in light.") → the
+ALLIGATOR name and product hero → the light-distribution curve → NLC end card
+pointing to the datasheet.
+
+```bash
+npm run render:alligator   # out/commercials/alligator-16x9.mp4 + alligator-9x16.mp4
+```
+
+Two inputs make it final, and neither is guessed:
+
+1. **Product photo.** Copy the site's `images/products/alligator.png` to
+   `public/products/alligator.png`. The render script picks it up
+   automatically and the hero becomes the real product with a light sweep
+   masked to its silhouette. Without it the hero is a line of light, never an
+   invented housing.
+2. **Specs.** Fill `specs` in `src/data/commercials.ts` from
+   `datasheets/alligator.pdf` (e.g. `{k: 'CRI', v: '90+'}`). They appear as
+   chips beside the distribution curve. Empty means no chips.
+
+The distribution curve is illustrative (captioned as such on screen) and
+shows no numeric readout. Music is added in the edit, per the brand video
+system; the render carries a silent track.
 
 ## Commands
 

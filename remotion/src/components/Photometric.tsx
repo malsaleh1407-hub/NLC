@@ -9,7 +9,7 @@ import {FONT, ORANGE, ORANGE_GLOW, WHITE} from '../brand';
 // NOTE: these are *category-typical* distribution shapes for illustration.
 // Wire real IES/LDT photometric data in via the `profile` prop when available.
 
-export type Profile = 'narrow' | 'medium' | 'wide' | 'batwing' | 'asymmetric' | 'updown';
+export type Profile = 'narrow' | 'medium' | 'wide' | 'batwing' | 'linear' | 'asymmetric' | 'updown';
 
 // Relative luminous intensity at angle t (radians) from nadir.
 export const intensityAt = (profile: Profile, t: number): number => {
@@ -23,6 +23,8 @@ export const intensityAt = (profile: Profile, t: number): number => {
       return a > Math.PI / 2 ? 0 : Math.pow(Math.cos(t), 0.7);
     case 'batwing': // linear, panel, strip — twin lobes, soft centre
       return a > Math.PI / 2 ? 0 : 0.42 + 0.58 * Math.exp(-Math.pow((a - 0.62) / 0.34, 2));
+    case 'linear': // diffused linear — soft twin lobes, falling to zero at the horizon
+      return a > Math.PI / 2 ? 0 : (0.62 + 0.38 * Math.exp(-Math.pow((a - 0.6) / 0.3, 2))) * Math.pow(Math.cos(t), 0.75);
     case 'asymmetric': // street light — forward-thrown road-side lobe
       if (a > Math.PI / 2) return 0;
       return t < 0
@@ -61,7 +63,9 @@ export const Photometric: React.FC<{
   startAt?: number;
   drawFrames?: number;
   showScan?: boolean;
-}> = ({profile, size, startAt = 0, drawFrames = 55, showScan = true}) => {
+  /** The live "% @ angle" readout. Hide it when the curve is illustrative. */
+  showReadout?: boolean;
+}> = ({profile, size, startAt = 0, drawFrames = 55, showScan = true, showReadout = true}) => {
   const frame = useCurrentFrame();
   const f = Math.max(0, frame - startAt);
 
@@ -195,6 +199,7 @@ export const Photometric: React.FC<{
           />
           <circle cx={scanTip.x} cy={scanTip.y} r={2.4} fill={WHITE} style={{filter: 'drop-shadow(0 0 4px #fff)'}} />
           {/* Readout parked in the empty top-left corner, clear of the curve */}
+          {showReadout ? (
           <text
             x={2}
             y={9}
@@ -207,6 +212,7 @@ export const Photometric: React.FC<{
           >
             {Math.round(scanVal * 100)}% @ {Math.round(Math.abs(scanT))}°
           </text>
+          ) : null}
         </g>
       ) : null}
 
