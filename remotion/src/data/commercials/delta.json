@@ -3,8 +3,11 @@
   "name": "DELTA",
   "category": "Downlight",
   "categoryAr": "داون لايت",
+  "revealSub": "Indoor luminaire · National Lighting Company",
+  "revealSubAr": "وحدة إنارة داخلية · شركة الإنارة الوطنية",
   "photo": null,
   "gallery": [],
   "specs": [],
-  "profile": "medium"
+  "profile": "medium",
+  "hasDatasheet": false
 }

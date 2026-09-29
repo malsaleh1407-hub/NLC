@@ -61,7 +61,10 @@ export const Photometric: React.FC<{
   startAt?: number;
   drawFrames?: number;
   showScan?: boolean;
-}> = ({profile, size, startAt = 0, drawFrames = 55, showScan = true}) => {
+  fontFamily?: string;
+  labelSize?: number;
+  labelOpacity?: number;
+}> = ({profile, size, startAt = 0, drawFrames = 55, showScan = true, fontFamily = FONT, labelSize = 6, labelOpacity = 0.42}) => {
   const frame = useCurrentFrame();
   const f = Math.max(0, frame - startAt);
 
@@ -151,9 +154,9 @@ export const Photometric: React.FC<{
               x={l.x}
               y={l.y}
               fill={WHITE}
-              fillOpacity={0.42 * gridIn}
-              fontSize={6}
-              fontFamily={FONT}
+              fillOpacity={labelOpacity * gridIn}
+              fontSize={labelSize}
+              fontFamily={fontFamily}
               fontWeight={600}
               textAnchor="middle"
               dominantBaseline="middle"

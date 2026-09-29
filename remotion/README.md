@@ -74,15 +74,16 @@ timeline into 16:9, 9:16 and 9:16 Arabic:
 | Time | Scene | What it shows |
 |------|-------|---------------|
 | 0–4 s | Hook | One aperture switches on; the beam finds the floor |
-| 4–9 s | Reveal | The product photo, wiped in by a bar of light · category · name |
-| 9–16 s | Datasheet | Up to six spec rows from the datasheet, writing themselves |
-| 16–21 s | Application | Downlights along a wall switch on in a wave — scallops and floor pools |
-| 21–25 s | CTA | Master logo · "Download the {NAME} datasheet" · nlc.com.sa |
+| 4–8.3 s | Reveal | The product photo, wiped in by a bar of light · category · name |
+| 8.3–15 s | Datasheet | Up to six spec rows from the product's own page, writing themselves |
+| 15–20.5 s | Application | Downlights along a wall switch on in a wave — scallops and floor pools |
+| 20.5–25 s | CTA | Master logo · "Download the {NAME} datasheet" (only if one exists) · nlc.com.sa |
 
 ```bash
-node scripts/render-commercial.mjs delta            # → out/commercials/delta-16x9.mp4, -9x16.mp4, -9x16-ar.mp4
-node scripts/render-commercial.mjs delta --dry-run  # show the photo/specs/fonts it found, render nothing
+node scripts/render-commercial.mjs delta              # → out/commercials/delta-16x9.mp4, -9x16.mp4, -9x16-ar.mp4
+node scripts/render-commercial.mjs delta --dry-run    # report photo / specs / datasheet / fonts, touch nothing
 node scripts/render-commercial.mjs delta --site=/path/to/Website
+node scripts/render-commercial.mjs delta --datasheet=yes   # override datasheet detection
 ```
 
 **Everything the video says about the product comes from the product's own
@@ -90,24 +91,33 @@ files.** Run from the website repo and the script picks them up by itself:
 
 | Source on the site | Used for |
 |--------------------|----------|
-| `images/products/{key}.png` (+ `-g2`, `-g3` …) | The hero shot (copied into `public/products/`, git-ignored) |
-| `product/{key}.html` + `ar/product/{key}.html` | Spec rows (EN labels, AR labels paired row-by-row) → written to `src/data/commercials/{key}.json` for review |
-| `fonts/Bizmo-*.woff2`, `fonts/LamaSans-*.woff2` | Exact logo wordmark and brand Arabic face (copied, git-ignored) |
+| the `products.html` card image (+ `-g2` / `-2` siblings) | The hero shot (copied into `public/products/`, git-ignored) |
+| `product/{key}.html` + `ar/product/{key}.html` | Spec rows — EN labels, AR labels paired row by row, Arabic word values → written to `src/data/commercials/{key}.json` for review |
+| `datasheets/{key}.pdf`, the page's PDF link, or `base44-documents-import.csv` | Whether a datasheet exists — decides the CTA |
+| `fonts/Bizmo-*.woff2`, `fonts/LamaSans-*.woff2` | Brand type (Bizmo for all English, Lama Sans for Arabic) — copied, git-ignored |
 
 `src/data/commercials/{key}.json` is the reviewed source of truth: edit a
 value there and re-render. A product without a JSON file is seeded from the
-catalogue on first run (set its `categoryAr`; for non-downlights add a
-`hook` / `hookAr` line, since the default opening line is about downlights).
+catalogue on first run.
 
-Honest fallbacks — the template never invents a figure:
+Guard rails — the template never invents a claim:
 
-- **No photo** → a flat line-art downlight icon (never a render posing as the product).
-- **No specs** → the datasheet scene shows a *typical* downlight distribution,
-  labelled as typical, and points to the datasheet for the measured photometry.
+- **No photo** → a flat line-art downlight icon, never a render posing as the product.
+- **No specs** → the datasheet scene shows a distribution labelled on screen as
+  *typical* from its first frame, and says it is not the product's measured data.
+- **No confirmed datasheet** → the CTA points to the product in the catalogue
+  instead of promising a download.
+- **Not a downlight** → the script stops: the hook, icon, "typical" wording and
+  application scene all depict downlights. Add `hook`/`hookAr` and
+  `revealSub`/`revealSubAr` to the JSON, adapt the visuals, then use `--force`.
+- **Arabic cut** → refuses to render until `categoryAr` and every row's
+  `labelAr` are set.
 
-Copy follows the brand voice (§01): calm, specific, one orange word per
-headline. The application line is the guidelines' own approved EN/AR pair.
-All copy is in `src/data/commercialCopy.ts`.
+Copy follows the brand voice (§01): calm, specific, one NLC-Orange word per
+headline; the application line is the guidelines' approved EN/AR pair. All copy
+is in `src/data/commercialCopy.ts` — a `\n` forces a line break and a `|` breaks
+only in 9:16. In 9:16 all copy stays inside the Reels/TikTok safe area
+(x 150–930, above y ≈ 1480).
 
 ## Commands
 

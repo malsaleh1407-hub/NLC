@@ -55,7 +55,15 @@ export const NLCLogo: React.FC<{
   revealAt?: number;
   revealFrames?: number;
   showDescriptor?: boolean;
-}> = ({height, variant = 'reversed', revealAt, revealFrames = 26, showDescriptor = true}) => {
+  /**
+   * 'inside' (default, as the existing films were built): the clear-space
+   * padding sits on the <svg>, and Remotion's global `box-sizing: border-box`
+   * takes it out of `height`, so the artboard renders at ~56% of `height`.
+   * 'outside': `height` is the true artboard height and the clear space is
+   * added around it.
+   */
+  clearSpace?: 'inside' | 'outside';
+}> = ({height, variant = 'reversed', revealAt, revealFrames = 26, showDescriptor = true, clearSpace = 'inside'}) => {
   const frame = useCurrentFrame();
   const {mark, text} = colorsFor(variant);
   const markOnly = variant === 'mark';
@@ -83,7 +91,12 @@ export const NLCLogo: React.FC<{
       height={height}
       xmlns="http://www.w3.org/2000/svg"
       // Clear space (Section 02): at minimum the height of the "N" stem on every side.
-      style={{display: 'block', overflow: 'visible', padding: height * 0.22}}
+      style={{
+        display: 'block',
+        overflow: 'visible',
+        padding: height * 0.22,
+        ...(clearSpace === 'outside' ? {boxSizing: 'content-box' as const} : {}),
+      }}
     >
       <defs>
         <clipPath id={clipId}>

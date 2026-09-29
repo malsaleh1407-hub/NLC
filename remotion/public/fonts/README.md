@@ -1,7 +1,9 @@
 # Fonts
 
 `Outfit-*.ttf` and `Cairo-*.ttf` are bundled (open source, used for body copy and
-Arabic respectively).
+Arabic respectively). The 800 weights — the guidelines' Section Title weight —
+come from fontsource (`Outfit-800.woff2`, `Cairo-800-arabic.woff2`,
+`Cairo-800-latin.woff2`), also SIL Open Font License 1.1.
 
 ## Bizmo — required for a pixel-exact logo lockup
 
@@ -18,6 +20,7 @@ Bizmo-Regular.woff2    (400)
 Bizmo-Medium.woff2     (500)
 Bizmo-SemiBold.woff2   (600)
 Bizmo-Bold.woff2       (700)
+Bizmo-ExtraBold.woff2  (800)
 Bizmo-Black.woff2      (900)
 ```
 
@@ -31,3 +34,10 @@ npm run render:all
 renders still succeed — but the wordmark falls back to Outfit and **is not
 final**. Everything else (the mark itself, colours, geometry, clear space) is
 already exact, because the mark is the master vector path.
+
+## Lama Sans — the brand Arabic face
+
+Also licensed and not committed. Copy `LamaSans-Regular/Medium/Bold/Black.woff2`
+from `Website/fonts/` for the Arabic commercial; until then Arabic falls back to
+Cairo. `scripts/render-commercial.mjs` copies both families in automatically
+when it can see the website folder, and `.gitignore` keeps them out of git.

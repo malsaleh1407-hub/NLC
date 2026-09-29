@@ -1,11 +1,11 @@
 import React from 'react';
 import {Easing, interpolate, useCurrentFrame} from 'remotion';
-import {BRAND_EASE, ORANGE_GLOW} from '../brand';
+import {BRAND_EASE, ORANGE} from '../brand';
 
 const ease = Easing.bezier(...BRAND_EASE);
 
 // Section label per the type scale (guidelines §04): bold, uppercase,
-// letter-spacing .32em, orange. Arabic has no case and is never letter-spaced
+// letter-spacing .32em, NLC Orange (--secondary, §06 section pattern). Arabic has no case and is never letter-spaced
 // (tracking breaks the joins), so `rtl` drops both.
 export const Eyebrow: React.FC<{
   text: string;
@@ -26,7 +26,7 @@ export const Eyebrow: React.FC<{
         fontFamily,
         fontWeight: 700,
         fontSize: rtl ? fontSize * 1.25 : fontSize,
-        color: ORANGE_GLOW,
+        color: ORANGE,
         letterSpacing: rtl ? 0 : '0.32em',
         // Compensate trailing tracking so centred labels stay optically centred.
         marginInlineEnd: rtl ? 0 : '-0.32em',

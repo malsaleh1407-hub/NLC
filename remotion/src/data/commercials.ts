@@ -18,8 +18,10 @@ export type Spec = {
   label: string;
   /** Arabic label; the English label is used when missing. */
   labelAr?: string;
-  /** Values stay in Latin script in both languages (brand guidelines, RTL & bilingual). */
+  /** Numbers, units and product codes stay Latin in both languages (§08 RTL & bilingual). */
   value: string;
+  /** Only for word values (finish, material…): the Arabic page's value. */
+  valueAr?: string;
 };
 
 export type Lang = 'en' | 'ar';
@@ -39,9 +41,18 @@ export type CommercialProduct = {
   specs: Spec[];
   /** Category-typical light distribution, used only when `specs` is empty. */
   profile: Profile;
+  /**
+   * Whether a datasheet PDF is confirmed to exist for this product. Only then
+   * does the CTA say "Download the {NAME} datasheet"; otherwise it points to
+   * the product in the catalogue. Set by render-commercial.mjs.
+   */
+  hasDatasheet: boolean;
   /** Optional per-product opening line; the default hook is written for downlights. */
-  hook?: Line;
-  hookAr?: Line;
+  hook?: Line | null;
+  hookAr?: Line | null;
+  /** Optional line under the name; defaults to the company name. */
+  revealSub?: string | null;
+  revealSubAr?: string | null;
 };
 
 export type CommercialProps = CommercialProduct & {lang: Lang};

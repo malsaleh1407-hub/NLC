@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
-import {NAVY, NAVY_DEEP, NIGHT, ORANGE_GLOW, WHITE} from '../brand';
+import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
+import {BRAND_EASE, NAVY, NAVY_DEEP, NIGHT, ORANGE_GLOW, WHITE} from '../brand';
 
 // Deep night-navy backdrop with a soft radial lift.
 export const NightBackdrop: React.FC<{lift?: number}> = ({lift = 0}) => (
@@ -47,4 +47,17 @@ export const LightSweep: React.FC<{at: number; peak?: number}> = ({at, peak = 0.
       }}
     />
   );
+};
+
+// A quiet cut: the outgoing scene dips to night navy and the next one rises
+// out of it, on the brand easing curve. `at` is the cut frame.
+export const NavyDip: React.FC<{at: number; out?: number; in?: number}> = ({at, out = 6, in: inFrames = 9}) => {
+  const frame = useCurrentFrame();
+  const o = interpolate(frame, [at - out, at, at + inFrames], [0, 1, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: Easing.bezier(...BRAND_EASE),
+  });
+  if (o <= 0.001) return null;
+  return <AbsoluteFill style={{backgroundColor: NIGHT, opacity: o}} />;
 };

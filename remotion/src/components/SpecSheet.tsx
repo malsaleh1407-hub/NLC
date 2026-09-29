@@ -7,9 +7,13 @@ const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
 export type SheetRow = {label: string; value: string};
 
+const ARABIC = /[\u0600-\u06FF]/;
+
 // A datasheet table that writes itself: each row's rule draws across in the
-// reading direction, then the label and value rise in. Values are always set
-// LTR (Latin figures and units) even inside an Arabic layout.
+// reading direction, then the label and value rise in. Figures, units and
+// codes stay LTR even inside an Arabic layout; an Arabic word value is set RTL.
+// A label that is too long is cut with an ellipsis rather than wrapping into
+// the next row; the value never shrinks.
 export const SpecSheet: React.FC<{
   rows: SheetRow[];
   width: number;
@@ -18,9 +22,11 @@ export const SpecSheet: React.FC<{
   fontSize?: number;
   rtl?: boolean;
   fontFamily: string;
-}> = ({rows, width, startAt = 0, stagger = 8, fontSize = 34, rtl = false, fontFamily}) => {
+  /** Row height as a multiple of fontSize. */
+  rowScale?: number;
+}> = ({rows, width, startAt = 0, stagger = 8, fontSize = 34, rtl = false, fontFamily, rowScale = 2.05}) => {
   const frame = useCurrentFrame();
-  const rowH = fontSize * 2.05;
+  const rowH = fontSize * rowScale;
 
   return (
     <div style={{width, direction: rtl ? 'rtl' : 'ltr'}}>
@@ -54,16 +60,31 @@ export const SpecSheet: React.FC<{
                 transform: `translateY(${(1 - text) * fontSize * 0.4}px)`,
               }}
             >
-              <span style={{fontFamily, fontWeight: 400, fontSize, color: 'rgba(255,255,255,0.68)'}}>{r.label}</span>
+              <span
+                style={{
+                  fontFamily,
+                  fontWeight: 400,
+                  fontSize,
+                  color: 'rgba(255,255,255,0.72)',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  minWidth: 0,
+                  flex: '1 1 auto',
+                }}
+              >
+                {r.label}
+              </span>
               <span
                 style={{
                   fontFamily,
                   fontWeight: 700,
                   fontSize,
                   color: WHITE,
-                  direction: 'ltr',
+                  direction: ARABIC.test(r.value) ? 'rtl' : 'ltr',
                   unicodeBidi: 'isolate',
                   whiteSpace: 'nowrap',
+                  flexShrink: 0,
                 }}
               >
                 {r.value}
