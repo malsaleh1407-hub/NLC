@@ -1,0 +1,28 @@
+# OCEAN commercial: Gemini prompts
+
+Attach the Ocean product photo to each prompt, set the image to 16:9 (landscape), and generate one still per prompt.
+Upload the six stills to Higgsfield (or send them here) and the commercial gets cut from them.
+
+## 1. Hero
+
+Hero product shot: one luminaire floating horizontally at a slight three-quarter angle in a dark navy studio, its diffuser glowing clean white. Fine water droplets bead across the housing and a few drops fall from its underside, lit by a thin warm orange rim light from behind. Light mist in the air. Place the fixture in the right two-thirds of the frame and keep the left third dark and empty. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
+
+## 2. Macro
+
+Extreme close-up macro of the luminaire's edge where the glowing opal diffuser meets the white housing and a stainless clip. Water runs down the surface in beads and thin streams; the light glows evenly through the wet diffuser. Dark navy background, warm orange reflections in the droplets, shallow depth of field. Keep the bottom third of the frame darker and uncluttered. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
+
+## 3. Car Park
+
+Wide shot of a modern underground car park beneath a Riyadh commercial building at night: long parallel rows of the luminaire mounted on the concrete ceiling, all glowing clean white and receding in deep perspective. Freshly washed epoxy floor with puddles mirroring the light lines, concrete columns with navy-blue painted bands, one dark SUV softly out of focus in the mid-ground. 24mm, f/5.6. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
+
+## 4. Wash Down
+
+Stainless-steel food-processing hall in Saudi Arabia during wash-down: high-pressure water spray arcs through the air, mist hangs in the light, and a row of the luminaire is mounted overhead glowing bright white with droplets on the housings; light rays visible through the mist. Stainless machinery, white epoxy floor with running water, warm orange glow at the far end. 35mm, shallow depth of field. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
+
+## 5. Coastal
+
+Blue-hour view of a covered waterfront walkway on the Red Sea coast in Jeddah: a neat line of the luminaire mounted under a concrete canopy, glowing clean white onto wet stone paving. Sea spray and light drizzle in the air, calm sea, a warm orange afterglow on the horizon under a deep navy sky. Modern Saudi architecture. 24mm. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
+
+## 6. Car Wash
+
+Inside a modern automatic car-wash tunnel at night: water jets and foam spray across a dark sedan with no badges, heavy mist in the air, and the luminaire mounted along both walls glowing bright white through the spray, droplets streaming off the housings. Deep navy tones with warm orange accent lights. 28mm, frozen water droplets. The luminaire is the exact product in the reference image: a long slim white linear waterproof fitting with an opal diffuser and stainless side clips. Keep its exact shape, proportions, colour, end caps and clips; do not redesign it or add parts. Cinematic editorial commercial photograph, Sony A7R IV look, deep navy shadows (#24285E) with warm orange accent highlights (#F6851F), teal-and-orange grade, photorealistic, crisp detail. No text, no letters, no signage, no logos, no watermark, no people. Landscape 16:9.
