@@ -4,17 +4,17 @@ One-time setup, about 15 minutes. After it, the dashboard's **Traffic** tab
 refreshes itself every morning. You need admin access to the NLC Google
 Analytics property, the Search Console property, and this GitHub repo.
 
-## Before you start: make sure Google Analytics is actually installed
+## Before you start: the tracking tag is already in place
 
-The dashboard's live-site audit checks every page for the Google Analytics
-tag. In the repository copy, the tag on `index.html` still contains the
-template placeholder `GA_MEASUREMENT_ID`, and no other page has a tag. If
-the live site is the same, Google Analytics has no data to report.
+The live-site audit checks every page for the Google Analytics tag. As of
+the 19 October 2026 crawl, all 892 indexable pages of nlc.com.sa load
+GA4 with the single ID **`G-N3YYDF3DTY`** (through a shared script), so
+Google Analytics already has data to report. Use the property that owns
+that ID in step 2. If coverage ever drops, the Live site tab flags it.
 
-Fix: in Google Analytics, open **Admin → Data streams → (your web stream)**
-and copy the **Measurement ID** (`G-XXXXXXXXXX`). Put it in place of
-`GA_MEASUREMENT_ID` and add the same snippet to the `<head>` of **every**
-page, English and Arabic. The Live site tab shows coverage per page.
+(The repository copy is outdated: its `index.html` still has the template
+placeholder `GA_MEASUREMENT_ID`. That only matters if the repo is ever
+deployed as-is.)
 
 ## Step 1. Create a read-only robot account (Google Cloud)
 
