@@ -98,3 +98,10 @@ current state without running anything.
   intentionally leaves out.
 - **Lighthouse budget.** Track performance/accessibility scores per release
   next to the health score.
+
+## Activation status
+
+The CI guard and auto-refresh only cover branches that contain
+`.github/workflows/site-audit.yml`. Until this branch is merged into
+`main`, pushes to `main` (including github.com web uploads) are NOT
+audited and the dashboard does not refresh for them.
