@@ -51,6 +51,15 @@ OG_IMAGE_RE = re.compile(r'<meta[^>]+property=["\']og:image["\']', re.I)
 IMG_TAG_RE = re.compile(r'<img\b[^>]*>', re.I)
 ALT_RE = re.compile(r'\balt\s*=', re.I)
 LANG_AR_RE = re.compile(r'<html[^>]+lang=["\']ar["\']', re.I)
+GA_ID_RE = re.compile(r'\b(G-[A-Z0-9]{6,12}|GTM-[A-Z0-9]{5,9})\b')
+GA_TAG_RE = re.compile(r'googletagmanager\.com/(?:gtag/js|gtm\.js)', re.I)
+
+
+def analytics_tag(content):
+    """'ok' with a real GA4/GTM id, 'placeholder' when the snippet was never filled in, else 'missing'."""
+    if GA_ID_RE.search(content):
+        return 'ok'
+    return 'placeholder' if GA_TAG_RE.search(content) else 'missing'
 SITEMAP_LOC_RE = re.compile(r'<loc>\s*([^<\s]+)\s*</loc>')
 
 # Internal or draft pages that are not expected to have an AR mirror,
@@ -340,6 +349,8 @@ def audit(source):
             'altMissing': sum(1 for tag in imgs if not ALT_RE.search(tag)),
             'brokenRefs': 0,
             'sizeKB': round(size_kb, 1),
+            'analytics': analytics_tag(content),
+            'gaIds': sorted(set(GA_ID_RE.findall(content))),
         })
 
     source.check(t for _, targets in page_refs for t in targets)
@@ -398,6 +409,13 @@ def audit(source):
         pages_by_section[p['section']] = pages_by_section.get(p['section'], 0) + 1
 
     seo_pages = [p for p in pages if not p['noindex']]
+    tracked = [p for p in seo_pages if p['analytics'] == 'ok']
+    placeholder = [p['path'] for p in seo_pages if p['analytics'] == 'placeholder']
+    untracked = [p['path'] for p in seo_pages if p['analytics'] == 'missing']
+    ga_ids = sorted({i for p in pages for i in p['gaIds']})
+    tracking = {'tracked': len(tracked), 'placeholder': sorted(placeholder),
+                'untracked': sorted(untracked), 'ids': ga_ids,
+                'pct': round(100 * len(tracked) / len(seo_pages)) if seo_pages else 0}
     no_title = sum(1 for p in seo_pages if not p['hasTitle'])
     no_desc = sum(1 for p in seo_pages if not p['hasDesc'])
     no_hreflang = sum(1 for p in seo_pages if not p['hasHreflang'])
@@ -479,10 +497,29 @@ def audit(source):
         actions.append({'severity': 'warning',
                         'title': f'{len(orphans)} pages are orphaned (no page links to them)',
                         'detail': 'Visitors can only reach them by typing the URL. Link them from a nav, footer or index.'})
+    if seo_pages and tracking['tracked'] == 0:
+        actions.append({'severity': 'critical',
+                        'title': 'Google Analytics is not installed with a real ID on any page',
+                        'detail': (f"{len(placeholder)} pages still carry the template placeholder GA_MEASUREMENT_ID "
+                                   if placeholder else '') +
+                                  f"{len(untracked)} pages have no tag at all. No visits are being recorded. "
+                                  'Add the G-XXXXXXX measurement ID from Google Analytics to every page.'})
+    elif tracking['pct'] < 100:
+        actions.append({'severity': 'serious',
+                        'title': f"Google Analytics covers only {tracking['pct']}% of pages",
+                        'detail': f"{len(untracked) + len(placeholder)} indexable pages are not tracked, "
+                                  'so traffic numbers undercount. See Search visibility below for the list.'})
+    if len(ga_ids) > 1:
+        actions.append({'severity': 'warning',
+                        'title': f"{len(ga_ids)} different analytics IDs are in use",
+                        'detail': 'Pages report to different properties (' + ', '.join(ga_ids) +
+                                  '), which splits your traffic numbers. Use one GA4 ID everywhere.'})
     if total_alt_missing:
         actions.append({'severity': 'warning',
                         'title': f'{total_alt_missing} <img> tags have no alt attribute',
                         'detail': 'Decorative images should carry alt="" (empty, not absent) per STYLE-GUIDE 7.3.'})
+    rank = {'critical': 0, 'serious': 1, 'warning': 2, 'good': 3}
+    actions.sort(key=lambda a: rank[a['severity']])
     if not actions:
         actions.append({'severity': 'good', 'title': 'No outstanding issues found',
                         'detail': 'All references resolve, SEO metadata is present, and images are within budget.'})
@@ -509,6 +546,7 @@ def audit(source):
             'imgTotal': images['total'],
             'imgTotalKB': images['totalKB'],
             'imgOverBudget': len(images['overBudget']),
+            'trackingPct': tracking['pct'],
         },
         'missingByDir': dict(sorted(by_dir.items(), key=lambda kv: (-kv[1], kv[0]))),
         'missingByType': dict(sorted(by_type.items(), key=lambda kv: (-kv[1], kv[0]))),
@@ -518,6 +556,7 @@ def audit(source):
                    'expected': parity_expected},
         'sitemap': sitemap,
         'orphans': orphans,
+        'tracking': tracking,
         'images': images,
         'pages': pages,
         'brokenRefs': broken,
@@ -575,6 +614,9 @@ def main():
     else:
         print("  Sitemap:           sitemap.xml not found")
     print(f"  Orphan pages:      {len(data['orphans'])}")
+    t = data['tracking']
+    print(f"  Analytics tag:     {t['pct']}% of pages ({', '.join(t['ids']) or 'no real ID found'}; "
+          f"{len(t['placeholder'])} placeholder, {len(t['untracked'])} missing)")
     print(f"  Wrote {out}")
     print("  Open dashboard.html in a browser to explore.")
 
