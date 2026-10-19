@@ -46,6 +46,34 @@ jobs:
           python3 site_audit.py --url "$LIVE_SITE_URL" --out /tmp/live-data.js | tee live-summary.txt
           mv /tmp/live-data.js dashboard-live-data.js
 
+      # Traffic numbers are business data. In a public repository they would be
+      # readable by anyone (data file, Pages site and these logs), so this step
+      # runs only when the repository is private or PUBLISH_ANALYTICS is 'true'.
+      - name: Fetch Google Analytics and Search Console
+        if: >-
+          github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'push' && github.ref_name == 'main')
+        continue-on-error: true
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          PUBLISH_ANALYTICS: ${{ vars.PUBLISH_ANALYTICS }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "Google is not connected yet. See ANALYTICS-SETUP.md."
+            exit 0
+          fi
+          private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq .private)
+          if [ "$private" != "true" ] && [ "$PUBLISH_ANALYTICS" != "true" ]; then
+            echo "::warning::Skipped: this repository is public, so traffic data would be public. Make the repository private, or set the repository variable PUBLISH_ANALYTICS to true to accept that."
+            exit 0
+          fi
+          pip install --quiet --disable-pip-version-check google-auth requests
+          python3 analytics_fetch.py /tmp/analytics-data.js | tee analytics-summary.txt
+          mv /tmp/analytics-data.js dashboard-analytics-data.js
+
       - name: Publish job summary
         if: always()
         run: |
@@ -55,6 +83,12 @@ jobs:
             echo '```'
             cat audit-summary.txt 2>/dev/null
             echo '```'
+            if [ -f analytics-summary.txt ]; then
+              echo "### Google Analytics and Search Console"
+              echo '```'
+              cat analytics-summary.txt
+              echo '```'
+            fi
             if [ -f live-summary.txt ]; then
               echo "### Live site ($LIVE_SITE_URL)"
               echo '```'
@@ -75,7 +109,7 @@ jobs:
           def norm(text):
               return re.sub(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC', '', text)
           out = []
-          for path in ('dashboard-data.js', 'dashboard-live-data.js'):
+          for path in ('dashboard-data.js', 'dashboard-live-data.js', 'dashboard-analytics-data.js'):
               if not os.path.exists(path):
                   continue
               old = subprocess.run(['git', 'show', 'HEAD:' + path],

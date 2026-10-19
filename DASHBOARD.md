@@ -6,6 +6,9 @@ can audit two things, and the dashboard switches between them:
 
 - **Live site:** the real, deployed nlc.com.sa, crawled over HTTP.
 - **Repository:** the files committed to this GitHub repo.
+- **Traffic:** visitors from Google Analytics 4 and search performance
+  from Google Search Console, fetched daily by `analytics_fetch.py`.
+  Needs a one-time connection: see `ANALYTICS-SETUP.md`.
 
 ## Files
 

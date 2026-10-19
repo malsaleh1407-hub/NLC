@@ -143,6 +143,28 @@ td.num{font-variant-numeric:tabular-nums;text-align:right;}
 .btn-more{display:block;margin:16px auto 0;padding:10px 26px;border:1.5px solid var(--border);border-radius:50px;background:var(--white);font-size:.82rem;font-weight:600;color:var(--primary);transition:var(--transition);}
 .btn-more:hover{border-color:var(--secondary);color:var(--secondary-dark);}
 
+/* ── Traffic view ── */
+.delta{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;margin-top:2px;}
+.delta.up{color:var(--success);} .delta.down{color:var(--danger);} .delta.flat{color:var(--gray-light);}
+.delta .vs{font-weight:500;color:var(--gray-light);}
+.trend svg{display:block;width:100%;height:auto;overflow:visible;}
+.trend .grid{stroke:var(--border);stroke-width:1;}
+.trend .axis{font-size:11px;fill:var(--gray-light);font-family:var(--font);}
+.trend .line{fill:none;stroke:var(--primary);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+.trend .area{fill:var(--primary);opacity:.08;}
+.trend .end{fill:var(--secondary);stroke:var(--white);stroke-width:2;}
+.trend .hit{fill:transparent;}
+.trend .hit:hover{fill:rgba(36,40,94,.07);}
+.status-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.status{display:inline-flex;align-items:center;gap:7px;border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);}
+.status .dot{width:8px;height:8px;border-radius:50%;}
+.status.on .dot{background:#4ade80;} .status.off .dot{background:#9ca3af;}
+.setup ol{margin:10px 0 0 20px;display:grid;gap:8px;font-size:.88rem;color:var(--dark);}
+.setup code{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:1px 7px;font-size:.8rem;}
+.setup p{font-size:.88rem;color:var(--gray);max-width:70ch;}
+.err-list{margin-top:10px;font-size:.78rem;color:var(--danger);}
+td.wrap{white-space:normal;word-break:break-word;}
+
 /* ── Tooltip ── */
 #tip{position:fixed;pointer-events:none;background:var(--primary);color:var(--white);font-size:.76rem;padding:7px 12px;border-radius:8px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .12s;z-index:999;max-width:300px;line-height:1.45;}
 #tip b{color:#fdba74;}
@@ -192,6 +214,7 @@ td.num{font-variant-numeric:tabular-nums;text-align:right;}
   </div>
 </footer>
 
+<script src="dashboard-analytics-data.js"></script>
 <script src="dashboard-live-data.js"></script>
 <script src="dashboard-data.js"></script>
 <script>
@@ -202,10 +225,9 @@ var SOURCES = [
   {key:'live', label:'Live site', data:window.NLC_AUDIT_LIVE},
   {key:'repo', label:'Repository', data:window.NLC_AUDIT}
 ].filter(function(s){return s.data;});
-if(!SOURCES.length){
-  app.innerHTML = '<div class="err-banner">No audit data found. Run <code>python3 site_audit.py</code> from the site root, then refresh this page.</div>';
-  return;
-}
+var ANALYTICS = window.NLC_ANALYTICS || {ga:{connected:false}, gsc:{connected:false}};
+var trafficOn = ANALYTICS.ga.connected || ANALYTICS.gsc.connected;
+SOURCES.unshift({key:'traffic', label:'Traffic', data:ANALYTICS});
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 var switchEl = document.getElementById('srcSwitch');
@@ -216,9 +238,9 @@ function pickSource(key){
   Array.prototype.forEach.call(switchEl.querySelectorAll('button'), function(b){
     b.setAttribute('aria-pressed', String(b.getAttribute('data-src')===src.key));
   });
-  render(src.data);
+  if(src.key === 'traffic') renderTraffic(src.data); else render(src.data);
 }
-if(SOURCES.length > 1){
+{
   switchEl.innerHTML = SOURCES.map(function(s){
     var host = s.key==='live' ? ' · '+esc(s.data.root) : '';
     return '<button type="button" data-src="'+s.key+'" aria-pressed="false"><span class="dot"></span>'+s.label+host+'</button>';
@@ -436,7 +458,163 @@ brMore.addEventListener('click', function(){brShown+=100;renderBr();});
 renderBr();
 }
 
-pickSource(location.hash.slice(1) || stored || SOURCES[0].key);
+/* ── Traffic & search view ── */
+function n0(v){return Number(v||0).toLocaleString('en-US',{maximumFractionDigits:0});}
+function pct1(v){return (Number(v||0)*100).toFixed(1)+'%';}
+function dur(sec){sec=Math.round(sec||0);var m=Math.floor(sec/60),s=sec%60;return (m?m+'m ':'')+s+'s';}
+function deltaHtml(t, lowerIsBetter){
+  if(!t || !t.prev) return '<div class="delta flat">no earlier data to compare</div>';
+  var change = (t.cur - t.prev) / t.prev * 100;
+  if(Math.abs(change) < 0.5) return '<div class="delta flat">no change <span class="vs">vs previous period</span></div>';
+  var good = lowerIsBetter ? change < 0 : change > 0;
+  return '<div class="delta '+(good?'up':'down')+'">'+(change>0?'▲ +':'▼ ')+Math.round(change)+'% <span class="vs">vs previous period</span></div>';
+}
+function tTile(label, value, t, lowerIsBetter){
+  return '<div class="tile"><div class="label">'+label+'</div><div class="value">'+value+'</div>'+deltaHtml(t, lowerIsBetter)+'</div>';
+}
+function tBars(title, sub, rows, unit){
+  var out = '<div class="card"><div class="chart-title">'+title+'</div><div class="chart-sub">'+sub+'</div>';
+  if(!rows || !rows.length) return out+'<div class="empty-note">No data for this period.</div></div>';
+  var max = Math.max.apply(null, rows.map(function(r){return r.value;})) || 1;
+  var total = rows.reduce(function(t,r){return t+r.value;},0);
+  rows.forEach(function(r){
+    var share = total ? Math.round(1000*r.value/total)/10 : 0;
+    out += '<div class="bar-row" data-tip="<b>'+esc(r.name)+'</b><br>'+n0(r.value)+' '+unit+' · '+share+'%">'
+        +  '<div class="bl" title="'+esc(r.name)+'">'+esc(r.name)+'</div>'
+        +  '<div class="bar-track"><div class="bar-fill" style="width:'+Math.max(100*r.value/max,.5)+'%"></div></div>'
+        +  '<div class="bv">'+n0(r.value)+'</div></div>';
+  });
+  return out+'</div>';
+}
+function trendChart(title, sub, rows, key, unit, half){
+  var out = '<div class="card trend"><div class="chart-title">'+title+'</div><div class="chart-sub">'+sub+'</div>';
+  if(!rows || rows.length < 2) return out+'<div class="empty-note">Not enough daily data yet.</div></div>';
+  var W=half?380:720, H=half?210:190, L=44, R=14, T=10, B=26, iw=W-L-R, ih=H-T-B;
+  var vals = rows.map(function(r){return r[key]||0;});
+  var rawMax = Math.max.apply(null, vals) || 1;
+  var raw = rawMax/4, mag = Math.pow(10, Math.floor(Math.log10(raw))), m = raw/mag;
+  var tick = Math.max(1, (m<=1?1:m<=2?2:m<=5?5:10)*mag);
+  var nTicks = Math.ceil(rawMax/tick), nice = nTicks*tick;
+  function x(i){return L + iw*i/(rows.length-1);}
+  function y(v){return T + ih - ih*v/nice;}
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(title)+'">';
+  for(var g=0; g<=nTicks; g++){
+    var gv = tick*g, gy = y(gv);
+    svg += '<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+gy+'" y2="'+gy+'"/>';
+    svg += '<text class="axis" x="'+(L-8)+'" y="'+(gy+4)+'" text-anchor="end">'+n0(gv)+'</text>';
+  }
+  [0, Math.floor((rows.length-1)/2), rows.length-1].forEach(function(i){
+    var d = new Date(rows[i].date+'T00:00:00Z');
+    var lbl = d.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'});
+    svg += '<text class="axis" x="'+x(i)+'" y="'+(H-6)+'" text-anchor="'+(i===0?'start':i===rows.length-1?'end':'middle')+'">'+lbl+'</text>';
+  });
+  var pts = vals.map(function(v,i){return x(i).toFixed(1)+','+y(v).toFixed(1);});
+  svg += '<polygon class="area" points="'+L+','+y(0)+' '+pts.join(' ')+' '+(W-R)+','+y(0)+'"/>';
+  svg += '<polyline class="line" points="'+pts.join(' ')+'"/>';
+  var colW = iw/(rows.length-1);
+  rows.forEach(function(r,i){
+    var d = new Date(r.date+'T00:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'});
+    svg += '<rect class="hit" x="'+(x(i)-colW/2)+'" y="'+T+'" width="'+colW+'" height="'+ih+'" data-tip="<b>'+d+'</b><br>'+n0(vals[i])+' '+unit+'"/>';
+  });
+  var li = rows.length-1;
+  svg += '<circle class="end" cx="'+x(li)+'" cy="'+y(vals[li])+'" r="4.5"/>';
+  return out + svg + '</svg></div>';
+}
+function tTable(cols, rows, empty){
+  if(!rows || !rows.length) return '<div class="empty-note">'+empty+'</div>';
+  return '<div class="tbl-wrap"><table><thead><tr>'+cols.map(function(c){return '<th'+(c.num?' style="text-align:right"':'')+'>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>'
+    + rows.map(function(r){return '<tr>'+cols.map(function(c){return '<td class="'+(c.num?'num':'wrap')+(c.mono?' mono':'')+'">'+c.get(r)+'</td>';}).join('')+'</tr>';}).join('')
+    + '</tbody></table></div>';
+}
+function errList(part){
+  return part.errors && part.errors.length ? '<div class="err-list">Some reports could not load: '+part.errors.map(esc).join(' · ')+'</div>' : '';
+}
+
+function renderTraffic(A){
+  var ga = A.ga || {}, gsc = A.gsc || {};
+  document.getElementById('genTime').textContent = A.generated ? 'Google data fetched '+A.generated : 'Google not connected yet';
+  var html = '<section class="hero"><div class="container hero-inner" style="padding:40px 0 56px">';
+  html += '<div class="hero-copy"><h2>Traffic &amp; search</h2>';
+  html += '<p>Visitors from Google Analytics and search performance from Google Search Console, refreshed every morning. Changes compare the last '+(A.periodDays||28)+' days with the '+(A.periodDays||28)+' days before.</p>';
+  html += '<div class="status-row"><span class="status '+(ga.connected?'on':'off')+'"><span class="dot"></span>Google Analytics '+(ga.connected?'connected':'not connected')+'</span>';
+  html += '<span class="status '+(gsc.connected?'on':'off')+'"><span class="dot"></span>Search Console '+(gsc.connected?'connected':'not connected')+'</span></div>';
+  html += '</div></div></section><main class="container">';
+
+  var liveTrack = window.NLC_AUDIT_LIVE && window.NLC_AUDIT_LIVE.tracking;
+  if(liveTrack && liveTrack.pct < 100){
+    html += '<div class="action '+(liveTrack.pct===0?'critical':'serious')+'" style="margin-top:24px"><div class="ico">!</div><div>'
+         +  '<h4>The live site sends Google Analytics data from only '+liveTrack.pct+'% of pages<span class="sev">'+(liveTrack.pct===0?'critical':'serious')+'</span></h4>'
+         +  '<p>'+(liveTrack.placeholder.length? liveTrack.placeholder.length+' pages still contain the unfilled placeholder GA_MEASUREMENT_ID. ':'')
+         +  liveTrack.untracked.length+' pages have no tag. Visitor numbers below can only count tracked pages. Add the real G-XXXXXXX ID to every page.</p></div></div>';
+  }
+
+  if(!ga.connected && !gsc.connected){
+    var why = [].concat(ga.errors||[], gsc.errors||[]);
+    html += '<section class="section"><div class="card setup"><div class="chart-title">Connect Google to see your numbers</div>'
+         +  '<p>This tab fills itself once the daily job can read your Google accounts. It is a one-time setup of about 15 minutes, described step by step in <code>ANALYTICS-SETUP.md</code>:</p><ol>'
+         +  '<li>Create a read-only service account in Google Cloud and download its key.</li>'
+         +  '<li>Add that service account as a <b>Viewer</b> in Google Analytics and as a <b>user</b> in Search Console.</li>'
+         +  '<li>Save the key, the GA4 property ID and the Search Console property as three GitHub secrets.</li></ol>'
+         +  (why.length? '<div class="err-list">Last attempt: '+why.map(esc).join(' · ')+'</div>':'')+'</div></section>';
+  }
+
+  if(ga.connected){
+    var t = ga.totals || {};
+    html += '<section class="section"><div class="section-head"><h3>Website visitors</h3><span class="hint">Google Analytics 4</span></div>';
+    if(ga.totals){
+      html += '<div class="kpis" style="margin-top:0">'
+        + tTile('Visitors', n0(t.activeUsers.cur), t.activeUsers).replace('</div></div>', '</div><div class="note">'+n0(t.newUsers.cur)+' new</div></div>')
+        + tTile('Visits', n0(t.sessions.cur), t.sessions)
+        + tTile('Page views', n0(t.screenPageViews.cur), t.screenPageViews)
+        + tTile('Engaged visits', pct1(t.engagementRate.cur), t.engagementRate)
+        + tTile('Avg. visit length', dur(t.averageSessionDuration.cur), t.averageSessionDuration)
+        + tTile('Key events', n0(t.keyEvents.cur), t.keyEvents)
+        + '</div>';
+    }
+    html += '<div style="margin-top:16px">'+trendChart('Daily visitors','last 90 days · hover for each day', ga.daily, 'users', 'visitors')+'</div>';
+    html += '<div class="charts" style="margin-top:16px">';
+    html += tBars('Where visitors come from','visits by channel', (ga.channels||[]), 'visits');
+    html += tBars('Countries','visitors by country', (ga.countries||[]), 'visitors');
+    html += tBars('Devices','visitors by device type', (ga.devices||[]).map(function(d){return {name:d.name.charAt(0).toUpperCase()+d.name.slice(1), value:d.value};}), 'visitors');
+    var ls = ga.langSplit;
+    html += tBars('English vs Arabic','page views by site language', ls? [{name:'English',value:ls.en},{name:'Arabic',value:ls.ar}] : [], 'page views');
+    html += '</div>';
+    html += '<div class="charts" style="margin-top:16px"><div class="card"><div class="chart-title">Most viewed pages</div><div class="chart-sub">top 15 by page views</div>'
+         +  tTable([{label:'Page',mono:true,get:function(r){return esc(r.path);}},{label:'Views',num:true,get:function(r){return n0(r.views);}},{label:'Visitors',num:true,get:function(r){return n0(r.users);}}], ga.pages, 'No page data for this period.')+'</div>';
+    html += '<div class="card"><div class="chart-title">Datasheet and file downloads</div><div class="chart-sub">file_download events, top 15</div>'
+         +  tTable([{label:'File',mono:true,get:function(r){return esc(r.file);}},{label:'Downloads',num:true,get:function(r){return n0(r.count);}}], ga.downloads, 'No downloads recorded. GA4 enhanced measurement must be on to track file downloads.')+'</div></div>';
+    html += errList(ga)+'</section>';
+  }
+
+  if(gsc.connected){
+    var g = gsc.totals || {};
+    var per = gsc.period ? gsc.period.start+' to '+gsc.period.end : '';
+    html += '<section class="section"><div class="section-head"><h3>Google search</h3><span class="hint">Search Console · '+per+' (Google reports with a 3-day delay)</span></div>';
+    if(gsc.totals){
+      html += '<div class="kpis" style="margin-top:0">'
+        + tTile('Clicks from Google', n0(g.clicks.cur), g.clicks)
+        + tTile('Times shown in results', n0(g.impressions.cur), g.impressions)
+        + tTile('Click-through rate', pct1(g.ctr.cur), g.ctr)
+        + tTile('Average position', Number(g.position.cur||0).toFixed(1), g.position, true)
+        + '</div>';
+    }
+    html += '<div class="charts" style="margin-top:16px">'
+         +  trendChart('Daily clicks from Google','last 90 days', gsc.daily, 'clicks', 'clicks', true)
+         +  trendChart('Daily times shown in results','last 90 days', gsc.daily, 'impressions', 'impressions', true)+'</div>';
+    var qcols = [{label:'Search term',get:function(r){return esc(r.name);}},{label:'Clicks',num:true,get:function(r){return n0(r.clicks);}},
+                 {label:'Shown',num:true,get:function(r){return n0(r.impressions);}},{label:'CTR',num:true,get:function(r){return pct1(r.ctr);}},
+                 {label:'Position',num:true,get:function(r){return Number(r.position).toFixed(1);}}];
+    html += '<div class="card" style="margin-top:16px"><div class="chart-title">What people search to find you</div><div class="chart-sub">top 25 search terms by clicks</div>'+tTable(qcols, gsc.queries, 'No search terms recorded for this period.')+'</div>';
+    var pcols = qcols.slice(); pcols[0] = {label:'Page',mono:true,get:function(r){return esc(r.name.replace(/^https?:\/\/[^\/]+/,'')||'/');}};
+    html += '<div class="charts" style="margin-top:16px"><div class="card"><div class="chart-title">Pages that get search clicks</div><div class="chart-sub">top 15</div>'+tTable(pcols, gsc.pages, 'No page data.')+'</div>';
+    html += tBars('Search clicks by country','top countries', (gsc.countries||[]).map(function(c){return {name:c.name.toUpperCase(), value:c.clicks};}), 'clicks')+'</div>';
+    html += errList(gsc)+'</section>';
+  }
+  html += '</main>';
+  app.innerHTML = html;
+}
+
+pickSource(location.hash.slice(1) || stored || (trafficOn ? 'traffic' : (SOURCES[1]||SOURCES[0]).key));
 })();
 </script>
 </body>
