@@ -93,6 +93,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add $changed
           git commit -m "Refresh dashboard data after audit [skip ci]"
+          git checkout -- .   # drop timestamp-only edits left uncommitted, or the rebase refuses
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin HEAD:"${GITHUB_REF_NAME}"
           echo "pushed=1" >> "$GITHUB_OUTPUT"
