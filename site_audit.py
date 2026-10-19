@@ -96,7 +96,7 @@ def resolve(ref, page_rel):
     if not ref:
         return None
     if ref.startswith('/'):
-        target = ref.lstrip('/')
+        target = os.path.normpath(ref.lstrip('/') or '.')
     else:
         target = os.path.normpath(os.path.join(os.path.dirname(page_rel), ref))
     target = target.replace('\\', '/')
