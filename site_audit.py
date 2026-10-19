@@ -171,6 +171,13 @@ class LocalSource:
     def exists(self, rel):
         return self._exists[rel]
 
+    def read_text(self, rel):
+        try:
+            with open(os.path.join(self.root, rel), encoding='utf-8', errors='replace') as f:
+                return f.read()
+        except OSError:
+            return ''
+
     def sitemap_xml(self):
         path = os.path.join(self.root, 'sitemap.xml')
         if not os.path.exists(path):
@@ -248,6 +255,13 @@ class LiveSource:
                 return body.decode(charset, errors='replace'), len(body) / 1024
         except (HTTPError, URLError, OSError, ValueError):
             return None
+
+    def read_text(self, rel):
+        try:
+            with self._open(rel, 'GET') as r:
+                return r.read(2_000_000).decode('utf-8', errors='replace')
+        except (HTTPError, URLError, OSError, ValueError):
+            return ''
 
     def sitemap_xml(self):
         if not self._sitemap_fetched:
@@ -354,6 +368,22 @@ def audit(source):
         })
 
     source.check(t for _, targets in page_refs for t in targets)
+
+    # A shared script (nav.js, a tag-manager loader...) can inject the
+    # analytics tag, so scan the site's own JavaScript files as well.
+    scripts = sorted({t for _, targets in page_refs for t in targets
+                      if t.endswith('.js') and source.exists(t)
+                      and not t.startswith('dashboard')})
+    script_tag = {t: analytics_tag(source.read_text(t)) for t in scripts}
+    for page, (rel, targets) in zip(pages, page_refs):
+        for t in targets:
+            if script_tag.get(t) == 'ok':
+                page['analytics'] = 'ok'
+                page['gaIds'] = sorted(set(page['gaIds']) |
+                                       set(GA_ID_RE.findall(source.read_text(t))))
+                break
+            if script_tag.get(t) == 'placeholder' and page['analytics'] == 'missing':
+                page['analytics'] = 'placeholder'
     for page, (rel, targets) in zip(pages, page_refs):
         for target in targets:
             if source.exists(target):
