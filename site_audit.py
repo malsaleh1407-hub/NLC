@@ -374,13 +374,14 @@ def audit(source):
     scripts = sorted({t for _, targets in page_refs for t in targets
                       if t.endswith('.js') and source.exists(t)
                       and not t.startswith('dashboard')})
-    script_tag = {t: analytics_tag(source.read_text(t)) for t in scripts}
+    script_text = {t: source.read_text(t) for t in scripts}
+    script_tag = {t: analytics_tag(text) for t, text in script_text.items()}
+    script_ids = {t: set(GA_ID_RE.findall(text)) for t, text in script_text.items()}
     for page, (rel, targets) in zip(pages, page_refs):
         for t in targets:
             if script_tag.get(t) == 'ok':
                 page['analytics'] = 'ok'
-                page['gaIds'] = sorted(set(page['gaIds']) |
-                                       set(GA_ID_RE.findall(source.read_text(t))))
+                page['gaIds'] = sorted(set(page['gaIds']) | script_ids[t])
                 break
             if script_tag.get(t) == 'placeholder' and page['analytics'] == 'missing':
                 page['analytics'] = 'placeholder'
