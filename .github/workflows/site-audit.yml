@@ -3,9 +3,25 @@ name: Site audit
 on:
   push:
   pull_request:
+  schedule:
+    - cron: '17 3 * * *'   # daily, 06:17 Riyadh time
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: site-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash   # adds -o pipefail, so a failing audit is not masked by tee
+
+env:
+  # Override with a repository variable named LIVE_SITE_URL if the domain changes.
+  LIVE_SITE_URL: ${{ vars.LIVE_SITE_URL || 'https://nlc.com.sa' }}
 
 jobs:
   audit:
@@ -15,40 +31,77 @@ jobs:
 
       # Fails the build when broken internal references exceed .audit-baseline.
       # Ratchet the baseline down as the site heals; never raise it silently.
-      - name: Run audit against baseline
+      - name: Audit repository against baseline
         run: python3 site_audit.py --max-broken "$(cat .audit-baseline)" | tee audit-summary.txt
+
+      # Report-only: a slow or unreachable live site must not block pushes.
+      # The committed live data is replaced only when the crawl loaded pages.
+      - name: Audit live site
+        id: live
+        if: >-
+          github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'push' && github.ref_name == 'main')
+        continue-on-error: true
+        run: |
+          python3 site_audit.py --url "$LIVE_SITE_URL" --out /tmp/live-data.js | tee live-summary.txt
+          mv /tmp/live-data.js dashboard-live-data.js
 
       - name: Publish job summary
         if: always()
         run: |
           {
             echo "## NLC site audit"
+            echo "### Repository"
             echo '```'
-            cat audit-summary.txt
+            cat audit-summary.txt 2>/dev/null
             echo '```'
+            if [ -f live-summary.txt ]; then
+              echo "### Live site ($LIVE_SITE_URL)"
+              echo '```'
+              cat live-summary.txt
+              echo '```'
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # Keep the committed dashboard-data.js in sync with every push, so
-      # dashboard.html always shows the latest audit after a git pull.
-      # Timestamp-only changes are ignored; [skip ci] prevents a re-trigger.
+      # Commit refreshed dashboard data so dashboard.html always shows the
+      # latest audit. Timestamp-only changes are ignored; [skip ci] keeps the
+      # bot commit from re-triggering this workflow.
       - name: Commit refreshed dashboard data
-        if: github.event_name == 'push'
+        id: commit
+        if: github.event_name != 'pull_request'
         run: |
-          python3 - <<'PY' && changed=1 || changed=0
-          import re, subprocess, sys
+          changed=$(python3 - <<'PY'
+          import os, re, subprocess
           def norm(text):
               return re.sub(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC', '', text)
-          new = norm(open('dashboard-data.js').read())
-          old = subprocess.run(['git', 'show', 'HEAD:dashboard-data.js'],
-                               capture_output=True, text=True).stdout
-          sys.exit(0 if norm(old) != new else 1)
+          out = []
+          for path in ('dashboard-data.js', 'dashboard-live-data.js'):
+              if not os.path.exists(path):
+                  continue
+              old = subprocess.run(['git', 'show', 'HEAD:' + path],
+                                   capture_output=True, text=True).stdout
+              if norm(old) != norm(open(path, encoding='utf-8').read()):
+                  out.append(path)
+          print(' '.join(out))
           PY
-          if [ "$changed" = "1" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add dashboard-data.js
-            git commit -m "Refresh dashboard-data.js after audit [skip ci]"
-            git push origin HEAD:"${GITHUB_REF_NAME}"
-          else
+          )
+          if [ -z "$changed" ]; then
             echo "Dashboard data unchanged; nothing to commit."
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add $changed
+          git commit -m "Refresh dashboard data after audit [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
+          echo "pushed=1" >> "$GITHUB_OUTPUT"
+
+      # Commits made with GITHUB_TOKEN do not always trigger a Pages rebuild,
+      # so request one explicitly. Only relevant on the branch Pages serves.
+      - name: Rebuild GitHub Pages
+        if: steps.commit.outputs.pushed == '1' && github.ref_name == 'main'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds"

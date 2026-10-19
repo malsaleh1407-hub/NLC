@@ -36,7 +36,15 @@ input,select{font-family:var(--font);}
 .topbar-right{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:.78rem;color:var(--gray);}
 .refresh-pill{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:5px 14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.72rem;color:var(--primary);white-space:nowrap;}
 .topbar-right .adminlink{font-weight:600;color:var(--secondary-dark);}
-@media(max-width:720px){.topbar-right .gen,.refresh-pill{display:none;}}
+.src-switch{display:inline-flex;background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:3px;gap:2px;}
+.src-switch:empty{display:none;}
+.src-switch button{border:0;background:transparent;border-radius:50px;padding:5px 14px;font-size:.76rem;font-weight:600;color:var(--gray);display:inline-flex;align-items:center;gap:7px;transition:var(--transition);}
+.src-switch button:hover{color:var(--primary);}
+.src-switch button:focus-visible{outline:2px solid var(--secondary);outline-offset:2px;}
+.src-switch button[aria-pressed="true"]{background:var(--white);color:var(--primary);box-shadow:0 1px 4px rgba(36,40,94,.14);}
+.src-switch .dot{width:7px;height:7px;border-radius:50%;background:var(--gray-light);}
+.src-switch button[data-src="live"] .dot{background:var(--success);box-shadow:0 0 0 3px rgba(22,163,74,.18);}
+@media(max-width:720px){.topbar-right .gen{display:none;}.topbar-inner{flex-wrap:wrap;}.topbar-right{margin-left:0;width:100%;justify-content:space-between;}}
 
 /* ── Hero ── */
 .hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:var(--white);position:relative;overflow:hidden;}
@@ -164,7 +172,7 @@ td.num{font-variant-numeric:tabular-nums;text-align:right;}
     </div>
     <div class="topbar-right">
       <span class="gen" id="genTime"></span>
-      <span class="refresh-pill">python3 site_audit.py</span>
+      <div class="src-switch" id="srcSwitch" role="group" aria-label="Audit source"></div>
       <a class="adminlink" href="admin.html">Content CMS →</a>
     </div>
   </div>
@@ -176,26 +184,71 @@ td.num{font-variant-numeric:tabular-nums;text-align:right;}
 <footer class="foot">
   <div class="container foot-inner">
     <div><strong style="color:#fff">How this works</strong><br>
-      <code>site_audit.py</code> scans every HTML file for broken references, SEO metadata,
-      EN/AR parity and image weight, then writes <code>dashboard-data.js</code>.
-      Re-run it any time; this page re-reads the data on refresh.</div>
+      <code>site_audit.py</code> checks broken references, SEO metadata, EN/AR parity,
+      sitemap coverage and image weight. GitHub Actions re-runs it daily against the live
+      site and on every push against the repository, then republishes this page.</div>
     <div style="text-align:right">Internal tool, not linked from the public site.<br>
       Protect like <code>admin.html</code> if deployed (see SERVER-AUTH.md).</div>
   </div>
 </footer>
 
+<script src="dashboard-live-data.js"></script>
 <script src="dashboard-data.js"></script>
 <script>
 (function(){
 'use strict';
-var D = window.NLC_AUDIT;
 var app = document.getElementById('app');
-if(!D){
-  app.innerHTML = '<div class="err-banner">dashboard-data.js not found. Run <code>python3 site_audit.py</code> from the site root, then refresh this page.</div>';
+var SOURCES = [
+  {key:'live', label:'Live site', data:window.NLC_AUDIT_LIVE},
+  {key:'repo', label:'Repository', data:window.NLC_AUDIT}
+].filter(function(s){return s.data;});
+if(!SOURCES.length){
+  app.innerHTML = '<div class="err-banner">No audit data found. Run <code>python3 site_audit.py</code> from the site root, then refresh this page.</div>';
   return;
 }
-var S = D.summary;
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+var switchEl = document.getElementById('srcSwitch');
+function pickSource(key){
+  var src = SOURCES.filter(function(s){return s.key===key;})[0] || SOURCES[0];
+  try{ localStorage.setItem('nlc-dash-src', src.key); }catch(e){}
+  if(location.hash.slice(1)!==src.key) history.replaceState(null,'','#'+src.key);
+  Array.prototype.forEach.call(switchEl.querySelectorAll('button'), function(b){
+    b.setAttribute('aria-pressed', String(b.getAttribute('data-src')===src.key));
+  });
+  render(src.data);
+}
+if(SOURCES.length > 1){
+  switchEl.innerHTML = SOURCES.map(function(s){
+    var host = s.key==='live' ? ' · '+esc(s.data.root) : '';
+    return '<button type="button" data-src="'+s.key+'" aria-pressed="false"><span class="dot"></span>'+s.label+host+'</button>';
+  }).join('');
+  switchEl.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(b) pickSource(b.getAttribute('data-src'));
+  });
+}
+
+/* ── tooltip wiring ── */
+var tip = document.getElementById('tip');
+document.addEventListener('mousemove', function(e){
+  var row = e.target.closest ? e.target.closest('[data-tip]') : null;
+  if(row){
+    tip.innerHTML = row.getAttribute('data-tip');
+    tip.style.opacity = 1;
+    var x = Math.min(e.clientX+14, window.innerWidth-tip.offsetWidth-10);
+    var y = e.clientY - tip.offsetHeight - 10;
+    if(y < 8) y = e.clientY + 18;
+    tip.style.left = x+'px'; tip.style.top = y+'px';
+  } else tip.style.opacity = 0;
+});
+
+var stored = null;
+try{ stored = localStorage.getItem('nlc-dash-src'); }catch(e){}
+window.addEventListener('hashchange', function(){ pickSource(location.hash.slice(1)); });
+
+function render(D){
+var S = D.summary;
+var LIVE = D.mode === 'live';
 function fmt(n){return Number(n).toLocaleString('en-US');}
 
 /* inline SVG icons (no icon-font dependency) */
@@ -214,13 +267,13 @@ function okx(v, na){
 
 /* ── verdict ── */
 var band = D.score>=85 ? {c:'#4ade80',bg:'rgba(74,222,128,.14)',label:'Healthy',icon:IC.ok,
-                          text:'The site tree is in good shape. Review the remaining items below.'}
+                          text:(LIVE?'The live site':'This repository copy')+' is in good shape. Review the remaining items below.'}
         : D.score>=60 ? {c:'#fbbf24',bg:'rgba(251,191,36,.14)',label:'Fair, needs attention',icon:IC.warn,
-                          text:'The site works but is carrying issues that will bite in production. Work the action list below, worst first.'}
+                          text:(LIVE?'The live site':'This repository copy')+' works but is carrying issues worth fixing. Work the action list below, worst first.'}
         : {c:'#f87171',bg:'rgba(248,113,113,.16)',label:'Needs attention',icon:IC.alert,
-           text:'This tree has serious gaps. Work the action list below, worst first; most points come back quickly.'};
+           text:(LIVE?'The live site':'This repository copy')+' has serious gaps. Work the action list below, worst first; most points come back quickly.'};
 
-document.getElementById('genTime').textContent = 'Generated ' + D.generated;
+document.getElementById('genTime').textContent = (LIVE ? 'Live site checked ' : 'Repository checked ') + D.generated;
 
 /* ── hero ── */
 var R=76, CIRC=2*Math.PI*R;
@@ -237,7 +290,7 @@ html += '<circle cx="86" cy="86" r="'+R+'" fill="none" stroke="'+band.c+'" strok
 html += '</svg><div class="val"><div class="num">'+D.score+'</div><div class="of">Health / 100</div></div></div>';
 html += '<div class="hero-copy">';
 html += '<span class="verdict-chip" style="background:'+band.bg+';color:'+band.c+'">'+band.icon+' '+band.label+'</span>';
-html += '<h2>'+fmt(S.totalPages)+' pages scanned · '+fmt(S.refsChecked)+' references checked</h2>';
+html += '<h2>'+fmt(S.totalPages)+' pages '+(LIVE?'crawled on '+esc(D.root):'scanned')+' · '+fmt(S.refsChecked)+' references checked</h2>';
 html += '<p>'+band.text+'</p>';
 html += '<div class="penalty-row">'+(penaltyHtml||'<span class="penalty">No point deductions</span>')+'</div>';
 html += '</div></div></section>';
@@ -254,7 +307,7 @@ html += tile('EN → AR parity', S.parityPct+'%', D.parity.missingAr.length+' EN
 html += tile('Alt-text coverage', S.altPct+'%', fmt(S.totalPages)+' pages scanned', S.altPct>=95?'success':'warning');
 html += tile('Pages with SEO gaps', fmt(S.seoIssuePages), 'missing title, description or hreflang', S.seoIssuePages? 'warning':'success');
 html += tile('Images over budget', fmt(S.imgOverBudget),
-             S.imgTotal? fmt(S.imgTotal)+' files · '+fmt(Math.round(S.imgTotalKB/1024))+' MB total' : 'no image files in this tree',
+             S.imgTotal? fmt(S.imgTotal)+' files · '+fmt(Math.round(S.imgTotalKB/1024))+' MB total' : (LIVE?'no images were checked':'no image files in this tree'),
              S.imgOverBudget? 'warning' : (S.imgTotal? 'success' : undefined));
 html += '</div>';
 
@@ -313,7 +366,7 @@ function chipCard(title, sub, list, emptyMsg){
 var SM = D.sitemap || {present:false, count:0, missingOnDisk:[], notListed:[]};
 html += '<section class="section"><div class="section-head"><h3>Search visibility</h3><span class="hint">sitemap.xml coverage and pages nothing links to</span></div><div class="tri-grid">';
 if(SM.present){
-  html += chipCard('In sitemap, missing on disk', SM.missingOnDisk.length+' of '+SM.count+' sitemap URLs would 404', SM.missingOnDisk, 'Every sitemap URL resolves to a real file.');
+  html += chipCard(LIVE?'In sitemap, but returns an error':'In sitemap, missing on disk', SM.missingOnDisk.length+' of '+SM.count+' sitemap URLs would 404', SM.missingOnDisk, 'Every sitemap URL resolves to a real page.');
   html += chipCard('On disk, not in sitemap', SM.notListed.length+' indexable pages unlisted', SM.notListed, 'Every indexable page is listed.');
 }else{
   html += '<div class="card"><div class="chart-title">No sitemap.xml found</div><div class="empty-note">robots.txt advertises one; generate it so crawlers can discover all pages.</div></div>';
@@ -340,20 +393,6 @@ html += '</div></section>';
 
 html += '</main>';
 app.innerHTML = html;
-
-/* ── tooltip wiring ── */
-var tip = document.getElementById('tip');
-document.addEventListener('mousemove', function(e){
-  var row = e.target.closest ? e.target.closest('[data-tip]') : null;
-  if(row){
-    tip.innerHTML = row.getAttribute('data-tip');
-    tip.style.opacity = 1;
-    var x = Math.min(e.clientX+14, window.innerWidth-tip.offsetWidth-10);
-    var y = e.clientY - tip.offsetHeight - 10;
-    if(y < 8) y = e.clientY + 18;
-    tip.style.left = x+'px'; tip.style.top = y+'px';
-  } else tip.style.opacity = 0;
-});
 
 /* ── SEO table ── */
 var seoBody = document.getElementById('seoBody'), seoCount = document.getElementById('seoCount');
@@ -395,6 +434,9 @@ function renderBr(){
 [brSearch,brType,brDir].forEach(function(el){el.addEventListener('input',function(){brShown=100;renderBr();});});
 brMore.addEventListener('click', function(){brShown+=100;renderBr();});
 renderBr();
+}
+
+pickSource(location.hash.slice(1) || stored || SOURCES[0].key);
 })();
 </script>
 </body>
